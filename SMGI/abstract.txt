@@ -1,0 +1,21 @@
+v2
+
+We present the first results from an on-going survey to study
+the gaseous halos (aka circumgalactic medium or CGM) of the
+massive galaxies detected as sub-mm galaxies (SMGs).
+We have constructed a parent of quasar-SMG paris by cross-matching
+the {\it Herschel} SMG catalog with spectroscopically confirmed 
+quasars having separations less than $36''$.
+Using follow-up Very Large Array (VLA) observations,
+we determined the positions of a subsample of 13 \hers\ sources
+and then obtained near-infrared spectroscopy to obtain
+secure redshift identification of three pairs. 
+The QSO sightlines probe transverse proper distances ($R_\bot$) of 112, 157, and 198~kpc at foreground redshifts of 2.043, 2.515, and 2.184, respectively. 
+High-quality absorption-line spectroscopy of the quasars reveals
+systematically strong \HI\ \lya\ absorption (rest-frame equivalent widths  
+$W_{\rm Ly\alpha} \approx 2-3$~\AA) around all three SMGs. 
+In contrast to previous studies on the CGM of luminous $z \sim 2$
+quasars, however, the three SMGs exhibit a low incidence
+of optically thick HI gas and no heavy element absorption
+between $100 < R_\bot < 200$~kpc. 
+This result tentatively indicates that SMGs either do not have substantial cool gas reservoirs in their halos or inhabit much less massive halos than previously thought.

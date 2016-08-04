@@ -1,0 +1,393 @@
+%% Preprint Format 
+%\documentclass[12pt,preprint]{aastex}
+%\epsscale{1.0}
+
+% ApJ Format
+\documentclass[iop,revtex4,twocolumn,apj,numberedappendix,appendixfloats]{emulateapj}
+\usepackage{/Users/fu/Documents/latex/apj/apjfonts99}
+\usepackage{pdflscape}
+
+\shorttitle{CGM of SMGs} 
+\shortauthors{Fu et al.}
+\journalinfo{}
+\submitted{}
+
+% New commands
+\newcommand{\eg}{e.g.,}
+\newcommand{\ie}{i.e.,}
+% Facilities
+\newcommand{\hers}{{\it Herschel}}
+\newcommand{\spit}{{\it Spitzer}}
+% Units
+\newcommand{\kms}{{km s$^{-1}$}}
+\newcommand{\cmsq}{{cm$^{-2}$}}
+\newcommand{\ms}{$M_{\rm star}$}
+\newcommand{\mg}{$M_{\rm gas}$}
+\newcommand{\mh}{$M_{\rm halo}$}
+\newcommand{\mbh}{$M_{\rm BH}$}
+\newcommand{\msun}{$M_{\odot}$}
+\newcommand{\msunyr}{${\rm M}_{\odot}~{\rm yr}^{-1}$}
+\newcommand{\lsun}{$L_{\odot}$}
+\newcommand{\um}{$\mu$m}
+\newcommand{\uJy}{$\mu$Jy}
+\newcommand{\nd}{\nodata}
+\newcommand{\sqdeg}{deg$^2$}
+% emission/absorption lines
+\newcommand{\Ha}{H$\alpha$}
+\newcommand{\lya}{Ly$\alpha$}
+\newcommand{\lyb}{Ly$\beta$}
+\newcommand{\HI}{H\,{\sc i}}
+\newcommand{\CII}{C\,{\sc ii}}
+\newcommand{\SiIV}{Si\,{\sc iv}}
+% forbidden lines
+\newcommand{\OII}{[O\,{\sc ii}]}
+\newcommand{\OIIexpanded}{[O\,{\sc ii}]\,$\lambda$3727}
+\newcommand{\SII}{[S\,{\sc ii}]}
+\newcommand{\OIII}{[O\,{\sc iii}]}
+\newcommand{\OIIIexpanded}{[O\,{\sc iii}]\,$\lambda$5007}
+\newcommand{\NII}{[N\,{\sc ii}]}
+\newcommand{\MgII}{Mg\,{\sc ii}}
+% special 
+\newcommand{\nod}{\nodata}
+\newcommand{\sqps}{SMG$-$QSO pairs}
+\newcommand{\sqp}{SMG$-$QSO pair}
+
+\begin{document}
+
+\title{Probing the Circumgalactic Medium of Submillimeter Galaxies with QSO Absorption Spectroscopy}
+
+%\input{authors/authors.tex}
+\author{
+Hai~Fu\altaffilmark{1} and Collaborators
+}
+\altaffiltext{1}{Department of Physics \& Astronomy, University of Iowa, Iowa City, IA 52242}
+
+\begin{abstract}
+Submillimeter galaxies (SMGs) are dusty starbursts in the early universe that may have evolved into massive ellipticals today. Their clustering strength suggests that they inhabit $10^{13}$~\msun\ halos. The physical state of the circumgalactic medium of SMGs carries key information to decode massive galaxy formation yet are unexplored observationally. We exploit QSO absorption spectroscopy to probe the diffuse gas around SMGs.
+% 
+We first compile a sample of \sqps\ with angular separations less than 35\arcsec\ from \hers\ surveys. We then use the Very Large Array (VLA) to determine the positions of the \hers\ sources. Finally, we use near-infrared spectrographs to determine the redshifts of the five VLA-detected SMGs and optical spectrographs to obtain their QSO absorption spectra. 
+%
+Our survey yielded three \sqps\ with secure redshift identification for both components. The QSO sightlines probe transverse proper distances between 110 and 200~kpc. We detect strong \HI\ \lya\ absorption with rest-frame equivalent widths $W_{\rm Ly\alpha} = 1.7-2.0$~\AA\ around all three SMGs. One of the \lya\ system shows only 40\% absorption at the line center, so it is clearly optically thin (${\rm log}(N_{\rm HI}) < 17$~\cmsq) and the high $W_{\rm Ly\alpha}$ is due to line-blending. The high equivalent widths and the line center depths of the other two systems are consistent with optically thick absorbers with $18 < {\rm log}(N_{\rm HI}) < 19$~\cmsq. However, neither are convincingly optically thick, because our spectral resolution is insufficient to reveal the damping wings of the \lya\ line and the low-ionization metal lines commonly associated with optically thick absorbers are buried in the \lya\ forest. Compared to the QSOs at $z \sim 2$, our limited sample suggest that SMGs' surrounding media have lower covering fraction of optically thick cool gas. 
+\end{abstract}
+
+\keywords{galaxies: halos --- quasars: absorption lines --- intergalactic medium}
+
+\section{Introduction} \label{sec:intro}
+
+\begin{deluxetable*}{rrrccc crrcc}
+\tablewidth{0pt}
+\tablecaption{VLA Observed \hers\ Sources
+\label{tab:vlaphoto}}
+\tablehead{
+\colhead{Pair Name} & \colhead{RA$_{250}$} & \colhead{DEC$_{250}$} & \colhead{$S_{250}$} & \colhead{$S_{350}$} & \colhead{$S_{500}$} & \colhead{Int Time} & \colhead{RA$_{\rm 6 GHz}$} & \colhead{DEC$_{\rm 6 GHz}$} & \colhead{$S^{\rm peak}_{\rm 6 GHz}$} & \colhead{$S^{\rm int}_{\rm 6 GHz}$} \\
+%
+\colhead{} & \colhead{(deg)} & \colhead{(deg)} & \colhead{(mJy)} & \colhead{(mJy)} &  \colhead{(mJy)} &  \colhead{(min)} & \colhead{(deg)} & \colhead{(deg)} & \colhead{(\uJy/bm)} & \colhead{(\uJy)} \\
+%
+\colhead{(1)} & \colhead{(2)} & \colhead{(3)} & \colhead{(4)} & \colhead{(5)} & \colhead{(6)} & \colhead{(7)} &  \colhead{(8)} & \colhead{(9)} & \colhead{(10)} & \colhead{(11)} 
+}
+\startdata
+%\input{/Users/fu/casa/15a266/figs/tables/paper_tab1.tex}
+HeLMS 0015$+$0404  &  3.9286&$+$4.0715 & 61.7$\pm$6.0 & 67.8$\pm$5.7 & 54.3$\pm$7.2&26.5&  3.93038&$+$4.07262  & 69.4$\pm$6.7 & 72.4$\pm$13.4\\
+%HeLMS 0028$+$0107  &  7.1544&$+$1.1213 & 54.7$\pm$6.1 & 57.8$\pm$5.6 & 45.9$\pm$7.1&31.5& \nodata & \nodata & $<$14.7& \nodata  \\
+HeLMS 0041$-$0410  & 10.3541&$-$4.1679 & 80.8$\pm$6.2 & 83.0$\pm$6.5 & 43.6$\pm$7.0&15.8& \nodata & \nodata & $<$35.1& \nodata  \\
+%HeLMS 0059$+$0459  & 14.9780&$+$4.9917 &101.2$\pm$6.5 &108.6$\pm$6.5 & 61.6$\pm$7.5&14.8& \nodata & \nodata & $<$23.4& \nodata  \\
+L6-XMM 0223$-$0605 & 35.8056&$-$6.0860 & 33.8$\pm$2.3 & 40.3$\pm$2.5 & 24.2$\pm$3.5&69.7& \nodata & \nodata & $<$14.4& \nodata  \\
+G09 0918$-$0039    &139.6159&$-$0.6644 & 41.1$\pm$6.9 & 49.7$\pm$8.1 & 31.2$\pm$9.1&18.9& \nodata & \nodata & $<$17.7& \nodata  \\
+G09 0920$+$0024    &140.2475&$+$0.4049 & 35.0$\pm$7.0 & 51.6$\pm$8.1 & 32.0$\pm$8.9&22.9& \nodata & \nodata & $<$18.6& \nodata  \\ 
+NGP 1313$+$2924    &198.4530&$+$29.4126& 59.7$\pm$5.6 & 78.5$\pm$6.6 & 53.6$\pm$7.8&17.2& \nodata & \nodata & $<$42.3& \nodata  \\
+NGP 1330$+$2540    &202.5866&$+$25.6749& 49.2$\pm$5.8 & 54.3$\pm$6.4 & 29.3$\pm$7.8&18.0& \nodata & \nodata & $<$15.3& \nodata  \\ 
+NGP 1333$+$2357    &203.3743&$+$23.9592& 30.4$\pm$5.4 & 31.8$\pm$6.4 & 29.1$\pm$7.5&55.2&203.37514&$+$23.95909 & 20.0$\pm$3.0 & 31.0$\pm$8.1 \\
+NGP 1335$+$2805    &203.9409&$+$28.0986& 41.7$\pm$5.5 & 49.8$\pm$6.4 & 38.2$\pm$7.7&27.6&203.94249&$+$28.09750 & 38.3$\pm$4.5 & 51.4$\pm$11.0\\
+G15 1413$+$0058    &213.4580&$+$0.9725 & 46.6$\pm$6.4 & 52.8$\pm$7.7 & 36.1$\pm$8.5&16.2&213.45743&$+$0.97321  & 37.3$\pm$5.8 & 37.3$\pm$11.6\\
+G15 1435$+$0110    &218.9043&$+$1.1682 & 63.0$\pm$6.7 & 63.8$\pm$8.0 & 56.6$\pm$8.8& 9.2&218.90494&$+$1.16958  & 75.6$\pm$7.3 & 89.1$\pm$16.0\\
+G15 1450$+$0026    &222.6773&$+$0.4351 & 47.5$\pm$6.9 & 47.9$\pm$8.1 & 29.1$\pm$8.9&16.3& \nodata & \nodata & $<$18.0& \nodata \\
+L6-FLS 1712$+$6001 &258.0352&$+$60.0281& 32.3$\pm$2.2 & 34.0$\pm$2.4 & 22.4$\pm$3.6&30.1&258.03111&$+$60.02722 & 10.8$\pm$2.1 & 10.8$\pm$4.2 
+\enddata
+\tablecomments{
+Columns (2-6) list the \hers\ 250~\um\ positions and the photometry at 250, 350, and 500~\um.
+Column 7 is the total VLA on-source integration time.
+Columns (8-9) list the positions of the radio counterparts.
+Columns (10-11) are the peak flux density in \uJy/bm and the integrated flux density in \uJy, both of which are derived by fitting an elliptical Gaussian model to the source. The uncertainty of peak flux density is given by the rms noise in the map at the source position, while the uncertainty of the integrated flux density is estimated using the formulae provided by \citet{Hopkins03a}, which includes the 1\% uncertainty in the VLA flux-density scale at 6~GHz \citep{Perley13}.  
+}
+\end{deluxetable*}
+
+The first mJy-level submillimeter surveys discovered a population of high-redshift submillimeter-bright galaxies (SMGs), namely, unresolved sources with 850~\um\ flux density ($S_{850}$) greater than 3~mJy \citep{Smail97,Barger98,Hughes98,Eales99}. The SMGs are massive \citep[\ms\ $\sim 10^{11}$~\msun;][]{Hainline11, Michalowski12, Targett12}, metal-rich \citep[$Z \sim Z_\odot$;][]{Swinbank04}, gas-rich \citep[\mg\ $\sim 3\times10^{10}$~\msun;][]{Greve05, Tacconi08, Ivison11}, extreme star-forming systems (SFR $\gtrsim 500$~\msunyr) at a median redshift of $z \sim 2.5$ \citep{Chapman05,Wardlow11,Yun12,Smolcic12}. Two lines of evidence suggest that SMGs inhabit dark matter halos as massive as $\sim$$10^{13}$~\msun: (1) their strong clustering strength estimated from the cross-correlation function between SMGs and 3.6~\um-selected galaxies \citep[\mh $\sim 9\times10^{12}$~\msun; e.g.,][]{Hickox12}, and (2) their high stellar mass and the \ms$-$\mh\ relation from abundance matching \citep[\mh~$= 6\times10^{12}$~\msun\ for \ms~$= 10^{11}$~\msun\ at $z = 2$; e.g.,][]{Behroozi10}.  
+
+It is imperative to know how long this intense star formation would last. For $10^{13}$~\msun\ halos at $z = 2$, the total baryonic accretion rate from the mass growth rate of dark matter haloes is $\dot{M}_{\rm bar} \equiv 0.18 \times \dot{M}_{\rm halo} \sim 1200$~\msunyr\ \citep{Neistein08}. However, all of these baryons are expected to be shock-heated to the virial temperature of the halo ($\sim7\times10^6$~K) and the cool gas replenishment timescale is much longer than the gas depletion timescale in such halos \citep[e.g.,][]{Dekel06,Tacchella15}. Therefore, the prolific star formation in SMGs should be unsustainable; the SFR would decline with an $e$-folding timescale of only $\sim$200~Myr \citep[2\mg/SFR; e.g.,][]{Tacconi08,Bothwell12}. At such a rate, the SMGs would become red sequence galaxies in only a Gyr or 5 $e$-folding times\footnote{This is the time it would take to decrease the specific SFR (SFR/\ms) from $\sim$$10^{-9}$~Gyr$^{-1}$ for the SMGs at the observed epoch to $\sim$$10^{-11}$~Gyr$^{-1}$ for the red sequence at $z \sim 2$ \citep{Brammer09}.} \citep{Fu13}. Such a short transitional time of a significant high-redshift star-forming population helps explain the rapid build-up of the massive end of the red sequence at $z > 1$ \citep[e.g.,][]{Ilbert13}. It makes it unnecessary to invoke any additional quenching mechanisms such as galactic outflows, which can be suppressed in such massive halos \citep[e.g.,][]{Singh16}. 
+
+However, could there be enough cool gas in the circumgalactic medium (CGM) around SMGs that may fuel a prolonged starburst phase \citep[e.g.][]{Narayanan15}? The CGM of co-eval QSOs may give us a hint, because they inhabit comparably massive ($\sim$$10^{12.6}\,M_{\odot}$) halos \citep{White12}. Contrary to the expected dominance of virialized X-ray plasma, absorption line spectroscopy of a statistical sample of $z \sim 2$ projected QSO pairs reveals the prevalence of cool ($T \sim 10^4$~K), metal-enriched ($Z \geq 0.1 Z_\odot$), and optically thick \lya\ absorbers ($N_{\rm HI} \geq 1.6\times10^{17}$~\cmsq) extending to at least the expected viral radius of 160~kpc \citep[the ``Quasar Probing Quasar'' (QPQ) project:][]{Hennawi06,Prochaska13,Prochaska13a}. The high observed covering factor of the cool CGM gas ($\gtrsim 60\%$) in $\sim$$10^{12.6}\,M_{\odot}$ halos has been compared to predictions from numerical simulations, and it has been realized that efficient star-formation-driven feedback from accreted satellite galaxies is required to increase the \HI\ covering factor to the observed level \citep[e.g.,][]{Fumagalli14,Faucher-Giguere15,Rahmati15,Faucher-Giguere16}. The models predict that the covering factor increases with halo mass and is independent of specific SFR, so SMGs are likely to show even higher \HI\ covering factors. To test this, we exploit QSO absorption line spectroscopy to probe the CGM of SMGs. We first present the data sets and the method we used to select projected \sqps\ in \S~\ref{sec:sample}. We then describe our followup observations in \S~\ref{sec:obs}, including radio interferometer imaging, near-infrared spectroscopy, and optical spectroscopy. We present our analysis and results in \S~\ref{sec:result}. Finally, we conclude by comparing the covering fraction of optically thick gas around SMGs with that of $z \sim 2$ QSOs (\S~\ref{sec:discuss}). Throughout we adopt a $\Lambda$CDM cosmology with $\Omega_{\rm m}=0.27$, $\Omega_\Lambda=0.73$ and $H_0$ = 70 km~s$^{-1}$~Mpc$^{-1}$.  
+
+% NFW profile
+% IDL> nfw,1e13,2.0,/debug
+% c_vir =   4.9 R_vir(kpc) = 232.9 r_s(kpc) =  47.3 rho_s(Msun/kpc^3) = 7.9e+06 vdisp (km/s) = 451.3 T_vir (K) =  6.62e+06
+% IDL> nfw,1e13,2.5,/debug
+% c_vir =   4.6 R_vir(kpc) = 200.9 r_s(kpc) =  43.4 rho_s(Msun/kpc^3) = 1.1e+07 vdisp (km/s) = 482.0 T_vir (K) =  7.68e+06
+% sqrt((2 * G * (1e13 solar mass)) / (232.9 kpc)) = 607 825.609 m / s
+
+\section{Selection of Projected SMG$-$QSO Pairs} \label{sec:sample}
+
+Because both high-redshift QSOs and SMGs have low surface densities on the sky, we need large samples of both to come up with a sizable sample of projected \sqps\ with small angular separations. We compiled 464,866 spectroscopically confirmed QSOs from various surveys: primarily, the Sloan Digital Sky Survey \citep[SDSS;][]{Alam15}, the 2dF QSO Redshift Survey \citep[2QZ;][]{Croom04}, the AGN and Galaxy Evolution Survey \citep[AGES;][]{Kochanek12}, and the MMT Hectospec Redshift Survey of 24 {$\mu$}m Sources in the Spitzer First Look Survey \citep{Papovich06}. Since our \hers-selected SMGs likely have redshifts greater than two (see the next paragraph), we keep only the 102,472 QSOs at $z_{\rm QSO} > 2.5$. To select the foreground SMGs, we combined source catalogs from a number of wide-area \hers\ extragalactic surveys: the \hers\ Multi-tiered Extragalactic Survey \citep[HerMES, 95 \sqdeg;][]{Oliver12,Wang14a}, the \hers\ Astrophysical Terahertz Large Area Survey \citep[H-ATLAS, 600 \sqdeg;][]{Eales10,Valiante16}, the \hers\ Large Mode Survey \citep[HeLMS, 301 \sqdeg;][]{Oliver12,Clarke16,Asboth16,Nayyeri16}, the \hers\ Stripe 82 Survey \citep[HerS, 79 \sqdeg;][]{Viero14}. All of these surveys used SPIRE \citep[Spectral and Photometric Imaging Receiver;][]{Griffin10} to image the sky at 250, 350, and 500~\um\ and the combined xID250\footnote{250, 350 and 500~\um\ fluxes were all extracted at source positions detected on the 250~\um\ map \citep[e.g.,][]{Roseboom10,Rigby11}.} catalog contain 1,586,047 sources covering a total of 767 \sqdeg\ (there is significant overlap between HerS and HeLMS).  
+
+However, most \hers\ sources are not SMGs. To select \hers\ sources that would have been selected as SMGs if observed at 870~\um, we chose only the subsample that satisfies the following criteria: (1) $>$3$\sigma$ detections in all three SPIRE bands, (2) flux densities peak at 350~\um\ ($S_{250} < S_{350}$ and $S_{500} < S_{350}$; i.e., ``350\um\ peakers''), and (3) $S_{500} > 20$~mJy. Criterion 2 is essentially a photometric redshift selection because a typical graybody dust emission at $T = 35$~K would peak at 350~\um\ if redshifted to $z \sim 2.5\pm0.8$. In addition, the blind CO survey of the brightest 350~\um\ peakers ($S_{350} \geq 115$~mJy) has shown a strikingly similar redshift distribution as 850~\um-selected SMGs \citep{Harris12}, even though most of these bright sources are strongly lensed. Criterion 3 is introduced to ensure that the Rayleigh-Jeans extrapolation would give $S_{850} > 3$~mJy, the classic definition of an SMG, given a typical power-law slope of 3.5 (i.e., $\beta = 1.5$). Only 70,823 \hers\ sources remained after this selection, giving an average surface density of 92 per \sqdeg\ (but note that the 500~\um\ depth varies substantially from field to field).
+ 
+We identified 230 projected \sqps\ with separations\footnote{$\theta_{250}$ is measured between the \hers\ position and the optical position of the QSO.} between 5\arcsec~$\leq \theta_{250} \leq$~36\arcsec\ by cross-matching the QSO and SMG subsamples described above. The corresponding impact parameters ($R_\bot$)\footnote{The impact parameter is defined as the transverse proper distance at the redshift of the foreground SMG, which equals the angular diameter distance of the SMG multiplied by the angular separation on sky ($R_\bot = D_{\rm A}(z) \times \theta$).} are between $40 < R_\bot <$~300~kpc for $z_{\rm SMG} = 2.5$. These QSO sightlines thus probe out to $\sim$1.5 virial radii of $10^{13}$~\msun\ halos ($r_{\rm vir} = 200$~kpc at $z = 2.5$). The 5\arcsec\ lower limit is imposed as an attempt to avoid FIR-bright QSOs, because the 95\%-ile positional uncertainty of the \hers\ positions is $\sim$5\arcsec. Through visual inspection of the QSO spectra, we further excluded 31 pairs whose QSOs exhibit strong broad absorption lines (BALs), have wrong redshifts, or are misclassified. Therefore, our final sample include 199 pairs, among which 90/163 QSOs have $g \leq 21/22$~AB.
+
+\begin{figure*}[!tb]
+\epsscale{1.18}
+\plotone{/Users/fu/casa/15a266/figs/vla_detect.eps}
+\caption{VLA 6~GHz continuum maps for the six VLA-identified SMGs. Each image is 30\arcsec$\times$30\arcsec\ centered on the \hers\ position. The restoring beam of each map is plotted as the red ellipse at the lower right corner. The white cross and the dashed white circle indicate the \hers\ positions and the 18\arcsec\ FWHM of the 250~\um\ PSF. The green square highlights the detected radio source within the \hers\ FWHM. The white diamond marks the optical position of the QSO, if it is within the displayed region. The gray dotted contour is at $-$2$\times$$\sigma$, and the black contours are at ($+$2, $+$4, $+$8)$\times$$\sigma$. Major tickmarks are spaced in 5\arcsec\ intervals. N is up and E is left for all panels.
+\label{fig:detections}} 
+\end{figure*}
+
+\section{Followup Observations} \label{sec:obs}
+
+Extensive followup observations are needed to perform absorption spectroscopy of SMGs. Our first problem is that the angular resolution of \hers\ (FWHM = 18\arcsec/25\arcsec/36\arcsec\ at 250/350/500~\um) is inadequate for longslit spectroscopic observations. To obtain more accurate positions and to remove blended sources, we have to exploit interferometer observations with the Karl G. Jansky Very Large Array (VLA). Furthermore, once the positions are determined with sub-arcsec accuracy, we need to determine the spectroscopic redshifts of the SMGs with near-IR spectrographs. Finally, a high S/N optical/near-UV spectrum of the background QSO is needed to detect the UV absorption lines imprinted by the diffuse medium around the SMGs. Below we describe these observations in more details.
+
+\subsection{SMG Identification with the VLA}
+
+%The angular resolution of \hers\ is inadequate for longslit spectroscopic followup (FWHM = 18\arcsec/25\arcsec/36\arcsec\ at 250/350/500~\um). To obtain more accurate positions and to remove blended sources, 
+We observed 15 \sqps\ with the Karl G. Jansky Very Large Array (VLA) in the B configuration with the C-band (6~GHz) receivers (program ID: 15A-266). We later realized that two of the VLA targets in the HeLMS field are likely spurious detections because of Galactic cirrus (Clarke et al. in prep.), so we excluded them in this discussion. Table~\ref{tab:vlaphoto} lists the \hers\ positions and photometry of the final VLA sample. The receivers have a total bandwidth of 4\,GHz at a central frequency of 5.9985\,GHz. The targets were selected from six different extragalactic fields. To maximize the observing efficiency, we grouped the targets with their R.A. into five scheduling blocks (SBs) of 0.8 to 3.1\,hours. A nearby unresolved calibrator was observed every $\sim$10~min. Depending on the R.A. of the targets, 3C\,48, 3C\,286, or 3C\,295 was observed for bandpass and flux-density calibration. The entire program took 8.3 hrs of VLA time. The on-source integration time ranges from 9 to 70 minutes, allocated based on the 6~GHz flux density estimated from fitting the \hers\ photometry with the SED template of a well-studied lensed SMG at $z = 2.3259$ \citep[SMM~J2135-0102, aka. the ``Eyelash'';][]{Swinbank10b}.
+
+The observations were calibrated using the Common Astronomical Software Applications (CASA) package. We used the VLA pipeline to perform basic flagging and calibration. Additional flagging was performed whenever necessary by inspecting the visibility data. We used the self-calibration technique with bright sources within the primary beam to improve the calibration for four fields: HeLMS\,0015$+$0404, HeLMS\,0041$-$0410, L6-XMM\,0223$-$0605, and NGP\,1313$+$2924. For imaging and deconvolution, we used the standard CASA task {\sc clean} with ``natural'' weighting to achieve the best sensitivity. The resulting restoring beams are on average 1\farcs5$\times$1\farcs2 in FWHM and the rms noise ranges from 2.1 to 11.7~\uJy/bm (primarily driven by the different integration times). 
+
+%The VLA detected six of the 13 SMGs (see Table~\ref{tab:vlaphoto} and Fig.~\ref{fig:detections}). For one of those, NGP~1335+2805, the QSO at $z = 2.973$ itself is responsible for the far-IR emission; so it is a far-IR-luminous QSO instead of a projected \sqp.
+
+\subsection{Near-IR Spectroscopy of the VLA-detected SMGs} 
+
+\begin{figure*}[!tb]
+\epsscale{0.38}
+\plotone{/Users/fu/data/qph_nir/gnirs/15bq46/HeLMS_0015+0404/HeLMS_0015+0404.eps}
+\plotone{/Users/fu/data/qph_nir/luci1/201504/redux0/NGP_1333+2357.eps}
+\plotone{/Users/fu/data/qph_nir/luci1/201504/redux0/L6-FLS_1712+6001.eps}
+\caption{Near-infrared spectra of the VLA-identified SMGs. The top panel shows the coadded 2D spectrum. The vertical axis is along the spatial direction, and is centered on the SMG location. The bottom panel shows the flux-calibrated 1D spectrum ({\it black}) and its 1$\sigma$ uncertainty ({\it blue}). Wavelengths affected by strong sky lines show large errors. The dashed lines indicate the redshifted \Ha\,$\lambda$6563 and \NII\,$\lambda\lambda$6548,6583 lines.
+\label{fig:smgspec}} 
+\end{figure*}
+
+Five VLA-detected SMGs were observed with various IR spectrographs. 
+%
+We observed G15\,1435$+$0110, L6-FLS\,1712$+$6001, and NGP\,1333$+$2357 with the LUCI-1 spectrograph \citep{Seifert03} on the Large Binocular Telescope (LBT) on 2015 Apr 14. We used the 200 l/mm $H$+$K$ grating at $\lambda_{\rm c} = 1.93$~\um\ and the N1.8 camera (0\farcs25 per pixel) to obtain a spectral range between 1.5 and 2.3~\um. The 1\arcsec-wide 4\arcmin-long slit is centered on the VLA-determined SMG position, and the slit P.A. is chosen to obtain the QSO spectrum simultaneously. The spectral resolution ($R$) is $\sim$940 in $H$-band and $\sim$1290 in $K$-band. We obtained 32$\times$ 120~s exposures for each target. Between exposures, we dithered along the slit among six dithering positions distributed within 40\arcsec. 
+%Atmospheric transparency varied dramatically during the night and no telluric star was observed. So we used the telluric star observation from the previous night for an approximate telluric and flux calibration.
+
+We observed HeLMS\,0015$+$0404 with the Gemini near-infrared spectrograph \citep[GNIRS;][]{Elias06} in the queue mode (program ID: GN-2015B-Q-46). We used the cross-dispersing prism with the 31.7 l/mm grating and the short camera to obtain a complete spectral coverage between 0.85-2.5~\um. With the 0\farcs68 short slit, the spectral resolution is $R \sim 750$ across all orders. A total of 14$\times$ 300~s exposures were obtained on 2015 Aug 9, Aug 12, and Oct 18. We dithered by 3\arcsec\ along the 7\arcsec-slit between exposures.
+
+We observed G15\,1413$+$0058 with NIRSPEC \citep{McLean98} on the Keck II telescope on 2015 Jun 13. We used the low resolution mode, the NIRSPEC-7 ($K$-band) filter, the 42\arcsec$\times$0\farcs76 slit. The spectral coverage is between 1.97 and 2.40~\um. The night was cloudy and we only obtained 8$\times$ 300~s exposures.
+
+Data reduction was carried out with a modified version of \texttt{LONGSLIT\_REDUCE} \citep{Becker09} for LUCI-1 by F. Bian \citep{Bian10}, a modified version of Spextool \citep{Cushing04,Vacca03} for GNIRS by Katelyn Allers (private communication), and the original version of \texttt{LONGSLIT\_REDUCE} for NIRSPEC \citep{Becker09}. These IDL packages carry out the standard data reduction steps for longslit near-IR spectra: flat-fielding, wavelength calibration with sky lines, pairwise sky subtraction, residual sky removal, shifting and coadding, spectral extraction, telluric correction, and flux calibration. 
+
+\subsection{Optical Spectroscopy of the Background QSOs}
+
+Although optical spectra exist for all of the QSOs in our sample, most of them do not have the necessary wavelength coverage or sufficient S/N for absorption line analysis. So we obtained new optical spectra for the three background QSOs that are associated with the spectroscopically identified SMGs. We observed L6-FLS\,1712$+$6001 on 2015 Jun 13 and HeLMS\,0015$+$0404 and NGP\,1333$+$2357 on 2016 Jan 9 with the Low Resolution Imaging Spectrometer \citep[LRIS;][]{Oke95} on the Keck I telescope. We used the 1\arcsec\ longslit and the 560 Dichroic for both runs. For the former run, we used the 400/3400 Grism on the blue side ($R \simeq 540$) and the 400/8500 grating tilted to a central wavelength of $\lambda_{\rm c} = 8300$~\AA\ on the red side. 
+%
+For the latter run, we used the 600/4000 Grism on the blue side ($R \simeq 920$) and the 600/7500 grating at $\lambda_{\rm c} = 7407$~\AA\ on the red side. With the chosen dispersive elements, the spectral resolutions in FWHM are $\sim$4-7~\AA\ and $\sim$5-7~\AA\ for the blue and red spectra, respectively. The total integration time for each source ranged between 30 min and 40 min. Conditions were non-photometric for both nights. 
+
+We reduced the raw data with \texttt{XIDL}\footnote{http://www.ucolick.org/$\sim$xavier/IDL/}, an IDL data reduction package for a number of spectrographs written by two of us (JXP and JH). The pipeline follows the standard data reduction steps and reduces the blue and red channels separately. It begins by subtracting a super bias from the raw CCD frames, tracing the slit profiles using flat fields, and deriving the 2D wavelength solution for each slit using the arcs. Then it flat-fields each slit and rejects cosmic-rays, identifies objects automatically in the slit, and builds the 2D bspline super sky model without rectification \citep{Kelson03}. After subtracting the super sky model, it performs optimal 1D extraction based on the spatial profile of the QSO \citep{Horne86}. Finally, it removes instrument flexure using isolated sky lines, performs heliocentric correction, and does flux calibration.
+
+\begin{deluxetable*}{rccccc ccccc}
+\tablewidth{0pt}
+\tablecaption{Redshifts and Absorption Line Measurements
+\label{tab:NHI}}
+\tablehead{
+\colhead{Pair Name} & \colhead{SMG} & \colhead{$z_{\rm SMG}$} & \colhead{log($L_{\rm IR}$)} & \colhead{$q_{\rm IR}$}  & \colhead{QSO} & \colhead{$z_{\rm QSO}$} & \colhead{$\theta_{\rm 6GHz}$} & 
+\colhead{$R_\bot$} &  \colhead{$W_{\rm Ly\alpha}$} & \colhead{flag} \\
+\colhead{} & \colhead{(J2000)} & \colhead{}  & \colhead{(\lsun)} & \colhead{} &  \colhead{(J2000)} & \colhead{} & \colhead{(\arcsec)} & \colhead{(kpc)} & \colhead{(\AA)} & \colhead{} %\\
+%\colhead{(1)} & \colhead{(2)} & \colhead{(3)} & \colhead{(4)} & \colhead{(5)} & \colhead{(6)} & \colhead{(7)} &  \colhead{(8)} & \colhead{(9)}
+}
+\startdata
+\input{/Users/fu/casa/15a266/figs/tables/table4.tex}
+\enddata
+%\tablecomments{
+%}
+\end{deluxetable*}
+
+\begin{figure*}[!tb]
+\epsscale{0.38}
+\plotone{/Users/fu/data/qph_opt/lris/plot/HeLMS_0015+0404_abs2.eps}
+\plotone{/Users/fu/data/qph_opt/lris/plot/NGP_1333+2357_abs2.eps}
+\plotone{/Users/fu/data/qph_opt/lris/plot/L6-FLS_1712+6001_abs2.eps}
+\caption{Absorption line velocity profiles for \lya, \CII\,$\lambda$1335, and \SiIV\,$\lambda\lambda$1394,1403. The Keck/LRIS spectra of the background QSOs have been normalized by a model of the QSO continuum. All panels show the region $\pm$3000~\kms\ around the systemic redshifts of the SMGs. The top panels show Gaussian fits to the \lya\ absorption line. The vertical dashed line shows the centroid velocity.
+\label{fig:abs}} 
+\end{figure*}
+
+\section{Results} \label{sec:result}
+
+\subsection{Radio Detections and Astrometry}
+
+% HeLMS_0015+0404HeLMS 0015$+$0404       7.4730953
+% NGP_1333+2357NGP 1333$+$2357       2.7322102
+% NGP_1335+2805NGP 1335$+$2805       6.4301388
+% G15_1413+0058G15 1413$+$0058       3.3868686
+% G15_1435+0110G15 1435$+$0110       5.4763202
+% L6-FLS_1712+6001L6-FLS 1712$+$6001       7.8733087
+
+We targeted the \hers\ sources in 13 \sqps\ with the VLA and made six clear detections (46\% detection rate; Fig.~\ref{fig:detections}). The VLA-detected SMGs have 6~GHz peak flux densities between 11 and 76~\uJy\ with a mean of $\sim$40~\uJy\ (Table~\ref{tab:vlaphoto}). For these detections, there is a clear non-linear correlation between the observed flux densities at 6~GHz and 500~\um: 
+%$S_{\rm 6GHz,\mu Jy} \simeq 1.8 \times S_{\rm 500,mJy} - 32$ or 
+$S_{\rm 6GHz,\mu Jy} \simeq 0.026 \times S_{\rm 500,mJy}^2$. The 3$\sigma$ upper limits from the non-detections all lie within 0.2~dex of this correlation, indicating that they are undetected because of the redshift uncertainty and the intrinsic scatter of the FIR-radio correlation \citep[e.g.][]{Ivison10c}. 
+%
+%(1) multiple fainter sources have contributed to the \hers\ flux and/or (2) these sources have hotter dusts ($T > 40$~K) and are at higher than expected redshifts ($z > 3$). 
+%
+%When folding in both the detections and the upper limits from the non-detections in a Monte Carlo realization, we estimate that the average 6~GHz flux density is $\sim$XX~\uJy\ for \hers-selected 350~\um\ peakers with $S_{500} > 20$~mJy. This implies that one needs to reach an rms sensitivity of XX~\uJy\ at 6~GHz to detect bulk of the population. 
+%
+The offsets between the \hers\ positions and the VLA positions range between 2.7\arcsec\ and 7.9\arcsec. The average offset of 5.6\arcsec\ is comparable to the reported 5\arcsec\ 95\%-ile positional uncertainty of \hers\ catalogs. However, 2/3 of the sources show offset greater than 5\arcsec, indicating that the uncertainty is underestimated. As a result, some of the pairs with small angular separations ($\theta_{250} \lesssim$ 8\arcsec) are probably single sources, i.e., QSOs that are FIR-luminous. For example, NGP\,1335$+$2805 is such a case ($\theta_{250} = 6.5$\arcsec). But L6-FLS 1712$+$6001 is not, despite an even smaller separation ($\theta_{250} = 5.4$\arcsec). 
+
+\subsection{Physical Properties of the SMGs}
+
+We obtained deep near-IR spectra for the five VLA-detected SMGs whose spectroscopic redshifts are unknown. We detected \Ha\ and \NII\ lines from three of the five sources, enabling accurate determination of the spectroscopic redshifts (Fig.~\ref{fig:smgspec}). The two remaining sources, G15\,1413+0058 and G15\,1435+0110, show near-IR continuum emission with neither emission lines nor stellar absorption features. It is possible that the emission lines either fall into one of the telluric absorption bands or are simply outside of the spectral range. Our redshift success rate is thus 60\%, comparable to previous redshift surveys of SMGs \citep[e.g.,][]{Chapman05}. Atmosphere transparency varied substantially during the observations, so we do not have reliable flux measurements for the emission lines.
+
+With the photometry from \hers\ and the VLA and spectroscopic redshifts, we can estimate the total rest-frame 8$-$1000~\um\ luminosity ($L_{\rm IR}$) and the IR-to-radio luminosity ratio ($q_{\rm IR}$). From the best-fit graybody models (where we fixed $\beta = 1.5$), we find that they are all Ultra-Luminous IR Galaxies (ULIRGs) with SFR$_{\rm IR}$ = 470-1500~\msunyr, when $L_{\rm IR}$ are converted to SFR using the calibration of \citet{Murphy11} for a \citet{Kroupa02} initial mass function:
+\begin{equation}
+ {\rm SFR}/M_{\odot}~{\rm yr}^{-1} = 1.5\times10^{-10}~L_{\rm IR}/L_{\odot}
+\end{equation} 
+The extrapolated 850~\um\ flux densities range between $7 \leq S_{850} \leq 18$~mJy, confirming that they are {\it bona fide} SMGs. 
+
+The IR-to-radio luminosity/flux ratio is estimated following \citet{Ivison10c}:
+\begin{equation}
+q_{\rm IR} = {\rm log} \frac{S_{\rm IR}/3.75\times10^{12}~{\rm W}~{\rm m}^{-2}}{S_{\rm 1.4 GHz}/{\rm W}~{\rm m}^{-2}~{\rm Hz}^{-1}}
+\end{equation}
+where $S_{\rm IR}$ is integrated 8-1000~\um\ flux and $S_{\rm 1.4GHz}$ is the 1.4~GHz flux density, both measured in the rest frame (assuming $S_\nu \propto \nu^{-0.8}$. The three SMGs show $2.1 \leq q_{\rm IR} \leq 2.6$, consistent with the observed radio-IR correlation for \hers\ sources \citep[$q_{\rm IR} = 2.4\pm0.5$;][]{Ivison10c}. This indicates that our radio-detected sample is not biased to radio-loud AGNs.
+
+\subsection{Absorption Line Systems}
+
+We searched for \HI\ \lya\ absorption from the SMGs in the QSO spectra. Strong \lya\ absorption lines are detected in all three systems (Fig.~\ref{fig:abs}). We report their rest-frame equivalent widths in Table~\ref{tab:NHI}. As we have found in our earlier QSO absorption line studies, systematic error associated with continuum placement and line blending generally dominates the statistical error of the QSO spectra. So we estimate the error of $W_{\rm Ly\alpha}$ assuming 10\% error in the continuum placement. All three systems show strong \lya\ absorption lines with $W_{\rm Ly\alpha} = 1.7-2.0$~\AA) within the halo escape velocity ($V_{\rm esc} = 610$~\kms\ at $R = 230$~kpc, which is the virial radius of a $10^{13}$~\msun\ NFW halos at $z = 2$).
+
+Because of the large uncertainty ($\delta z \simeq 0.8$) of the photometric redshifts from \hers\ photometry, the redshift differences between the SMGs and the QSOs cannot be controlled effectively. For three three spectroscopically confirmed pairs, the redshifts of the SMG and the QSO differ by more than 0.2. The \HI\ \lya\ absorption from the foreground SMGs thus lie blue-ward of the QSOs' \lyb\ lines; i.e., they fall in the \lyb\ forest. Hence, contamination from the \lyb\ lines of systems in the \lya\ forest is a concern. Assuming the detected absorption is \lyb, we searched for the corresponding \lya\ lines but did not find any, indicating that \lyb\ contamination is not a serious issue for these systems. 
+
+We also searched for the strongest metal lines commonly observed in optically thick absorption systems \citep[e.g.,][]{Hennawi13}: Si\,{\sc ii}\,$\lambda$1260,1304,1527, O\,{\sc i}\,$\lambda$1302, \CII\,$\lambda$1335, Si\,{\sc iv}\,$\lambda$1394,1403, C\,{\sc iv}\,$\lambda$1548,1551, Fe\,{\sc ii}\,$\lambda$1608,2383,2600, Al\,{\sc ii}\,$\lambda$1671, and Mg\,{\sc ii}\,$\lambda$2796, 2804. Most of these lines are not detected in any of the systems, so we only show the possible detections of \CII\ and \SiIV\ lines in Fig.~\ref{fig:abs}. In the following, we discuss the systems individually:
+
+\begin{itemize}
+\item HeLMS\,0015$+$0404 ($z_{\rm SMG} = 2.515, z_{\rm QSO} = 3.256, R_\bot = 157$~kpc): This system shows a strong \lya\ absorption at $+$504~\kms\ with $W_{\rm Ly\alpha} = 2.0\pm0.2$~\AA. There is also a \CII\ absorption at $+$400~\kms\ ($W_{\rm CII} = 1.2$~\AA). Given these measurements, one would have concluded that this is an optically thick absorber with $N_{\rm HI} \sim 10^{19}$~cm$^{-2}$ if the absorption is dominated by a single component. The column density is estimated from the theoretical curve of growth where $W_{\rm Ly\alpha} = 7.3~(N_{\rm HI}/10^{20}~{\rm cm}^{-2})^{0.5}$~\AA\ for $N_{\rm HI} > 10^{18}$~cm$^{-2}$ \citep[][\S16.4.4]{Mo10}. However, the \CII\ absorption could be a false positive, because it is buried in the \lya\ forest and we did not detect other low-ionization metal lines to support the \CII\ detection. 
+%This case is therefore inconclusive and we assign the \HI\ absorber an optical thickness flag of ambiguous. 
+Without solid detections of strong metal lines and the detection of the damping wings in \lya, we cannot conclude that the absorber is optically thick based on current data because the high $W_{\rm Ly\alpha}$ could be due to line blending. We therefore classify this system as ambiguous. 
+
+\item NGP\,1333$+$2357 ($z_{\rm SMG} = 2.184, z_{\rm QSO} = 3.108, R_\bot = 198$~kpc): This system shows a strong \lya\ absorption at $-34$~\kms\ with $W_{\rm Ly\alpha} = 1.7\pm0.2$~\AA. The \CII\ and \SiIV\ absorption profiles are distinctly different: there appear to be two strong absorption components on both sides of the \HI\ absorption but the metal absorption is very weak at the velocity of the \HI\ \lya. The mismatch in velocity profiles indicates that the metal lines are spurious. Similar to the previous case, this system is ambiguous. 
+
+\item L6-FLS\,1712$+$6001 ($z_{\rm SMG} = 2.033, z_{\rm QSO} = 2.821, R_\bot = 112$~kpc): There is a strong \lya\ absorption at $-325$~\kms\ with $W_{\rm Ly\alpha} = 1.7\pm0.2$~\AA. Despite the high EW, this system is unlikely optically thick because the line center drops only to 40\% of the continuum intensity. The associated low-ionization metal lines are either very weak ($W \lesssim 0.1$~\AA) or completely absent. Hence, we classify this system as optically thin.
+
+\end{itemize}
+
+In summary, we have identified one clearly optically thin case and two ambiguous cases with three QSO sight-lines covering impact parameters between $100 < R_\bot < 200$~kpc around SMGs at $2.0 < z < 2.6$. 
+
+\section{Conclusions} \label{sec:discuss}
+
+The CGM of high redshift QSOs is $\gtrsim$60\% filled by \HI\ absorbers that are optically thick at the Lyman limit. The high \HI\ covering fraction extends to at least the expected viral radius of $\sim$160~kpc \citep[][]{Hennawi06,Prochaska13,Prochaska13a}. In Figure~\ref{fig:covfrac}, we compare (1) the SMG sample distribution with the QSOs from the QPQ project, and (2) the covering fraction of optically thick \HI\ gas around SMGs with that around QSOs. The two samples overlap nicely in the plane of foreground redshift vs. impact parameter: the SMGs cover the same redshift range as the QSOs in the intermediate impact parameter range between 100 and 200~kpc. We calculate the 1$\sigma$ binomial confidence intervals of the optically thick fraction using the quantiles of the beta distribution \citep{Cameron11}. The covering fractions for the QSOs are considered lower limits because some of the ambiguous cases ({\it open symbols}) may be optically thick. Because there is no convincingly optically thick absorber among the three systems we analyzed, our 1$\sigma$ confidence interval of the covering fraction is 4.2$-$36.9\% for $k = 0$ and $n = 3$. For a fair comparison, we consider all of the QSO sightlines with $100 < R_\bot < 200$~kpc from QPQ and we find the \HI\ covering fraction is $64^{+7}_{-9}$\% for 21 optically thick systems among 33 systems. Despite our small sample, the 1$\sigma$ upper limit is 3$\sigma$ below the best-estimated covering fraction around QSOs. Therefore, the surrounding medium of SMGs seems more deprived of cool neutral gas than that of QSOs at $z \sim 2$, suggesting that the star formation cannot last longer than the $\sim$200~Myr timescale to exhaust the gas in the disk. This conclusion is clearly limited by the small sample size. A more robust comparison awaits a larger sample of spectroscopically confirmed \sqps.
+
+\begin{figure}[!tb]
+\epsscale{1.18}
+\plotone{/Users/fu/work/qph/qpq/covfrac.eps}
+\caption{The covering fraction of optically thick gas around SMGs ({\it red downward arrow}: our 1$\sigma$ upper limit) vs. impact parameter, compared to that around QSOs from the QPQ survey \citep[{\it blue/gray squares} with error bars;][]{Prochaska13}. The blue and gray squares are estimates of the covering fraction based on 100~kpc-wide bins and 50~kpc-wide bins, respectively. The red stars and the black circles show the sample distribution in foreground redshift (right $Y$-axis) vs. impact parameter for the SMGs from this study and the QSOs from the QPQ survey, respectively. The black-filled, gray-filled, and open symbols correspond to systems that are optically thick, optically thin, and ambiguous at the Lyman limit, respectively.   
+\label{fig:covfrac}} 
+\end{figure}
+
+%\section{Conclusions} \label{sec:conclusion}
+
+\acknowledgments
+
+We thank K.~Mooley and D.~Perley for taking the LRIS spectrum of L6-FLS\,1712$+$6001. 
+
+% JPL
+%H.F. and D.M. were partially supported by NASA JPL award 1495624 and University of Iowa funds. 
+% NRAO
+The National Radio Astronomy Observatory is a facility of the National Science Foundation operated under cooperative agreement by Associated Universities, Inc. Support for this work was provided by the NSF through award GSSP SOSPA3-016 from the NRAO.
+% LBT
+The LBT is an international collaboration among institutions in the United States, Italy and Germany. LBT Corporation partners are: The University of Arizona on behalf of the Arizona university system; Istituto Nazionale di Astrofisica, Italy; LBT Beteiligungsgesellschaft, Germany, representing the Max-Planck Society, the Astrophysical Institute Potsdam, and Heidelberg University; The Ohio State University, and The Research Corporation, on behalf of The University of Notre Dame, University of Minnesota and University of Virginia.
+% Keck
+Some of the data presented herein were obtained at the W.M. Keck Observatory, which is operated as a scientific partnership among the California Institute of Technology, the University of California and the National Aeronautics and Space Administration. The Observatory was made possible by the generous financial support of the W.M. Keck Foundation.
+% Mauna Kea
+The authors wish to recognize and acknowledge the very significant cultural role and reverence that the summit of Mauna Kea has always had within the indigenous Hawaiian community.  We are most fortunate to have the opportunity to conduct observations from this mountain.
+% Gemini
+Based on observations obtained at the Gemini Observatory, which is operated by the Association of Universities for Research in Astronomy, Inc., under a cooperative agreement with the NSF on behalf of the Gemini partnership: the National Science Foundation (United States), the National Research Council (Canada), CONICYT (Chile), Ministerio de Ciencia, Tecnolog\'{i}a e Innovaci\'{o}n Productiva (Argentina), and Minist\'{e}rio da Ci\^{e}ncia, Tecnologia e Inova\c{c}\~{a}o (Brazil).
+ 
+{\it Facilities}: Herschel, Sloan, Keck/LRIS, Keck/NIRSPEC, VLA, LBT/LUCI, Gemini/GNIRS, VLT/SINFONI, Sloan
+
+\bibliographystyle{/Users/fu/Documents/latex/apj/apj}
+\bibliography{/Users/fu/Documents/bibliography/exgal_ref}
+
+
+%%%%%%%%%%%%
+% Appendix
+%%%%%%%%%%%%
+\clearpage
+
+\appendix
+
+The following pages show earlier versions of tables and figures that have been dropped from the main content. Nevertheless, they show the full data set that are useful for the analysis. 
+
+\clearpage
+\setcounter{page}{1}
+\setcounter{figure}{0}
+\setcounter{table}{0}
+\renewcommand{\thefigure}{S\arabic{figure}}
+\renewcommand{\thetable}{S\arabic{table}}
+
+\begin{deluxetable*}{rrrccrrccc}[!h]
+\tablewidth{0pt}
+\tablecaption{VLA-Observed \sqps.}
+\tablehead{ 
+\colhead{Pair Name} & \colhead{RA$_{\rm QSO}$} & \colhead{DEC$_{\rm QSO}$} & \colhead{$z_{\rm QSO}$} & \colhead{$g_{\rm QSO}$} & \colhead{RA$_{250}$} & \colhead{DEC$_{250}$} & \colhead{$S_{250}$} & \colhead{$S_{350}$} & \colhead{$S_{500}$} \\
+\colhead{} & \colhead{(deg)} & \colhead{(deg)} & \colhead{} & \colhead{(mag)} & \colhead{(deg)} & \colhead{(deg)} & \colhead{(mJy)} & \colhead{(mJy)} &  \colhead{(mJy)} \\
+\colhead{(1)} & \colhead{(2)} & \colhead{(3)} & \colhead{(4)} & \colhead{(5)} & \colhead{(6)} & \colhead{(7)} &  \colhead{(8)} & \colhead{(9)} & \colhead{(10)} 
+}
+\startdata
+\input{/Users/fu/casa/15a266/figs/tables/table1.tex}
+\enddata
+\tablecomments{
+}
+\end{deluxetable*}
+%
+\begin{deluxetable*}{rcccrrrccc}
+\tablewidth{0pt}
+\tablecaption{VLA 6~GHz Source Positions and Photometry.}
+\tablehead{
+\colhead{Pair Name} & \colhead{Int Time} & \colhead{rms} & \colhead{Beam} & \colhead{PA} & \colhead{RA$_{\rm 6 GHz}$} & \colhead{DEC$_{\rm 6 GHz}$} & \colhead{$S^{\rm peak}_{\rm 6 GHz}$} & \colhead{$S^{\rm int}_{\rm 6 GHz}$} & \colhead{$\theta$} \\
+\colhead{} & \colhead{(min)} & \colhead{(\uJy/bm)} & \colhead{(\arcsec)} & \colhead{(deg)} & \colhead{(deg)} & \colhead{(deg)} & \colhead{(\uJy/bm)} & \colhead{(\uJy)} & \colhead{(\arcsec)} \\
+\colhead{(1)} & \colhead{(2)} & \colhead{(3)} & \colhead{(4)} & \colhead{(5)} & \colhead{(6)} & \colhead{(7)} &  \colhead{(8)} & \colhead{(9)} & \colhead{(10)}
+}
+\startdata
+\input{/Users/fu/casa/15a266/figs/tables/table3.tex}
+\enddata
+\tablecomments{
+$S^{\rm peak}_{\rm 6 GHz}$ and $S^{\rm int}_{\rm 6 GHz}$ are the peak flux density in \uJy/bm and the integrated flux density in \uJy, both of which are derived by fitting an elliptical Gaussian model to the source. The uncertainty of $S^{\rm peak}_{\rm 6 GHz}$ is given by the rms noise in the map at the source position, while the uncertainty of the $S^{\rm int}_{\rm 6 GHz}$ is estimated using the formulae provided by \citet{Hopkins03a}, which includes the 1\% uncertainty in the VLA flux-density scale at 6~GHz \citep{Perley13}.  
+}
+\end{deluxetable*}
+
+\begin{figure*}[!tb]
+\epsscale{1.18}
+\plotone{/Users/fu/casa/15a266/figs/vla_all.eps}
+\caption{VLA C-band continuum maps for the 15 observed \sqps\ in 15A-266. The restoring beam of each map is plotted as the red ellipse at the lower right corner. The white cross and the dashed white circle indicate the \hers\ positions and the 18\arcsec\ FWHM of the 250~\um\ PSF. The green squares highlight the seven detected radio sources within the \hers\ FWHM, and the red circles highlight the two tentative detections. Blue diamonds mark the optical positions of the QSOs in each pair, when they are within the displayed 30\arcsec$\times$30\arcsec\ region centered on the \hers\ position. The gray dotted contour is at $-$2$\times$$\sigma$, and the black contours are at ($+$2, $+$4, $+$8)$\times$$\sigma$. Major tickmarks are spaced in 5\arcsec\ intervals. N is up and E is left for all panels.} 
+\end{figure*}
+
+\begin{figure*}[!tb]
+\epsscale{1.18}
+\plotone{/Users/fu/data/qph_opt/lris/plot/HeLMS_0015+0404.eps}
+\plotone{/Users/fu/data/qph_opt/lris/plot/HeLMS_0015+0404_abs.eps}
+\caption{Keck LRIS optical spectra of the background QSOs. The wavelengths of absorption lines at the redshift of the SMGs are marked by dashed lines. } 
+\end{figure*}
+
+\begin{figure*}[!tb]
+\epsscale{1.18}
+\plotone{/Users/fu/data/qph_opt/lris/plot/NGP_1333+2357.eps}
+\plotone{/Users/fu/data/qph_opt/lris/plot/NGP_1333+2357_abs.eps}
+\caption{Keck LRIS optical spectra of the background QSOs. The wavelengths of absorption lines at the redshift of the SMGs are marked by dashed lines. } 
+\end{figure*}
+
+\begin{figure*}[!tb]
+\epsscale{1.18}
+\plotone{/Users/fu/data/qph_opt/lris/plot/L6-FLS_1712+6001.eps}
+\plotone{/Users/fu/data/qph_opt/lris/plot/L6-FLS_1712+6001_abs.eps}
+\caption{Keck LRIS optical spectra of the background QSOs. The wavelengths of absorption lines at the redshift of the SMGs are marked by dashed lines. } 
+\end{figure*}
+
+
+%
+%\section{VLA nondetections}
+%
+%
+%\begin{figure*}[!tb]
+%\epsscale{1.18}
+%%\plotone{}
+%\caption{Constraints on redshifts from VLA upper limits.
+%\label{fig:photoz}} 
+%\end{figure*}
+
+
+
+\end{document}
