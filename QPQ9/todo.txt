@@ -1,0 +1,15 @@
+1. Stack in QPQ7 of the metal lines that used only MgII redshifts? 
+  That should have yielded the asymmetry that we are seeing in QPQ8. 
+	2. Re-run with vdiff criterion = 200 km/s and PK2C = 0.25
+3. Double check zQA [Joe+Marie]
+4. Worry about mean-flux-regulation
+5. Deal with bad continua
+6. Color code individual systems in stacks by Rperp
+7. Make CII+CIV stacks with MgII redshifts
+	8. Cut CII and other metals to be outside the forest
+9. Get Q0814 in the sample?
+	10. Check sample size for CII 1334
+11. Worry about 0 velocity pixel (right or left or neither??)
+12. [OIII] cut or Ha/Hb cut or MgII cut?!
+13. Continuum fit: ESI SDSSJ142004.12+022708.8_F.fits.gz
+14. Figure out small velocity offset in binned evaluation (to the blue)

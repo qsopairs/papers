@@ -1,0 +1,10 @@
+Figures:
+
+1.  Experiment
+  z
+  g_UV
+  Ions
+  Rperp
+
+2. Stacked profiles
+3. Bootstrap results

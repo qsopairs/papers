@@ -1,0 +1,175 @@
+/Users/joe/ISAAC_redux/nite2/0012+0012/Combine/SDSSJ001247.12+001239.5.fits			2.1566
+/Users/joe/REDUX/gnirs_redux/GS-2004B-Q-16_spectra/SDSSJ001954.66-091316.5.fits.gz		2.1220
+/Users/joe/REDUX/niri_redux/0111+1402/Combine/SDSSJ011150.07+140141.4.fits.gz			2.4850
+/Users/joe/REDUX/gnirs_redux/GS-2004B-Q-16_spectra/SDSSJ011827.99-005239.8.fits.gz		2.1883
+/Users/joe/REDUX/gnirs_redux/GS-2004B-Q-16_spectra/SDSSJ013929.51+001330.6.fits.gz		2.1025
+/Users/joe/Dropbox/TripleSpec/Final/SDSSJ014419.92+083811.0.fits				2.3903
+/Users/joe/REDUX/gnirs_redux/GS-2004B-Q-16_spectra/SDSSJ014809.64-001017.8.fits.gz		2.1658	 
+/Users/joe/REDUX/gnirs_redux/GS-2004B-Q-16_spectra/SDSSJ020902.85-082531.8.fits.gz		2.1329
+/Users/joe/Dropbox/TripleSpec/Final/SDSSJ023011.28+005913.7.fits				2.4708
+/Users/joe/REDUX/gnirs_redux/GS-2004B-Q-16_spectra/SDSSJ032158.40-001102.7.fits.gz		2.1481
+/Users/joe/Dropbox/TripleSpec/Final/SDSSJ035053.30-003114.7.fits				1.9984
+/Users/joe/REDUX/gnirs_redux/GS-2004B-Q-16_spectra/SDSSJ040954.21-041137.0.fits.gz		2.1914
+/Users/joe/Dropbox/TripleSpec/Final/SDSSJ074831.86+392913.2.fits				2.5832
+/Users/joe/REDUX/niri_redux/0800+3542/Combine/SDSSJ080048.74+354231.3.fits			2.0699
+/Users/joe/REDUX/niri_redux/0800+3542/Combine/SDSSJ080049.89+354249.6.fits			1.9806
+/Users/joe/REDUX/niri_redux/0814+3250/Combine/SDSSJ081419.58+325018.7.fits			2.1796
+/Users/joe/Dropbox/TripleSpec/Final/SDSSJ081701.91+385936.3.fits				2.2431
+/Users/joe/REDUX/gnirs_redux/0837+3837/Combine/SDSSJ083757.91+383727.1.fits			2.0592
+/Users/joe/REDUX/niri_redux/0841+3921/Combine/SDSSJ084158.47+392121.0.fits			2.0439
+/Users/joe/REDUX/niri_redux/0841+3921/Combine/SDSSJ084159.26+392140.0.fits			2.2137
+/Users/joe/Dropbox/QSOPairs_NIR/QPQ8/NIRSPEC_redux/SDSSJ085357.49-001106.2_NIRSPEC.fits.gz	2.5826
+/Users/joe/REDUX/niri_redux/0910+0414/Combine/SDSSJ091046.40+041458.5.fits			2.0398
+/Users/joe/REDUX/niri_redux/0910+0414/Combine/SDSSJ091046.69+041448.4.fits			2.3899
+/Users/joe/REDUX/gnirs_redux/GS-2004B-Q-16_spectra/SDSSJ091208.75+005857.3.fits.gz		2.1823
+/Users/joe/REDUX/niri_redux/0927+2907/Combine/SDSSJ092743.01+290734.7.fits			2.2503
+/Users/joe/REDUX/niri_redux/0927+2907/Combine/SDSSJ092747.27+290720.7.fits			2.2960
+/Users/joe/Dropbox/TripleSpec/Final/SDSSJ092952.17+355449.8.fits				2.1566
+/Users/joe/Dropbox/qsopairs_nir/QPQ8/XSHOOTER_redux/SDSSJ093226.34+092526.1_XShooter_F.fits	2.4200
+/Users/joe/REDUX/gnirs_redux/0938+5317/Combine/SDSSJ093804.22+531743.9.fits			2.0633
+/Users/joe/Dropbox/Triplespec/Final/SDSSJ094206.96+352307.3.fits				2.0202
+/Users/joe/REDUX/gnirs_redux/GS-2004B-Q-16_spectra/SDSSJ100246.85+002103.9.fits.gz		2.1720
+/Users/joe/REDUX/gnirs_redux/1006+4804/Combine/SDSSJ100627.47+480420.0.fits			2.2974
+/Users/joe/ISAAC_redux/nite1/1007+0337/Combine/SDSSJ100745.66+033746.3.fits			2.2915
+/Users/joe/Dropbox/Triplespec/Final/SDSSJ101001.50+403755.5.fits				2.1894
+/Users/joe/Dropbox/Triplespec/Final/SDSSJ101155.60+294141.6.fits				2.6274
+/Users/joe/REDUX/gnirs_redux/GS-2004B-Q-16_spectra/SDSSJ101859.96-005420.3.fits.gz		2.1810
+/Users/joe/ISAAC_redux/nite3/1023+0444/Combine/SDSSJ102357.31+044405.5.fits			2.1215
+/Users/joe/REDUX/gnirs_redux/GS-2004B-Q-16_spectra/SDSSJ102906.65+020500.0.fits.gz		2.1386
+/Users/joe/REDUX/gnirs_redux/GS-2004B-Q-16_spectra/SDSSJ103325.92+012836.3.fits.gz		2.1844
+/Users/joe/REDUX/niri_redux/1041+5630/Combine/SDSSJ104121.90+563001.3.fits			2.0541
+/Users/joe/Dropbox/Triplespec/Final/SDSSJ104121.89+563001.3.fits				2.0541
+/Users/joe/REDUX/gnirs_redux/GS-2004B-Q-16_spectra/SDSSJ104915.43-011038.1.fits.gz		2.1288
+/Users/joe/Dropbox/Triplespec/Final/SDSSJ105158.74+401736.7.fits				2.1842
+/Users/joe/Dropbox/Triplespec/Final/SDSSJ110610.74+640009.6.fits				2.2101
+/Users/joe/REDUX/niri_redux/1112+6612/Combine/SDSSJ111242.69+661152.8.fits			2.2311
+/Users/joe/REDUX/niri_redux/1112+6612/Combine/SDSSJ111245.71+661215.4.fits			2.2507
+/Users/joe/Dropbox/Triplespec/Final/SDSSJ111350.93+401721.4.fits				2.1939
+/Users/joe/REDUX/niri_redux/1141+5313/Combine/SDSSJ114155.43+531308.0.fits			2.1278
+/Users/joe/REDUX/niri_redux/1141+5313/Combine/SDSSJ114156.89+531358.1.fits			2.2138
+/Users/joe/Dropbox/Triplespec/Final/SDSSJ114254.26+265457.5.fits				2.6233
+/Users/joe/Dropbox/Triplespec/Final/SDSSJ114706.51+353150.4.fits				2.0039
+/Users/joe/REDUX/gnirs_redux/1204+0221/Combine/SDSSJ120417.47+022104.7.fits			2.4395
+/Users/joe/Dropbox/Triplespec/Final/SDSSJ121117.59+042222.3.fits				2.5446
+/Users/joe/Dropbox/Triplespec/Final/SDSSJ121303.02+171423.3.fits				2.5706
+/Users/joe/REDUX/gnirs_redux/GS-2004B-Q-16_spectra/SDSSJ121427.77-030721.1.fits.gz		2.1164
+/Users/joe/REDUX/niri_redux/1215+5716/Combine/SDSSJ121558.82+571555.6.fits			1.9620
+/Users/joe/REDUX/niri_redux/1215+5716/Combine/SDSSJ121559.00+571616.7.fits			1.9301
+/Users/joe/ISAAC_redux/nite3/1225+0425/Combine/SDSSJ122516.80+042537.8.fits			2.3960
+/Users/joe/ISAAC_redux/nite1/1235-0108/Combine/SDSSJ123511.10-010829.5.fits			2.2388
+/Users/joe/REDUX/gnirs_redux/GS-2004B-Q-16_spectra/SDSSJ123514.36+030416.7.fits.gz		2.2017
+/Users/joe/REDUX/gnirs_redux/1249+0607/Combine/SDSSJ124948.18+060714.0.fits			1.9997
+/Users/joe/Dropbox/Triplespec/Final/SDSSJ130124.73+475909.6.fits				2.1921
+/Users/joe/Dropbox/Triplespec/Final/SDSSJ130343.47+103113.3.fits				2.1867
+/Users/joe/Dropbox/Triplespec/Final/SDSSJ130524.90+031135.2.fits				2.2004
+/Users/joe/ISAAC_redux/nite1/1305+0311/Combine/SDSSJ130524.90+031135.2.fits			2.2004
+#/Users/joe/REDUX/niri_redux/1306+6158/Combine/SDSSJ130605.19+615823.7.fits			2.1088
+/Users/joe/REDUX/gnirs_redux/1306+6158/Combine/SDSSJ130605.19+615823.7.fits			2.1088
+/Users/joe/Dropbox/Triplespec/Final/SDSSJ131011.61+460124.5.fits				2.1449
+/Users/joe/REDUX/gnirs_redux/1341+0108/Combine/SDSSJ134115.56+010812.8.fits			2.2022
+/Users/joe/ISAAC_redux/nite2/1348+0531/Combine/SDSSJ134838.06+053114.9.fits			2.1106
+/Users/joe/ISAAC_redux/nite2/1350-0143/Combine/SDSSJ135029.92-014331.6.fits			2.2216
+/Users/joe/Dropbox/Triplespec/Final/SDSSJ135417.91+334859.8.fits				2.2463
+/Users/joe/ISAAC_redux/nite3/1357+0117/Combine/SDSSJ135719.08+011705.4.fits			2.5054
+/Users/joe/REDUX/niri_redux/1402+4701/Combine/SDSSJ140208.10+470111.1.fits			1.9165
+/Users/joe/REDUX/niri_redux/1402+4701/Combine/SDSSJ140209.52+470117.8.fits			2.2670
+/Users/joe/REDUX/niri_redux/1420+1603/Combine/SDSSJ142054.42+160333.3.fits			2.0200
+/Users/joe/Dropbox/QSOPairs_NIR/QPQ8/XSHOOTER_redux/SDSSJ142054.42+160333.3_XShooter_F.fits	2.0200
+/Users/joe/REDUX/niri_redux/1420+1603/Combine/SDSSJ142054.92+160342.9.fits			2.0583
+/Users/joe/REDUX/gnirs_redux/1427-0121/Combine/SDSSJ142758.88-012130.3.fits.gz			2.2808
+/Users/joe/ISAAC_redux/nite2/1431-0044/Combine/SDSSJ143128.43-004450.1.fits			2.3555
+/Users/joe/ISAAC_redux/nite1/1442-0242/Combine/SDSSJ144245.66-024250.1.fits			2.3538
+/Users/joe/REDUX/niri_redux/1519+3749/Combine/SDSSJ151912.82+374918.5.fits			2.1421
+/Users/joe/REDUX/niri_redux/1519+3749/Combine/SDSSJ151920.75+374902.3.fits			2.1078
+/Users/joe/Dropbox/Triplespec/Final/SDSSJ152156.48+520238.6.fits				2.2239
+/Users/joe/Dropbox/Triplespec/Final/SDSSJ154058.70+473827.5.fits				2.5564
+/Users/joe/Dropbox/Triplespec/Final/SDSSJ155233.88+491008.3.fits				2.0478
+/Users/joe/Dropbox/qsopairs_nir/QPQ8/XSHOOTER_redux/SDSSJ155325.60+192140.9_XShooter_F.fits	2.0082
+/Users/joe/ISAAC_redux/nite1/1610+0442/Combine/SDSSJ161024.89+044218.4.fits			2.4546
+/Users/joe/REDUX/niri_redux/1621+3507/Combine/SDSSJ162141.02+350712.8.fits			1.9300
+/Users/joe/REDUX/niri_redux/1621+3507/Combine/SDSSJ162145.42+350807.2.fits			2.0348
+/Users/joe/Dropbox/Triplespec/Final/SDSSJ162323.67+331232.6.fits				2.4142
+/Users/joe/REDUX/niri_redux/1625+2644/Combine/SDSSJ162548.08+264432.6.fits			2.4675
+/Users/joe/Dropbox/Triplespec/Final/SDSSJ162548.79+264658.7.fits				2.5313
+/Users/joe/REDUX/niri_redux/1625+2646/Combine/SDSSJ162548.80+264658.8.fits			2.5313
+/Users/joe/Dropbox/Triplespec/Final/SDSSJ163412.78+320335.5.fits				2.3553
+/Users/joe/REDUX/niri_redux/1635+3013/Combine/SDSSJ163456.16+301437.8.fits			2.5052
+/Users/joe/ISAAC_redux/nite3/1645+2245/Combine/SDSSJ164547.28+224534.4.fits			2.3302
+/Users/joe/Dropbox/Triplespec/Final/SDSSJ165914.54+380900.7.fits				2.3549
+/Users/joe/Dropbox/Triplespec/Final/SDSSJ172252.98+245834.7.fits				2.2606
+/Users/joe/REDUX/gnirs_redux/GS-2004B-Q-16_spectra/SDSSJ205954.50-001917.3.fits.gz		2.1162
+/Users/joe/REDUX/gnirs_redux/GS-2004B-Q-16_spectra/SDSSJ211832.87+004219.0.fits.gz		2.1667
+/Users/joe/Dropbox/Triplespec/Final/SDSSJ212329.47-005052.9.fits				2.2757
+/Users/joe/ISAAC_redux/nite3/2134+0009/Combine/SDSSJ213438.96+000953.7.fits			2.4067
+/Users/joe/REDUX/gnirs_redux/2146-0752/Combine/SDSSJ214620.68-075250.6.fits			2.1204
+/Users/joe/REDUX/niri_redux/2202+1236/Combine/SDSSJ220248.31+123656.3.fits			2.5182
+/Users/joe/REDUX/niri_redux/2202+1236/Combine/SDSSJ220248.61+123645.5.fits			2.0685
+/Users/joe/ISAAC_redux/nite3/2233-0100/Combine/SDSSJ223358.88-010000.5.fits			2.3357
+/Users/joe/Dropbox/Triplespec/Final/SDSSJ223358.87-010000.4.fits				2.3357
+/Users/joe/REDUX/gnirs_redux/GS-2004B-Q-16_spectra/SDSSJ225921.59+140256.0.fits.gz		2.1633
+/Users/joe/ISAAC_redux/nite2/2300+0031/Combine/SDSSJ230015.69+003119.3.fits			2.1827
+/Users/joe/REDUX/gnirs_redux/GS-2004B-Q-16_spectra/SDSSJ231441.63-082406.8.fits.gz		2.2042
+/Users/joe/Dropbox/Triplespec/Final/SDSSJ235843.28+021220.1.fits				2.5177
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
