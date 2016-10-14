@@ -36,7 +36,7 @@ sys.path.append(os.path.abspath("../py"))
 import qpq9_analy as qpq9a
 
 ####
-def qpq7_allz(wrest=None, outfil=None, nboot=10000,
+def qpq7_MgII(wrest=None, outfil=None, nboot=10000,
     vmnx = (-3000., 3000.)*u.km/u.s, stack_tup=None,
     passback=False, debug=False): 
     ''' Stack the QPQ7 sample
@@ -52,14 +52,14 @@ def qpq7_allz(wrest=None, outfil=None, nboot=10000,
     # Load QPQ9
     qpq7 = eqpq.QPQ('QPQ7')
     # Avoid Lya forest
-    qpq7.cull(wrest,4)
+    qpq7.cull(wrest,4,vsig_cut=300*u.km/u.s)
     print('length of sample after and before culling',len(qpq7.data),len(qpq7._fulldata))
     
     # Cut on 300 kpc
     gdR = np.where(qpq7.data['R_PHYS'] < 300)[0]
 
     if outfil is None:
-        outfil = 'Output/QPQ7_allz_{:d}.fits'.format(int(wrest.value))
+        outfil = 'Output/QPQ7_MgII_{:d}.fits'.format(int(wrest.value))
 
     # Load the stack image
     if stack_tup is None:
@@ -90,7 +90,7 @@ def plt_qpq7(stack_tup=None, wrest=None):
     vmnx = [-3000., 3000] * u.km/u.s
     ymnx = (-0.1, 1.1)
     if stack_tup is None:
-        stack_tup = qpq7_allz(wrest=wrest, passback=True)
+        stack_tup = qpq7_MgII(wrest=wrest, passback=True)
     fin_velo, stck_img, stck_msk, all_dict = stack_tup
 
 
@@ -100,7 +100,7 @@ def plt_qpq7(stack_tup=None, wrest=None):
     nrow = 5
     for ipage in range(pages):
         # Start the plot 
-        outfil = 'plt_qpq7_allz_{:d}_page{:d}.pdf'.format(int(wrest.value),ipage+1)
+        outfil = 'plt_qpq7_MgII_{:d}_page{:d}.pdf'.format(int(wrest.value),ipage+1)
         pp = PdfPages(outfil)
         plt.figure(figsize=(8,5))
         plt.clf()

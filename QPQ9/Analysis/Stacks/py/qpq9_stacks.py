@@ -36,7 +36,7 @@ sys.path.append(os.path.abspath("../py"))
 import qpq9_analy as qpq9a
 
 ####
-def qpq9_NIR(wrest=None, outfil=None, nboot=10000,
+def qpq9_IRMgII(wrest=None, outfil=None, nboot=10000,
     vmnx = (-3000., 3000.)*u.km/u.s, stack_tup=None,
     passback=False, debug=False): 
     ''' Stack the QPQ9 sample
@@ -58,7 +58,7 @@ def qpq9_NIR(wrest=None, outfil=None, nboot=10000,
     print('length of sample after and before culling',len(qpq9.data),len(qpq9._fulldata))
     
     if outfil is None:
-        outfil = 'Output/QPQ9_zNIR_{:d}.fits'.format(int(wrest.value))
+        outfil = 'Output/QPQ9_IRMgII_{:d}.fits'.format(int(wrest.value))
 
     # Load the stack image
     if stack_tup is None:
@@ -89,7 +89,7 @@ def plt_qpq9(stack_tup=None, wrest=None):
     vmnx = [-3000., 3000] * u.km/u.s
     ymnx = (-0.1, 1.1)
     if stack_tup is None:
-        stack_tup = qpq9_NIR(wrest=wrest, passback=True)
+        stack_tup = qpq9_IRMgII(wrest=wrest, passback=True)
     fin_velo, stck_img, stck_msk, all_dict = stack_tup
 
 
@@ -99,7 +99,7 @@ def plt_qpq9(stack_tup=None, wrest=None):
     nrow = 5
     for ipage in range(pages):
         # Start the plot 
-        outfil = 'plt_qpq9_zNIR_{:d}_page{:d}.pdf'.format(int(wrest.value),ipage+1)
+        outfil = 'plt_qpq9_IRMgII_{:d}_page{:d}.pdf'.format(int(wrest.value),ipage+1)
         pp = PdfPages(outfil)
         plt.figure(figsize=(8,5))
         plt.clf()
