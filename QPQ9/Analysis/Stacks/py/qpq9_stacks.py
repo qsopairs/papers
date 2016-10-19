@@ -39,7 +39,7 @@ import qpq9_analy as qpq9a
 def qpq9_IRMgII(wrest=None, outfil=None, nboot=10000,
                 vmnx = (-3000., 3000.)*u.km/u.s,
                 vsig_cut = None,
-                stack_tup=None,passback=False, debug=False):
+                stack_tup=None,passback=False,debug=False):
     ''' Stack the QPQ9 sample
     To do: add MgII redshifts to the QPQ9 structure
     Find out what are the null redshifts
@@ -71,7 +71,9 @@ def qpq9_IRMgII(wrest=None, outfil=None, nboot=10000,
     fin_velo, fin_flx, all_dict = qpqk.stack_avg(stack_tup)
 
     # Write spectrum (in Rest Wavelength)
-    fin_wave = ((fin_velo/const.c)*wrest).to(u.AA) + wrest
+#    fin_wave = ((fin_velo/const.c)*wrest).to(u.AA) + wrest
+    relativistic_equiv = u.doppler_relativistic(wrest)
+    fin_wave = fin_velo.to(u.AA,equivalencies=relativistic_equiv)
 
     xspec1d = XSpectrum1D.from_tuple((fin_wave, u.Quantity(fin_flx)))
     xspec1d.write_to_fits(outfil)
