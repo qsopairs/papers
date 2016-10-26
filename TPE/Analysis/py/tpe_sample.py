@@ -43,6 +43,7 @@ def tpe_table(qso_fg, qso_bg):
     # Return
     return tpe_tbl
 
+
 def make_sample(min_logLV, outfil=None, tpe_sav=None):
     """
     Parameters
