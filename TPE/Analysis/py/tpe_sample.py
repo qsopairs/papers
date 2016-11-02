@@ -32,9 +32,17 @@ def tpe_table(qso_fg, qso_bg):
     for key in fg_keys:
         tpe_tbl['FG_'+key] = qso_fg[key]
     # Add in b/g
-    fg_keys = ['Z_TOT', 'RA', 'DEC']
-    for key in fg_keys:
-        tpe_tbl['BG_'+key] = qso_fg[key]
+    bg_keys = ['Z_TOT', 'RA', 'DEC']
+    for key in bg_keys:
+        tpe_tbl['BG_'+key] = qso_bg[key]
+    # Deal with b/g 'objects'
+    bg_keys = ['LYA_INSTRUMENT', 'LYA_FILE']
+    for key in bg_keys:
+        # Convert to str array
+        tmp = []
+        for obj in qso_bg[key]:
+            tmp.append(str(obj))
+        tpe_tbl['BG_'+key] = np.array(tmp)
     # Rename a few
     orig = ['FG_Z_TOT', 'BG_Z_TOT']
     new = ['FG_Z', 'BG_Z']
@@ -79,7 +87,7 @@ def make_sample(min_logLV, outfil=None, tpe_sav=None):
 
     # Load IgmSpec and QPQ
     igmsp = IgmSpec()
-    qpq_file = os.getenv('DROPBOX_DIR')+'/QSOPairs/spectra/qpq_optical.hdf5'
+    qpq_file = os.getenv('DROPBOX_DIR')+'/QSOPairs/spectra/qpq_oir_spec.hdf5'
     qpq = IgmSpec(db_file=qpq_file, skip_test=True)
 
     # Insist on existing spectra
@@ -97,7 +105,7 @@ def make_sample(min_logLV, outfil=None, tpe_sav=None):
     print("{:d} b/g quasars in IgmSpec or QPQspec".format(np.sum(bgd)))
 
     gd_pairs = fgd & bgd
-    print("{:d} good quasar pairs".format(np.sum(gd_pairs)))
+    print("{:d} good quasar pairs (ie. in both)".format(np.sum(gd_pairs)))
 
     # Generate TPE Table
     tpe_tbl = tpe_table(qso_fg[gd_pairs], qso_bg[gd_pairs])
@@ -105,7 +113,7 @@ def make_sample(min_logLV, outfil=None, tpe_sav=None):
     # Write
     if outfil is not None:
         print("Writing {:s}".format(outfil))
-        tpe_tbl.write(outfil)
+        tpe_tbl.write(outfil, overwrite=True)
     # Return
     return tpe_tbl
 
@@ -114,8 +122,14 @@ def make_sample(min_logLV, outfil=None, tpe_sav=None):
 if __name__ == '__main__':
 
     flg_fig = 0
-    flg_fig += 2**0  # Preferred cut
+    flg_fig += 2**0  # Preferred cuts
 
     if (flg_fig % 2**1) >= 2**0:
-        #_ = make_sample(31.2, outfil='TPE_DR12_31.2_spec.fits')
-        _ = make_sample(31.0, outfil='TPE_DR12_31.0_spec.fits')
+        # Load for speed
+        svfile = os.getenv('DROPBOX_DIR')+'QSOPairs/TPE_DR12/TPE_DR12_Mon-May-16-18:00:17-2016_concat.sav'
+        print("Loading save file {:s}".format(svfile))
+        print("Be patient....")
+        tpe_sav = readsav(svfile)
+        # Generate
+        _ = make_sample(31.2, outfil='TPE_DR12_31.2_spec.fits', tpe_sav=tpe_sav)
+        _ = make_sample(31.0, outfil='TPE_DR12_31.0_spec.fits', tpe_sav=tpe_sav)
