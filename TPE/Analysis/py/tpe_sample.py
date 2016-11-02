@@ -117,4 +117,5 @@ if __name__ == '__main__':
     flg_fig += 2**0  # Preferred cut
 
     if (flg_fig % 2**1) >= 2**0:
-        _ = make_sample(31.2, outfil='TPE_DR12_31.2_spec.fits')
+        #_ = make_sample(31.2, outfil='TPE_DR12_31.2_spec.fits')
+        _ = make_sample(31.0, outfil='TPE_DR12_31.0_spec.fits')
