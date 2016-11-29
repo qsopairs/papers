@@ -39,6 +39,7 @@ import qpq9_analy as qpq9a
 def qpq9_IRMgII(wrest=None, outfil=None, nboot=10000,
                 vmnx = (-3000., 3000.)*u.km/u.s,
                 vsig_cut = None,
+                zfg_cut = None,
                 stack_tup=None,passback=False,debug=False):
     ''' Stack the QPQ9 sample
     To do: add MgII redshifts to the QPQ9 structure
@@ -55,7 +56,7 @@ def qpq9_IRMgII(wrest=None, outfil=None, nboot=10000,
     # Load QPQ9
     qpq9 = eqpq.QPQ('QPQ9')
     # Avoid Lya forest
-    qpq9.cull(wrest,4,vsig_cut=vsig_cut)
+    qpq9.cull(wrest,4,vsig_cut=vsig_cut,zfg_cut=zfg_cut)
     print('length of sample after and before culling',len(qpq9.data),len(qpq9._fulldata))
     
     if outfil is None:
