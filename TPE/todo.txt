@@ -1,0 +1,8 @@
+JXP:
+1.  Stack of BOSS at z_FG Lya (with original file and KG continua)
+2.  Stack LRIS
+-----
+JFH:
+1.  Myers QSOs
+2.  Develop query code
+3.  Merge with private qsos (enigma.new_qsos.db.py + QSO_redshifts.ipynb in enigma)
