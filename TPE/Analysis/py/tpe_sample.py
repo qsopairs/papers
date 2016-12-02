@@ -16,6 +16,7 @@ from specdb.specdb import IgmSpec
 
 def tpe_table(qso_fg, qso_bg):
     """ Generate a TPE table given f/g and b/g tables
+
     Parameters
     ----------
     qso_fg : Table
