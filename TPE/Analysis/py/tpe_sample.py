@@ -54,7 +54,7 @@ def tpe_table(qso_fg, qso_bg):
 
 
 def make_sample(min_logLV, outfil=None, tpe_sav=None):
-    """
+    """ Generate TPE sample
     Parameters
     ----------
     min_logLV : float
