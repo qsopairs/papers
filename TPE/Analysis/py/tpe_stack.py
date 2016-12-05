@@ -6,6 +6,11 @@ import os
 import numpy as np
 import pdb
 
+import matplotlib as mpl
+mpl.rcParams['font.family'] = 'stixgeneral'
+from matplotlib.backends.backend_pdf import PdfPages
+from matplotlib import pyplot as plt
+import matplotlib.gridspec as gridspec
 
 from astropy.coordinates import SkyCoord
 from astropy.table import Table
@@ -87,9 +92,19 @@ def tpe_stack_boss(dv=100*u.km/u.s):
     # Stack
     stack = lspu.smash_spectra(rebin_spec)
 
-    # Plot
-    pdb.set_trace()
+    # Quick Plot
+    plt.clf()
+    ax = plt.gca()
+    ax.plot(stack.wavelength, stack.flux, 'k', drawstyle='steps-mid')
+    ax.set_xlabel('Rest wavelength')
+    ax.set_ylabel('Normalized flux')
+    ax.set_xlim(1170., 1270.)
+    ax.set_ylim(0.35, 1.0)
+    # Lya
+    ax.plot([1215.67]*2, [0., 2.], 'g--')
+    plt.savefig('BOSS_stack.pdf')
 
+    return stack
 
 # Command line execution (Run above py!!)
 if __name__ == '__main__':
