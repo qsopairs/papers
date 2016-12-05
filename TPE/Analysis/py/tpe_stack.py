@@ -14,7 +14,6 @@ from astropy.cosmology import Planck15 as cosmo
 
 from linetools.spectra import utils as lspu
 
-
 from specdb.specdb import IgmSpec
 
 this_file = __file__
@@ -69,11 +68,17 @@ def tpe_stack_boss(dv=100*u.km/u.s):
             has_co[ii] = False
 
     # Slice to good co
+    print("{:d} BOSS spectra with a continuum".format(np.sum(has_co)))
     co_spec = spec.slice(has_co)
     co_spec.normed = True  # Apply continuum
 
     # NEED TO ZERO OUT REGIONS WITHOUT CONTINUUM
-    pdb.set_trace()
+    #  May also wish to isolate in wavelength to avoid rejected pixels
+    for ii in range(co_spec.nspec):
+        co_spec.select = ii
+        co = co_spec.co.value
+        bad_pix = np.any([(co == 0.),(co == 1.)], axis=0)
+        co_spec.add_to_mask(bad_pix, compressed=True)
 
     # Rebin to rest
     zarr = gd_tpe['FG_Z'][has_co]
@@ -81,6 +86,8 @@ def tpe_stack_boss(dv=100*u.km/u.s):
 
     # Stack
     stack = lspu.smash_spectra(rebin_spec)
+
+    # Plot
     pdb.set_trace()
 
 
