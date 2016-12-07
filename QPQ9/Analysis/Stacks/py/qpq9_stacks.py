@@ -1,54 +1,36 @@
 #Module for QPQ9 stacking
 # Imports
 from __future__ import print_function, absolute_import, division, unicode_literals
-
 import numpy as np
 import glob, os, sys, copy
 from scipy import stats as scistats
-
 import matplotlib as mpl
 mpl.rcParams['font.family'] = 'stixgeneral'
 from matplotlib.backends.backend_pdf import PdfPages
 from matplotlib import pyplot as plt
 import matplotlib.gridspec as gridspec
-
 from astropy.table import QTable
 from astropy.io import ascii, fits
 from astropy import units as u
 from astropy import constants as const
-
 from linetools.spectra.xspectrum1d import XSpectrum1D
-
-from xastropy.igm.abs_sys import abssys_utils as abssys
-from xastropy import spec as xspec
 from xastropy.plotting import utils as xputils
 from xastropy.xutils import xdebug as xdb
-from xastropy.obs import radec as xor
-from xastropy.atomic import ionization as xai
-
 sys.path.append(os.path.abspath("../../../../py"))
-from enigma.qpq import spec as qpqs
 from enigma.qpq import stacks as qpqk
 from enigma.qpq import qpq as eqpq
 
-# Local
-sys.path.append(os.path.abspath("../py"))
-import qpq9_analy as qpq9a
-
-####
 def qpq9_IRMgII(wrest=None, outfil=None, nboot=10000,
                 vmnx = (-3000., 3000.)*u.km/u.s,
                 vsig_cut = None,
                 zfg_cut = None,
+                S2N_cut = None,
+                atmosphere_cut = False,
                 stack_tup=None,passback=False,debug=False):
     ''' Stack the QPQ9 sample
     To do: add MgII redshifts to the QPQ9 structure
     Find out what are the null redshifts
     '''
-
-    # To do: Have symbol size indicate near-IR for redshift
-    reload(qpq9a)
-
     # Rest wavelength
     if wrest is None:
         wrest = 1334.5323*u.AA
@@ -64,7 +46,8 @@ def qpq9_IRMgII(wrest=None, outfil=None, nboot=10000,
 
     # Load the stack image
     if stack_tup is None:
-        stack_tup = qpqk.load_stack_img(qpq9.data,wrest,vmnx=vmnx,spec_dv=100.*u.km/u.s,high_res=0)
+        stack_tup = qpqk.load_stack_img(qpq9.data,wrest,vmnx=vmnx,spec_dv=100.*u.km/u.s,high_res=0,
+                                        S2N_cut=S2N_cut)
         if passback:
             return stack_tup
 
@@ -142,7 +125,10 @@ def plt_qpq9(stack_tup=None, wrest=None):
             xputils.set_fontsize(ax,7.)
 
         # Layout and save
-        plt.tight_layout(pad=0.2,h_pad=0.,w_pad=0.1)
+        try:
+            plt.tight_layout(pad=0.2,h_pad=0.,w_pad=0.1)
+        except ValueError:
+            pass
         pp.savefig(bbox_inches='tight')
         pp.close()
         print('Wrote {:s}'.format(outfil))

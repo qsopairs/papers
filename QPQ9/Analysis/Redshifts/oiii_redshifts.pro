@@ -1,5 +1,7 @@
+pro oiii_redshifts
 ;; Script to generate the zem files (and Joes QA)
-path = getenv('QSO_DIR')+'tex/QPQ9/Analysis/Redshifts/'
+;path = getenv('QSO_DIR')+'tex/QPQ9/Analysis/Redshifts/'
+path = '~/Dropbox/Marie_Enrico/papers/QPQ9/Analysis/Redshifts/'
 
 zdir =  path+'zem/'
 qadir = path+'zQA/'
@@ -25,6 +27,8 @@ FOR ii = 0L, nqsos-1L DO BEGIN
    flux = x_readspec(filename[ii], wav = wave, sig = sig, inflg = 2)
    loglam = alog10(wave)
    ivar = (sig GT 0)/(sig^2 + (sig LE 0.0))
+   if strmatch(filename[ii],'*023946.44-010644.2*') then min_sn = 50 ; pick MgII
+   if strmatch(filename[ii],'*091338.30-010708.7*') then min_sn = 60 ; pick MgII
    zsys = zsys_driver(loglam, flux, ivar, zguess[ii] $
                       , zstruct = zstruct, out_struct = out_struct $
                       , /lya_peak $
