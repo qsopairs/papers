@@ -92,7 +92,6 @@ def tpe_stack_boss(dv=100*u.km/u.s):
 
     # Stack
     stack = lspu.smash_spectra(rebin_spec)
-
     # Plot
     plot_stack(stack, 'BOSS_stack.pdf')
 
