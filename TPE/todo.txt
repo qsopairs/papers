@@ -6,3 +6,5 @@ JFH:
 1.  Myers QSOs
 2.  Develop query code
 3.  Merge with private qsos (enigma.new_qsos.db.py + QSO_redshifts.ipynb in enigma)
+4.  Run models with a LogLv > 31.2 cutoff. Generate a piece of code that can forward model a stack using
+    hooks from JXP's stacking code.
