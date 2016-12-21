@@ -54,6 +54,7 @@ def boot_trans(wrest=None,outfil=None,nboot=10000,
     # Generate bootstrap image
     boot_img = np.zeros((nboot,len(fin_velo)))
     sz = stck_img.shape
+    tau_cen = np.zeros(nboot)
     frac = np.zeros(nboot)
 
     # Loop away (make parallel with map!)
@@ -80,6 +81,12 @@ def boot_trans(wrest=None,outfil=None,nboot=10000,
         # Normalize
         cfx = fx / conti
 
+        # Centroid of pseudo-optical depth within +/- 2000 km/s
+        tau = np.log(1./cfx)
+        start = np.int((sz[1]-1)*1./6.)
+        end = np.int((sz[1]-1)*5./6.)+1
+        tau_cen[qq] = np.sum(fin_velo[start:end]*tau[start:end])/np.sum(tau[start:end])
+
         # Pseudo-EW
         EWpix = np.where( (velo > EW_range[0]) & (velo<EW_range[1]))[0]
         EW = np.sum(1. - cfx[EWpix])
@@ -90,7 +97,7 @@ def boot_trans(wrest=None,outfil=None,nboot=10000,
         EWl = np.sum(1. - cfx[EWl_pix])
         EWr = np.sum(1. - cfx[EWr_pix])
 
-        # Frac
+        # Equivalent width sknewness
         frac[qq] = (EWr-EWl) / EW
 
     # Check
@@ -98,10 +105,16 @@ def boot_trans(wrest=None,outfil=None,nboot=10000,
         xdb.xhist(frac)
 
     # Stats
-    mu = np.mean(frac)
-    med = np.median(frac)
-    rms = np.std(frac)
-    print('Stats:  Mean = {:g}, RMS={:g} for Ntrials={:d}'.format(mu,rms,nboot))
+    mu_frac = np.mean(frac)
+    med_frac = np.median(frac)
+    rms_frac = np.std(frac)
+    print('Equivalent width skewness: Mean={:g}, Median={:g}, RMS={:g} for Ntrials={:d}'
+          .format(mu_frac,med_frac,rms_frac,nboot))
+    mu_taucen = np.mean(tau_cen)
+    med_taucen = np.median(tau_cen)
+    rms_taucen = np.std(tau_cen)
+    print('Tau-weighted centroid: Mean = {:g}, RMS={:g}'.format(mu_taucen,med_taucen,rms_taucen))
+
 
     # Write
     prihdu = fits.PrimaryHDU()
