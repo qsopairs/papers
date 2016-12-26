@@ -20,6 +20,7 @@ from enigma.qpq import stacks as qpqk
 def boot_trans(wrest=None,outfil=None,nboot=10000,
     cranges=None,
     stack_tup=None,
+    median=False,
     debug=False):
     ''' Bootstrap on a single transition
 
@@ -41,7 +42,7 @@ def boot_trans(wrest=None,outfil=None,nboot=10000,
 
     # Continuum ranges
     if cranges is None:
-        cranges = [(-3000.,-1300.)*u.km/u.s,(1500.,3000.)*u.km/u.s]
+        cranges = [(-3000.,-1300.)*u.km/u.s,(1300.,3000.)*u.km/u.s]
     EW_range = (cranges[0][1],cranges[1][0])
 
     if outfil is None:
@@ -54,7 +55,7 @@ def boot_trans(wrest=None,outfil=None,nboot=10000,
     # Generate bootstrap image
     boot_img = np.zeros((nboot,len(fin_velo)))
     sz = stck_img.shape
-    tau_cen = np.zeros(nboot)
+    tau_cen = np.zeros(nboot)*u.km/u.s
     frac = np.zeros(nboot)
 
     # Loop away (make parallel with map!)
@@ -67,19 +68,22 @@ def boot_trans(wrest=None,outfil=None,nboot=10000,
         # Stack
         boot_list[1] = ran_img
         boot_list[2] = ran_msk
-        velo,fx,tdict = qpqk.stack_avg(boot_list)
+        if median is True:
+            velo,fx,tdict = qpqk.stack_med(boot_list)
+        else:
+            velo,fx,tdict = qpqk.stack_avg(boot_list)
         boot_img[qq,:] = fx
 
         # Continuum "fit"
         pix = np.where( (velo > cranges[0][0]) & (velo<cranges[0][1]) |
             (velo > cranges[1][0]) & (velo<cranges[1][1]))[0]
-        fit = np.polyfit(velo[pix].value, fx[pix], 1)
+        fit = np.polyfit(velo[pix].value, fx[pix], 0)
         pv = np.poly1d(fit)
         conti = pv(velo.value)
         #xdb.xplot(velo, fx, conti)
 
         # Normalize
-        cfx = fx / conti
+        cfx = fx/conti
 
         # Centroid of pseudo-optical depth within +/- 2000 km/s
         tau = np.log(1./cfx)
@@ -107,19 +111,19 @@ def boot_trans(wrest=None,outfil=None,nboot=10000,
     # Stats
     mu_frac = np.mean(frac)
     med_frac = np.median(frac)
-    rms_frac = np.std(frac)
-    print('Equivalent width skewness: Mean={:g}, Median={:g}, RMS={:g} for Ntrials={:d}'
-          .format(mu_frac,med_frac,rms_frac,nboot))
+    std_frac = np.std(frac)
+    print('Equivalent width skewness: Mean={:g}, Median={:g}, std={:g} for Ntrials={:d}'
+          .format(mu_frac,med_frac,std_frac,nboot))
     mu_taucen = np.mean(tau_cen)
     med_taucen = np.median(tau_cen)
-    rms_taucen = np.std(tau_cen)
-    print('Tau-weighted centroid: Mean = {:g}, RMS={:g}'.format(mu_taucen,med_taucen,rms_taucen))
-
+    std_taucen = np.std(tau_cen)
+    print('Tau-weighted centroid: Mean = {:g}, std={:g}'.format(mu_taucen,med_taucen,std_taucen))
 
     # Write
     prihdu = fits.PrimaryHDU()
     imghdu = fits.ImageHDU(boot_img)
     frachdu = fits.ImageHDU(frac)
-    hdu = fits.HDUList([prihdu, imghdu, frachdu])
+    taucenhdu = fits.ImageHDU(tau_cen.value)
+    hdu = fits.HDUList([prihdu, imghdu, frachdu, taucenhdu])
     hdu.writeto(outfil, clobber=True)
     print('Wrote {:s}'.format(outfil))

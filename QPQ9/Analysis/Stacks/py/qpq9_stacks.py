@@ -67,8 +67,6 @@ def qpq9_IRMgII(wrest=None, outfil=None, nboot=10000,
 #######
 def plt_qpq9(stack_tup=None, wrest=None):
 
-    reload(qpq9a)
-
     # Rest wavelength
     if wrest is None:
         wrest = 1334.5323*u.AA
