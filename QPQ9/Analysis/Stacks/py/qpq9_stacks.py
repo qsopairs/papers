@@ -23,7 +23,7 @@ from enigma.qpq import qpq as eqpq
 def qpq9_IRMgII(wrest=None, outfil=None, nboot=10000,
                 vmnx = (-3000., 3000.)*u.km/u.s,
                 vsig_cut = None,
-                zfg_cut = None,
+                zfg_mnx = (-9999,9999),
                 S2N_cut = None,
                 atmosphere_cut = False,
                 stack_tup=None,passback=False,debug=False):
@@ -38,7 +38,7 @@ def qpq9_IRMgII(wrest=None, outfil=None, nboot=10000,
     # Load QPQ9
     qpq9 = eqpq.QPQ('QPQ9')
     # Avoid Lya forest
-    qpq9.cull(wrest,4,vsig_cut=vsig_cut,zfg_cut=zfg_cut)
+    qpq9.cull(wrest,4,vsig_cut=vsig_cut,zfg_mnx=zfg_mnx)
     print('length of sample after and before culling',len(qpq9.data),len(qpq9._fulldata))
     
     if outfil is None:
