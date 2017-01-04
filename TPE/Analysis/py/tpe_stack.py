@@ -22,6 +22,8 @@ from linetools.spectra import utils as lspu
 from specdb.specdb import IgmSpec
 from specdb import cat_utils
 
+from xastropy.xutils import xdebug as xdb
+
 this_file = __file__
 
 
@@ -75,7 +77,7 @@ def tpe_stack_boss(dv=100*u.km/u.s):
 
     # Slice to good co
     print("{:d} BOSS spectra with a continuum".format(np.sum(has_co)))
-    co_spec = spec.slice(has_co)
+    co_spec = spec[has_co]
     co_spec.normed = True  # Apply continuum
 
     # NEED TO ZERO OUT REGIONS WITHOUT CONTINUUM
@@ -90,10 +92,20 @@ def tpe_stack_boss(dv=100*u.km/u.s):
     zarr = gd_tpe['FG_Z'][has_co]
     rebin_spec = lspu.rebin_to_rest(co_spec, zarr, dv)
 
+    # Check 2D
+    check_td = True
+    if check_td:
+        fx = rebin_spec.data['flux']
+        sig = rebin_spec.data['sig']
+        gds = sig > 0.
+        fx[~gds] = 0.
+        xdb.set_trace() # xdb.ximshow(fx)
+
     # Stack
     stack = lspu.smash_spectra(rebin_spec)
     # Plot
     plot_stack(stack, 'BOSS_stack.pdf')
+    print('Wrote')
 
     return stack
 
@@ -143,7 +155,7 @@ def tpe_stack_lris(dv=100*u.km/u.s):
 
     # Find the rows
     idx = cat_utils.match_ids(gd_IDs, meta['PRIV_ID'])
-    rows = meta['GROUP_ID'][idx]  # Will change to GROUP_ID
+    rows = meta['GROUP_ID'][idx]
     pdb.set_trace()
 
     spec,meta = qpq.coords_to_spectra(gd_b_coords, 'LRIS', all_spec=False)
@@ -164,7 +176,7 @@ def tpe_stack_lris(dv=100*u.km/u.s):
 
     # Slice to good co
     print("{:d} BOSS spectra with a continuum".format(np.sum(has_co)))
-    co_spec = spec.slice(has_co)
+    co_spec = spec[has_co]
     co_spec.normed = True  # Apply continuum
 
     # NEED TO ZERO OUT REGIONS WITHOUT CONTINUUM
@@ -183,7 +195,7 @@ def tpe_stack_lris(dv=100*u.km/u.s):
     stack = lspu.smash_spectra(rebin_spec)
 
     # Plot
-    plot_stack(stack, 'BOSS_stack.pdf')
+    plot_stack(stack, 'LRIS_stack.pdf')
 
     return stack
 
@@ -205,8 +217,8 @@ def plot_stack(stack, outfil):
 if __name__ == '__main__':
 
     flg_stack = 0
-    #flg_stack += 2**0  # BOSS test
-    flg_stack += 2**1  # LRIS
+    flg_stack += 2**0  # BOSS test
+    #flg_stack += 2**1  # LRIS
 
     if (flg_stack % 2**1) >= 2**0:
         tpe_stack_boss()

@@ -118,12 +118,65 @@ def make_sample(min_logLV, outfil=None, tpe_sav=None):
     # Return
     return tpe_tbl
 
+def tpe_chk_spec(tpe_file):
+    """ Check spectrum exists and then look for continuum
+
+    Parameters
+    ----------
+    tpe_file
+
+    Returns
+    -------
+
+    """
+    from astropy import units as u
+
+    # Load spectral datasets
+    igmsp = IgmSpec()
+    qpq_file = os.getenv('DROPBOX_DIR')+'/QSOPairs/spectra/qpq_oir_spec.hdf5'
+    qpq = IgmSpec(db_file=qpq_file, skip_test=True)
+    # Load TPE table
+    tpe = Table.read(tpe_file)
+    b_coords = SkyCoord(ra=tpe['BG_RA'], dec=tpe['BG_DEC'], unit='deg')
+    uni_instr = np.unique(tpe['BG_LYA_INSTRUMENT'])
+
+    # Instrument dict
+    inst_dict = {}
+    for instr in uni_instr:
+        inst_dict[instr] = {}
+        inst_dict[instr]['NO_CO'] = 0
+    inst_dict['LRIS']['GRATING'] = '1200/3400'
+    inst_dict['BOSS']['GROUP'] = 'BOSS_DR12'
+    inst_dict['SDSS']['GROUP'] = 'SDSS_DR7'
+
+    # Scan
+    for instr in uni_instr:
+        # Parse
+        idx = np.where(tpe['BG_LYA_INSTRUMENT'] == instr)[0]
+        inst_dict[instr]['NSPEC'] = len(idx)
+        gd_b_coords = b_coords[idx]
+        # Load
+        if instr in ['BOSS', 'SDSS']:
+            spec, meta = igmsp.coords_to_spectra(gd_b_coords, inst_dict[instr]['GROUP'], all_spec=False)
+        else:
+            continue
+        # Checks
+        for ii,iidx in enumerate(idx):
+            lya = (1+tpe['FG_Z'][iidx]) * 1215.67 * u.AA
+            spec.select = ii
+            iwave = np.argmin(np.abs(spec.wavelength-lya))
+            if np.isclose(spec.co[iwave], 0.) or np.isclose(spec.co[iwave],1.):
+                print("BG source {} at z={} has no continuum at Lya".format(b_coords[iidx],
+                                                                            tpe['FG_Z'][iidx]))
+                inst_dict[instr]['NO_CO'] += 1
+    pdb.set_trace()
 
 # Command line execution
 if __name__ == '__main__':
 
     flg_fig = 0
-    flg_fig += 2**0  # Preferred cuts
+    #flg_fig += 2**0  # Preferred cuts
+    flg_fig += 2**1  # Check spectra of TPE sample
 
     if (flg_fig % 2**1) >= 2**0:
         # Load for speed
@@ -134,3 +187,6 @@ if __name__ == '__main__':
         # Generate
         _ = make_sample(31.2, outfil='TPE_DR12_31.2_spec.fits', tpe_sav=tpe_sav)
         _ = make_sample(31.0, outfil='TPE_DR12_31.0_spec.fits', tpe_sav=tpe_sav)
+
+    if (flg_fig % 2**2) >= 2**1:
+        tpe_chk_spec('TPE_DR12_31.2_spec.fits')
