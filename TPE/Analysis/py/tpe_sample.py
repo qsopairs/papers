@@ -118,6 +118,7 @@ def make_sample(min_logLV, outfil=None, tpe_sav=None):
     # Return
     return tpe_tbl
 
+
 def tpe_chk_spec(tpe_file):
     """ Check spectrum exists and then look for continuum
 
@@ -148,6 +149,17 @@ def tpe_chk_spec(tpe_file):
     inst_dict['LRIS']['GRATING'] = '1200/3400'
     inst_dict['BOSS']['GROUP'] = 'BOSS_DR12'
     inst_dict['SDSS']['GROUP'] = 'SDSS_DR7'
+
+    # Standard process
+    # -- Find all b/g spectra covering Lya (igmspec, QPQ): Generate list (INSTR,GRATING)
+    # -- Order by: UVES/HIRES/MIKE,
+    #              MagE/ESI/XShooter,
+    #              LRIS+B1200,  B600?, B400?
+    #              MODS?/GMOS+B600?
+    #              BOSS/SDSS
+
+    # Query catalogs
+    igm_cat = igmsp.qcat.query_coords(b_coords)
 
     # Scan
     for instr in uni_instr:
