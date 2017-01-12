@@ -75,8 +75,8 @@ def boot_trans(wrest=None,outfil=None,nboot=10000,
         boot_img[qq,:] = fx
 
         # Continuum "fit"
-        pix = np.where( (velo > cranges[0][0]) & (velo<cranges[0][1]) |
-            (velo > cranges[1][0]) & (velo<cranges[1][1]))[0]
+        pix = np.where(((velo >= cranges[0][0]) & (velo <= cranges[0][1])) |
+                       ((velo >= cranges[1][0]) & (velo <= cranges[1][1])))[0]
         fit = np.polyfit(velo[pix].value, fx[pix], 0)
         pv = np.poly1d(fit)
         conti = pv(velo.value)
