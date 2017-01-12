@@ -38,9 +38,12 @@ def qpq9_IRMgII(wrest=None, outfil=None, nboot=10000,
     # Load QPQ9
     qpq9 = eqpq.QPQ('QPQ9')
     # Avoid Lya forest
-    qpq9.cull(wrest,4,vsig_cut=vsig_cut,zfg_mnx=zfg_mnx)
-    print('length of sample after and before culling',len(qpq9.data),len(qpq9._fulldata))
-    
+    qpq9.cull(wrest,4,vsig_cut=vsig_cut)
+    # Cut on redshift
+    zfg = qpq9._fulldata['Z_FG']
+    bad = np.where((zfg < zfg_mnx[0]) | (zfg > zfg_mnx[1]))[0]
+    qpq9.mask[bad] = False
+
     if outfil is None:
         outfil = 'Output/QPQ9_IRMgII_{:d}.fits'.format(int(wrest.value))
 
@@ -65,7 +68,7 @@ def qpq9_IRMgII(wrest=None, outfil=None, nboot=10000,
     return stack_tup
 
 #######
-def plt_qpq9(stack_tup=None, wrest=None):
+def plt_qpq9(stack_tup=None, wrest=None, outfil=None):
 
     # Rest wavelength
     if wrest is None:
@@ -83,8 +86,9 @@ def plt_qpq9(stack_tup=None, wrest=None):
     ncol = 3 
     nrow = 5
     for ipage in range(pages):
-        # Start the plot 
-        outfil = 'plt_qpq9_IRMgII_{:d}_page{:d}.pdf'.format(int(wrest.value),ipage+1)
+        # Start the plot
+        if outfil is None:
+            outfil = 'plt_qpq9_IRMgII_{:d}_page{:d}.pdf'.format(int(wrest.value),ipage+1)
         pp = PdfPages(outfil)
         plt.figure(figsize=(8,5))
         plt.clf()

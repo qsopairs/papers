@@ -87,7 +87,7 @@ def boot_trans(wrest=None,outfil=None,nboot=10000,
 
         # Centroid of pseudo-optical depth within +/- 2000 km/s
         tau = np.log(1./cfx)
-        start = np.int((sz[1]-1)*1./6.)
+        start = np.int((sz[1]-1)*1./6.)-1
         end = np.int((sz[1]-1)*5./6.)+1
         tau_cen[qq] = np.sum(fin_velo[start:end]*tau[start:end])/np.sum(tau[start:end])
 

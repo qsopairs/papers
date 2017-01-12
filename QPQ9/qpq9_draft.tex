@@ -1,141 +1,25 @@
-\documentclass[12pt,preprint]{aastex}
-\usepackage{natbib,amsmath}
-\special{papersize=8.5in,11in}
+%\documentclass[12pt,preprint]{aastex}
+\documentclass[iop]{emulateapj}
+\usepackage{natbib,amsmath,graphicx,longtable,amssymb,latexsym,epsf}
 \begin{document}
 
-\newcommand\ntot{2x}
-\newcommand\nhigh{1x}
-\newcommand\ncii{X5}
-\newcommand\nciv{x5}
-%\newcommand\vfct{0.71 \pm 0.08} % f_C for CII to 200kpc
-\newcommand\vfct{0.73 \pm 0.10} % f_C for CII to 160kpc
-\newcommand\dndz{2.1 \pm 0.2}
-\newcommand\vro{7.5^{+2.8}_{-1.4} \, \mhMpc}
-\def\mdv{\delta v}
-\def\DV#1{$\Delta v_{90}^{#1}$}
-\def\DRMS#1{$\sigma v_{90}^{#1}$}
-\newcommand\vgmm{1.7^{+0.1}_{-0.2}}
-\def\N#1{{N({\rm #1})}}
-\newcommand\mlstar{L^*}
-\newcommand\lstar{$\mlstar$}
-\def \mmccgm {M_{\rm CGM}^{\rm cool}}
-\def \mccgm {$\mmccgm$}
-\def \mnhalo {n_{\rm halo}}
-\def \nhalo {$\mnhalo$}
-\def \mmminq {M_{\rm min}^{\rm QPQ}}
-\def \mminq {$\mmminq$}
-\def \mncom {n_{\rm com}}
-\def \ncom {$\mncom$}
-\def \mrcom {R^{\rm com}_\perp}
-\def \rcom {$\mrcom$}
-\def \mzem {z_{\rm em}}
-\def \zem {$\mzem$}
-\def \zbg {$z_{\rm bg}$}
-\def \zfg {$z_{\rm fg}$}
-\def \mzfg {z_{\rm fg}}
-\def \mzlya {z_{\rm Ly\alpha}}
-\def \zlya {$\mzlya$}
-\def \mavgz{\langle z \rangle}
-\def \avgz{$\mavgz$}
-\def \wlya {$W_{\rm Ly\alpha}$}
-\def \wsubj {$W_{\rm Ly\alpha}^{\rm line}$}
-\def \mwsubj {W_{\rm Ly\alpha}^{\rm line}}
-\def \mwlya {W_{\rm Ly\alpha}}
-\def \mrphys {R_\perp}
-\def \rphys {$\mrphys$}
-\def \lbol {$L_{\rm Bol}$}
-\def \guv {$g_{\rm UV}$}
-\def \nhi  {$N_{\rm HI}$}
-\def \mnhi  {N_{\rm HI}}
-\def \kms  {\, km~s$^{-1}$}
-\def \mkms  {{\rm km~s^{-1}}}
-\def \lya  {Ly$\alpha$}
-\def \mlya  {{\rm Ly\alpha}}
-\def \lyb  {Ly$\beta$}
-\def \hMpc      {h^{-1}{\rm\ Mpc}}
-\def \msol      {M_\odot}
-\def \msun      {\msol}
-\def\cm#1{\, {\rm cm^{#1}}}
-\def \cgsflux   {{\rm erg\ s^{-1}\ cm^{-2}}}
-\def \cgssflux   {{\rm erg\ s^{-1}\ Hz^{-1} cm^{-2}}}
-\def\sci#1{{\; \times \; 10^{#1}}}
-\def \msnlya {{\rm S/N}_{\rm Ly\alpha}}
-\def \snlya {$\msnlya$}
-\newcommand{\civt}{\ion{C}{4}~1548}
-\newcommand{\ciit}{\ion{C}{2}~1334}
-\newcommand{\mgiit}{\ion{Mg}{2}~2796}
-\newcommand{\nvt}{\ion{N}{5}~1238}
-\newcommand\mwciv{W_{1548}}
-\newcommand\wciv{$\mwciv$}
-\newcommand\mwcii{W_{1334}}
-\newcommand\wcii{$\mwcii$}
-\newcommand\avgcii{$\left < \mwcii \right >$}
-\newcommand\mwmgii{W_{2796}}
-\newcommand\wmgii{$\mwmgii$}
-\newcommand\mavmgs{\left < \mwmgii \right >^{\rm S}}
-\newcommand\avmgs{$\mavmgs$}
-\newcommand\mavmgw{\left < \mwmgii \right >^{\rm w}}
-\newcommand\avmgw{$\mavmgw$}
-\newcommand\mtavmg{\left < \mwmgii \right >}
-\newcommand\tavmg{$\mtavmg$}
-\newcommand\mwnv{W_{1238}}
-\newcommand\wmwnv{$\mwnv$}
-\def \mfc {f_C}
-\def \fc {$\mfc$}
-\def \mfcs {f_C}
-\def \fcs {$\mfcs$}
-\newcommand\mmetal{$M_{\rm metal}^{\rm cool}$}
-\newcommand\mwlim{W^{\rm lim}}
-\newcommand\wlim{$\mwlim$} 
-\newcommand\mxiq{\xi_{\rm Q-Q}}
-\newcommand\xiq{$\mxiq$}
-\newcommand\mxic{\xi_{\rm CIV-Q}}
-\newcommand\xic{$\mxic$}
-\newcommand\mxia{\xi_{\rm CIV-CIV}}
-\newcommand\xia{$\mxia$}
-\newcommand\mxixi{(\bar\mxiq \bar\mxia)^{1/2}} 
-\newcommand\xixi{$\mxixi$}
-\newcommand\mlxmg{\ell(X)_{\rm MgII}}
-\newcommand\lxmg{$\mlxmg$}
-\newcommand\mlxciv{\ell(X)_{\rm CIV}}
-\newcommand\mlciv{\ell(z)_{\rm CIV}}
-\newcommand\lciv{$\mlciv$}
-\def \mhMpc{h^{-1}{\rm\ Mpc}}
-\def \hMpc{$h^{-1}{\rm\ Mpc}$}
-\def \mrvir {r_{\rm vir}}
-\def \rvir {$\mrvir$}
-\def\ltk{\left [ \,}
-\def\ltp{\left ( \,}
-\def\ltb{\left \{ \,}
-\def\rtk{\, \right  ] }
-\def\rtp{\, \right  ) }
-\def\rtb{\, \right \} }
+\title{Quasars Probing Quasars IX. Probing the Circumgalactic Flows of Quasars [v1.1]}
 
-
-
-
-\title{Quasars Probing Quasars IX. 
-  Probing the Circumgalactic Flows of Quasars [v1.0]
-}
-
-\author{
-J. Xavier Prochaska\altaffilmark{1},
+\author{Marie Wingyee Lau\altaffilmark{1}, J. Xavier Prochaska\altaffilmark{1}, 
 Joseph F. Hennawi\altaffilmark{2}
-Marie Wingyee Lau\altaffilmark{1},
 }
-\altaffiltext{1}{Department of Astronomy and Astrophysics, UCO/Lick
-  Observatory, University of California, 1156 High Street, Santa Cruz,
-  CA 95064}
-\altaffiltext{2}{Max-Planck-Institut f\"ur Astronomie, K\"onigstuhl 17,
-  D-69115 Heidelberg, Germany} 
+\altaffiltext{1}{Department of Astronomy and Astrophysics, UCO/Lick Observatory, University of 
+California, 1156 High Street, Santa Cruz, CA 95064}
+\altaffiltext{2}{Max-Planck-Institut f\"ur Astronomie, K\"onigstuhl 17, D-69115 Heidelberg, 
+Germany} 
 
 \begin{abstract}
 Blah
 \end{abstract}
 
 
-\keywords{absorption lines -- intergalactic medium -- Lyman limit
-  systems}
+\keywords{glaxies: clusters: intracluster medium -- galaxies: formation -- galaxies: halos -- 
+intergalactic medium -- quasars: absorption lines -- quasars: general}
 
 \section{Introduction}
 
@@ -169,7 +53,7 @@ maintin these flows. [add]
 Akin to stars, direct observations of galactic flows are
 difficult to acquire.  Even detecting the gas is challenging:
 the gas mass is either too small or the gas density too low
-for the [detection] of line-emission (e.g. 21cm, \lya,
+for the [detection] of line-emission (e.g. 21cm, lya,
 or H$\alpha$ from Hydrogen).  Resolving the kinematics
 and establish the mass-flux represent a far greater challenge.
 These challenges are accentuated for distant, young galaxies
@@ -198,7 +82,7 @@ away from galaxies \citep{rupke,martin,weiner,rubin}.
 However, these data are frequently at low spectral resolution
 which limits one's sensitivity to inflowing gas.
 
-In this Letter, we examine the flows of gas in the environments
+In this paper, we examine the flows of gas in the environments
 of massive galaxies hosting quasars.  Our approach leverages
 a large dataset of quasar pairs \citep{hennawi}
 to use the standard technique of absorption-line spectroscopy
@@ -210,7 +94,7 @@ Our previous publications from these quasar pairs
 have established that these galaxies are surrounded
 by a massive, cool, and enriched circumgalactic medium
 \citep{QPQ1,QPQ5,QPQ6,QPQ7}.
-We have collected a sample of \ntot~spectra passing within
+We have collected a sample of ntot~spectra passing within
 300\,kpc from a f/g quasar with a precisely measured
 redshift.  Our primary scientific interests are twofold:
 (i) search for signatures of galactic-scale outflows from the
@@ -221,29 +105,33 @@ massive system.  We further descrbie an aspect of this
 experiment that offers a unique opportunity to study galactic
 flows. [detail??]
 
-Throughout this manuscript, we adopt a $\Lambda$CDM cosmology with
-$\Omega_M = 0.26, \Omega_\Lambda = 0.74$, and $H_0 = 70 {\rm km \,
-  s^{-1} \, Mpc^{-1}}$.  When referring to comoving distances we include 
-explicitly an $h_{70}^{-1}$ term and follow modern convention of scaling
-to a Hubble constant of 70\kms\,Mpc$^{-1}$.  All equivalent width measurements are
-presented in the rest-frame, unless otherwise specified.
+Throughout this manuscript we adopt a $\Lambda$CDM cosmology with $\Omega_M=0.26, \Omega_\Lambda
+=0.74$, and $H_0=70\,{\rm km\,s^{-1}\,Mpc^{-1}}$. All distances are proper unless otherwise 
+stated. 
+%When referring to comoving distances we include explicitly an $h^{-1}$ term and 
+%follow modern convention of scaling to a Hubble constant of $70\,{\rm km\,s^{-1}\,Mpc^{-1}}$. All 
+%equivalent width measurements are presented in the rest-frame, unless otherwise specified. 
 
- 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{The Experiment}
 \label{sec:data}
 
-From our QPQ survey\footnote{www.qpqsurvey.org} \citep{QPQ1},
-we have analyzed the \ntot~systes that pass within 300\,kpc
-(physical) from a f/g quasar with $xx < z < xx$.
-We restrict the sample to f/g quasars with redshift measured
-from \ion{Mg}{2}, [\ion{O}{3}], or XX emission giving 
-a precision of $\sigma < 300 \mkms$ \citep{hewittwild}.
+From our QPQ survey\footnote{http://www.qpqsurvey.org} (QPQ1), we have analyzed 195~systems 
+that pass within 300\,kpc physical from a foreground quasar with $z > 1.6$. We restrict the sample 
+to foreground quasars with redshift measured from \ion{Mg}{2}, [\ion{O}{3}], H$\alpha$, or 
+H$\beta$ emission, giving a precision of $400\,{\rm km\,s^{-1}}$ or lower. [\ion{O}{3}] has the 
+smallest dispersion of $44\,{\rm km\,s^{-1}}$ about the systemic redshift, and we analyze the 
+sub-sample with [\ion{O}{3}] redshifts separately. The [\ion{O}{3}] line has an average blueshift 
+of $27\,{\rm km\,s^{-1}}$ about the systemic redshift, which has been added when we compute the 
+redshift of the line. Systemic redshifts measured from \ion{Mg}{2} have a precision of 
+$272\,{\rm km\,s^{-1}}$, and we have taken into account the median redshift of 
+$97\,{\rm km\,s^{-1}}$ of \ion{Mg}{2} from [\ion{O}{3}] \citep{Richards+02}. In QPQ8 we have 
+quantified the precision of H$\alpha$ and H$\beta$ to be 
+$300\,{\rm km\,s^{-1}}$ and $392\,{\rm km\,s^{-1}}$ respectively. 
+\citep{hewittwild}.
 We include only those spectra with S/N~$> XX$\AA\ at the
-observed wavelengths of \lya, \ion{C}{2}~1334, or 
-\ion{C}{4}~1548 transitions.  Of the \ntot~sightlines, 
-\nhigh\ have spectral resolution ~$> 5,000$ from echellette
+observed wavelengths of lya, \ion{C}{2}~1334, or 
+\ion{C}{4}~1548 transitions.  Of the ntot~sightlines, 
+nhigh\ have spectral resolution ~$> 5,000$ from echellette
 or echelle observations (QPQ8).  This high-dispersion 
 sample is analyzed [separately] throughout the paper.
 Figure~\ref{fig:exp} summarizes the experimental design.
@@ -259,19 +147,19 @@ and continuum normalzaton (QPQ6, QPQ7, QPQ8).
 In QPQ8, we measured the velocity widths of the \ion{C}{2}~1334
 and \ion{C}{4}~1548 transitions finding that the CGM
 frequently exhibits large flows:
-median \DV{1334},\DV{1548} = $XX,XX \mkms$ with and
-RMS \DRMS{1334},\DRMS{1548} = $XX, XX \mkms$ from
-a sample of \ncii\ and \nciv\ systems.
+median DV{1334},DV{1548} = $XX,XX kms$ with and
+RMS DRMS{1334},DRMS{1548} = $XX, XX kms$ from
+a sample of ncii\ and nciv\ systems.
 These velocity fields exceed all previous measurements from
 galaxies and/or absorption systems at any epoch.  For
 Figure~\ref{fig:stack}, we present these absorption lines
-and \ion{H}{1}~\lya, also including lower-dispersion 
+and \ion{H}{1}~lya, also including lower-dispersion 
 sightlines meeting the selection criteria.
 
 To assess the `average' absorption of these transitions,
 we have combined the data with a novel technique.
 We have fitted the combined dataset using a cubic b-spline
-with knots at every 100\,\kms.  We weighted each data
+with knots at every 100\,kms.  We weighted each data
 point by the velocity width of the pixel to insure that 
 each sightline makes an equal contribution to the stack.
 These b-spline profiles are presented in the figure
@@ -282,18 +170,18 @@ widths.
 
 Two results are evident from the figure:
  (i) the data exhibit excess absorptoin at 
- $\mdv \approx 0 \mkms$;
+ $mdv \approx 0 kms$;
  (ii) the absorption is skewed towards positive velocities
- $\mdv > 0 \mkms$.
+ $mdv > 0 mkms$.
 We measure absorption-weigthed ($1-f$) centroids
-of $\mdv = XX-XX \mkms$ for these transitions
+of $mdv = XX-XX mkms$ for these transitions
 (Table~\ref{tab:summ}).
 This suggests an asymmetry that contradicts the [standard]
 expectation.  
 
 Given the small sample size, one must 
 scrutinize the statistical significance of the measured offset.
-Indeed, a small offset $\mdv < 10 \mkms$ may be expected
+Indeed, a small offset $mdv < 10 kms$ may be expected
 even with large samples.  To assess the statistical significance,
 we have perfomed a boostrap analysis by randomly resampling
 from the full sample. [DISCUSS]
@@ -357,7 +245,7 @@ Education and Research.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\input{../Tables/tab_sub_qpq7_spectra.tex}
 \input{Tables/tab_summ.tex}
-\input{Tables/tab_summ_Hab.tex}
+%\input{Tables/tab_summ_Hab.tex}
 %\input{tab1_sub.tex}
 
 
@@ -376,7 +264,7 @@ Education and Research.
 \end{figure}
 
 \begin{figure}
-\includegraphics[width=5in]{Figures/fig_simple_stack.pdf}
+%\includegraphics[width=5in]{Figures/fig_simple_stack.pdf}
 %\includegraphics[width=5in,angle=90]{f2.eps}
 \caption{Simple stack
 }
