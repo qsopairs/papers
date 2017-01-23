@@ -10,8 +10,12 @@ from scipy.io import readsav
 
 from astropy.coordinates import SkyCoord
 from astropy.table import Table
+from astropy import units as u
+from astropy.io import fits
 
 from specdb.specdb import IgmSpec
+
+from enigma.qpq import qpq_query
 
 
 def tpe_table(qso_fg, qso_bg):
@@ -53,7 +57,29 @@ def tpe_table(qso_fg, qso_bg):
     return tpe_tbl
 
 
-def make_sample(min_logLV, outfil=None, tpe_sav=None):
+def run_wide_query(outfil, R_MAX=15.*u.Mpc):
+    # 15 cMpc, no vetting
+    qso_fg, qso_bg = qpq_query.run_query(Z_MIN=1.715, Z_MAX=6.0,
+                                         R_MIN=0.0*u.Mpc, R_MAX=R_MAX,  # co-moving
+                                         VEL_MIN=2000.0*u.km/u.s)
+    # Write
+    prihdu = fits.PrimaryHDU()
+    fhdu = fits.table_to_hdu(qso_fg)
+    bhdu = fits.table_to_hdu(qso_bg)
+    thdulist = fits.HDUList([prihdu,fhdu,bhdu])
+    thdulist.writeto(outfil, overwrite=True)
+
+
+
+def make_new_sample(min_logLV, qpq_query_file, outfil=None):
+    # Run wide qpq_query
+    #
+    qso_fg, qso_bg = qpq_query.run_query(Z_MIN=1.715, Z_MAX=6.0,
+                                         R_MIN=0.0*u.Mpc, R_MAX=0.10*u.Mpc,  # co-moving
+                                         VEL_MIN=2000.0*u.km/u.s)
+
+
+def make_old_sample(min_logLV, outfil=None, tpe_sav=None):
     """ Generate TPE sample
     Parameters
     ----------
@@ -188,7 +214,8 @@ if __name__ == '__main__':
 
     flg_fig = 0
     #flg_fig += 2**0  # Preferred cuts
-    flg_fig += 2**1  # Check spectra of TPE sample
+    #flg_fig += 2**1  # Check spectra of TPE sample
+    flg_fig += 2**2  # Generate pair tables (15 cMpc)
 
     if (flg_fig % 2**1) >= 2**0:
         # Load for speed
@@ -197,8 +224,11 @@ if __name__ == '__main__':
         print("Be patient....")
         tpe_sav = readsav(svfile)
         # Generate
-        _ = make_sample(31.2, outfil='TPE_DR12_31.2_spec.fits', tpe_sav=tpe_sav)
-        _ = make_sample(31.0, outfil='TPE_DR12_31.0_spec.fits', tpe_sav=tpe_sav)
+        _ = make_old_sample(31.2, outfil='TPE_DR12_31.2_spec.fits', tpe_sav=tpe_sav)
+        _ = make_old_sample(31.0, outfil='TPE_DR12_31.0_spec.fits', tpe_sav=tpe_sav)
 
     if (flg_fig % 2**2) >= 2**1:
         tpe_chk_spec('TPE_DR12_31.2_spec.fits')
+
+    if flg_fig & (2**2):
+        run_wide_query('QPQ_v2000_R15_novette.fits', R_MAX=0.1*u.Mpc)
