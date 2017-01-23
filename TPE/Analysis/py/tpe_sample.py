@@ -231,4 +231,5 @@ if __name__ == '__main__':
         tpe_chk_spec('TPE_DR12_31.2_spec.fits')
 
     if flg_fig & (2**2):
-        run_wide_query('QPQ_v2000_R15_novette.fits', R_MAX=0.1*u.Mpc)
+        #run_wide_query('QPQ_v2000_R15_novette.fits', R_MAX=0.1*u.Mpc) # TEST
+        run_wide_query('QPQ_v2000_R15_novette.fits', R_MAX=15.*u.Mpc) # TEST
