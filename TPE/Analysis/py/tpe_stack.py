@@ -20,6 +20,7 @@ from linetools.spectra import utils as lspu
 from linetools.spectra import io as lsio
 
 from specdb.specdb import IgmSpec
+from specdb import specdb as sdbsdb
 from specdb import cat_utils
 
 from xastropy.xutils import xdebug as xdb
@@ -45,38 +46,44 @@ def instr_priority():
     instr_prior['SDSS'] = ''
     instr_prior['BOSS'] = ''
     instr_prior['GMOS-N'] = 'B600'
+    instr_prior['GMOS-S'] = 'B600'
     instr_prior['LRISb'] = '1200/3400'
     instr_prior['MagE'] = ''
     instr_prior['ESI'] = 'ECH'
+    instr_prior['XSHOOTER'] = ''
+    instr_prior['MIKE'] = ''
+    instr_prior['MIKE-Red'] = ''
     instr_prior['UVES'] = ''
     instr_prior['HIRES'] = ''
     # Return
     return instr_prior
 
 
-def add_to_specmeta(dbase, meta, qq, spec_meta, zabs, instr_prior, buff=50.):
-    for ss,row in enumerate(meta):
+def add_to_specmeta(dbase, meta_list, meta_stack, qq, spec_meta, zabs, instr_prior, buff=50.):
+    idx = np.where(meta_list[qq])[0]
+    for ss,row in enumerate(idx):
         wv_lya = (1+zabs) * 1215.67
-        if np.any([(row['WV_MIN'] > wv_lya-buff),(row['WV_MAX'] < wv_lya+buff)]):
+        if np.any([(meta_stack['WV_MIN'][row] > wv_lya-buff),(meta_stack['WV_MAX'][row] < wv_lya+buff)]):
             continue
         #
         if spec_meta[qq]['nspec'] > 0:
             spec_meta[qq]['specm'] += ';'
-        spec_meta[qq]['specm'] += ','.join([dbase,row['GROUP'], row['INSTR'], row['DISPERSER']])
+        spec_meta[qq]['specm'] += ','.join([dbase,meta_stack['GROUP'][row], meta_stack['INSTR'][row], meta_stack['DISPERSER'][row]])
         spec_meta[qq]['nspec'] += 1
         # Priority
         try:
-            aok = instr_prior[row['INSTR']] in row['DISPERSER']
+            aok = instr_prior[meta_stack['INSTR'][row]] in meta_stack['DISPERSER'][row]
         except KeyError:
-            print('Instr = {:s} not in Priority dict'.format(row['INSTR']))
+            if meta_stack['INSTR'][row] != '2dF':
+                print('Instr = {:s} not in Priority dict with disperser={:s}'.format(meta_stack['INSTR'][row], meta_stack['DISPERSER'][row]))
         else:
             if aok:  # Better choice?
                 spec_meta[qq]['nok'] += 1
-                pri = instr_prior.keys().index(row['INSTR'])
+                pri = instr_prior.keys().index(meta_stack['INSTR'][row])
                 if pri > spec_meta[qq]['ibest']:
                     spec_meta[qq]['best_row'] = ss
                     spec_meta[qq]['ibest'] = pri
-                    spec_meta[qq]['best_spec'] = ','.join([dbase,row['GROUP'], row['INSTR'], row['DISPERSER']])
+                    spec_meta[qq]['best_spec'] = ','.join([dbase,meta_stack['GROUP'][row], meta_stack['INSTR'][row], meta_stack['DISPERSER'][row]])
 
 
 def get_spec_meta(tpe, outfil=None):
@@ -98,29 +105,33 @@ def get_spec_meta(tpe, outfil=None):
         ibest, best_row -- int, uninteresting indices
     """
     # Load spectral sets
-    igmsp = IgmSpec()
-    qpq = IgmSpec(db_file=qpq_file, skip_test=True)
+    reload(sdbsdb)
+    igmsp = sdbsdb.IgmSpec()
+    qpq = sdbsdb.IgmSpec(db_file=qpq_file, skip_test=True)#, verbose=True)
     #
     b_coords = SkyCoord(ra=tpe['BG_RA'], dec=tpe['BG_DEC'], unit='deg')
     # Query the spectral catalogs
     #igm_cat_match, igm_cat, igm_ID = igmsp.qcat.query_coords(b_coords)
     #qpq_cat_match, qpq_cat, qpq_ID = qpq.qcat.query_coords(b_coords)
     # Generate lists of meta tables
-    igm_meta_match, igm_meta_list = igmsp.meta_from_coords(b_coords, first=False)
-    qpq_meta_match, qpq_meta_list = qpq.meta_from_coords(b_coords, first=False)
+    igm_meta_match, igm_meta_list, igm_meta_stack = igmsp.meta_from_coords(b_coords, first=False)
+    qpq_meta_match, qpq_meta_list, qpq_meta_stack = qpq.meta_from_coords(b_coords, first=False)
     # Identify best instrument/grating combo
     instr_pri_dict = instr_priority()
     spec_dict = dict(specm='', best_spec='', nspec=0, ibest=-1, nok=0, best_row=-1)
     spec_meta = [spec_dict.copy() for i in range(len(tpe))]
+    print('Looping on pairs')
     for qq,pair in enumerate(tpe):
         # igmspec
         if igm_meta_match[qq]:
             # Add
-            add_to_specmeta('igmsp', igm_meta_list[qq], qq, spec_meta, pair['FG_Z'], instr_pri_dict)
+            add_to_specmeta('igmsp', igm_meta_list, igm_meta_stack, qq, spec_meta, pair['FG_Z'], instr_pri_dict)
         # QPQ
         if qpq_meta_match[qq]:
             # Meta + add
-            add_to_specmeta('qpq', qpq_meta_list[qq], qq, spec_meta, pair['FG_Z'], instr_pri_dict)
+            add_to_specmeta('qpq', qpq_meta_list, qpq_meta_stack, qq, spec_meta, pair['FG_Z'], instr_pri_dict)
+        #if (qq % 500) == 0:
+        #    print("Done with {:d}".format(qq))
     # Convert to Table
     spec_tbl = Table()
     for key in spec_dict.keys():
@@ -131,14 +142,16 @@ def get_spec_meta(tpe, outfil=None):
     for kk,row in enumerate(spec_tbl):
         if row['best_spec'][0:4] == 'igms':
             dbase.append('igmspec')
-            group.append(igm_meta_list[kk]['GROUP'][row['best_row']])
-            group_id.append(igm_meta_list[kk]['GROUP_ID'][row['best_row']])
-            specfile.append(igm_meta_list[kk]['SPEC_FILE'][row['best_row']])
+            iidx = np.where(igm_meta_list[kk])[0]
+            group.append(igm_meta_stack['GROUP'][iidx][row['best_row']])
+            group_id.append(igm_meta_stack['GROUP_ID'][iidx][row['best_row']])
+            specfile.append(igm_meta_stack['SPEC_FILE'][iidx][row['best_row']])
         elif row['best_spec'][0:3] == 'qpq':
             dbase.append('qpq')
-            group.append(qpq_meta_list[kk]['GROUP'][row['best_row']])
-            group_id.append(qpq_meta_list[kk]['GROUP_ID'][row['best_row']])
-            specfile.append(qpq_meta_list[kk]['SPEC_FILE'][row['best_row']])
+            iidx = np.where(qpq_meta_list[kk])[0]
+            group.append(qpq_meta_stack['GROUP'][iidx][row['best_row']])
+            group_id.append(qpq_meta_stack['GROUP_ID'][iidx][row['best_row']])
+            specfile.append(qpq_meta_stack['SPEC_FILE'][iidx][row['best_row']])
         else:
             dbase.append('none')
             group.append('none')
@@ -155,6 +168,7 @@ def get_spec_meta(tpe, outfil=None):
     # Return
     return spec_tbl
 
+
 def chk_continua(spec, fg_z):
     # Check for continua
     has_co = np.array([True]*spec.nspec)
@@ -169,6 +183,7 @@ def chk_continua(spec, fg_z):
             has_co[ii] = False
     # Return
     return has_co
+
 
 def build_spectra(tpe, spec_tbl=None, outfil=None):
     """ Generate an XSpectrum1D object of TPE spectra
@@ -239,6 +254,7 @@ def build_spectra(tpe, spec_tbl=None, outfil=None):
         hdf.close()
         print("Wrote: {:s}".format(outfil))
     return cut_tpe, cut_stbl, fin_spec
+
 
 def load_spec(spec_file):
     """
