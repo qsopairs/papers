@@ -339,6 +339,7 @@ def stack_spec(spec_file, dv=100*u.km/u.s, cut_on_rho=4.):
 
 def tpe_stack_boss(dv=100*u.km/u.s):
     """ Testing stacks with BOSS
+    DEPRECATED
     """
     # Load sample
     ipos = this_file.rfind('/')
