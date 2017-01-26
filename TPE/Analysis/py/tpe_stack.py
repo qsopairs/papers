@@ -266,9 +266,11 @@ def load_spec(spec_file):
     return xspec, tpe, spec_tbl
 
 
-def stack_spec(spec_file, dv=100*u.km/u.s, cut_on_rho=4.):
+def cut_spec(spec_file, cut_on_rho=None):
     # Load
     xspec, tpe, spec_tbl = load_spec(spec_file)
+    # No cut
+    cut = np.array([True]*len(tpe))
     # Cut on separation (should do this much earlier in the process)
     if cut_on_rho is not None:
         warnings.warn("Cutting on rho in stack.  Should do this earlier")
@@ -277,14 +279,25 @@ def stack_spec(spec_file, dv=100*u.km/u.s, cut_on_rho=4.):
         kpc_amin = cosmo.kpc_comoving_per_arcmin(tpe['FG_Z'])  # kpc per arcmin
         ang_seps = b_coords.separation(f_coords)
         rho = ang_seps.to('arcmin') * kpc_amin / (1+tpe['FG_Z'])
+        # Add R
+        tpe['R'] = rho
         cut_rho = rho.to('Mpc').value < cut_on_rho
-        print("We have {:d} spectra after the cut.".format(np.sum(cut_rho)))
-        xspec = xspec[cut_rho]
-        tpe = tpe[cut_rho]
-        spec_tbl = spec_tbl[cut_rho]
+        print("We have {:d} spectra after the rho cut.".format(np.sum(cut_rho)))
+        cut = cut & cut_rho
     # Remove those without continua
     has_co = spec_tbl['HAS_CO'].data
-    co_spec = xspec[has_co]
+    cut = cut & has_co
+    print("We have {:d} spectra after the continuum cut.".format(np.sum(cut)))
+    #
+    return cut, xspec, tpe, spec_tbl
+
+
+def stack_spec(spec_file, dv=100*u.km/u.s, cut_on_rho=4.):
+    # Cut
+    cuts, xspec, tpe, spec_tbl = cut_spec(spec_file, cut_on_rho=cut_on_rho)
+    co_spec = xspec[cuts]
+    cut_tpe = tpe[cuts]
+    # Normalize
     co_spec.normed = True  # Apply continuum
     #  May also wish to isolate in wavelength to avoid rejected pixels
     for ii in range(co_spec.nspec):
@@ -295,7 +308,7 @@ def stack_spec(spec_file, dv=100*u.km/u.s, cut_on_rho=4.):
         co_spec.add_to_mask(bad_pix, compressed=True)
 
     # Rebin to rest
-    zarr = tpe['FG_Z'][has_co]
+    zarr = cut_tpe['FG_Z']
     rebin_spec = lspu.rebin_to_rest(co_spec, zarr, dv)
 
     # Stack
@@ -304,7 +317,6 @@ def stack_spec(spec_file, dv=100*u.km/u.s, cut_on_rho=4.):
     # Plot
     tpep.plot_stack(stack, 'all_stack.pdf')
     tpep.plot_spec_img(rebin_spec, 'spec_img.pdf')
-    pdb.set_trace()
     # Return
     return
 
