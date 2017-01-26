@@ -234,8 +234,8 @@ if __name__ == '__main__':
         print("Be patient....")
         tpe_sav = readsav(svfile)
         # Generate
-        _ = make_old_sample(31.2, outfil='TPE_DR12_31.2_spec.fits', tpe_sav=tpe_sav)
-        _ = make_old_sample(31.0, outfil='TPE_DR12_31.0_spec.fits', tpe_sav=tpe_sav)
+        _ = make_tpe(31.2, outfil='TPE_DR12_31.2_spec.fits', tpe_sav=tpe_sav)
+        _ = make_tpe(31.0, outfil='TPE_DR12_31.0_spec.fits', tpe_sav=tpe_sav)
 
     if (flg_fig % 2**2) >= 2**1:
         tpe_chk_spec('TPE_DR12_31.2_spec.fits')
