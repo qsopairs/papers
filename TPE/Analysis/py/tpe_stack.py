@@ -23,7 +23,7 @@ from specdb.specdb import IgmSpec
 from specdb import specdb as sdbsdb
 from specdb import cat_utils
 
-from xastropy.xutils import xdebug as xdb
+#from xastropy.xutils import xdebug as xdb
 
 this_file = __file__
 qpq_file = os.getenv('DROPBOX_DIR')+'/QSOPairs/spectra/qpq_oir_spec.hdf5'
@@ -97,7 +97,10 @@ def build_spectra(tpe, spec_tbl=None, outfil=None):
             pass
         elif isinstance(spec_tbl, basestring):
             spec_tbl = Table.read(spec_tbl)
+        elif isinstance(spec_tbl, bool):  # Parse from tpe table
+            spec_tbl = tpe[['DBASE','GROUP_ID','GROUP','SPEC_FILE']]
     else:
+        pdb.set_trace() # AVOID THIS
         spec_tbl = get_spec_meta(tpe)
     assert len(tpe) == len(spec_tbl)
     # Load spectral sets
@@ -129,9 +132,10 @@ def build_spectra(tpe, spec_tbl=None, outfil=None):
     # Check continua
     has_co = chk_continua(fin_spec, cut_tpe['FG_Z'])
     cut_stbl['HAS_CO'] = has_co
+    cut_tpe['HAS_CO'] = has_co
     if np.sum(~has_co) > 0:
         print("These spectra need a continuum")
-        print(cut_stbl[['SPEC_FILE']][~has_co])
+        print(cut_stbl[['SPEC_FILE','GROUP']][~has_co])
     # Write
     if outfil is not None:
         hdf = h5py.File(outfil, 'w')
@@ -199,8 +203,8 @@ def cut_spec(spec_file, cut_on_rho=None):
     return cut, xspec, tpe, spec_tbl
 
 
-def stack_spec(spec_file, dv=100*u.km/u.s, cut_on_rho=None):
-    # Cut
+def stack_spec(spec_file, dv=100*u.km/u.s, cut_on_rho=None, pltroot=None):
+    # Cut on continuum (and R, optional)
     cuts, xspec, tpe, spec_tbl = cut_spec(spec_file, cut_on_rho=cut_on_rho)
     co_spec = xspec[cuts]
     cut_tpe = tpe[cuts]
@@ -222,8 +226,10 @@ def stack_spec(spec_file, dv=100*u.km/u.s, cut_on_rho=None):
     stack = lspu.smash_spectra(rebin_spec)
 
     # Plot
-    tpep.plot_stack(stack, 'all_stack.pdf')
-    tpep.plot_spec_img(rebin_spec, 'spec_img.pdf')
+    if pltroot is None:
+        pltroot = 'spec_'
+    tpep.plot_stack(stack, pltroot+'_stack.pdf')
+    tpep.plot_spec_img(rebin_spec, pltroot+'_img.pdf')
     # Return
     return
 
@@ -301,7 +307,7 @@ def tpe_stack_boss(dv=100*u.km/u.s):
         sig = rebin_spec.data['sig']
         gds = sig > 0.
         fx[~gds] = 0.
-        xdb.set_trace() # xdb.ximshow(fx)
+        pdb.set_trace() # xdb.ximshow(fx)
 
     # Stack
     stack = lspu.smash_spectra(rebin_spec)
@@ -409,7 +415,9 @@ if __name__ == '__main__':
     #flg_stack += 2**1  # LRIS
     #flg_stack += 2**2  # Generate spec meta from tpe Table (test)
     #flg_stack += 2**3  # Generate spectra
-    flg_stack += 2**4  # Stack
+    #flg_stack += 2**4  # Stack original
+    #flg_stack += 2**5  # Build/stack on TPE 31.5
+    flg_stack += 2**6  # Build/stack on TPE 31.2-31.5
 
     if (flg_stack % 2**1) >= 2**0:
         tpe_stack_boss()
@@ -419,7 +427,7 @@ if __name__ == '__main__':
 
     if flg_stack & (2**2):
         tpe = Table.read('TPE_DR12_31.2_spec.fits')
-        _ = get_spec_meta(tpe, outfil='tmp_spec_tbl.fits')
+        _ = tsample.get_spec_meta(tpe, outfil='tmp_spec_tbl.fits')
 
     if flg_stack & (2**3):
         tpe = Table.read('TPE_DR12_31.2_spec.fits')
@@ -428,7 +436,14 @@ if __name__ == '__main__':
     if flg_stack & (2**4):
         stack_spec('TPE_DR12_31.2_spec.hdf5', cut_on_rho=4.)
 
+
     if flg_stack & (2**5):
-        _, _, _ = build_spectra(tpe, spec_tbl='tmp_spec_tbl.fits',
-                                outfil='TPE_DR12_31.2_spec.hdf5')
-        #stack_spec('TPE_31.5_4pMpc.fits')
+        if False:
+            tpe = Table.read('TPE_31.5_4pMpc.fits')
+            _, _, _ = build_spectra(tpe, spec_tbl=True, outfil='TPE_31.5_4pMpc.hdf5')
+        stack_spec('TPE_31.5_4pMpc.hdf5')
+
+    if flg_stack & (2**6):
+        tpe = Table.read('TPE_31.2_31.5_4pMpc.fits')
+        _, _, _ = build_spectra(tpe, spec_tbl=True, outfil='TPE_31.2_31.5_4pMpc.hdf5')
+        stack_spec('TPE_31.2_31.5_4pMpc.hdf5', pltroot='TPE_31.2_31.5')

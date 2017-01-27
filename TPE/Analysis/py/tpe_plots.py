@@ -16,14 +16,6 @@ from matplotlib.backends.backend_pdf import PdfPages
 from matplotlib import pyplot as plt
 import matplotlib.gridspec as gridspec
 
-from astropy.coordinates import SkyCoord
-from astropy.table import Table
-from astropy import units as u
-from astropy.cosmology import Planck15 as cosmo
-
-
-
-from xastropy.xutils import xdebug as xdb
 
 this_file = __file__
 
@@ -39,6 +31,7 @@ def plot_stack(stack, outfil):
     # Lya
     ax.plot([1215.67]*2, [0., 2.], 'g--')
     plt.savefig(outfil)
+    print("Wrote {:s}".format(outfil))
 
 
 def plot_spec_img(spec, outfil):
@@ -73,4 +66,5 @@ def plot_spec_img(spec, outfil):
     #cb.set_label(r'$12 - \epsilon_{\rm '+lion+r'} - \log[x({\rm '+lion+r'^{++}})/x({\rm H^0})]$')
     # Lya
     plt.savefig(outfil)
+    print("Wrote {:s}".format(outfil))
 

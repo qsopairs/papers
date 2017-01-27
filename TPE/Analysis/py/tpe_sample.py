@@ -116,8 +116,13 @@ def make_tpe(min_logLV, R, qso_fg=None, qso_bg=None, outfil=None, qpqquery_file=
             qso_bg = Table.read(qpqquery_file, hdu=2)
 
     # Luminosity cut
-    Lcut = qso_fg['LOGLV'] > min_logLV
-    print("{:d} pairs satisfy the Lcut of {:g}".format(np.sum(Lcut), min_logLV))
+    if isinstance(min_logLV, float):
+        Lcut = qso_fg['LOGLV'] > min_logLV
+        print("{:d} pairs satisfy the Lcut of {:g}".format(np.sum(Lcut), min_logLV))
+    elif isinstance(min_logLV, (list,tuple)):
+        Lcut = (qso_fg['LOGLV'] > min_logLV[0]) & (qso_fg['LOGLV'] < min_logLV[1])
+        print("{:d} pairs satisfy the Lcut of [{:g},{:g}]".format(np.sum(Lcut),
+                                                                  min_logLV[0], min_logLV[1]))
     qso_fg = qso_fg[Lcut]
     qso_bg = qso_bg[Lcut]
 
@@ -189,6 +194,13 @@ def make_tpe(min_logLV, R, qso_fg=None, qso_bg=None, outfil=None, qpqquery_file=
     no_fg = np.all([rho_tpe['FG_IGM_ID'] < 0, rho_tpe['FG_QPQ_ID'] < 0],axis=0)
     final_tpe = rho_tpe[~no_fg]
     print("{:d} pairs after requiring f/g spectrum".format(len(final_tpe)))
+
+    # Update VCV redshifts
+    vcv = np.where(final_tpe['FG_MYERS_ZEM_SOURCE'] == 'VCV')[0]
+    for idx in vcv:
+        mt = igmsp.cat['IGM_ID'] == final_tpe['FG_IGM_ID'][idx]
+        assert np.sum(mt) == 1
+        final_tpe['FG_Z'][idx] = igmsp.cat['zem'][mt][0]
 
     # Write
     if outfil is not None:
@@ -378,7 +390,8 @@ if __name__ == '__main__':
     #flg_fig += 2**0  # Preferred cuts
     #flg_fig += 2**1  # Check spectra of TPE sample
     #flg_fig += 2**2  # Generate pair tables (15 cMpc)
-    flg_fig += 2**3  # Build TPE table
+    #flg_fig += 2**3  # Build TPE table for >31.5
+    flg_fig += 2**4  # Build TPE table for 31.2-31.5
 
     if (flg_fig % 2**1) >= 2**0:
         # Load for speed
@@ -399,3 +412,5 @@ if __name__ == '__main__':
 
     if flg_fig & (2**3):
         make_tpe(31.5, 4., qpqquery_file='QPQ_v2000_R15_novette.fits', outfil='TPE_31.5_4pMpc.fits')
+    if flg_fig & (2**4):
+        make_tpe([31.2,31.5], 4., qpqquery_file='QPQ_v2000_R15_novette.fits', outfil='TPE_31.2_31.5_4pMpc.fits')
