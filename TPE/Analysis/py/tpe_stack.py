@@ -47,7 +47,7 @@ def instr_priority():
     instr_prior['BOSS'] = ''
     instr_prior['GMOS-N'] = 'B600'
     instr_prior['GMOS-S'] = 'B600'
-    instr_prior['LRISb'] = '1200/3400'
+    instr_prior['LRISb'] = '1200/3400' # Add B600
     instr_prior['MagE'] = ''
     instr_prior['ESI'] = 'ECH'
     instr_prior['XSHOOTER'] = ''
@@ -58,115 +58,6 @@ def instr_priority():
     # Return
     return instr_prior
 
-
-def add_to_specmeta(dbase, meta_list, meta_stack, qq, spec_meta, zabs, instr_prior, buff=50.):
-    idx = np.where(meta_list[qq])[0]
-    for ss,row in enumerate(idx):
-        wv_lya = (1+zabs) * 1215.67
-        if np.any([(meta_stack['WV_MIN'][row] > wv_lya-buff),(meta_stack['WV_MAX'][row] < wv_lya+buff)]):
-            continue
-        #
-        if spec_meta[qq]['nspec'] > 0:
-            spec_meta[qq]['specm'] += ';'
-        spec_meta[qq]['specm'] += ','.join([dbase,meta_stack['GROUP'][row], meta_stack['INSTR'][row], meta_stack['DISPERSER'][row]])
-        spec_meta[qq]['nspec'] += 1
-        # Priority
-        try:
-            aok = instr_prior[meta_stack['INSTR'][row]] in meta_stack['DISPERSER'][row]
-        except KeyError:
-            if meta_stack['INSTR'][row] != '2dF':
-                print('Instr = {:s} not in Priority dict with disperser={:s}'.format(meta_stack['INSTR'][row], meta_stack['DISPERSER'][row]))
-        else:
-            if aok:  # Better choice?
-                spec_meta[qq]['nok'] += 1
-                pri = instr_prior.keys().index(meta_stack['INSTR'][row])
-                if pri > spec_meta[qq]['ibest']:
-                    spec_meta[qq]['best_row'] = ss
-                    spec_meta[qq]['ibest'] = pri
-                    spec_meta[qq]['best_spec'] = ','.join([dbase,meta_stack['GROUP'][row], meta_stack['INSTR'][row], meta_stack['DISPERSER'][row]])
-
-
-def get_spec_meta(tpe, outfil=None):
-    """ Given a TPE table, generate a table describing available spectra
-    and the preferred choice.
-    Parameters
-    ----------
-    tpe : Table
-    outfil : str, optional
-
-    Returns
-    -------
-    spec_tbl : Table
-      Table describing the spectra; aligned with input TPE Table
-        specm -- str, describing all available spectra
-        nspec -- int, number of available spectra
-        best_spec -- str, describes the best one given priority dict
-        nok -- number good enough for TPE (i.e. in instr_priority dict)
-        ibest, best_row -- int, uninteresting indices
-    """
-    # Load spectral sets
-    reload(sdbsdb)
-    igmsp = sdbsdb.IgmSpec()
-    qpq = sdbsdb.IgmSpec(db_file=qpq_file, skip_test=True)#, verbose=True)
-    #
-    b_coords = SkyCoord(ra=tpe['BG_RA'], dec=tpe['BG_DEC'], unit='deg')
-    # Query the spectral catalogs
-    #igm_cat_match, igm_cat, igm_ID = igmsp.qcat.query_coords(b_coords)
-    #qpq_cat_match, qpq_cat, qpq_ID = qpq.qcat.query_coords(b_coords)
-    # Generate lists of meta tables
-    igm_meta_match, igm_meta_list, igm_meta_stack = igmsp.meta_from_coords(b_coords, first=False)
-    qpq_meta_match, qpq_meta_list, qpq_meta_stack = qpq.meta_from_coords(b_coords, first=False)
-    # Identify best instrument/grating combo
-    instr_pri_dict = instr_priority()
-    spec_dict = dict(specm='', best_spec='', nspec=0, ibest=-1, nok=0, best_row=-1)
-    spec_meta = [spec_dict.copy() for i in range(len(tpe))]
-    print('Looping on pairs')
-    for qq,pair in enumerate(tpe):
-        # igmspec
-        if igm_meta_match[qq]:
-            # Add
-            add_to_specmeta('igmsp', igm_meta_list, igm_meta_stack, qq, spec_meta, pair['FG_Z'], instr_pri_dict)
-        # QPQ
-        if qpq_meta_match[qq]:
-            # Meta + add
-            add_to_specmeta('qpq', qpq_meta_list, qpq_meta_stack, qq, spec_meta, pair['FG_Z'], instr_pri_dict)
-        #if (qq % 500) == 0:
-        #    print("Done with {:d}".format(qq))
-    # Convert to Table
-    spec_tbl = Table()
-    for key in spec_dict.keys():
-        clm = [sdict[key] for sdict in spec_meta]
-        spec_tbl[key] = clm
-    # Add Group, Group_ID
-    dbase, group, group_id, specfile = [], [], [], []
-    for kk,row in enumerate(spec_tbl):
-        if row['best_spec'][0:4] == 'igms':
-            dbase.append('igmspec')
-            iidx = np.where(igm_meta_list[kk])[0]
-            group.append(igm_meta_stack['GROUP'][iidx][row['best_row']])
-            group_id.append(igm_meta_stack['GROUP_ID'][iidx][row['best_row']])
-            specfile.append(igm_meta_stack['SPEC_FILE'][iidx][row['best_row']])
-        elif row['best_spec'][0:3] == 'qpq':
-            dbase.append('qpq')
-            iidx = np.where(qpq_meta_list[kk])[0]
-            group.append(qpq_meta_stack['GROUP'][iidx][row['best_row']])
-            group_id.append(qpq_meta_stack['GROUP_ID'][iidx][row['best_row']])
-            specfile.append(qpq_meta_stack['SPEC_FILE'][iidx][row['best_row']])
-        else:
-            dbase.append('none')
-            group.append('none')
-            group_id.append(-1)
-            specfile.append('N/A')
-    spec_tbl['DBASE'] = dbase
-    spec_tbl['GROUP'] = group
-    spec_tbl['GROUP_ID'] = group_id
-    spec_tbl['SPEC_FILE'] = specfile
-    # Write?
-    if outfil is not None:
-        spec_tbl.write(outfil, overwrite=True)
-        print("Writing spec table: {:s}".format(outfil))
-    # Return
-    return spec_tbl
 
 
 def chk_continua(spec, fg_z):
@@ -308,7 +199,7 @@ def cut_spec(spec_file, cut_on_rho=None):
     return cut, xspec, tpe, spec_tbl
 
 
-def stack_spec(spec_file, dv=100*u.km/u.s, cut_on_rho=4.):
+def stack_spec(spec_file, dv=100*u.km/u.s, cut_on_rho=None):
     # Cut
     cuts, xspec, tpe, spec_tbl = cut_spec(spec_file, cut_on_rho=cut_on_rho)
     co_spec = xspec[cuts]
@@ -535,4 +426,9 @@ if __name__ == '__main__':
         _, _, _ = build_spectra(tpe, spec_tbl='tmp_spec_tbl.fits',
                                 outfil='TPE_DR12_31.2_spec.hdf5')
     if flg_stack & (2**4):
-        stack_spec('TPE_DR12_31.2_spec.hdf5')
+        stack_spec('TPE_DR12_31.2_spec.hdf5', cut_on_rho=4.)
+
+    if flg_stack & (2**5):
+        _, _, _ = build_spectra(tpe, spec_tbl='tmp_spec_tbl.fits',
+                                outfil='TPE_DR12_31.2_spec.hdf5')
+        #stack_spec('TPE_31.5_4pMpc.fits')
