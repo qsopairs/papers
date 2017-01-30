@@ -21,6 +21,7 @@ qpq_file = os.getenv('DROPBOX_DIR')+'/QSOPairs/spectra/qpq_oir_spec.hdf5'
 
 sys.path.append(os.path.abspath("./py"))
 import tpe_stack as tstack
+import tpe_plots as tplots
 
 
 def tpe_table(qso_fg, qso_bg, old=False):
@@ -319,8 +320,10 @@ def add_to_specmeta(dbase, meta_list, meta_stack, qq, spec_meta, zabs, instr_pri
                     spec_meta[qq]['ibest'] = pri
                     spec_meta[qq]['best_spec'] = ','.join([dbase,meta_stack['GROUP'][row], meta_stack['INSTR'][row], meta_stack['DISPERSER'][row]])
 
+
 def tpe_chk_spec(tpe_file):
     """ Check spectrum exists and then look for continuum
+    NO LONGER USED
 
     Parameters
     ----------
@@ -330,6 +333,7 @@ def tpe_chk_spec(tpe_file):
     -------
 
     """
+    pdb.set_trace()
     from astropy import units as u
 
     # Load spectral datasets
@@ -390,8 +394,8 @@ if __name__ == '__main__':
     #flg_fig += 2**0  # Preferred cuts
     #flg_fig += 2**1  # Check spectra of TPE sample
     #flg_fig += 2**2  # Generate pair tables (15 cMpc)
-    #flg_fig += 2**3  # Build TPE table for >31.5
-    flg_fig += 2**4  # Build TPE table for 31.2-31.5
+    flg_fig += 2**3  # Build TPE table for >31.5
+    #flg_fig += 2**4  # Build TPE table for 31.2-31.5
 
     if (flg_fig % 2**1) >= 2**0:
         # Load for speed
@@ -412,5 +416,6 @@ if __name__ == '__main__':
 
     if flg_fig & (2**3):
         make_tpe(31.5, 4., qpqquery_file='QPQ_v2000_R15_novette.fits', outfil='TPE_31.5_4pMpc.fits')
+
     if flg_fig & (2**4):
         make_tpe([31.2,31.5], 4., qpqquery_file='QPQ_v2000_R15_novette.fits', outfil='TPE_31.2_31.5_4pMpc.fits')

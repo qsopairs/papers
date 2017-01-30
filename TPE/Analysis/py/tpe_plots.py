@@ -16,8 +16,17 @@ from matplotlib.backends.backend_pdf import PdfPages
 from matplotlib import pyplot as plt
 import matplotlib.gridspec as gridspec
 
+from collections import OrderedDict
+
+from astropy.table import Table
+from astropy import units as u
+
+from linetools import utils as ltu
+
+from specdb.specdb import IgmSpec
 
 this_file = __file__
+qpq_file = os.getenv('DROPBOX_DIR')+'/QSOPairs/spectra/qpq_oir_spec.hdf5'
 
 def plot_stack(stack, outfil):
     # Quick Plot
@@ -67,4 +76,99 @@ def plot_spec_img(spec, outfil):
     # Lya
     plt.savefig(outfil)
     print("Wrote {:s}".format(outfil))
+
+
+def plot_sample(spec_file, outfil, dv=9000., dwv=25.):
+    import sys
+    sys.path.append(os.path.abspath("./py"))
+    import tpe_stack as tstack
+    # TPE
+    cuts, xspec, tpe, spec_tbl, rebin_spec = tstack.stack_spec(spec_file)
+    npair = len(tpe)
+    assert npair == xspec.nspec
+
+    # Load spectral datasets
+    igmsp = IgmSpec()
+    qpq_file = os.getenv('DROPBOX_DIR')+'/QSOPairs/spectra/qpq_oir_spec.hdf5'
+    qpq = IgmSpec(db_file=qpq_file, skip_test=True)
+    #
+
+    pp = PdfPages(outfil)
+    plt.figure(figsize=(9, 5))#,dpi=100)
+    nrow = 5
+    gs = gridspec.GridSpec(nrow,8)
+
+    zem_lines = OrderedDict()  # Taking these from LINEWAVESHIFT
+    zem_lines['Lya'] = 1218.2121
+    zem_lines['CIV'] = 1544.662
+    zem_lines['CIII'] = 1903.910
+    zem_lines['MgII'] = 2799.402
+    lsz = 11.
+
+    npair = 20
+    for qq,row in enumerate(tpe):
+        # Indexing
+        ii = qq % nrow
+
+        # f/g QSO first
+        fg_coord = ltu.radec_to_coord((row['FG_RA'], row['FG_DEC']))
+        if row['FG_IGM_ID'] > 0:
+            fg_spec, fg_meta = igmsp.spectra_from_coord(fg_coord)
+        else:
+            fg_spec, fg_meta = qpq.spectra_from_coord(fg_coord)
+        #for line in [1215.67, 1550., 1910., 2800]:
+        for kk,label in enumerate(zem_lines.keys()):
+            line = zem_lines[label]
+            velo = fg_spec.relative_vel(line*(1+row['FG_Z'])*u.AA)
+            gdp = (velo.value > (-1*dv)) & (velo.value < dv)
+            if np.sum(gdp) > 0:
+                ax = plt.subplot(gs[ii, kk])
+                ax.plot(velo, fg_spec.flux, 'k', drawstyle='steps-mid')
+                ax.get_yaxis().set_ticks([])
+                # Limits
+                ax.set_xlim([-1*dv,dv])
+                maxf = np.max(fg_spec.flux[gdp])
+                ax.set_ylim(-0.1*maxf, 1.2*maxf)
+                ax.plot([0., 0.], [-1e9, 1e9], ':', color='green')
+                # Text
+                ax.text(0.1, 0.10, label, transform=ax.transAxes, ha='left', size=lsz)
+
+        # b/g QSO next
+        bg_coord = ltu.radec_to_coord((row['BG_RA'], row['BG_DEC']))
+        xspec.select = qq
+        ax = plt.subplot(gs[ii, 4:])
+        lya = 1215.67 #* (1+row['FG_Z'])
+        gdp2 = (xspec.wavelength.value/(1+row['FG_Z']) > (lya-dwv)) & (
+            xspec.wavelength.value/(1+row['FG_Z']) < (lya+dwv))
+        maxf = np.max(xspec.co[gdp2])
+        ax.set_ylim(-0.1*maxf, 1.7*maxf)
+        ax.set_xlim(np.array([-1*dwv,dwv])+1215.67)
+        # Plots
+        ax.plot(xspec.wavelength/(1+row['FG_Z']), xspec.flux, 'k', drawstyle='steps-mid')
+        ax.plot(xspec.wavelength/(1+row['FG_Z']), xspec.co, '--', color='cyan')
+        ax.plot(xspec.wavelength/(1+row['FG_Z']), xspec.sig, 'r:')
+        ax.get_yaxis().set_ticks([])
+
+        # Label
+        lbl = 'FG{:s}{:s} {:s}_{:s}{:s}'.format(
+                fg_coord.ra.to_string(unit=u.hour,sep='',pad=True, precision=1),
+                fg_coord.dec.to_string(sep='',pad=True,alwayssign=True, precision=1),
+                row['GROUP'],
+                bg_coord.ra.to_string(unit=u.hour,sep='',pad=True, precision=1),
+                bg_coord.dec.to_string(sep='',pad=True,alwayssign=True, precision=1) )
+        ax.text(0.02, 0.88, lbl, transform=ax.transAxes, color='black', size=8., ha='left')#, bbox={'facecolor':'white'})
+
+        # Finish
+        if (ii == (nrow-1)) or (qq == (npair-1)):
+            #plt.tight_layout(pad=0.2, h_pad=0.0, w_pad=0.0)
+            plt.subplots_adjust(hspace=0)
+            pp.savefig(bbox_inches='tight')
+            plt.close()
+        if qq == npair: # For debugging
+            break
+    # Finish
+    pp.close()
+    plt.close()
+    print("Wrote: {:s}".format(outfil))
+
 

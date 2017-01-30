@@ -231,7 +231,7 @@ def stack_spec(spec_file, dv=100*u.km/u.s, cut_on_rho=None, pltroot=None):
     tpep.plot_stack(stack, pltroot+'_stack.pdf')
     tpep.plot_spec_img(rebin_spec, pltroot+'_img.pdf')
     # Return
-    return
+    return cuts, xspec, tpe, spec_tbl, rebin_spec
 
 
 def tpe_stack_boss(dv=100*u.km/u.s):
@@ -416,8 +416,8 @@ if __name__ == '__main__':
     #flg_stack += 2**2  # Generate spec meta from tpe Table (test)
     #flg_stack += 2**3  # Generate spectra
     #flg_stack += 2**4  # Stack original
-    #flg_stack += 2**5  # Build/stack on TPE 31.5
-    flg_stack += 2**6  # Build/stack on TPE 31.2-31.5
+    flg_stack += 2**5  # Build/stack on TPE 31.5
+    #flg_stack += 2**6  # Build/stack on TPE 31.2-31.5
 
     if (flg_stack % 2**1) >= 2**0:
         tpe_stack_boss()
@@ -436,12 +436,12 @@ if __name__ == '__main__':
     if flg_stack & (2**4):
         stack_spec('TPE_DR12_31.2_spec.hdf5', cut_on_rho=4.)
 
-
     if flg_stack & (2**5):
         if False:
             tpe = Table.read('TPE_31.5_4pMpc.fits')
             _, _, _ = build_spectra(tpe, spec_tbl=True, outfil='TPE_31.5_4pMpc.hdf5')
-        stack_spec('TPE_31.5_4pMpc.hdf5')
+            stack_spec('TPE_31.5_4pMpc.hdf5')
+        tpep.plot_sample('TPE_31.5_4pMpc.hdf5', 'TPE_31.5_4pMpc_sample.pdf')
 
     if flg_stack & (2**6):
         tpe = Table.read('TPE_31.2_31.5_4pMpc.fits')
