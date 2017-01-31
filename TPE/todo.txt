@@ -10,5 +10,11 @@ JFH:
     hooks from JXP's stacking code.
 ---
     1. Cut on Lyb forest -- Done in qpq_query
-2. Remove true duplicates
+    2. Remove true duplicates
 3. Confirm MFR continua
+  -- Especially for QPQ
+  -- Not implemented for QPQ!
+4. Decide on how close is too close to the b/g QSO (currently 1200A)
+  -- Be consistent with KG's cut
+5. Require the continuum cover to +/-1000 km/s from zlya
+6. Impose a S/N cut.  Probably 1 per SDSS pixel or so

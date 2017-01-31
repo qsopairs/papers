@@ -80,11 +80,13 @@ def chk_continua(spec, tpe, sptbl):
     has_co[in_igm] = False  # Assume all are bad
     # BOSS
     boss = np.where(sptbl['GROUP'] == 'BOSS_DR12')[0]
-    boss_ids = sptbl['GROUP_ID'][boss]
+    boss_ids = tpe['BG_IGM_ID'][boss]
     meta = igmsp['BOSS_DR12'].meta_from_ids(boss_ids)
     KG_co = (meta['flag_co'] & 2) > 0
     has_co[boss[KG_co]] = True
-    pdb.set_trace()
+    #tpe['HAS_CO'] = has_co
+    #print(tpe[['BG_RA','BG_DEC','HAS_CO']][0:10])
+    #pdb.set_trace()
 
     # Return
     return has_co
@@ -255,12 +257,17 @@ def stack_spec(spec_file, dv=100*u.km/u.s, cut_on_rho=None, pltroot=None):
     cut_tpe = tpe[cuts]
     # Normalize
     co_spec.normed = True  # Apply continuum
-    #  May also wish to isolate in wavelength to avoid rejected pixels
+    #  Mask and reject
     for ii in range(co_spec.nspec):
         co_spec.select = ii
         co = co_spec.co.value
         sig = co_spec.sig.value
-        bad_pix = np.any([(co == 0.),(co == 1.),(sig <= 0.)], axis=0)
+        # Mask data near Lya emission of b/g quasar
+        wv_lya = 1200.*u.AA * (1+cut_tpe['BG_Z'][ii])
+        # Mask
+        bad_pix = np.any([(co == 0.),(co == 1.),(sig <= 0.), (co_spec.wavelength > wv_lya)], axis=0)
+        if np.sum(~bad_pix) == 0:
+            pdb.set_trace()
         co_spec.add_to_mask(bad_pix, compressed=True)
 
     # Rebin to rest
@@ -275,10 +282,9 @@ def stack_spec(spec_file, dv=100*u.km/u.s, cut_on_rho=None, pltroot=None):
     mean_stack = lspu.smash_spectra(mn_spec)
 
     # Plot
-    if pltroot is None:
-        pltroot = 'spec'
-    tpep.plot_stack(stack, pltroot+'_stack.pdf', mean_stack=mean_stack)
-    tpep.plot_spec_img(rebin_spec, pltroot+'_img.pdf')
+    if pltroot is not None:
+        tpep.plot_stack(stack, pltroot+'_stack.pdf', mean_stack=mean_stack)
+        tpep.plot_spec_img(rebin_spec, pltroot+'_img.pdf')
     # Return
     return cuts, xspec, tpe, spec_tbl, rebin_spec
 
@@ -486,10 +492,10 @@ if __name__ == '__main__':
         stack_spec('TPE_DR12_31.2_spec.hdf5', cut_on_rho=4.)
 
     if flg_stack & (2**5):
-        if True:
+        if False:
             tpe = Table.read('TPE_31.5_4pMpc.fits')
             _, _, _ = build_spectra(tpe, spec_tbl=True, outfil='TPE_31.5_4pMpc.hdf5')
-        stack_spec('TPE_31.5_4pMpc.hdf5', pltroot='TPE_31.5')
+            stack_spec('TPE_31.5_4pMpc.hdf5', pltroot='TPE_31.5')
         tpep.plot_sample('TPE_31.5_4pMpc.hdf5', 'TPE_31.5_4pMpc_sample.pdf')
 
     if flg_stack & (2**6):

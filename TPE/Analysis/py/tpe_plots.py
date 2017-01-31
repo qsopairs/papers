@@ -81,9 +81,8 @@ def plot_spec_img(spec, outfil):
     print("Wrote {:s}".format(outfil))
 
 
-def plot_sample(spec_file, outfil, dv=9000., dwv=30.,
-                fg_wvlim=np.array([1200.,2830.]),
-                bg_wvlim=np.array([1020.,1930.])):
+def plot_sample(spec_file, outfil, dv=9000., dwv=30., fg_wvlim=np.array([1200.,2830.]),
+                bg_wvlim=np.array([1020.,1930.]), show_rebin=False):
     import sys
     from xastropy.plotting import utils as xputils
 
@@ -112,8 +111,9 @@ def plot_sample(spec_file, outfil, dv=9000., dwv=30.,
     zem_lines['MgII'] = 2799.402
     lsz = 11.
     asz = 9.
+    scl_bg_zoom = 1.7
 
-    npair = 9
+    #npair = 8
     for qq,row in enumerate(tpe):
         # Indexing
         ii = qq % nobj
@@ -169,7 +169,8 @@ def plot_sample(spec_file, outfil, dv=9000., dwv=30.,
         # Full b/g
         ax = plt.subplot(gs[2*ii, 4:])
         ax.plot(xspec.wavelength, xspec.flux, 'k', drawstyle='steps-mid')
-        ax.plot(xspec.wavelength, xspec.co, '--', color='cyan')
+        if row['HAS_CO']:
+            ax.plot(xspec.wavelength, xspec.co, '--', color='cyan')
         wvmnx = bg_wvlim*(1+row['BG_Z'])
         ax.set_xlim(wvmnx)
         ax.set_ylim(0., np.max(xspec.co)*1.3)
@@ -180,7 +181,9 @@ def plot_sample(spec_file, outfil, dv=9000., dwv=30.,
         lbl = '{:s}_{:s}{:s}'.format(row['GROUP'],
                                      bg_coord.ra.to_string(unit=u.hour,sep='',pad=True, precision=1),
                                      bg_coord.dec.to_string(sep='',pad=True,alwayssign=True, precision=1) )
-        ax.text(0.9, 0.88, lbl, transform=ax.transAxes, color='black', size=8., ha='right')#, bbox={'facecolor':'white'})
+        ax.text(0.9, 0.85, lbl, transform=ax.transAxes, color='black', size=8., ha='right')#, bbox={'facecolor':'white'})
+        lbl2 = 'CO={}'.format(row['HAS_CO'])
+        ax.text(0.9, 0.75, lbl2, transform=ax.transAxes, color='black', size=8., ha='right')#, bbox={'facecolor':'white'})
         xputils.set_fontsize(ax,asz)
 
         # Zoom in
@@ -189,14 +192,19 @@ def plot_sample(spec_file, outfil, dv=9000., dwv=30.,
         gdp2 = (xspec.wavelength.value/(1+row['FG_Z']) > (lya-dwv)) & (
             xspec.wavelength.value/(1+row['FG_Z']) < (lya+dwv))
         maxf = np.max(xspec.co[gdp2])
-        ax.set_ylim(-0.1*maxf, 1.7*maxf)
+        ax.set_ylim(-0.1*maxf, scl_bg_zoom*maxf)
         ax.set_xlim(np.array([-1*dwv,dwv])+1215.67)
         ax.plot([1215.67*(1+row['FG_Z'])]*2, [-1e9,1e9], 'g--')
         ax.plot([-1e9,1e9], [0.]*2, '--', color='gray')
-        # Plots
+        # Plot
         ax.plot(xspec.wavelength/(1+row['FG_Z']), xspec.flux, 'k', drawstyle='steps-mid')
-        ax.plot(xspec.wavelength/(1+row['FG_Z']), xspec.co, '--', color='cyan')
+        if row['HAS_CO']:
+            ax.plot(xspec.wavelength/(1+row['FG_Z']), xspec.co, '--', color='cyan')
         ax.plot(xspec.wavelength/(1+row['FG_Z']), xspec.sig, 'r:')
+        # Show rebinned spectra
+        if show_rebin and cuts[qq]:
+            rebin_spec.select = np.where(cuts)[0][qq]
+            ax.plot(rebin_spec.wavelength, rebin_spec.flux*scl_bg_zoom*maxf, 'b', drawstyle='steps-mid')
         ax.get_yaxis().set_ticks([])
         xputils.set_fontsize(ax,asz)
 
