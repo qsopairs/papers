@@ -261,14 +261,14 @@ def get_spec_meta(tpe, outfil=None):
     spec_meta = [spec_dict.copy() for i in range(len(tpe))]
     print('Looping on pairs')
     for qq,pair in enumerate(tpe):
+        # QPQ -- Use first
+        if qpq_meta_match[qq]:
+            # Meta + add
+            add_to_specmeta('qpq', qpq_meta_list, qpq_meta_stack, qq, spec_meta, pair['FG_Z'], instr_pri_dict)
         # igmspec
         if igm_meta_match[qq]:
             # Add
             add_to_specmeta('igmsp', igm_meta_list, igm_meta_stack, qq, spec_meta, pair['FG_Z'], instr_pri_dict)
-        # QPQ
-        if qpq_meta_match[qq]:
-            # Meta + add
-            add_to_specmeta('qpq', qpq_meta_list, qpq_meta_stack, qq, spec_meta, pair['FG_Z'], instr_pri_dict)
         #if (qq % 500) == 0:
         #    print("Done with {:d}".format(qq))
     # Convert to Table

@@ -40,13 +40,14 @@ def instr_priority():
     instr_prior : dict
       Priority dict;  key/item = instr/grating
         '' for grating means use any
-
     """
     instr_prior = OrderedDict()
     instr_prior['SDSS'] = ''
     instr_prior['BOSS'] = ''
     instr_prior['GMOS-N'] = 'B600'
     instr_prior['GMOS-S'] = 'B600'
+    instr_prior['mmtbluechan'] = '800GPM'
+    instr_prior['MODS1B'] = 'G400L'
     instr_prior['LRISb'] = '1200/3400' # Add B600
     instr_prior['MagE'] = ''
     instr_prior['ESI'] = 'ECH'
@@ -60,8 +61,9 @@ def instr_priority():
 
 
 
-def chk_continua(spec, fg_z):
+def chk_continua(spec, tpe, sptbl):
     # Check for continua
+    fg_z = tpe['FG_Z'].data
     has_co = np.array([True]*spec.nspec)
     for ii in range(spec.nspec):
         # Select
@@ -72,6 +74,18 @@ def chk_continua(spec, fg_z):
         # Check for co
         if np.isclose(spec.co[iwave], 0.) or np.isclose(spec.co[iwave],1.):
             has_co[ii] = False
+    # Require MFR
+    igmsp = IgmSpec()
+    in_igm = sptbl['DBASE'] == 'igmspec'
+    has_co[in_igm] = False  # Assume all are bad
+    # BOSS
+    boss = np.where(sptbl['GROUP'] == 'BOSS_DR12')[0]
+    boss_ids = sptbl['GROUP_ID'][boss]
+    meta = igmsp['BOSS_DR12'].meta_from_ids(boss_ids)
+    KG_co = (meta['flag_co'] & 2) > 0
+    has_co[boss[KG_co]] = True
+    pdb.set_trace()
+
     # Return
     return has_co
 
@@ -130,7 +144,7 @@ def build_spectra(tpe, spec_tbl=None, outfil=None):
     isrt = np.argsort(alli)
     fin_spec = coll_spec[isrt]
     # Check continua
-    has_co = chk_continua(fin_spec, cut_tpe['FG_Z'])
+    has_co = chk_continua(fin_spec, cut_tpe, cut_stbl)
     cut_stbl['HAS_CO'] = has_co
     cut_tpe['HAS_CO'] = has_co
     if np.sum(~has_co) > 0:
@@ -472,7 +486,7 @@ if __name__ == '__main__':
         stack_spec('TPE_DR12_31.2_spec.hdf5', cut_on_rho=4.)
 
     if flg_stack & (2**5):
-        if False:
+        if True:
             tpe = Table.read('TPE_31.5_4pMpc.fits')
             _, _, _ = build_spectra(tpe, spec_tbl=True, outfil='TPE_31.5_4pMpc.hdf5')
         stack_spec('TPE_31.5_4pMpc.hdf5', pltroot='TPE_31.5')
