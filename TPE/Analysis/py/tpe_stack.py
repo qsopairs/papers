@@ -203,6 +203,37 @@ def cut_spec(spec_file, cut_on_rho=None):
     return cut, xspec, tpe, spec_tbl
 
 
+def mean_spec(spec, zarr):
+    """ Generate a mean spectrum for the IGM
+    Parameters
+    ----------
+    spec : XSpectrum1D
+    zarr : ndarray
+
+    Returns
+    -------
+    mn_spec : XSpectrum1D
+      Masked the same as the rebinned spectra
+
+    """
+    from pyigm.fN import tau_eff as pyteff
+    from linetools.spectra.xspectrum1d import XSpectrum1D
+    mean_data = spec.data.copy()
+    # Loop on spectra
+    for ii in range(spec.nspec):
+        spec.select = ii
+        # Convert rest-wavelength to z
+        wvobs = spec.wavelength*(1+zarr[ii])
+        zlya = wvobs.value / 1215.6701 - 1.
+        teff = pyteff.lyman_alpha_obs(zlya, zmax=1e9)
+        # Update flux
+        mean_data['flux'][ii,:] = np.exp(-1.*teff)
+    # Create
+    mn_spec = XSpectrum1D(mean_data['wave'], mean_data['flux'],
+                          mean_data['sig'], masking='none')
+    return mn_spec
+
+
 def stack_spec(spec_file, dv=100*u.km/u.s, cut_on_rho=None, pltroot=None):
     # Cut on continuum (and R, optional)
     cuts, xspec, tpe, spec_tbl = cut_spec(spec_file, cut_on_rho=cut_on_rho)
@@ -225,10 +256,14 @@ def stack_spec(spec_file, dv=100*u.km/u.s, cut_on_rho=None, pltroot=None):
     # Stack
     stack = lspu.smash_spectra(rebin_spec)
 
+    # Mean stack
+    mn_spec = mean_spec(rebin_spec, zarr)
+    mean_stack = lspu.smash_spectra(mn_spec)
+
     # Plot
     if pltroot is None:
-        pltroot = 'spec_'
-    tpep.plot_stack(stack, pltroot+'_stack.pdf')
+        pltroot = 'spec'
+    tpep.plot_stack(stack, pltroot+'_stack.pdf', mean_stack=mean_stack)
     tpep.plot_spec_img(rebin_spec, pltroot+'_img.pdf')
     # Return
     return cuts, xspec, tpe, spec_tbl, rebin_spec
@@ -437,10 +472,10 @@ if __name__ == '__main__':
         stack_spec('TPE_DR12_31.2_spec.hdf5', cut_on_rho=4.)
 
     if flg_stack & (2**5):
-        if True:
+        if False:
             tpe = Table.read('TPE_31.5_4pMpc.fits')
             _, _, _ = build_spectra(tpe, spec_tbl=True, outfil='TPE_31.5_4pMpc.hdf5')
-            stack_spec('TPE_31.5_4pMpc.hdf5')
+        stack_spec('TPE_31.5_4pMpc.hdf5', pltroot='TPE_31.5')
         tpep.plot_sample('TPE_31.5_4pMpc.hdf5', 'TPE_31.5_4pMpc_sample.pdf')
 
     if flg_stack & (2**6):

@@ -28,17 +28,20 @@ from specdb.specdb import IgmSpec
 this_file = __file__
 qpq_file = os.getenv('DROPBOX_DIR')+'/QSOPairs/spectra/qpq_oir_spec.hdf5'
 
-def plot_stack(stack, outfil):
+def plot_stack(stack, outfil, mean_stack=None):
     # Quick Plot
     plt.clf()
     ax = plt.gca()
     ax.plot(stack.wavelength, stack.flux, 'k', drawstyle='steps-mid')
+    # Mean?
+    if mean_stack is not None:  # Mean IGM
+        ax.plot(mean_stack.wavelength, mean_stack.flux, 'r--')
     ax.set_xlabel('Rest wavelength')
     ax.set_ylabel('Normalized flux')
     ax.set_xlim(1170., 1270.)
     ax.set_ylim(0.35, 1.0)
     # Lya
-    ax.plot([1215.67]*2, [0., 2.], 'g--')
+    ax.plot([1215.67]*2, [0., 2.], 'g:')
     plt.savefig(outfil)
     print("Wrote {:s}".format(outfil))
 
@@ -134,6 +137,8 @@ def plot_sample(spec_file, outfil, dv=9000., dwv=30.,
                 fg_coord.ra.to_string(unit=u.hour,sep='',pad=True, precision=1),
                 fg_coord.dec.to_string(sep='',pad=True,alwayssign=True, precision=1))
         ax_fg.text(0.9, 0.85, lbl, transform=ax_fg.transAxes, color='black', size=8., ha='right')#, bbox={'facecolor':'white'})
+        lbl2 = 'z = {:.3f}'.format(row['FG_Z'])
+        ax_fg.text(0.9, 0.75, lbl2, transform=ax_fg.transAxes, color='black', size=8., ha='right')#, bbox={'facecolor':'white'})
         xputils.set_fontsize(ax_fg,asz)
 
         # Cutouts
@@ -171,6 +176,7 @@ def plot_sample(spec_file, outfil, dv=9000., dwv=30.,
         ax.get_yaxis().set_ticks([])
         # Label
         ax.plot([1215.67*(1+row['FG_Z'])]*2, [-1e9,1e9], 'g--')
+        ax.plot([-1e9,1e9], [0.]*2, '--', color='gray')
         lbl = '{:s}_{:s}{:s}'.format(row['GROUP'],
                                      bg_coord.ra.to_string(unit=u.hour,sep='',pad=True, precision=1),
                                      bg_coord.dec.to_string(sep='',pad=True,alwayssign=True, precision=1) )
@@ -186,6 +192,7 @@ def plot_sample(spec_file, outfil, dv=9000., dwv=30.,
         ax.set_ylim(-0.1*maxf, 1.7*maxf)
         ax.set_xlim(np.array([-1*dwv,dwv])+1215.67)
         ax.plot([1215.67*(1+row['FG_Z'])]*2, [-1e9,1e9], 'g--')
+        ax.plot([-1e9,1e9], [0.]*2, '--', color='gray')
         # Plots
         ax.plot(xspec.wavelength/(1+row['FG_Z']), xspec.flux, 'k', drawstyle='steps-mid')
         ax.plot(xspec.wavelength/(1+row['FG_Z']), xspec.co, '--', color='cyan')
