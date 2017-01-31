@@ -437,7 +437,7 @@ if __name__ == '__main__':
         stack_spec('TPE_DR12_31.2_spec.hdf5', cut_on_rho=4.)
 
     if flg_stack & (2**5):
-        if False:
+        if True:
             tpe = Table.read('TPE_31.5_4pMpc.fits')
             _, _, _ = build_spectra(tpe, spec_tbl=True, outfil='TPE_31.5_4pMpc.hdf5')
             stack_spec('TPE_31.5_4pMpc.hdf5')

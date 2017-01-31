@@ -9,4 +9,6 @@ JFH:
 4.  Run models with a LogLv > 31.2 cutoff. Generate a piece of code that can forward model a stack using
     hooks from JXP's stacking code.
 ---
-1. Cut on Lyb forest
+    1. Cut on Lyb forest -- Done in qpq_query
+2. Remove true duplicates
+3. Confirm MFR continua

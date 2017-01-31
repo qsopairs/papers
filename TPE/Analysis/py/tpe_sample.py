@@ -167,6 +167,21 @@ def make_tpe(min_logLV, R, qso_fg=None, qso_bg=None, outfil=None, qpqquery_file=
     cut_tpe = tpe[~junk]
     print("{:d} pairs after cutting close junk".format(len(cut_tpe)))
 
+    # Cut true duplicates f/g + b/g
+    cut_dup = np.array([True]*len(tpe))
+    for kk,row in enumerate(tpe):
+        # Already removed?
+        if cut_dup[kk] is False:
+            continue
+        # Check now
+        bools = [tpe[key]==row[key] for key in ['FG_IGM_ID', 'FG_QPQ_ID', 'BG_IGM_ID', 'BG_QPQ_ID']]
+        dup = np.all(bools, axis=0)
+        if np.sum(dup) > 1:
+            idx = np.where(dup)[0]
+            cut_dup[idx[1:]] = False
+    cut_tpe = tpe[cut_dup]
+    print("{:d} pairs after removing dups".format(len(cut_tpe)))
+
     # Build meta spec table and cut on those with good b/g spectra
     spec_tbl = get_spec_meta(cut_tpe)
     gd_spec = spec_tbl['nok'] > 0
@@ -209,7 +224,6 @@ def make_tpe(min_logLV, R, qso_fg=None, qso_bg=None, outfil=None, qpqquery_file=
         final_tpe.write(outfil, overwrite=True)
     # Return
     return final_tpe
-
 
 
 def get_spec_meta(tpe, outfil=None):
