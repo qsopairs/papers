@@ -194,6 +194,22 @@ def load_spec(spec_file):
 
 
 def cut_spec(spec_file, cut_on_rho=None):
+    """ Cut down the spectra
+    Parameters
+    ----------
+    spec_file : str
+    cut_on_rho : float, optional
+      Impact parameter in physical Mpc to cut on
+
+    Returns
+    -------
+    cut : bool array
+      True = good
+    xspec : XSpectrum1D
+    tpe : Table
+    spec_tbl : Table
+
+    """
     # Load
     xspec, tpe, spec_tbl = load_spec(spec_file)
     # No cut
