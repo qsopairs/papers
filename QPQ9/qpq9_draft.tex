@@ -115,32 +115,79 @@ stated.
 \section{The Experiment}
 \label{sec:data}
 
-From our QPQ survey\footnote{http://www.qpqsurvey.org} (QPQ1), we have analyzed 195~systems 
-that pass within 300\,kpc physical from a foreground quasar with $z > 1.6$. We restrict the sample 
-to foreground quasars with redshift measured from \ion{Mg}{2}, [\ion{O}{3}], H$\alpha$, or 
-H$\beta$ emission, giving a precision of $400\,{\rm km\,s^{-1}}$ or lower. [\ion{O}{3}] has the 
-smallest dispersion of $44\,{\rm km\,s^{-1}}$ about the systemic redshift, and we analyze the 
-sub-sample with [\ion{O}{3}] redshifts separately. The [\ion{O}{3}] line has an average blueshift 
-of $27\,{\rm km\,s^{-1}}$ about the systemic redshift, which has been added when we compute the 
+Our primary scientific interest is to measure the average velocity fields of the C$^+$, C$^{3+}$, 
+and Mg$^+$ absorption associated with the CGM of the massive galaxies hosting $z\sim 2.4$ quasars. 
+
+From our QPQ survey\footnote{http://www.qpqsurvey.org} (QPQ1), we have analyzed a subset of 195 
+systems that pass within 300\,kpc physical from a foreground quasar with $z > 1.6$. We restrict
+ the sample to foreground quasars with redshift measured from \ion{Mg}{2}\,2800, 
+[\ion{O}{3}]\,5007, H$\alpha$, or H$\beta$ emission, giving a precision of 
+$400\,{\rm km\,s^{-1}}$ or lower. 
+%#[\ion{O}{3}] has the smallest dispersion of $44\,{\rm km\,s^{-1}}$ about the systemic redshift, 
+%and we analyze the sub-sample with [\ion{O}{3}] redshifts separately. 
+The [\ion{O}{3}] line has an average blueshift of $27\,{\rm km\,s^{-1}}$ about the systemic 
+redshift \citep{Boroson05}, which has been added when we compute the 
 redshift of the line. Systemic redshifts measured from \ion{Mg}{2} have a precision of 
 $272\,{\rm km\,s^{-1}}$, and we have taken into account the median redshift of 
-$97\,{\rm km\,s^{-1}}$ of \ion{Mg}{2} from [\ion{O}{3}] \citep{Richards+02}. In QPQ8 we have 
+$97\,{\rm km\,s^{-1}}$ of \ion{Mg}{2} from [\ion{O}{3}] \citep{Richards+02}. In QPQ8. we have 
 quantified the precision of H$\alpha$ and H$\beta$ to be 
 $300\,{\rm km\,s^{-1}}$ and $392\,{\rm km\,s^{-1}}$ respectively. 
-\citep{hewittwild}.
-We include only those spectra with S/N~$> XX$\AA\ at the
-observed wavelengths of lya, \ion{C}{2}~1334, or 
-\ion{C}{4}~1548 transitions.  Of the ntot~sightlines, 
-nhigh\ have spectral resolution ~$> 5,000$ from echellette
-or echelle observations (QPQ8).  This high-dispersion 
-sample is analyzed [separately] throughout the paper.
-Figure~\ref{fig:exp} summarizes the experimental design.
-Refer to previous QPQ
-publications for details on data reduction
-and continuum normalzaton (QPQ6, QPQ7, QPQ8).
+%\citep{HewittWild10}. 
+Of the 195 sightlines, 13 have spectral resolution $> 5000$ from echellette or echelle 
+observations. This high-dispersion sample has been analyzed separately in QPQ8. 
+Figure~\ref{fig:experiment} summarizes the experimental design. We refer the reader to previous 
+QPQ publications for the redshift centroiding algorithm, and details on data reduction and 
+continuum normalization (QPQ6, QPQ8). 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+As in the previous QPQ papers, we make a cut on velocity difference between the redshifts of the 
+two quasars in a pair of $>3000\,{\rm km\,s^{-1}}$ to avoid physically associated binary quasars. 
+The cut on velocity difference is motivated by the typical redshift uncertainty of 
+$\approx500\,{\rm km\,s^{-1}}$. In QPQ8, it was required that the observed wavelengths of the 
+metal ion transitions fall outside the Ly$\alpha$ forest of the background quasar. In this paper, 
+we make a more aggressive Ly$\alpha$ forest cut. For stacked profile analysis, a good estimate of 
+the continuum level is neessary. In QPQ8 we found that absorption associated to 
+the foreground quasar occurs within $\pm2000\,{\rm km\,s^{-1}}$ around $z_{\rm fg}$. Therefore, it 
+is desirable to keep a $\approx\pm3000\,{\rm km\,s^{-1}}$ window relatively free of contamination 
+from Ly$\alpha$ forest. Taking into account the redshift uncertainty of the background quasar, 
+we decide that at least one transition among \ion{C}{2}\,1334, \ion{C}{4}\,1548, and 
+\ion{Mg}{2}\,2796) at $z_{\rm fg}$ should lie redward of 
+$(1215.6701+20)\times(1+z_{\rm bg})\,{\rm \AA}$, for a pair to be included in the analysis. 
+
+Furthermore, we include only those spectra with average signal-to-noise (S/N) ratio exceeding 5.5 
+per rest-frame \AA \ in a $\pm3000\,{\rm km\,s^{-1}}$ window centered on the observed wavelengths 
+of the metal ion transitions. This criterion is a compromise between maximizing sample size versus 
+maintaining good data quality on the individual sightlines. We find that S/N $>5.5$ per rest-frame 
+\AA \ is 
+necessary for properly estimating the continuum, as well as identifying mini-broad absorption line 
+systems associated to the background quasar, which will significantly depress the flux level and 
+bias the results. We also require that the $\pm2000\,{\rm km\,s^{-1}}$ window centered on the 
+observed wavelengths of the metal ion transitions, where absorption associated to the foreground 
+quasar is found, does not overlap with strong atmospheric ${\rm O}_2$ bands. The ${\rm O}_2$ 
+A-band and B-band span 7595\textrm{--}7680\,AA \ and 6868\textrm{--}6926\,AA \ respectively. 
+
+In Table~\ref{tab:summ}, we list the sample size, the median redshift, and the median projected 
+separation between the pair of the sub-samples that survive the above selection criteria for 
+\ion{C}{2}\,1334, \ion{C}{4}\,1548, and \ion{Mg}{2}\,2796 respectively. 
+
+We then create composite spectra, that average over the intrinsic scatter in quasar environments, 
+continuum placement errors, and redshift errors. The individual spectra 
+of background quasars are shifted to the rest-frame of the foreground quasar at the transitions of 
+interest. Each spectrum has been linearly 
+interpolated onto a fixed velocity grid centered at $z_{\rm fg}$ with bins of 
+$100\,{\rm km\,s^{-1}}$. For velocity bin of this size, it is unncessary to smooth the data to a 
+common spectral resolution. The individual spectra are then combined with mean 
+or median in a $\pm3000\,{\rm km\,s^{-1}}$ velocity window around $z_{\rm fg}$, where a velocity 
+of $0\,{\rm km\,s^{-1}}$ corresponds to the wavelength of the metal ion transition at 
+$z_{\rm fg}$. Bad pixels in the individual spectra have been masked before generating the 
+composites. Since each quasar pair gives an independent probe of the CGM, each pair has an equal 
+weighting in the stacked profiles. We do not weight the spectra by the measured S/N value of the 
+metal ion transitions at $z_{\rm fg}$, since scatter in the stacked spectra is dominated by 
+randomness in the CGM instead of error sources. The mean statistic of the individual spectra 
+yields a good estimate of the average absorption and preserves equivalent width. On the other 
+hand, a median statistic is less sensitive to outliers, however the averaged equivalent width is 
+smaller and a measurement of the veloity width becomes more uncertain. We have stacked spectra 
+using both the mean and the median statistic. 
+
 \section{Analysis}
 \label{sec:analysis}
 
@@ -200,7 +247,7 @@ from the full sample. [DISCUSS]
 %%%%%%%%%%%%%%%%
 \acknowledgements
 
-JXP and ML acknowledge support from the National
+JXP and MWL acknowledge support from the National
 Science Foundation (NSF) grant AST-1010004 and AST-XX. 
 JXP thanks the Alexander
 von Humboldt foundation for a visitor fellowship to the MPIA where
@@ -236,7 +283,8 @@ Education and Research.
 %has always had within the indigenous Hawaiian community. We are most
 %fortunate to have the opportunity to conduct observations from this
 %mountain.
-%Acknowledge TK Chan. CP Choi.
+%MWL thanks T.-K. Chan for a discussion on CGM simulations. MWL 
+%thanks Chi Po Choi for a discussion on statistics. 
 
 
 \bibliographystyle{/u/xavier/paper/Bibli/apj}

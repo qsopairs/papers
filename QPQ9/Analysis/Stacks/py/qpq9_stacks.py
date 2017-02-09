@@ -25,7 +25,8 @@ def qpq9_IRMgII(wrest=None, outfil=None, nboot=10000,
                 vsig_cut = None,
                 zfg_mnx = (-9999,9999),
                 S2N_cut = None,
-                atmosphere_cut = False,
+                atmosphere_cut = True,
+                stack_fg = False,
                 stack_tup=None,passback=False,debug=False):
     ''' Stack the QPQ9 sample
     To do: add MgII redshifts to the QPQ9 structure
@@ -50,7 +51,8 @@ def qpq9_IRMgII(wrest=None, outfil=None, nboot=10000,
     # Load the stack image
     if stack_tup is None:
         stack_tup = qpqk.load_stack_img(qpq9.data,wrest,vmnx=vmnx,spec_dv=100.*u.km/u.s,high_res=0,
-                                        S2N_cut=S2N_cut)
+                                        S2N_cut=S2N_cut,atmosphere_cut=atmosphere_cut,
+                                        stack_fg=stack_fg)
         if passback:
             return stack_tup
 

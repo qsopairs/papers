@@ -89,7 +89,7 @@ def boot_trans(wrest=None,outfil=None,nboot=10000,
         tau = np.log(1./cfx)
         start = np.int((sz[1]-1)*1./6.)-1
         end = np.int((sz[1]-1)*5./6.)+1
-        tau_cen[qq] = np.sum(fin_velo[start:end]*tau[start:end])/np.sum(tau[start:end])
+        tau_cen[qq] = np.sum(fin_velo[start:end+1]*tau[start:end+1])/np.sum(tau[start:end+1])
 
         # Pseudo-EW
         EWpix = np.where( (velo > EW_range[0]) & (velo<EW_range[1]))[0]
