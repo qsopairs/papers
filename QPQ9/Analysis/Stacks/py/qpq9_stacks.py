@@ -70,7 +70,9 @@ def qpq9_IRMgII(wrest=None, outfil=None, nboot=10000,
     return stack_tup
 
 #######
-def plt_qpq9(stack_tup=None, wrest=None, outfil=None):
+def plt_qpq9(stack_tup=None,wrest=None,outfil=None,
+             S2N_cut=None,atmosphere_cut=True,
+             stack_fg=False,zfg_mnx=(-9999,9999)):
 
     # Rest wavelength
     if wrest is None:
@@ -79,7 +81,10 @@ def plt_qpq9(stack_tup=None, wrest=None, outfil=None):
     vmnx = [-3000., 3000] * u.km/u.s
     ymnx = (-0.1, 1.1)
     if stack_tup is None:
-        stack_tup = qpq9_IRMgII(wrest=wrest, passback=True)
+        stack_tup = qpq9_IRMgII(wrest=wrest,S2N_cut=S2N_cut,
+                                atmosphere_cut=atmosphere_cut,
+                                stack_fg=stack_fg,zfg_mnx=zfg_mnx,
+                                passback=True)
     fin_velo, stck_img, stck_msk, all_dict = stack_tup
 
 
@@ -90,7 +95,10 @@ def plt_qpq9(stack_tup=None, wrest=None, outfil=None):
     for ipage in range(pages):
         # Start the plot
         if outfil is None:
-            outfil = 'plt_qpq9_IRMgII_{:d}_page{:d}.pdf'.format(int(wrest.value),ipage+1)
+            if stack_fg == True:
+                outfil = 'plt_qpq9_IRMgII_{:d}_fg_page{:d}.pdf'.format(int(wrest.value),ipage+1)
+            else:
+                outfil = 'plt_qpq9_IRMgII_{:d}_page{:d}.pdf'.format(int(wrest.value),ipage+1)
         pp = PdfPages(outfil)
         plt.figure(figsize=(8,5))
         plt.clf()
