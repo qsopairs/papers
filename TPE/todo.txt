@@ -18,3 +18,4 @@ JFH:
   -- Be consistent with KG's cut
 5. Require the continuum cover to +/-1000 km/s from zlya
 6. Impose a S/N cut.  Probably 1 per SDSS pixel or so
+7. Mask TPE region in MFR
