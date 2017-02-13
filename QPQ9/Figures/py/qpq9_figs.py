@@ -3,8 +3,7 @@
 from __future__ import print_function, absolute_import, division, unicode_literals
 
 import numpy as np
-import glob, os, sys, copy
-from scipy import stats as scistats
+import glob, os, sys, copy, imp
 
 import matplotlib as mpl
 mpl.rcParams['font.family'] = 'stixgeneral'
@@ -19,136 +18,77 @@ from astropy import constants as const
 
 from linetools.spectralline import AbsLine
 
-from xastropy.igm.abs_sys import abssys_utils as abssys
-from xastropy import spec as xspec
 from xastropy.plotting import utils as xputils
 from xastropy.xutils import xdebug as xdb
-from xastropy.obs import radec as xor
 from xastropy.atomic import ionization as xai
 
-sys.path.append(os.path.abspath("../../../py"))
-from enigma.qpq import utils as qpqutils
-from enigma.qpq import spec as qpqs
+sys.path.append(os.path.abspath("../Analysis/Stacks/py"))
+import qpq9_stacks as qpq9k
 
-# Local
-sys.path.append(os.path.abspath("../Analysis/py"))
-import qpq9_analy as qpq9a
-
-####
 #  Plot the Experiment
-def experiment(outfil=None, qpq9=None, spec_files=None, spec_dicts=None):
-
-    # Todo
-    #   Have symbol size indicate near-IR for redshift
-
-    # Imports
-    reload(xai)
+def experiment(outfil=None,wrest=1334.5323*u.AA,S2N_cut=5.5/u.AA,zfg_mnx=(1.6,9999)):
 
     if outfil is None:
         outfil = 'fig_experiment.pdf'
 
-    # Read QPQ9
-    if qpq9 is None:
-        qpq9 = QTable.read('../Analysis/qpq9_final.fits')
-    if spec_files is None:
-        spec_files = qpqs.get_spec_files([(iqpq9['RA']*u.degree,iqpq9['DEC']*u.degree) for iqpq9 in qpq9]) 
-    '''
-    spec_files = []
-    for iqpq9 in qpq9:
-        i_spec_files = qpqs.get_spec_files((iqpq9['RA']*u.degree,iqpq9['DEC']*u.degree)) 
-        spec_files.append(i_spec_files)
-        # Missing?
-        if len(i_spec_files) == 0:
-            print('No spectra for b/g QSO {:s} with Lya File = {:s}'.format(iqpq9['NAME'], iqpq9['LYA_FILE']))
-            ras, decs = xor.dtos1( (iqpq9['RA'], iqpq9['DEC']) )
-            print('RA/DEC = {:s}, {:s}'.format(ras, decs))
-            print('RA/DEC = {:g}, {:g}'.format(iqpq9['RA'], iqpq9['DEC']))
-            xdb.set_trace()
-        else:
-            print('Got at least one spectrum for {:s}'.format(iqpq9['NAME']))
-    '''
-    # Generate the dicts
-    if spec_dicts is None:
-        spec_dicts = []
-        for ispecfs in spec_files:
-            # Generate the list
-            ispec_dicts = [qpqs.load_spec(spec_file) for spec_file in ispecfs]
-            # Append
-            spec_dicts.append( ispec_dicts )
+    # Load stack_tup
+    stack_tup0 = qpq9k.qpq9_IRMgII(passback=True,wrest=wrest,S2N_cut=S2N_cut,zfg_mnx=zfg_mnx)
+    # Mask
+    fin_velo, stck_img, stck_msk, all_dict = stack_tup0
+    stck_mskN = copy.deepcopy(stck_msk)
+    idx_mask = []
+    for ii,idict in enumerate(all_dict):
+        if idict is None:
+            continue
+        if 'J1508+3635' in idict['qpq']['NAME']: #DLA not excluded by forest cut, should be excluded now
+            idx_mask.append(ii)
+    for idx in idx_mask:
+        stck_mskN[idx,:] = 0.
 
-    # Setup
-    lines = [1548.195, 1334.5323, 1215.6701] * u.AA
-    zlim = (1.6, 3.9)
-    Rlim = (0., 300.)*u.kpc
-    guv_min = np.min(qpq9['G_UV'])
-    guv_max = np.max(qpq9['G_UV'])
-    xyc = range(int(guv_min), int(guv_max))
-    psz = 35.
+    sv_Rphys = []
+    sv_zfg = []
+    sv_gUV = []
+    sv_symsize = []
+    for ii,idict in enumerate(all_dict):
+        if idict is None:
+            continue
+        if np.sum(stck_mskN[ii,:]) > 0.:
+            sv_Rphys.append(idict['qpq']['R_PHYS'])
+            sv_zfg.append(idict['qpq']['Z_FG'])
+            sv_gUV.append(idict['qpq']['G_UV'])
+            if idict['qpq']['ZFG_LINE'] == '[OIII]':
+                sv_symsize.append(70)
+            else:
+                sv_symsize.append(140)
     
     # Start the plot
     if outfil is not None:
         pp = PdfPages(outfil)
-
-    fig = plt.figure(figsize=(5, 8))
+    fig = plt.figure(figsize=(8,5))
     fig.clf()
-    gs = gridspec.GridSpec(3, 1)
+    gs = gridspec.GridSpec(1,1)
 
-    #font_axes = FontProperties()
+    # Get line info
+    aline = AbsLine(wrest)
+    # Axes
+    ax = plt.subplot(gs[0,0])
+    ax.set_xlim(0,300)
+    ax.set_ylim(np.min(sv_zfg),np.max(sv_zfg))
+    # Labels
+    ax.set_ylabel(r'$z_{\rm fg}$')
+    ax.set_xlabel(r'$R_\perp$ (kpc)')
+    ax.text(8.,2.0,xai.ion_name(aline.data),size=40)
 
-    # Looping
-    for kk,line in enumerate(lines):
+    # Scatter
+    sc = ax.scatter(sv_Rphys,sv_zfg,s=sv_symsize,c=np.log10(sv_gUV),edgecolors='none')
 
-        # Get line info
-        aline = AbsLine(line)
-        
-
-        # Axes
-        ax = plt.subplot(gs[kk,0])
-        #ax.xaxis.set_minor_locator(plt.MultipleLocator(100.))
-        #ax.xaxis.set_major_locator(plt.MultipleLocator(200))
-        ax.set_xlim(Rlim.value)
-        ax.set_ylim(zlim)
-
-        ## ####
-        # Labels
-        ax.set_ylabel(r'$z_{\rm f/g}$')
-        if kk<2:
-            ax.get_xaxis().set_ticks([])
-        else:
-            ax.set_xlabel(r'$R_\perp$ (kpc)')
-        ax.text(10., 1.7, xai.ion_name(aline.atomic), size='large' )
-
-        # Loop on QPQ9
-        msk = qpq9['R_PHYS'] > qpq9['R_PHYS']
-        for jj,iqpq9 in enumerate(qpq9):
-            # Does a spectrum cover this line?
-            for s_dict in spec_dicts[jj]:
-                sflg=True
-                try:
-                    wrest_mnx = [s_dict['wvmnx'][ii]/(iqpq9['FG_ZIR']+1) for ii in range(2)] 
-                except TypeError:
-                    print('Skipping qso {:s}'.format(iqpq9['NAME']))
-                    sflg=False
-                # Coverage?
-                if (line>wrest_mnx[0]) & (line<wrest_mnx[1]) & sflg:
-                    # Line
-                    if not msk[jj]:
-                        ax.plot( [iqpq9['R_PHYS'].value]*2, zlim, '--', color='gray', alpha=0.5, lw=0.5)
-                        msk[jj] = True
-        # Scatter
-        #xdb.set_trace()
-        sc = ax.scatter( qpq9['R_PHYS'][msk].value, qpq9['FG_ZIR'][msk], s=psz,
-                         c=np.log10(qpq9['G_UV'][msk]))#, edgecolor='none')
-
-        # Font
-        xputils.set_fontsize(ax,15.)
-
+    # Font
+    xputils.set_fontsize(ax,40.)
     # Color bar
     fig.subplots_adjust(right=0.8)
-    cbar_ax = fig.add_axes([1.05, 0.07, 0.05, 0.9])
+    cbar_ax = fig.add_axes([1.05,0.07,0.05,0.9])
     cb = fig.colorbar(sc, cax=cbar_ax)
-    cb.set_label(r'$\log_{10} \; g_{\rm UV}$')
-
+    cb.set_label(r'$\log_{10} \; g_{\rm UV}$',size=40)
 
     # Layout and save
     plt.tight_layout(pad=0.2,h_pad=0.,w_pad=0.1)
@@ -159,9 +99,9 @@ def experiment(outfil=None, qpq9=None, spec_files=None, spec_dicts=None):
     else: 
         plt.show()
 
-####
 #  Simple stack plot(s)
 def simple_stack(outfil=None, all_stack=None, passback=False):
+    print('inside simple_stack')
 
     # Imports
     reload(qpqs)
@@ -183,7 +123,8 @@ def simple_stack(outfil=None, all_stack=None, passback=False):
     yrng = (0.,1.1)
 
     # Lines
-    lines = [1215.6701, 1334.5323, 1548.195]*u.AA
+#    lines = [1215.6701, 1334.5323, 1548.195]*u.AA
+    lines = [1334.5323]*u.AA
     nlin = len(lines)
 
     if all_stack is None: 
@@ -261,7 +202,7 @@ def simple_stack(outfil=None, all_stack=None, passback=False):
         ax.plot(pvmnx, [1]*2, ':', color='lightgreen')
 
         # Label
-        ax.text(0.07, 0.10, xai.ion_name(aline.atomic)+' {:d}'.format(int(wrest.value)), 
+        ax.text(0.07, 0.10, xai.ion_name(aline.data)+' {:d}'.format(int(wrest.value)), 
             size='x-large', transform=ax.transAxes, ha='left', 
             bbox={'facecolor':'white', 'edgecolor':'white'})
 
@@ -408,6 +349,7 @@ def stack_trials(wrest=None, outfil=None, stack_tup=None, passback=False):
 
 #######
 def plt_trans(wrest=None):
+    print('inside plt_trans')
     '''Plot individual transitions.
     Show EW and velocity window too
     '''
@@ -427,7 +369,6 @@ def plt_trans(wrest=None):
     nplt = len(mtw) # We can show the bad ones too
 
     # Load QPQ9
-#    qpq9 = qpq9a.load_qpq(wrest)
     qpq9 = qpqutils.load_qpq(9,wrest=wrest)
 
     vmnx = [-1500., 1500] * u.km/u.s
@@ -450,6 +391,10 @@ def plt_trans(wrest=None):
 
     # Loop on systems
     for ss,qpq in enumerate(qpq9):
+        if (qpq['NAME']=='BOSSJ1006+4804'):
+            continue
+        if (qpq['NAME']=='APOJ1420+1603'):
+            continue
         # Load spectrum
         wvobs = wrest*(1+qpq['FG_ZIR'])
 #        idict = qpqs.spec_qpq_wvobs(
