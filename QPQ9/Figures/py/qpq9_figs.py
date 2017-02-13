@@ -2,24 +2,24 @@
 # Imports
 from __future__ import print_function, absolute_import, division, unicode_literals
 
-import numpy as np
-import glob, os, sys, copy, imp
+import copy
+import os
+import sys
 
 import matplotlib as mpl
+import numpy as np
 mpl.rcParams['font.family'] = 'stixgeneral'
 from matplotlib.backends.backend_pdf import PdfPages
 from matplotlib import pyplot as plt
 import matplotlib.gridspec as gridspec
+from matplotlib.ticker import MaxNLocator
 
 from astropy.table import QTable, Table
-from astropy.io import ascii
 from astropy import units as u
-from astropy import constants as const
 
 from linetools.spectralline import AbsLine
 
 from xastropy.plotting import utils as xputils
-from xastropy.xutils import xdebug as xdb
 from xastropy.atomic import ionization as xai
 
 sys.path.append(os.path.abspath("../Analysis/Stacks/py"))
@@ -28,8 +28,13 @@ import qpq9_stacks as qpq9k
 #  Plot the Experiment
 def experiment(outfil=None,wrest=1334.5323*u.AA,S2N_cut=5.5/u.AA,zfg_mnx=(1.6,9999)):
 
+    # Get line info
+    aline = AbsLine(wrest)
+
     if outfil is None:
-        outfil = 'fig_experiment.pdf'
+        outfil = 'fig_experiment_'+xai.ion_name(aline.data)+'.pdf'
+
+    fontsize = 40
 
     # Load stack_tup
     stack_tup0 = qpq9k.qpq9_IRMgII(passback=True,wrest=wrest,S2N_cut=S2N_cut,zfg_mnx=zfg_mnx)
@@ -68,27 +73,30 @@ def experiment(outfil=None,wrest=1334.5323*u.AA,S2N_cut=5.5/u.AA,zfg_mnx=(1.6,99
     fig.clf()
     gs = gridspec.GridSpec(1,1)
 
-    # Get line info
-    aline = AbsLine(wrest)
     # Axes
     ax = plt.subplot(gs[0,0])
     ax.set_xlim(0,300)
-    ax.set_ylim(np.min(sv_zfg),np.max(sv_zfg))
+    ax.set_ylim(np.min(sv_zfg)-0.1,np.max(sv_zfg)+0.1)
+    ax.tick_params(labelsize=fontsize,length=5,width=1)
     # Labels
     ax.set_ylabel(r'$z_{\rm fg}$')
     ax.set_xlabel(r'$R_\perp$ (kpc)')
-    ax.text(8.,2.0,xai.ion_name(aline.data),size=40)
+    ax.text((ax.get_xlim()[0])*0.10,(ax.get_ylim()[1])*0.93,xai.ion_name(aline.data),size=fontsize)
 
     # Scatter
-    sc = ax.scatter(sv_Rphys,sv_zfg,s=sv_symsize,c=np.log10(sv_gUV),edgecolors='none')
+    sc = ax.scatter(sv_Rphys,sv_zfg,s=sv_symsize,c=np.log10(sv_gUV),alpha=0.6,edgecolors='none')
 
     # Font
-    xputils.set_fontsize(ax,40.)
+    xputils.set_fontsize(ax,fontsize)
     # Color bar
     fig.subplots_adjust(right=0.8)
     cbar_ax = fig.add_axes([1.05,0.07,0.05,0.9])
-    cb = fig.colorbar(sc, cax=cbar_ax)
-    cb.set_label(r'$\log_{10} \; g_{\rm UV}$',size=40)
+    cb = fig.colorbar(sc,cax=cbar_ax)
+    tick_locator = MaxNLocator(nbins=7)
+    cb.locator = tick_locator
+    cb.update_ticks()
+    cb.ax.tick_params(labelsize=fontsize,length=5,width=1)
+    cb.set_label(r'$\log_{10} \; g_{\rm UV}$',size=fontsize)
 
     # Layout and save
     plt.tight_layout(pad=0.2,h_pad=0.,w_pad=0.1)
