@@ -86,10 +86,17 @@ def boot_trans(wrest=None,outfil=None,nboot=10000,
         cfx = fx/conti
 
         # Centroid of pseudo-optical depth within +/- 2000 km/s
-        tau = np.log(1./cfx)
-        start = np.int((sz[1]-1)*1./6.)-1
-        end = np.int((sz[1]-1)*5./6.)+1
+        start = np.int((sz[1]-1)*1./6.)
+        end = np.int((sz[1]-1)*5./6.)
+        # Centroid of pseudo-optical depth outside of continuum ranges
+#        pix = np.where((velo >= cranges[0][1]) & (velo <= cranges[1][0]))[0]
+#        start = pix[0]
+#        end = pix[-1]
+#        tau = np.log(1./cfx)
+#        tau[np.where(tau < 0.)] = 0 # floor for weights should be zero
+        tau = np.log(1./fx) # don't divide by continuum. do not want negative weights
         tau_cen[qq] = np.sum(fin_velo[start:end+1]*tau[start:end+1])/np.sum(tau[start:end+1])
+
 
         # Pseudo-EW
         EWpix = np.where( (velo > EW_range[0]) & (velo<EW_range[1]))[0]
@@ -115,9 +122,8 @@ def boot_trans(wrest=None,outfil=None,nboot=10000,
     print('Equivalent width skewness: Mean={:g}, Median={:g}, std={:g} for Ntrials={:d}'
           .format(mu_frac,med_frac,std_frac,nboot))
     mu_taucen = np.mean(tau_cen)
-    med_taucen = np.median(tau_cen)
     std_taucen = np.std(tau_cen)
-    print('Tau-weighted centroid: Mean = {:g}, std={:g}'.format(mu_taucen,med_taucen,std_taucen))
+    print('Tau-weighted centroid: Mean = {:g}, std={:g}'.format(mu_taucen,std_taucen))
 
     # Write
     prihdu = fits.PrimaryHDU()

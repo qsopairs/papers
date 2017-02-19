@@ -27,6 +27,7 @@ def qpq9_IRMgII(wrest=None, outfil=None, nboot=10000,
                 S2N_cut = None,
                 atmosphere_cut = True,
                 stack_fg = False,
+                plot_indiv = True,
                 stack_tup=None,passback=False,debug=False):
     ''' Stack the QPQ9 sample
     To do: add MgII redshifts to the QPQ9 structure
@@ -52,7 +53,7 @@ def qpq9_IRMgII(wrest=None, outfil=None, nboot=10000,
     if stack_tup is None:
         stack_tup = qpqk.load_stack_img(qpq9.data,wrest,vmnx=vmnx,spec_dv=100.*u.km/u.s,high_res=0,
                                         S2N_cut=S2N_cut,atmosphere_cut=atmosphere_cut,
-                                        stack_fg=stack_fg)
+                                        stack_fg=stack_fg,plot_indiv=plot_indiv)
         if passback:
             return stack_tup
 
@@ -72,7 +73,7 @@ def qpq9_IRMgII(wrest=None, outfil=None, nboot=10000,
 #######
 def plt_qpq9(stack_tup=None,wrest=None,
              S2N_cut=None,atmosphere_cut=True,
-             stack_fg=False,zfg_mnx=(-9999,9999)):
+             stack_fg=False,zfg_mnx=(-9999,9999),plot_indiv=False):
 
     # Rest wavelength
     if wrest is None:
@@ -84,6 +85,7 @@ def plt_qpq9(stack_tup=None,wrest=None,
         stack_tup = qpq9_IRMgII(wrest=wrest,S2N_cut=S2N_cut,
                                 atmosphere_cut=atmosphere_cut,
                                 stack_fg=stack_fg,zfg_mnx=zfg_mnx,
+                                plot_indiv=plot_indiv,
                                 passback=True)
     fin_velo, stck_img, stck_msk, all_dict = stack_tup
 
