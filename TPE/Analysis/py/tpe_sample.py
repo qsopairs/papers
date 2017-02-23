@@ -85,7 +85,8 @@ def run_wide_query(outfil, R_MAX=15.*u.Mpc):
     thdulist.writeto(outfil, overwrite=True)
 
 
-def make_tpe(min_logLV, R, qso_fg=None, qso_bg=None, outfil=None, qpqquery_file=None):
+def make_tpe(min_logLV, R, qso_fg=None, qso_bg=None, outfil=None, qpqquery_file=None,
+             ascii=False):
     """ Generate TPE sample from QPQ query
     Parameters
     ----------
@@ -93,6 +94,8 @@ def make_tpe(min_logLV, R, qso_fg=None, qso_bg=None, outfil=None, qpqquery_file=
     R : float
       Cut in physical Mpc
     outfil : str
+    ascii : bool, optional
+      Generate an ASCII table too (used for rejecting pairs afterwards)
 
     Returns
     -------
@@ -222,6 +225,8 @@ def make_tpe(min_logLV, R, qso_fg=None, qso_bg=None, outfil=None, qpqquery_file=
     if outfil is not None:
         print("Writing {:s}".format(outfil))
         final_tpe.write(outfil, overwrite=True)
+        # ASCII?
+        if ascii:
     # Return
     return final_tpe
 
@@ -429,7 +434,8 @@ if __name__ == '__main__':
         run_wide_query('QPQ_v2000_R15_novette.fits', R_MAX=15.*u.Mpc) # TEST
 
     if flg_fig & (2**3):
-        make_tpe(31.5, 4., qpqquery_file='QPQ_v2000_R15_novette.fits', outfil='TPE_31.5_4pMpc.fits')
+        make_tpe(31.5, 4., qpqquery_file='QPQ_v2000_R15_novette.fits',
+                 outfil='TPE_31.5_4pMpc.fits', ascii=True)
 
     if flg_fig & (2**4):
         make_tpe([31.2,31.5], 4., qpqquery_file='QPQ_v2000_R15_novette.fits', outfil='TPE_31.2_31.5_4pMpc.fits')
