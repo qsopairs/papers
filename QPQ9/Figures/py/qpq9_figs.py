@@ -10,6 +10,7 @@ mpl.rcParams['font.family'] = 'stixgeneral'
 from matplotlib.backends.backend_pdf import PdfPages
 from matplotlib import pyplot as plt
 import matplotlib.gridspec as gridspec
+from matplotlib.ticker import MaxNLocator
 
 from astropy.table import QTable, Table
 from astropy.io import ascii,fits
@@ -93,9 +94,9 @@ def experiment(outfil=None,wrest=[1334.5323*u.AA,1548.195*u.AA,2796.354*u.AA],S2
                 sv_zfg.append(idict['qpq']['Z_FG'])
                 sv_gUV.append(idict['qpq']['G_UV'])
             if idict['qpq']['ZFG_LINE'] == '[OIII]':
-                sv_symsize.append(35)
-            else:
                 sv_symsize.append(70)
+            else:
+                sv_symsize.append(35)
 
         # Axes
         ax = plt.subplot(gs[kk,0])
@@ -137,15 +138,15 @@ def experiment(outfil=None,wrest=[1334.5323*u.AA,1548.195*u.AA,2796.354*u.AA],S2
 def stacks_and_fits(outfil=None):
 
     if outfil is None:
-        outfil = 'fig_stack_and_fits.pdf'
-    fontsize = 15
+        outfil = 'fig_stacks_and_fits.pdf'
+    fontsize = 25
 
     # Lines
     lines = [1334.5323,1548.195,2796.354]*u.AA
 
     # Start the plot
     pp = PdfPages(outfil)
-    fig = plt.figure(figsize=(10,8))
+    fig = plt.figure(figsize=(10,10))
     fig.clf()
     gs = gridspec.GridSpec(len(lines),2)
 
@@ -230,7 +231,7 @@ def stack_z1(outfil=None):
 
     if outfil is None:
         outfil = 'fig_stack_z1.pdf'
-    fontsize = 30
+    fontsize = 35
 
     line = 2796.354*u.AA
 
@@ -269,6 +270,7 @@ def stack_z1(outfil=None):
     ax.text((ax.get_xlim()[1]-ax.get_xlim()[0])*0.05+ax.get_xlim()[0],
              (ax.get_ylim()[1]-ax.get_ylim()[0])*0.05+ax.get_ylim()[0],
              xai.ion_name(aline.data)+', $z\sim0.9$, mean',size=fontsize)
+    ax.yaxis.set_major_locator(MaxNLocator(nbins=5))
 
     # Plot
     plt.plot(velo.value, mean_stack[0].data,drawstyle='steps-mid',linewidth=2.,color='k')
@@ -283,3 +285,57 @@ def stack_z1(outfil=None):
     pp.savefig(bbox_inches='tight')
     pp.close()
     print('stack_z1: Wrote {:s}'.format(outfil))
+
+
+# Mean stacks for foreground quasars
+def stacks_fg(outfil=None):
+
+    if outfil is None:
+        outfil = 'fig_stacks_fg.pdf'
+    fontsize = 25
+
+    # Lines
+    lines = [1334.5323,2796.354,1548.195]*u.AA
+
+    # Start the plot
+    pp = PdfPages(outfil)
+    fig = plt.figure(figsize=(10,10))
+    fig.clf()
+    gs = gridspec.GridSpec(len(lines),1)
+
+    for kk,line in enumerate(lines):
+
+        # Get line info
+        aline = AbsLine(line)
+
+        # Load the mean stack
+        path = '../Analysis/Stacks/'
+        mean_stack = fits.open(path+'Output/QPQ9_'+aline.name[-4:]+'_fg_mean.fits')
+        relativistic_equiv = u.doppler_relativistic(line)
+        velo = (mean_stack[1].data*u.AA).to(u.km/u.s,equivalencies=relativistic_equiv)
+
+        # Axes
+        ax = plt.subplot(gs[kk,0])
+        ax.set_xlim(np.min(velo.value)+500,np.max(velo.value)-500)
+        ax.set_ylim(0.90,1.06)
+        ax.tick_params(labelsize=fontsize,length=5,width=1)
+        # Labels
+        ax.set_ylabel('Normalized Flux')
+        ax.set_xlabel('Relative Velocity (km/s)')
+        ax.text((ax.get_xlim()[1]-ax.get_xlim()[0])*0.05+ax.get_xlim()[0],
+                (ax.get_ylim()[1]-ax.get_ylim()[0])*0.05+ax.get_ylim()[0],
+                xai.ion_name(aline.data)+', f/g, mean',size=fontsize)
+        ax.yaxis.set_major_locator(MaxNLocator(nbins=5))
+
+        # Plot
+        plt.plot(velo.value, mean_stack[0].data,drawstyle='steps-mid',linewidth=2.,color='k')
+        plt.plot([-10000,100000],[1,1],color='gray',linestyle=':',linewidth=2.)
+
+        # Font
+        xputils.set_fontsize(ax,fontsize)
+
+    # Layout and save
+    plt.tight_layout(pad=0.2,h_pad=0.1,w_pad=0.1)
+    pp.savefig(bbox_inches='tight')
+    pp.close()
+    print('stacks_fg: Wrote {:s}'.format(outfil))

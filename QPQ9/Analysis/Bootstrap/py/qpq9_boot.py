@@ -88,15 +88,23 @@ def boot_trans(wrest=None,outfil=None,nboot=10000,
         # Centroid of pseudo-optical depth within +/- 2000 km/s
         start = np.int((sz[1]-1)*1./6.)
         end = np.int((sz[1]-1)*5./6.)
+        # Centroid of pseudo-optical depth within +/- 3000 km/s
+#        start = 0
+#        end = sz[1]-1
         # Centroid of pseudo-optical depth outside of continuum ranges
 #        pix = np.where((velo >= cranges[0][1]) & (velo <= cranges[1][0]))[0]
 #        start = pix[0]
 #        end = pix[-1]
 #        tau = np.log(1./cfx)
-#        tau[np.where(tau < 0.)] = 0 # floor for weights should be zero
-        tau = np.log(1./fx) # don't divide by continuum. do not want negative weights
-        tau_cen[qq] = np.sum(fin_velo[start:end+1]*tau[start:end+1])/np.sum(tau[start:end+1])
-
+#        tau = np.log(1./fx) # don't divide by continuum; do not want negative weights
+#        tau[np.where(tau < 0.)] = 0. # floor for weights should be zero
+#        tau_cen[qq] = np.sum(fin_velo[start:end+1]*tau[start:end+1])/np.sum(tau[start:end+1])
+        # Do pseudo-continuum normalized flux weighted centroid instead
+#        cfx[np.where(cfx > 1.)] = 1.  # floor for weights should be zero
+#        tau_cen[qq] = np.sum(fin_velo[start:end+1]*(1-cfx[start:end+1]))/np.sum(1-cfx[start:end+1])
+        # Do flux weighted centroid instead
+        fx[np.where(fx > 1.)] = 1.  # floor for weights should be zero
+        tau_cen[qq] = np.sum(fin_velo[start:end+1]*(1-fx[start:end+1]))/np.sum(1-fx[start:end+1])
 
         # Pseudo-EW
         EWpix = np.where( (velo > EW_range[0]) & (velo<EW_range[1]))[0]
@@ -123,7 +131,7 @@ def boot_trans(wrest=None,outfil=None,nboot=10000,
           .format(mu_frac,med_frac,std_frac,nboot))
     mu_taucen = np.mean(tau_cen)
     std_taucen = np.std(tau_cen)
-    print('Tau-weighted centroid: Mean = {:g}, std={:g}'.format(mu_taucen,std_taucen))
+    print('Tau- or flux-weighted centroid: Mean = {:g}, std={:g}'.format(mu_taucen,std_taucen))
 
     # Write
     prihdu = fits.PrimaryHDU()

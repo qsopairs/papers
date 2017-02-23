@@ -73,17 +73,18 @@ def qpq9_IRMgII(wrest=None, outfil=None, nboot=10000,
 #######
 def plt_qpq9(stack_tup=None,wrest=None,
              S2N_cut=None,atmosphere_cut=True,
+             vmnx=(-3000.,3000.)*u.km/u.s,
              stack_fg=False,zfg_mnx=(-9999,9999),plot_indiv=False):
 
     # Rest wavelength
     if wrest is None:
         wrest = 1334.5323*u.AA
 
-    vmnx = [-3000., 3000] * u.km/u.s
     ymnx = (-0.1, 1.2)
     if stack_tup is None:
         stack_tup = qpq9_IRMgII(wrest=wrest,S2N_cut=S2N_cut,
                                 atmosphere_cut=atmosphere_cut,
+                                vmnx=vmnx,
                                 stack_fg=stack_fg,zfg_mnx=zfg_mnx,
                                 plot_indiv=plot_indiv,
                                 passback=True)
