@@ -321,7 +321,10 @@ def stacks_fg(outfil=None):
         ax.tick_params(labelsize=fontsize,length=5,width=1)
         # Labels
         ax.set_ylabel('Normalized Flux')
-        ax.set_xlabel('Relative Velocity (km/s)')
+        if kk < len(lines)-1:
+            ax.set_xticklabels("",visible=False)
+        else:
+            ax.set_xlabel('Relative Velocity (km/s)')
         ax.text((ax.get_xlim()[1]-ax.get_xlim()[0])*0.05+ax.get_xlim()[0],
                 (ax.get_ylim()[1]-ax.get_ylim()[0])*0.05+ax.get_ylim()[0],
                 xai.ion_name(aline.data)+', f/g, mean',size=fontsize)
@@ -339,3 +342,67 @@ def stacks_fg(outfil=None):
     pp.savefig(bbox_inches='tight')
     pp.close()
     print('stacks_fg: Wrote {:s}'.format(outfil))
+
+# Overplot monte carlo simulation result on CII mean stack
+def monte(outfil=None):
+
+    if outfil is None:
+        outfil = 'fig_monte.pdf'
+    fontsize = 35
+
+    # Get line info
+    line = 1334.5323*u.AA
+    aline = AbsLine(line)
+
+    # Start the plot
+    pp = PdfPages(outfil)
+    fig = plt.figure(figsize=(10,6))
+    fig.clf()
+    gs = gridspec.GridSpec(1,1)
+
+    # Load the mean stack
+    path = '../Analysis/Stacks/'
+    mean_stack = fits.open(path+'Output/QPQ9_zIRMgII_1334_mean.fits')
+    relativistic_equiv = u.doppler_relativistic(line)
+    velo = (mean_stack[1].data*u.AA).to(u.km/u.s,equivalencies=relativistic_equiv)
+
+    # Load the monte carlo model parameters
+    monte_params = (ascii.read('../Analysis/monte.dat'))[0]
+    # Load the CII mean stack Gaussian fit model parameters
+    Gaussian_params = (ascii.read(path+'CII_MgII_mean_fit.dat'))[0]
+    model_conti = models.Const1D(amplitude=Gaussian_params['amplitude_0'])
+    model_gauss = models.GaussianAbsorption1D(
+        amplitude=Gaussian_params['amplitude_1'],mean=Gaussian_params['mean_1'],
+        stddev=Gaussian_params['stddev_1'])
+    model_monte_gauss = models.GaussianAbsorption1D(
+        amplitude=monte_params['amplitude_1'],mean=Gaussian_params['mean_1'],
+        stddev=np.sqrt((monte_params['stddev_1'])**2.+224**2.))
+    print(monte_params['stddev_1'],np.sqrt((monte_params['stddev_1'])**2.+224**2.),Gaussian_params['stddev_1'])
+    model_data = model_conti*model_gauss
+    model_monte = model_conti*model_monte_gauss
+
+    # Axes
+    ax = plt.subplot(gs[0,0])
+    ax.set_xlim(np.min(velo.value+500),np.max(velo.value-500))
+    ax.set_ylim(0.79,1.03)
+    ax.tick_params(labelsize=fontsize,length=5,width=1)
+    # Labels
+    ax.set_ylabel('Normalized Flux')
+    ax.set_xlabel('Relative Velocity (km/s)')
+    ax.text((ax.get_xlim()[1]-ax.get_xlim()[0])*0.05+ax.get_xlim()[0],
+            (ax.get_ylim()[1]-ax.get_ylim()[0])*0.05+ax.get_ylim()[0],
+            'CII, mean',size=fontsize)
+
+    # Plot
+    plt.plot(velo.value,mean_stack[0].data,drawstyle='steps-mid',linewidth=2.,color='k')
+    plt.plot(velo.value, model_data(velo.value),color='b')
+    plt.plot(velo.value,model_monte(velo.value),color='g')
+
+    # Font
+    xputils.set_fontsize(ax,fontsize)
+
+    # Layout and save
+    plt.tight_layout(pad=0.2,h_pad=0.1,w_pad=0.0)
+    pp.savefig(bbox_inches='tight')
+    pp.close()
+    print('monte: Wrote {:s}'.format(outfil))
