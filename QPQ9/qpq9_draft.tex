@@ -3,7 +3,7 @@
 \usepackage{natbib,amsmath,graphicx,longtable,amssymb,latexsym,epsf}
 \begin{document}
 
-\title{Quasars Probing Quasars IX. Probing the Circumgalactic Flows of Quasars [v1.2]}
+\title{Quasars Probing Quasars IX. Probing the Circumgalactic Flows of Quasars [v1.4]}
 
 \author{Marie Wingyee Lau\altaffilmark{1}, J. Xavier Prochaska\altaffilmark{1}, 
 Joseph F. Hennawi\altaffilmark{2}
@@ -20,10 +20,10 @@ environments of massive galaxies hosting quasars at $z\sim2$. We employ 115 proj
 to study the circumgalactic gas of the foreground quasars in absorption. The foreground quasars 
 have precise redshift measurements with uncertainty $<400\,{\rm km\,s^{-1}}$. We stack the 
 background quasar spectra at the foreground quasar's systemic redshift. The mean absorption in 
-\ion{C}{2}, \ion{C}{4}, and \ion{Mg}{2} show large intrinsic velocity fields, and have velocity 
-centroids that show a small positive offset relative to the systemic. We argue the results can be 
-explained by outflowing gas combined with anisotropic or intermittent ionizing radiation of the 
-quasars. 
+\ion{C}{2}, \ion{C}{4}, and \ion{Mg}{2} show large velocity widths, and have velocity 
+centroids that show a small positive offset relative to the systemic. We argue that a possible 
+explanation to the observed velocity fields is outflowing gas combined with anisotropic or 
+intermittent ionizing radiation of the quasars. 
 \end{abstract}
 
 
@@ -336,39 +336,26 @@ Figure~\ref{fig:stacks_and_fits}.
 \input{Tables/tab_summ_OIII.tex}
 %\input{tab_summ_OIII.tex}
 
-\begin{figure*}[!th]
-\begin{minipage}[!bp]{0.35\textwidth}
-\includegraphics[width=\textwidth]{Figures/fig_stack_z1.pdf}
-%\includegraphics[width=\textwidth]{f03.pdf}
+\begin{figure}
+\includegraphics[width=2.5in]{Figures/fig_stack_z1.pdf}
+%\includegraphics[width=2.5in]{f03.pdf}
 \caption{Mean stack at \ion{Mg}{2}\,2796, for a lower redshift sample of quasar pairs at 
 $z\sim0.9$. Line-style coding is the same as in Figure~\ref{fig:stacks_and_fits}. The centroid is 
 approximately $0\,{\rm \,km\,s^{-1}}$, and the absorption is weaker than the main QPQ9 sample. 
 }
 \label{fig:stack_z1}
-\includegraphics[width=\textwidth]{Figures/fig_monte.pdf}
-%\includegraphics[width=\textwidth]{f07.pdf}
-\caption{The same \ion{C}{2} mean stack shown in the first panel of 
-Figure~\ref{fig:stacks_and_fits} is shown in thick, black, and the Gaussian absorption model to 
-the data is shown in thin, blue. In thin, green, we overplot the Gaussian absorption model of the 
-Monte Carlo simulations generated from a purely clustering argument. The model from clustering 
-analysis is multiplied to the pseudo-continuum level of the stack of the observational data, 
-shifted to the centroid of the stack of the data, and broadened by the mean redshift error in the 
-data. The model has a smaller dispersion than the data by two times the modeling error.
-}
-\label{fig:monte}
-\end{minipage}%
-\hspace{0.5in}
-\begin{minipage}[!bp]{0.55\textwidth}
-\includegraphics[width=\textwidth]{Figures/fig_stacks_fg.pdf}
-%\includegraphics[width=\textwidth]{f04.pdf}
+\end{figure}
+
+\begin{figure}
+\includegraphics[width=3.4in]{Figures/fig_stacks_fg.pdf}
+%\includegraphics[width=3.4in]{f04.pdf}
 \caption{Mean stacks of the foreground quasar spectra at \ion{C}{2}\,1334, \ion{C}{4}\,1548, and 
 \ion{Mg}{2}\,2796 for the QPQ9 sample. For \ion{C}{2} and \ion{Mg}{2}, there is no evidence of 
 excess absorption near $z_{\rm fg}$. The stack for \ion{C}{4}, which include line-of-sight 
 absorbers at all distances, shows a large, blueshifted mean velocity field.
 }
 \label{fig:stacks_fg}
-\end{minipage}
-\end{figure*}
+\end{figure}
 
 \subsection{Significance of the asymmetric absorption}
 \label{sec:significance_+ve}
@@ -411,6 +398,20 @@ for the asymmetry.
 
 \subsection{Significance of the large velocity fields}
 \label{sec:significance_width}
+
+\begin{figure}
+\includegraphics[width=2.5in]{Figures/fig_monte.pdf}
+%\includegraphics[width=2.5in]{f07.pdf}
+\caption{The same \ion{C}{2} mean stack shown in the first panel of 
+Figure~\ref{fig:stacks_and_fits} is shown in thick, black, and the Gaussian absorption model to 
+the data is shown in thin, blue. In thin, green, we overplot the Gaussian absorption model of the 
+Monte Carlo simulations generated from a purely clustering argument. The model from clustering 
+analysis is multiplied to the pseudo-continuum level of the stack of the observational data, 
+shifted to the centroid of the stack of the data, and broadened by the mean redshift error in the 
+data. The model has a smaller dispersion than the data by two times the modeling error.
+}
+\label{fig:monte}
+\end{figure}
 
 Under the assumption that the intrinsic velocity field and the redshift uncertainty add in 
 quadrature to give the observed width, we solve for the intrinsic dispersion in the \ion{C}{2} 
@@ -460,7 +461,7 @@ performed on only the strongest absorber near $z_{\rm fg}$, and a low $R_\perp$ 
 fact intercept more than one optically thick absorber. We double the number of absorbers for each 
 mock sightline, and find the measured dispersion only increases by several ${\rm km\,s^{-1}}$. 
 In order to recover an intrinsic dispersion of $317\textendash352\,{\rm km\,s^{-1}}$, a peculiar 
-velocity of $\approx280\,{\rm km\,s^{-1}}$ is required. Thus, the observed velocity width suggests 
+velocity of $\approx285\,{\rm km\,s^{-1}}$ is required. The observed velocity width thus suggests 
 a hint of dynamical processes in addition to gravitational motions and Hubble flows. 
 
 In the previous QPQ papers, we argued that optically thick absorbers in the vicinity of quasars 
@@ -542,8 +543,8 @@ $z_{\rm fg}$ measurements to study this asymmetry in \ion{H}{1} (J. F. Hennawi e
 preparation). 
 
 In conclusion, we observe large and positively skewed velocity fields in absorption, of metal ions 
-in the CGM of $z\sim2$ massive galaxies hosting quasars. We interpret the results as evidence that 
-the detected gas is outflowing, and that the quasars either shine anisotropically or 
+in the CGM of $z\sim2$ massive galaxies hosting quasars. We argue that the velocity fields can be 
+explained if the detected gas is outflowing, and the quasars either shine anisotropically or 
 intermittently. 
 
 \acknowledgements
