@@ -102,7 +102,7 @@ def boot_trans(wrest=1334.5323*u.AA,full_sample=True,
             g1548_init = models.GaussianAbsorption1D(amplitude=g1548_amp,mean=g1548_mean,stddev=g1548_stddev)
             g1550_init = models.GaussianAbsorption1D(amplitude=g1550_amp,mean=g1550_mean,stddev=g1550_stddev)
             model_init = c_init*g1548_init*g1550_init
-#            model_init.amplitude_1.bounds = [0.,1.]
+            model_init.amplitude_1.bounds = [0.,1.]
             def tie_mean2(model):
                 mean_2 = model.mean_1 + 498.
                 return mean_2
