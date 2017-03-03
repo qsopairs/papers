@@ -28,7 +28,7 @@ import qpq9_stacks as qpq9k
 
 #  Plot the Experiment
 def experiment(outfil=None,wrest=[1334.5323*u.AA,1548.195*u.AA,2796.354*u.AA],S2N_cut=5.5/u.AA,
-               zfg_mnx=(1.6,9999)):
+               zfg_mnx=(1.6,9999),vsig_cut=400*u.km/u.s):
 
     if outfil is None:
         outfil = 'fig_experiment.pdf'
@@ -59,7 +59,8 @@ def experiment(outfil=None,wrest=[1334.5323*u.AA,1548.195*u.AA,2796.354*u.AA],S2
         aline = AbsLine(line)
 
         # Load stack_tup
-        stack_tup0 = qpq9k.qpq9_IRMgII(passback=True,wrest=line,S2N_cut=S2N_cut,zfg_mnx=zfg_mnx,plot_indiv=False)
+        stack_tup0 = qpq9k.qpq9_IRMgII(passback=True,wrest=line,S2N_cut=S2N_cut,zfg_mnx=zfg_mnx,
+                                       vsig_cut=400*u.km/u.s,plot_indiv=False)
         # Mask
         fin_velo, stck_img, stck_msk, all_dict = stack_tup0
         stck_mskN = copy.deepcopy(stck_msk)
@@ -176,11 +177,14 @@ def stacks_and_fits(outfil=None):
         # Axes
         ax = plt.subplot(gs[kk,0])
         ax.set_xlim(-2500,2500)
-        ax.set_ylim(0.79,1.03)
+        ax.set_ylim(0.82,1.03)
         ax.tick_params(labelsize=fontsize,length=5,width=1)
         # Labels
         ax.set_ylabel('Normalized Flux')
-        ax.set_xlabel('Relative Velocity (km/s)')
+        if kk < len(lines)-1:
+            ax.set_xticklabels("",visible=False)
+        else:
+            ax.set_xlabel('Relative Velocity (km/s)')
         ax.text((ax.get_xlim()[1]-ax.get_xlim()[0])*0.05+ax.get_xlim()[0],
                 (ax.get_ylim()[1]-ax.get_ylim()[0])*0.05+ax.get_ylim()[0],
                 xai.ion_name(aline.data)+', mean',size=fontsize)
@@ -209,7 +213,10 @@ def stacks_and_fits(outfil=None):
         ax.set_xlim(-2500,2500)
         ax.set_ylim(0.79,1.03)
         ax.tick_params(labelsize=fontsize,length=5,width=1)
-        ax.set_xlabel('Relative Velocity (km/s)')
+        if kk < len(lines)-1:
+            ax.set_xticklabels("",visible=False)
+        else:
+            ax.set_xlabel('Relative Velocity (km/s)')
         ax.set_yticklabels("",visible=False)
         ax.text((ax.get_xlim()[1]-ax.get_xlim()[0])*0.05+ax.get_xlim()[0],
                 (ax.get_ylim()[1]-ax.get_ylim()[0])*0.05+ax.get_ylim()[0],
@@ -356,7 +363,7 @@ def monte(outfil=None):
 
     # Start the plot
     pp = PdfPages(outfil)
-    fig = plt.figure(figsize=(10,6))
+    fig = plt.figure(figsize=(10,7))
     fig.clf()
     gs = gridspec.GridSpec(1,1)
 
@@ -376,15 +383,21 @@ def monte(outfil=None):
         stddev=Gaussian_params['stddev_1'])
     model_monte_gauss = models.GaussianAbsorption1D(
         amplitude=monte_params['amplitude_1'],mean=Gaussian_params['mean_1'],
-        stddev=np.sqrt((monte_params['stddev_1'])**2.+224**2.))
-    print(monte_params['stddev_1'],np.sqrt((monte_params['stddev_1'])**2.+224**2.),Gaussian_params['stddev_1'])
+        stddev=np.sqrt((monte_params['stddev_1'])**2.+182**2.))
+    print('s.d. in monte carlo model, in monte carlo model with redshift error broadening, in data',
+          monte_params['stddev_1'],np.sqrt((monte_params['stddev_1'])**2.+182**2.),
+          Gaussian_params['stddev_1'])
     model_data = model_conti*model_gauss
     model_monte = model_conti*model_monte_gauss
+    # Extra motion that is ruled out
+    model_extra_gauss = models.GaussianAbsorption1D(
+        amplitude=monte_params['amplitude_1'],mean=Gaussian_params['mean_1'],stddev=658.)
+    model_extra = model_conti*model_extra_gauss
 
     # Axes
     ax = plt.subplot(gs[0,0])
     ax.set_xlim(np.min(velo.value+500),np.max(velo.value-500))
-    ax.set_ylim(0.79,1.03)
+    ax.set_ylim(0.82,1.03)
     ax.tick_params(labelsize=fontsize,length=5,width=1)
     # Labels
     ax.set_ylabel('Normalized Flux')
@@ -395,8 +408,9 @@ def monte(outfil=None):
 
     # Plot
     plt.plot(velo.value,mean_stack[0].data,drawstyle='steps-mid',linewidth=2.,color='k')
-    plt.plot(velo.value, model_data(velo.value),color='b')
+#    plt.plot(velo.value, model_data(velo.value),color='b')
     plt.plot(velo.value,model_monte(velo.value),color='g')
+    plt.plot(velo.value,model_extra(velo.value),'y--')
 
     # Font
     xputils.set_fontsize(ax,fontsize)
@@ -406,3 +420,46 @@ def monte(outfil=None):
     pp.savefig(bbox_inches='tight')
     pp.close()
     print('monte: Wrote {:s}'.format(outfil))
+
+
+# Histogram of the centroids from bootstrapping on the CII mean stack
+def centroids(outfil=None):
+
+    if outfil is None:
+        outfil = 'fig_histogram_cen.pdf'
+    fontsize = 35
+
+    # Load the centroids
+    path = '../Analysis/Bootstrap/'
+    hdulist = fits.open(path+'Output/IRMgII_1334_mean.fits')
+    tau_cen = hdulist[3].data
+
+    # Start the plot
+    pp = PdfPages(outfil)
+    fig = plt.figure(figsize=(10,6))
+    fig.clf()
+    gs = gridspec.GridSpec(1,1)
+
+    # Axes
+    ax = plt.subplot(gs[0,0])
+    ax.set_xlim(-700,700)
+
+    # Plot
+    ax.hist(tau_cen,50,facecolor='green',alpha=0.5)
+
+    # Labels
+    ax.set_xlabel('Centroid Velocity (km/s)')
+    ax.set_ylabel('Frequency')
+    ax.text((ax.get_xlim()[1]-ax.get_xlim()[0])*0.05+ax.get_xlim()[0],
+            (ax.get_ylim()[1]-ax.get_ylim()[0])*0.05+ax.get_ylim()[0],
+            'CII, mean',size=fontsize)
+
+
+    # Font
+    xputils.set_fontsize(ax,fontsize)
+
+    # Layout and save
+    plt.tight_layout(pad=0.2,h_pad=0.1,w_pad=0.0)
+    pp.savefig(bbox_inches='tight')
+    pp.close()
+    print('centroids: Wrote {:s}'.format(outfil))
