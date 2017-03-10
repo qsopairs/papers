@@ -466,7 +466,7 @@ def centroids(outfil=None):
     print('centroids: Wrote {:s}'.format(outfil))
 
 
-# Make all QPQ9 figures
+#################
 def main():
     experiment()
     stacks_and_fits()
