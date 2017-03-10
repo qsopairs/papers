@@ -27,16 +27,6 @@ sys.path.append(os.path.abspath("../Analysis/Stacks/py"))
 import qpq9_stacks as qpq9k
 
 
-# Make all QPQ9 figures
-def all_figs():
-    experiment()
-    stacks_and_fits()
-    stacks_fg()
-    stack_z1()
-    monte()
-    centroids()
-
-
 #  Plot the Experiment
 def experiment(outfil=None,wrest=[1334.5323*u.AA,1548.195*u.AA,2796.354*u.AA],S2N_cut=5.5/u.AA,
                zfg_mnx=(1.6,9999)):
@@ -474,3 +464,18 @@ def centroids(outfil=None):
     pp.savefig(bbox_inches='tight')
     pp.close()
     print('centroids: Wrote {:s}'.format(outfil))
+
+
+# Make all QPQ9 figures
+def main():
+    experiment()
+    stacks_and_fits()
+    stacks_fg()
+    stack_z1()
+    monte()
+    centroids()
+
+
+# Command line execution
+if __name__ == '__main__':
+    main()
