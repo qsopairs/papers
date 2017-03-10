@@ -391,7 +391,7 @@ def monte(outfil=None):
     model_monte = model_conti*model_monte_gauss
     # Extra motion that is ruled out
     model_extra_gauss = models.GaussianAbsorption1D(
-        amplitude=monte_params['amplitude_1'],mean=Gaussian_params['mean_1'],stddev=658.)
+        amplitude=monte_params['amplitude_1'],mean=Gaussian_params['mean_1'],stddev=654.)
     model_extra = model_conti*model_extra_gauss
 
     # Axes
