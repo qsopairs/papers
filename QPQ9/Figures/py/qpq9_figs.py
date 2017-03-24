@@ -1,9 +1,7 @@
 #Module for QPQ9 figures
 # Imports
 from __future__ import print_function, absolute_import, division, unicode_literals
-
 import copy,os,sys,imp
-
 import matplotlib as mpl
 import numpy as np
 mpl.rcParams['font.family'] = 'stixgeneral'
@@ -19,9 +17,7 @@ from astropy.utils.misc import isiterable
 from astropy.modeling import models
 
 from linetools.spectralline import AbsLine
-
-from xastropy.plotting import utils as xputils
-from xastropy.atomic import ionization as xai
+from linetools.abund import ions
 
 sys.path.append(os.path.abspath("../Analysis/Stacks/py"))
 import qpq9_stacks as qpq9k
@@ -69,13 +65,13 @@ def experiment(outfil=None,wrest=[1334.5323*u.AA,1548.195*u.AA,2796.354*u.AA],S2
         for ii,idict in enumerate(all_dict):
             if idict is None:
                 continue
-            if xai.ion_name(aline.data) == 'CII':
+            if ions.ion_name(aline.data) == 'CII':
                 if 'J1508+3635' in idict['qpq']['NAME']: #DLA, should be excluded now
                     idx_mask.append(ii)
-            if xai.ion_name(aline.data) == 'CIV':
+            if ions.ion_name(aline.data) == 'CIV':
                 if 'J1002+0020' in idict['qpq']['NAME']: #overlaps with BAL of bg quasar
                     idx_mask.append(ii)
-            if xai.ion_name(aline.data) == 'MgII':
+            if ions.ion_name(aline.data) == 'MgII':
                 if (('J0822+1319' in idict['qpq']['NAME']) | ('J0908+4215' in idict['qpq']['NAME']) |
                         ('J1242+1817' in idict['qpq']['NAME']) | ('J1622+2031' in idict['qpq']['NAME'])):
                     #BAL, strange emission, sky emission, sky emission
@@ -114,13 +110,16 @@ def experiment(outfil=None,wrest=[1334.5323*u.AA,1548.195*u.AA,2796.354*u.AA],S2
             ax.set_xlabel(r'$R_\perp$ (kpc)')
         ax.text((ax.get_xlim()[1]-ax.get_xlim()[0])*0.05+ax.get_xlim()[0],
                 (ax.get_ylim()[1]-ax.get_ylim()[0])*0.85+ax.get_ylim()[0],
-                xai.ion_name(aline.data),size=fontsize)
+                ions.ion_name(aline.data),size=fontsize)
         # Scatter
         sc = ax.scatter(sv_Rphys,sv_zfg,s=sv_symsize,c=np.log10(sv_gUV),alpha=0.6,edgecolors='none',
                         vmin=logguv_min,vmax=logguv_max)
 
         # Font
-        xputils.set_fontsize(ax,fontsize)
+        for item in ([ax.title, ax.xaxis.label, ax.yaxis.label] +
+                         ax.get_xticklabels() + ax.get_yticklabels()):
+            item.set_fontsize(fontsize)
+
 
     # Color bar
     fig.subplots_adjust(right=0.8)
@@ -188,15 +187,17 @@ def stacks_and_fits(outfil=None):
             ax.set_xlabel('Relative Velocity (km/s)')
         ax.text((ax.get_xlim()[1]-ax.get_xlim()[0])*0.05+ax.get_xlim()[0],
                 (ax.get_ylim()[1]-ax.get_ylim()[0])*0.05+ax.get_ylim()[0],
-                xai.ion_name(aline.data)+', mean',size=fontsize)
+                ions.ion_name(aline.data)+', mean',size=fontsize)
 
         # Plot
-        plt.plot(velo.value, mean_stack[0].data,drawstyle='steps-mid',linewidth=2.,color='k')
-        plt.plot(velo.value, model(velo.value),color='b')
-        plt.plot([model.mean_1.value,model.mean_1.value],[0,2],'b--')
+        plt.plot(velo.value, mean_stack[0].data,drawstyle='steps-mid',linewidth=2,color='k')
+        plt.plot(velo.value, model(velo.value),color='b',linewidth=3)
+        plt.plot([model.mean_1.value,model.mean_1.value],[0,2],'b--',linewidth=2)
 
         # Font
-        xputils.set_fontsize(ax,fontsize)
+        for item in ([ax.title, ax.xaxis.label, ax.yaxis.label] +
+                         ax.get_xticklabels() + ax.get_yticklabels()):
+            item.set_fontsize(fontsize)
 
         # Do median stack
         median_stack = fits.open(path+'Output/QPQ9_zIRMgII_'+aline.name[-4:]+'_med.fits')
@@ -221,11 +222,13 @@ def stacks_and_fits(outfil=None):
         ax.set_yticklabels("",visible=False)
         ax.text((ax.get_xlim()[1]-ax.get_xlim()[0])*0.05+ax.get_xlim()[0],
                 (ax.get_ylim()[1]-ax.get_ylim()[0])*0.05+ax.get_ylim()[0],
-                xai.ion_name(aline.data)+', median',size=fontsize)
-        plt.plot(velo.value, median_stack[0].data,drawstyle='steps-mid',linewidth=2.,color='k')
-        plt.plot(velo.value, model(velo.value),color='b')
-        plt.plot([model.mean_1.value,model.mean_1.value],[0,2],'b--')
-        xputils.set_fontsize(ax,fontsize)
+                ions.ion_name(aline.data)+', median',size=fontsize)
+        plt.plot(velo.value, median_stack[0].data,drawstyle='steps-mid',linewidth=2,color='k')
+        plt.plot(velo.value, model(velo.value),color='b',linewidth=3)
+        plt.plot([model.mean_1.value,model.mean_1.value],[0,2],'b--',linewidth=2)
+        for item in ([ax.title, ax.xaxis.label, ax.yaxis.label] +
+                         ax.get_xticklabels() + ax.get_yticklabels()):
+            item.set_fontsize(fontsize)
 
     # Layout and save
     plt.tight_layout(pad=0.2,h_pad=0.1,w_pad=0.0)
@@ -277,16 +280,18 @@ def stack_z1(outfil=None):
     ax.set_xlabel('Relative Velocity (km/s)')
     ax.text((ax.get_xlim()[1]-ax.get_xlim()[0])*0.05+ax.get_xlim()[0],
              (ax.get_ylim()[1]-ax.get_ylim()[0])*0.05+ax.get_ylim()[0],
-             xai.ion_name(aline.data)+', $z\sim0.9$, mean',size=fontsize)
+             ions.ion_name(aline.data)+', $z\sim0.9$, mean',size=fontsize)
     ax.yaxis.set_major_locator(MaxNLocator(nbins=5))
 
     # Plot
-    plt.plot(velo.value, mean_stack[0].data,drawstyle='steps-mid',linewidth=2.,color='k')
-    plt.plot(velo.value, model(velo.value),color='b')
-    plt.plot([model.mean_1.value,model.mean_1.value],[0,2],'b--')
+    plt.plot(velo.value, mean_stack[0].data,drawstyle='steps-mid',linewidth=2,color='k')
+    plt.plot(velo.value, model(velo.value),color='b',linewidth=3)
+    plt.plot([model.mean_1.value,model.mean_1.value],[0,2],'b--',linewidth=2)
 
     # Font
-    xputils.set_fontsize(ax,fontsize)
+    for item in ([ax.title, ax.xaxis.label, ax.yaxis.label] +
+                     ax.get_xticklabels() + ax.get_yticklabels()):
+        item.set_fontsize(fontsize)
 
     # Layout and save
     plt.tight_layout(pad=0.2,h_pad=0.1,w_pad=0.0)
@@ -335,15 +340,17 @@ def stacks_fg(outfil=None):
             ax.set_xlabel('Relative Velocity (km/s)')
         ax.text((ax.get_xlim()[1]-ax.get_xlim()[0])*0.05+ax.get_xlim()[0],
                 (ax.get_ylim()[1]-ax.get_ylim()[0])*0.05+ax.get_ylim()[0],
-                xai.ion_name(aline.data)+', f/g, mean',size=fontsize)
+                ions.ion_name(aline.data)+', f/g, mean',size=fontsize)
         ax.yaxis.set_major_locator(MaxNLocator(nbins=5))
 
         # Plot
-        plt.plot(velo.value, mean_stack[0].data,drawstyle='steps-mid',linewidth=2.,color='k')
-        plt.plot([-10000,100000],[1,1],color='gray',linestyle=':',linewidth=2.)
+        plt.plot(velo.value, mean_stack[0].data,drawstyle='steps-mid',linewidth=2,color='k')
+        plt.plot([-10000,100000],[1,1],color='gray',linestyle=':',linewidth=2)
 
         # Font
-        xputils.set_fontsize(ax,fontsize)
+        for item in ([ax.title, ax.xaxis.label, ax.yaxis.label] +
+                         ax.get_xticklabels() + ax.get_yticklabels()):
+            item.set_fontsize(fontsize)
 
     # Layout and save
     plt.tight_layout(pad=0.2,h_pad=0.1,w_pad=0.1)
@@ -379,21 +386,21 @@ def monte(outfil=None):
     # Load the CII mean stack Gaussian fit model parameters
     Gaussian_params = (ascii.read(path+'CII_MgII_mean_fit.dat'))[0]
     model_conti = models.Const1D(amplitude=Gaussian_params['amplitude_0'])
-    model_gauss = models.GaussianAbsorption1D(
-        amplitude=Gaussian_params['amplitude_1'],mean=Gaussian_params['mean_1'],
-        stddev=Gaussian_params['stddev_1'])
     model_monte_gauss = models.GaussianAbsorption1D(
         amplitude=monte_params['amplitude_1'],mean=Gaussian_params['mean_1'],
         stddev=np.sqrt((monte_params['stddev_1'])**2.+182**2.))
     print('s.d. in monte carlo model, in monte carlo model with redshift error broadening, in data',
           monte_params['stddev_1'],np.sqrt((monte_params['stddev_1'])**2.+182**2.),
           Gaussian_params['stddev_1'])
-    model_data = model_conti*model_gauss
     model_monte = model_conti*model_monte_gauss
     # Extra motion that is ruled out
     model_extra_gauss = models.GaussianAbsorption1D(
         amplitude=monte_params['amplitude_1'],mean=Gaussian_params['mean_1'],stddev=654.)
     model_extra = model_conti*model_extra_gauss
+    # Width that requires outflow
+    model_outflow_gauss = models.GaussianAbsorption1D(
+        amplitude=monte_params['amplitude_1'],mean=Gaussian_params['mean_1'],stddev=207.)
+    model_outflow = model_conti*model_outflow_gauss
 
     # Axes
     ax = plt.subplot(gs[0,0])
@@ -408,13 +415,15 @@ def monte(outfil=None):
             'CII, mean',size=fontsize)
 
     # Plot
-    plt.plot(velo.value,mean_stack[0].data,drawstyle='steps-mid',linewidth=2.,color='k')
-#    plt.plot(velo.value, model_data(velo.value),color='b')
-    plt.plot(velo.value,model_monte(velo.value),color='g')
-    plt.plot(velo.value,model_extra(velo.value),'y--')
+    plt.plot(velo.value,mean_stack[0].data,drawstyle='steps-mid',linewidth=2,color='k')
+    plt.plot(velo.value,model_monte(velo.value),color='g',linewidth=3)
+    plt.plot(velo.value,model_extra(velo.value),'y--',linewidth=3)
+    plt.plot(velo.value,model_outflow(velo.value),'m--',linewidth=3)
 
     # Font
-    xputils.set_fontsize(ax,fontsize)
+    for item in ([ax.title, ax.xaxis.label, ax.yaxis.label] +
+                     ax.get_xticklabels() + ax.get_yticklabels()):
+        item.set_fontsize(fontsize)
 
     # Layout and save
     plt.tight_layout(pad=0.2,h_pad=0.1,w_pad=0.0)
@@ -457,7 +466,9 @@ def centroids(outfil=None):
 
 
     # Font
-    xputils.set_fontsize(ax,fontsize)
+    for item in ([ax.title, ax.xaxis.label, ax.yaxis.label] +
+                     ax.get_xticklabels() + ax.get_yticklabels()):
+        item.set_fontsize(fontsize)
 
     # Layout and save
     plt.tight_layout(pad=0.2,h_pad=0.1,w_pad=0.0)

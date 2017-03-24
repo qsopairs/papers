@@ -23,13 +23,14 @@ emission-lines with precision $\lesssim300\,{\rm km\,s^{-1}}$ and average offset
 systemic redshift $\lesssim|100\,{\rm km\,s^{-1}}|$. We stack the background quasar spectra at the 
 foreground quasar's systemic redshift to study the mean absorption in \ion{C}{2}, \ion{C}{4}, 
 and \ion{Mg}{2}. We find that the mean absorptions exhibit large velocity widths 
-$\sigma_v>300\,{\rm km\,s^{-1}}$. We show that, gas in gravitational motion, Hubble flow, or 
-galactic-scale outflows are all consistent with the observed widths. Furthermore, we find that the 
-mean absorptions are asymmetric about the systemic redshift. The mean absorption centroids exhibit 
-small redshift relative to the systemic $\delta v\approx+200\,{\rm km\,s^{-1}}$, with large 
-intrinsic scatter in the centroid velocities of the individual absorption systems. We show 
-that the observed offsets may be produced by anisotropic or intermittent ionizing radiation from 
-the foreground quasars. 
+$\sigma_v>300\,{\rm km\,s^{-1}}$. The observed widths are consistent with gas in gravitational 
+motion and Hubble flow, and galactic-scale outflows are not be required to explain the large 
+widths. Furthermore, we find that the mean absorptions are asymmetric about the systemic redshift. 
+The mean absorption centroids exhibit small redshift relative to the 
+systemic $\delta v\approx+200\,{\rm km\,s^{-1}}$, with large intrinsic scatter in the centroid 
+velocities of the individual absorption systems. We show that the observed offsets may be produced 
+if (i) the ionizing radiation from the foreground quasars is anisotropic or intermittent; (ii) the 
+gas is not flowing into the galaxy.  
 \end{abstract}
 
 
@@ -284,9 +285,9 @@ respectively. We then provide the summary for the sub-sample with $z_{\rm fg}$ m
 \includegraphics[width=3.5in]{Figures/fig_stacks_and_fits.pdf}
 %\includegraphics[width=3.5in]{f02.pdf}
 \caption{Mean and median absorption centered at \ion{C}{2}\,1334, \ion{C}{4}\,1548, and 
-\ion{Mg}{2}\,2796 of the foreground quasars for all QPQ9 pairs. The composites are shown in thick, 
+\ion{Mg}{2}\,2796 of the foreground quasars for all QPQ9 pairs. The composites are shown in thin, 
 black. Overplotted on the composites are Gaussian fits, normalized to pseudo-continua far away 
-from a velocity of $0\,{\rm km\,s^{-1}}$ relative to $z_{\rm fg}$, and are shown in thin, blue. 
+from a velocity of $0\,{\rm km\,s^{-1}}$ relative to $z_{\rm fg}$, and are shown in thick, blue. 
 For the doublets, a second Gaussian with a fixed mean separation and a tied standard deviation is 
 included in the modeling. The absorptions frequently exhibit large velocity widths. The dashed 
 lines mark the centroids, which show small positive velocity offsets from $z_{\rm fg}$. The 
@@ -428,14 +429,19 @@ approximately at $0\,{\rm \,km\,s^{-1}}$, and the absorption is weaker than the 
 \includegraphics[width=2.5in]{Figures/fig_monte.pdf}
 %\includegraphics[width=2.5in]{f05.pdf}
 \caption{The same \ion{C}{2} mean stack shown in the first panel of 
-Figure~\ref{fig:stacks_and_fits} is shown in thick, black. In thin, green, we overplot the 
+Figure~\ref{fig:stacks_and_fits} is shown in thin, black. In thick, green, we overplot the 
 Gaussian absorption model of the Monte Carlo simulations generated from a purely clustering 
 argument. The model from clustering analysis is multiplied to the pseudo-continuum level of the 
 stack of the observational data, shifted to the centroid of the stack of the data, and broadened 
 by the mean redshift error in the data. The model is a good description of the data, with a 
 dispersion within modeling error of the dispersion in the data. We overplot in dashed, yellow an 
-absorption profile with $\sigma_v=654\,{\rm km\,s^{-1}}$, that is ruled out. Motions that produce 
-this width are ruled out at $3\sigma$ confidence by bootstrap analysis on the observational data. 
+absorption profile with $\sigma_v=654\,{\rm km\,s^{-1}}$, which is larger than the observed width 
+by three times the standard deviation in the bootstrap analysis. Motions that produce a velocity 
+width larger than this can be ruled out. We overplot in dashed, magenta an absorption profile with 
+$\sigma_v=207\,{\rm km\,s^{-1}}$, which is smaller than the observed width by three times the 
+modeling error. Unless gravitational and Hubble flows together with redshift error broadening 
+produce a velocity width smaller than this, extra dynamical processes (e.g.\ outflows) will not be 
+required to explain the observation. 
 }
 \label{fig:monte}
 \end{figure}
@@ -450,14 +456,14 @@ redshifts, we recover $\sigma_{\rm intrinsic}^{\rm [OIII]}=342\,{\rm km\,s^{-1}}
 \cite{Eftekharzadeh+15} measured the clustering of quasars in the range $2.2<z<2.8$ while 
 \cite{RodriguezTorres+16} measured the clustering of quasars in the range $1.8<z<2.2$. They 
 estimated that these quasars are hosted by dark matter halos with mass $10^{12.5}\,M_\odot$ and 
-$10^{12.6}\,M_\odot$ respectively. If QPQ dark matter halos have a characteristic mass 
-$10^{12.5}\,M_\odot$ and follow an NFW profile \citep{NavarroFrenkWhite97} with concentration 
-parameter $c=4$, at $z\approx2$ the maximum circular velocity is $319\,{\rm km\,s^{-1}}$. 
-According to \cite{Tormen97}, the maximum circular velocity is $\approx1.4$ times larger than the 
-one-dimensional velocity dispersion $\sigma_{\rm 1D}$. Hence, the line-of-sight velocity 
-dispersion typical of QPQ halos is $\sigma_{\rm 1D}=228\,{\rm km\,s^{-1}}$. We can investigate 
-whether gravitational motions and Hubble flows are sufficient to reproduce the dispersion in the 
-data, using Monte Carlo methods to simulate the absorption signals. 
+$10^{12.6}\,M_\odot$ respectively. If dark matter halos hosting QPQ9 quasars have a characteristic 
+mass $10^{12.6}\,M_\odot$ and follow an NFW profile \citep{NavarroFrenkWhite97} with concentration 
+parameter $c=4$, at $z\approx2$ the maximum circular velocity is $345\,{\rm km\,s^{-1}}$. 
+\cite{TormenBouchetWhite97} found that the maximum circular velocity is $\approx1.4$ times the 
+maximum of the one-dimensional velocity dispersion $\sigma_{\rm 1D}$. Hence, the line-of-sight 
+velocity dispersion typical of QPQ9 halos is $\sigma_{\rm 1D}=246\,{\rm km\,s^{-1}}$. We can 
+investigate whether gravitational motions and Hubble flows are sufficient to reproduce the 
+dispersion in the data, using Monte Carlo methods to simulate the absorption signals. 
 
 Since \ion{C}{2} systems arise in optically thick absorbers, we may adopt the clustering analysis 
 results of QPQ6. In the absence of clustering, the expected number of absorbers per unit redshift 
@@ -482,15 +488,15 @@ above procedure for all 32 quasar pairs, and create a mean stack of the 32000 mo
 generated. We fit a Gaussian absorption profile multiplied to a constant continuum level to model 
 the stack of mock spectra. We adjust the $W_{\rm CII}$ adopted for the absorbers until the 
 amplitude of the best-fit Gaussian of the stack of mock spectra matches the 
-amplitude of the stack of the observational data. We find that $W_{\rm CII}=0.7\,{\rm \AA}$ well 
+amplitude of the stack of the observational data. We find that $W_{\rm CII}=0.8\,{\rm \AA}$ well 
 reproduces the amplitude, and the dispersion of the Gaussian absorption model is 
 insensitive to the assumed $W_{\rm CII}$ or line profile for one absorber. 
 
 In Figure~\ref{fig:monte}, we show a comparison of the observational data stack and the Gaussian 
 absorption model of the Monte Carlo simulations. In the figure, the Gaussian absorption model is 
 broadened by the mean redshift error by adding it in quadrature to the dispersion in the model. 
-The resulting stack of mock spectra has a $1\sigma$ dispersion of $263\,{\rm km\,s^{-1}}$. This is 
-within $1\sigma$ modeling error of the intrinsic dispersion in the \ion{C}{2} mean stack for the 
+The resulting stack of mock spectra has a $1\sigma$ dispersion of $281\,{\rm km\,s^{-1}}$. This is 
+within $1\sigma$ modeling error from the intrinsic dispersion in the \ion{C}{2} mean stack for the 
 full sample, and about 2 times the modeling error away from the intrinsic dispersion in the stack 
 of the sub-sample with [\ion{O}{3}] redshifts. We also test for the 
 sensitivity of this measured dispersion to the correlation functions adopted. The QPQ6 clustering 
@@ -500,15 +506,16 @@ absorbers for each mock sightline, and find the measured dispersion only increas
 ${\rm km\,s^{-1}}$. Thus, the hypothesis that the observed velocity width is only produced by a 
 combination of gravitational motions and Hubble flows cannot be ruled out. Extra dynamical 
 processes are not necessary to explain the large velocity fields. From the bootstrap analysis of 
-the observed dispersion, a width of $\sigma_v>654\,{\rm km\,s^{-1}}$ is ruled out at 3$\sigma$ 
-confidence (overplotted in Figure~\ref{fig:monte}). In other words, motions additional to 
-gravitational and Hubble flows that will produce intrinsic dispersion 
-$\sigma_v>628\,{\rm km\,s^{-1}}$ are ruled out. 
+the observed dispersion, a width of $\sigma_v>654\,{\rm km\,s^{-1}}$ would be larger than the 
+observed by three times the scatter (overplotted in Figure~\ref{fig:monte}). In other words, 
+taking into account the redshift errors, motions in addition to gravitational and Hubble 
+flows that will produce an intrinsic dispersion $\sigma_v>628\,{\rm km\,s^{-1}}$ can be ruled out. 
 
-On the contrary, $\sigma_{\rm 1D}<175\,{\rm km\,s^{-1}}$ together with Hubble velocities will 
-result in a velocity width that is more than three times the modeling error away from the observed 
-intrinsic width. This implies that if the characteristic dark matter halo mass 
-$<10^{12.2}\,M_\odot$, additional dynamical processes are required to explain the observed width.  
+On the contrary, $\sigma_{\rm 1D}<74\,{\rm km\,s^{-1}}$ together with Hubble velocities and 
+broadening by redshift errors will result in a velocity width that is more than three times the 
+modeling error away from the observed width (overplotted in Figure~\ref{fig:monte}). This implies 
+that, unless the characteristic dark matter halo mass $<10^{11.0}\,M_\odot$, additional dynamical 
+processes are not required to explain the observed width.  
 
 \subsection{Line-of-sight absorption}
 \label{sec:los_stacks}
@@ -597,8 +604,8 @@ opening angles of $120^\circ\textendash140^\circ$ may reproduce the observed cen
 intrinsic dispersion of the \ion{C}{2} mean absorption. The first explanation above to asymmetric 
 absorption requires that the quasars emit their ionizing radiation anisotropically, while the 
 second explanation requires the quasars emit their ionizing radiation intermittently. Both 
-explanations will require the gas to be either outflowing or in Hubble flow. Were the gas 
-inflowing instead, the velocity centroid would be negative. 
+explanations will require the line-of-sight motions of the gas to be in either outflow or Hubble 
+flow. Were the gas flowing into the galaxy instead, the velocity centroid would be negative. 
 
 Motivated by the asymmetry found in metal ion absorption in the CGM using precise $z_{\rm fg}$ 
 measurements, and the asymmetry found by \cite{KirkmanTytler08} in \ion{H}{1} on larger 

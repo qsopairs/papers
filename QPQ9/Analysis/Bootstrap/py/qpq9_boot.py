@@ -3,17 +3,11 @@
 from __future__ import print_function, absolute_import, division, unicode_literals
 import numpy as np
 import glob, os, sys, copy
-from scipy import stats as scistats
 import matplotlib as mpl
 mpl.rcParams['font.family'] = 'stixgeneral'
-from matplotlib.backends.backend_pdf import PdfPages
-from matplotlib import pyplot as plt
-import matplotlib.gridspec as gridspec
-from astropy.table import QTable
 from astropy.io import ascii, fits
 from astropy import units as u
 from astropy.modeling import models,fitting
-from xastropy.xutils import xdebug as xdb
 sys.path.append(os.path.abspath("../../../../py"))
 from enigma.qpq import stacks as qpqk
 
@@ -150,7 +144,6 @@ def boot_trans(wrest=1334.5323*u.AA,full_sample=True,
         fit = np.polyfit(velo[pix].value, fx[pix], 0)
         pv = np.poly1d(fit)
         conti = pv(velo.value)
-        ##xdb.xplot(velo, fx, conti)
         ## Normalize
         cfx = fx/conti
         EWpix = np.where( (velo > EW_range[0]) & (velo<EW_range[1]))[0]
@@ -162,10 +155,6 @@ def boot_trans(wrest=1334.5323*u.AA,full_sample=True,
         EWr = np.sum(1. - cfx[EWr_pix])
         ## Equivalent width sknewness
         frac[qq] = (EWr-EWl) / EW
-
-    # Check
-    if debug:
-        xdb.xhist(frac)
 
     # Stats
     mu_frac = np.mean(frac)

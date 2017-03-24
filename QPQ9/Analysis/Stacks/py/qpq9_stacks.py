@@ -3,19 +3,13 @@
 from __future__ import print_function, absolute_import, division, unicode_literals
 import numpy as np
 import glob, os, sys, copy
-from scipy import stats as scistats
 import matplotlib as mpl
 mpl.rcParams['font.family'] = 'stixgeneral'
 from matplotlib.backends.backend_pdf import PdfPages
 from matplotlib import pyplot as plt
 import matplotlib.gridspec as gridspec
-from astropy.table import QTable
-from astropy.io import ascii, fits
 from astropy import units as u
-from astropy import constants as const
 from linetools.spectra.xspectrum1d import XSpectrum1D
-from xastropy.plotting import utils as xputils
-from xastropy.xutils import xdebug as xdb
 sys.path.append(os.path.abspath("../../../../py"))
 from enigma.qpq import stacks as qpqk
 from enigma.qpq import qpq as eqpq
@@ -136,7 +130,9 @@ def plt_qpq9(stack_tup=None,wrest=None,
             ax.plot(vmnx.value, [1.]*2, 'g:')
             ax.plot([0]*2, ymnx, 'b--')
             # Font
-            xputils.set_fontsize(ax,7.)
+        for item in ([ax.title, ax.xaxis.label, ax.yaxis.label] +
+                         ax.get_xticklabels() + ax.get_yticklabels()):
+            item.set_fontsize(7)
 
         # Layout and save
         try:

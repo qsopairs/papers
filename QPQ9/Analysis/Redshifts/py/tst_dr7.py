@@ -14,7 +14,7 @@ from __future__ import print_function, absolute_import, division, unicode_litera
 
 # imports
 import numpy as np
-import glob, os, sys, copy
+import glob, os, sys, copy, pdb
 import multiprocessing
 import cPickle as pickle
 
@@ -26,16 +26,11 @@ from astropy.units import Unit
 from astropy.io import fits
 from astropy import units as u
 from astropy import constants as const
-from astropy.table import QTable, Column
+from astropy.table import Table, QTable, Column
 
-from xastropy.obs import radec as xrad
-from xastropy.xutils import xdebug as xdb
-from xastropy.xutils import fits as xxf
 from xastropy.sdss import quasars as sdssq
-from xastropy.sdss import qso as sdssqso
 
 sys.path.append(os.path.abspath("./py"))
-import qpq_z as qpqz
 import hewittwildz as hw10z
 
 # Hewitt&Wild Prescription
@@ -91,7 +86,7 @@ def mgii_in_hw10(parallel=True, nproc=8):
         pool = multiprocessing.Pool(nproc) # initialize thread pool N threads
         all_HWz = pool.map(run_hw10,tst_qsos)
     else:
-        xdb.set_trace() # Next line needs updating
+        pdb.set_trace() # Next line needs updating
         all_HWz = map(run_hw10,gdtst)
 
     # Generate final table
@@ -101,7 +96,7 @@ def mgii_in_hw10(parallel=True, nproc=8):
     JXP_z = Column(np.array([hwz.z_dict['zfin'] for hwz in all_HWz]),name='JXP_z')
     cc_max = Column(np.array([hwz.z_dict['cc_max'] for hwz in all_HWz]),name='cc_max')
     dr7_tst.add_columns([DR7_z,JXP_z,cc_max])
-    xxf.table_to_fits(dr7_tst,'HW_DR7_test.fits')
+    Table(dr7_tst).write('HW_DR7_test.fits',format='fits',overwrite=True)
 
     print('All done!')
 
