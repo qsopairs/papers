@@ -330,7 +330,7 @@ def stacks_fg(outfil=None):
         # Axes
         ax = plt.subplot(gs[kk,0])
         ax.set_xlim(np.min(velo.value)+500,np.max(velo.value)-500)
-        ax.set_ylim(0.90,1.06)
+        ax.set_ylim(0.88,1.09)
         ax.tick_params(labelsize=fontsize,length=5,width=1)
         # Labels
         ax.set_ylabel('Normalized Flux')
@@ -387,19 +387,19 @@ def monte(outfil=None):
     Gaussian_params = (ascii.read(path+'CII_MgII_mean_fit.dat'))[0]
     model_conti = models.Const1D(amplitude=Gaussian_params['amplitude_0'])
     model_monte_gauss = models.GaussianAbsorption1D(
-        amplitude=monte_params['amplitude_1'],mean=Gaussian_params['mean_1'],
-        stddev=np.sqrt((monte_params['stddev_1'])**2.+182**2.))
+        amplitude=monte_params['amplitude'],mean=Gaussian_params['mean_1'],
+        stddev=np.sqrt((monte_params['stddev'])**2.+182**2.))
     print('s.d. in monte carlo model, in monte carlo model with redshift error broadening, in data',
-          monte_params['stddev_1'],np.sqrt((monte_params['stddev_1'])**2.+182**2.),
+          monte_params['stddev'],np.sqrt((monte_params['stddev'])**2.+182**2.),
           Gaussian_params['stddev_1'])
     model_monte = model_conti*model_monte_gauss
     # Extra motion that is ruled out
     model_extra_gauss = models.GaussianAbsorption1D(
-        amplitude=monte_params['amplitude_1'],mean=Gaussian_params['mean_1'],stddev=654.)
+        amplitude=monte_params['amplitude'],mean=Gaussian_params['mean_1'],stddev=573.)
     model_extra = model_conti*model_extra_gauss
     # Width that requires outflow
     model_outflow_gauss = models.GaussianAbsorption1D(
-        amplitude=monte_params['amplitude_1'],mean=Gaussian_params['mean_1'],stddev=207.)
+        amplitude=monte_params['amplitude'],mean=Gaussian_params['mean_1'],stddev=231.)
     model_outflow = model_conti*model_outflow_gauss
 
     # Axes
@@ -477,6 +477,51 @@ def centroids(outfil=None):
     print('centroids: Wrote {:s}'.format(outfil))
 
 
+# Contour plot of intrinsic widths
+def contour(outfil=None):
+
+    if outfil is None:
+        outfil = 'fig_contour.pdf'
+    fontsize = 35
+
+    # Start the plot
+    pp = PdfPages(outfil)
+    fig = plt.figure(figsize=(10,6))
+    fig.clf()
+    gs = gridspec.GridSpec(1,1)
+
+    # Axes
+    ax = plt.subplot(gs[0,0])
+
+    # Read the data
+    hdulist = fits.open('../Analysis/contour.fits')
+    mass = hdulist[1].data
+    WCII = hdulist[2].data
+    lvls = hdulist[3].data
+    hdulist.close()
+
+    # Plot
+    ax.contourf(mass,WCII,lvls,levels=[1,2,3,4,5],colors=['b','g','r','m','y'])
+
+    # labels
+    ax.set_xlabel(r'$\log\,(M_{\rm halo}/{\rm M}_\odot)$')
+    ax.set_ylabel(r'$W_{\rm CII} ({\rm \AA})$')
+
+    # Mark QPQ halo mass location
+    ax.text(12.6,0.84,'+',size=fontsize)
+
+    # Font
+    for item in ([ax.title, ax.xaxis.label, ax.yaxis.label] +
+                     ax.get_xticklabels() + ax.get_yticklabels()):
+        item.set_fontsize(fontsize)
+
+    # Layout and save
+    plt.tight_layout(pad=0.2,h_pad=0.1,w_pad=0.0)
+    pp.savefig(bbox_inches='tight')
+    pp.close()
+    print('contour: Wrote {:s}'.format(outfil))
+
+
 #################
 def main():
     experiment()
@@ -485,6 +530,7 @@ def main():
     stack_z1()
     monte()
     centroids()
+    contour()
 
 
 # Command line execution
