@@ -177,7 +177,7 @@ def stacks_and_fits(outfil=None):
         # Axes
         ax = plt.subplot(gs[kk,0])
         ax.set_xlim(-2500,2500)
-        ax.set_ylim(0.82,1.03)
+        ax.set_ylim(0.81,1.03)
         ax.tick_params(labelsize=fontsize,length=5,width=1)
         # Labels
         ax.set_ylabel('Normalized Flux')
@@ -405,7 +405,7 @@ def monte(outfil=None):
     # Axes
     ax = plt.subplot(gs[0,0])
     ax.set_xlim(np.min(velo.value+500),np.max(velo.value-500))
-    ax.set_ylim(0.82,1.03)
+    ax.set_ylim(0.81,1.03)
     ax.tick_params(labelsize=fontsize,length=5,width=1)
     # Labels
     ax.set_ylabel('Normalized Flux')
