@@ -498,10 +498,11 @@ def contour(outfil=None):
     mass = hdulist[1].data
     WCII = hdulist[2].data
     lvls = hdulist[3].data
+    lvls = lvls + 0.01  ## truncation error
     hdulist.close()
 
     # Plot
-    ax.contourf(mass,WCII,lvls,levels=[1,2,3,4,5],colors=['b','g','r','m','y'])
+    ax.contourf(mass,WCII,lvls,levels=[1,2,3,4],colors=['b','g','r','m'])
 
     # labels
     ax.set_xlabel(r'$\log\,(M_{\rm halo}/{\rm M}_\odot)$')

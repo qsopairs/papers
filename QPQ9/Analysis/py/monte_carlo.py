@@ -117,10 +117,11 @@ def contour_data(all_dict):
     widths = np.zeros_like(stddev_oneabs_GRID)
     amps = np.zeros_like(stddev_oneabs_GRID)
     for ii in np.arange(widths.shape[0]):
+        print('ii=',ii,'of',widths.shape[0],'loops total')
         for jj in np.arange(widths.shape[1]):
             widths[ii,jj],amps[ii,jj] = model_width(stddev_oneabs_GRID[ii,jj],sigma1D_GRID[ii,jj],all_dict)
     WCII_grid = np.zeros_like(stddev_oneabs_grid)
-    width_levels = [145,174,203,232,290,319,348,377]
+    width_levels = [142,186,224,295,329,362]
     amp_bounds = [0.109,0.173] # 3-sigma bounds
     for ii,wcii in enumerate(WCII_grid):
         WCII_grid[ii] = stddev_oneabs_to_WCII(stddev_oneabs_grid[ii])
@@ -132,16 +133,13 @@ def contour_data(all_dict):
     for ii in np.arange(widths.shape[0]):
         for jj in np.arange(widths.shape[1]):
             if ((widths[ii,jj] >= width_levels[0]) & (widths[ii,jj] < width_levels[1])) | \
-            ((widths[ii,jj] >= width_levels[6]) & (widths[ii,jj] < width_levels[7])):
+            ((widths[ii,jj] >= width_levels[4]) & (widths[ii,jj] < width_levels[5])):
                 levels[ii,jj] = 1.
             if ((widths[ii,jj] >= width_levels[1]) & (widths[ii,jj] < width_levels[2])) | \
-            ((widths[ii,jj] >= width_levels[5]) & (widths[ii,jj] < width_levels[6])):
+            ((widths[ii,jj] >= width_levels[3]) & (widths[ii,jj] < width_levels[4])):
                 levels[ii,jj] = 2.
-            if ((widths[ii,jj] >= width_levels[2]) & (widths[ii,jj] < width_levels[3])) | \
-            ((widths[ii,jj] >= width_levels[4]) & (widths[ii,jj] < width_levels[5])):
+            if (widths[ii,jj] >= width_levels[2]) & (widths[ii,jj] < width_levels[3]):
                 levels[ii,jj] = 3.
-            if (widths[ii,jj] >= width_levels[3]) & (widths[ii,jj] < width_levels[4]):
-                levels[ii,jj] = 4.01  # get around truncation error
             if (amps[ii,jj] < amp_bounds[0]) | (amps[ii,jj] > amp_bounds[1]):
                 levels[ii,jj] = 0.
     hdu0 = fits.PrimaryHDU()
@@ -191,4 +189,4 @@ def main(contour_only=False):
 
 # Command line execution
 if __name__ == '__main__':
-    main(sys.argv[1:])
+    main(countour_only=sys.argv[1])
