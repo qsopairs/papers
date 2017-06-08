@@ -4,7 +4,7 @@
 \begin{document}
 
 \title{Quasars Probing Quasars IX. The Kinematics of the Circumgalactic Medium Surrounding 
-$z\sim2$ Quasars [v1.4]}
+$z\sim2$ Quasars}
 
 \author{Marie Wingyee Lau\altaffilmark{1,2}, J. Xavier Prochaska\altaffilmark{2}, 
 Joseph F. Hennawi\altaffilmark{3}
@@ -24,7 +24,7 @@ systemic redshift $\lesssim|100\,{\rm km\,s^{-1}}|$. We stack the background qua
 foreground quasar's systemic redshift to study the mean absorption in \ion{C}{2}, \ion{C}{4}, 
 and \ion{Mg}{2}. We find that the mean absorptions exhibit large velocity widths 
 $\sigma_v>300\,{\rm km\,s^{-1}}$. The observed widths are consistent with gas in gravitational 
-motion and Hubble flow, and galactic-scale outflows are not be required to explain the large 
+motion and Hubble flow, and galactic-scale outflows are not required to explain the large 
 widths. Furthermore, we find that the mean absorptions are asymmetric about the systemic redshift. 
 The mean absorption centroids exhibit small redshift relative to the 
 systemic $\delta v\approx+200\,{\rm km\,s^{-1}}$, with large intrinsic scatter in the centroid 
@@ -69,7 +69,9 @@ all previous measurements from galaxies and/or absorption systems at any epoch.
 With absorption-line spectroscopy of background sightlines, other researchers also have had 
 success in characterizing the flows of gas around galaxies. \cite{Rakic+12} found a net 
 large-scale inflow around star-forming galaxies, or a Kaiser effect for gas on 
-1\textendash2\,Mpc scales. \cite{Johnson+15} studied the CGM surrounding $z\sim1$ quasars, and 
+1\textendash2\,Mpc scales. \cite{Ho+17} found gas spiraling inward near the disk plane of 
+star-forming galaxies on $<100$\,kpc scales. \cite{Johnson+15} studied the CGM surrounding 
+$z\sim1$ quasars, and 
 found large peculiar motions in the gas exceeding the expected virial velocity, which they 
 interpret as quasar-driven outflows. However, the velocity spreads were not well quantified. Other 
 existing studies that found large velocity spreads are limited to single sightlines with most of 
@@ -187,12 +189,12 @@ scaling to a Hubble constant of $70\,{\rm km\,s^{-1}\,Mpc^{-1}}$.
 \section{The Experiment}
 \label{sec:experiment}
 
-\input{Tables/tab_sample.tex}
-%\input{tab_sample.tex}
+%\input{Tables/tab_sample.tex}
+\input{tab_sample.tex}
 
 \begin{figure}
-\includegraphics[width=3in]{Figures/fig_experiment.pdf}
-%\includegraphics[width=3in]{f01.pdf}
+%\includegraphics[width=3in]{Figures/fig_experiment.pdf}
+\includegraphics[width=3in]{f01.pdf}
 \caption{These panels summarize properties of the QPQ9 dataset. The QPQ survey selects 
 quasar pairs of $R_\perp < 300$\,kpc and $z_{\rm fg}>1.6$. Assuming that the foreground quasars 
 emit isotropically and at a distance equal to the impact parameter, the enhancement in the UV 
@@ -282,8 +284,8 @@ respectively. We then provide the summary for the sub-sample with $z_{\rm fg}$ m
 \label{sec:stacks}
 
 \begin{figure}
-\includegraphics[width=3.5in]{Figures/fig_stacks_and_fits.pdf}
-%\includegraphics[width=3.5in]{f02.pdf}
+%\includegraphics[width=3.5in]{Figures/fig_stacks_and_fits.pdf}
+\includegraphics[width=3.5in]{f02.pdf}
 \caption{Mean and median absorption centered at \ion{C}{2}\,1334, \ion{C}{4}\,1548, and 
 \ion{Mg}{2}\,2796 of the foreground quasars for all QPQ9 pairs. The composites are shown in thin, 
 black. Overplotted on the composites are Gaussian fits, normalized to pseudo-continua far away 
@@ -317,7 +319,7 @@ using both the mean and the median statistic.
 In Figure~\ref{fig:stacks_and_fits}, we present mean and median stacks of \ion{C}{2}\,1334, 
 \ion{C}{4}\,1548, and \ion{Mg}{2}\,2796 absorption of the QPQ9 sample. We focus on the 
 analysis results of the \ion{C}{2} mean stack. \ion{C}{4} and \ion{Mg}{2} are doublet transitions 
-and it is more challenging to interpret their kinematics.
+and it is more challenging to analyze their kinematics.
 %To assess the average absorption of these transitions,
 %we have combined the data with a novel technique.
 %We have fitted the combined dataset using a cubic b-spline
@@ -355,8 +357,8 @@ The above analyses are summarized in Table~\ref{tab:summary}. The
 Gaussian models normalized to pseudo-continuum are overplotted on the data stacks in 
 Figure~\ref{fig:stacks_and_fits}. 
 
-\input{Tables/tab_summary.tex}
-%\input{tab_summary.tex}
+%\input{Tables/tab_summary.tex}
+\input{tab_summary.tex}
 
 \subsection{Interpretation of the asymmetric absorption}
 \label{sec:significance_+ve}
@@ -364,7 +366,7 @@ Figure~\ref{fig:stacks_and_fits}.
 Given the small sample size, one must scrutinize the statistical significance of the measured 
 velocity offsets. To assess the statistical significance, we perform a boostrap analysis by 
 randomly resampling from the full sample 10000 times. We introduce a Gaussian absorption profile 
-to model each bootstrap realization, and quote the standard deviation in the the bootstrap 
+to model each bootstrap realization, and quote the standard deviation in the bootstrap 
 realizations to be the scatter in the centroids of the data. The scatters 
 $\approx100\,{\rm km\,s^{-1}}$ are comparable to the measured offsets, indicating large intrinsic 
 variation in quasar CGM environments (see also QPQ8). In Figure~\ref{fig:histogram_cen}, we show 
@@ -392,7 +394,7 @@ QPQ9 sample. The quasar pairs are selected from the igmspec database, with $z_{\
 by \cite{HewettWild10}. For quasars with $z_{\rm fg}<0.84$, as redshift determination is dominated 
 by [\ion{O}{3}] emission, a shift of $+48\,{\rm km\,s^{-1}}$ is applied to bring the emission-line 
 redshift to the systemic. For quasars with $0.84<z_{\rm fg}<1.6$, as redshift determination is 
-dominated by \ion{Mg}{2} emission, a shift of $57\,{\rm km\,s^{-1}}$ is applied. There are 231 
+dominated by \ion{Mg}{2} emission, a shift of $+57\,{\rm km\,s^{-1}}$ is applied. There are 231 
 pairs selected, with a median $z_{\rm fg}$ of 0.90 and a median $R_\perp$ of 208\,kpc. We present 
 the mean stack in Figure~\ref{fig:stack_z1}. The absorption is weaker than the $z\sim2$ main QPQ9 
 sample. Gaussian absorption models fitted to the stack recover a centroid of 
@@ -405,16 +407,16 @@ consider that the asymmetry signal in the $z\sim2$ sample is likely to be real. 
 section, we discuss two possible explanations for the asymmetry. 
 
 \begin{figure}
-\includegraphics[width=2.5in]{Figures/fig_histogram_cen.pdf}
-%\includegraphics[width=2.5in]{f03.pdf}
+%\includegraphics[width=2.5in]{Figures/fig_histogram_cen.pdf}
+\includegraphics[width=2.5in]{f03.pdf}
 \caption{Histogram of the absorption centroids of 10000 bootstrap realizations of the data sample 
 for the \ion{C}{2} mean stack. 98\% of the centroids are positively offset from $z_{\rm fg}$.}
 \label{fig:histogram_cen}
 \end{figure}
 
 \begin{figure}
-\includegraphics[width=2.5in]{Figures/fig_stack_z1.pdf}
-%\includegraphics[width=2.5in]{f04.pdf}
+%\includegraphics[width=2.5in]{Figures/fig_stack_z1.pdf}
+\includegraphics[width=2.5in]{f04.pdf}
 \caption{Mean stack at \ion{Mg}{2}\,2796, for a lower redshift sample of quasar pairs at 
 $z\sim0.9$. Line-style coding is the same as in Figure~\ref{fig:stacks_and_fits}. The centroid is 
 approximately at $0\,{\rm \,km\,s^{-1}}$, and the absorption is weaker than the main QPQ9 sample. 
@@ -427,8 +429,8 @@ approximately at $0\,{\rm \,km\,s^{-1}}$, and the absorption is weaker than the 
 \label{sec:significance_width}
 
 \begin{figure}
-\includegraphics[width=2.5in]{Figures/fig_monte.pdf}
-%\includegraphics[width=2.5in]{f05.pdf}
+%\includegraphics[width=2.5in]{Figures/fig_monte.pdf}
+\includegraphics[width=2.5in]{f05.pdf}
 \caption{The same \ion{C}{2} mean stack shown in the first panel of 
 Figure~\ref{fig:stacks_and_fits} is shown in thin, black. In thick, green, we overplot the 
 Gaussian absorption model of the Monte Carlo simulations generated from a purely clustering 
@@ -448,15 +450,15 @@ required to explain the observation.
 \end{figure}
 
 \begin{figure}
-\includegraphics[width=2.5in]{Figures/fig_contour.pdf}
-%\includegraphics[width=2.5in]{f06.pdf}
+%\includegraphics[width=2.5in]{Figures/fig_contour.pdf}
+\includegraphics[width=2.5in]{f06.pdf}
 \caption{
 Probability distributions of the parameters $W_{\rm CII}$ and $M_{\rm halo}$. The plot shows the 
 degeneracy between $W_{\rm CII}$ and $M_{\rm halo}$ in recovering the intrinsic width of the 
 absorption profile. We mark contours for points that produce an absorption 
-profile of width that is 1, 2, 3, and 4 times the modeling error away from the observed intrinsic 
+profile of width that is 1, 2, and 3 times the modeling error away from the observed intrinsic 
 width. The intrinsic velocity width corresponding to typical QPQ halo mass is marked with a plus 
-sign, and is well contained within the 2$\sigma$ contour.}
+sign, and is well contained within the 1$\sigma$ contour.}
 \label{fig:contour}
 \end{figure}
 
@@ -470,7 +472,7 @@ redshifts, we recover $\sigma_{\rm intrinsic}^{\rm [OIII]}=356\,{\rm km\,s^{-1}}
 \cite{Eftekharzadeh+15} measured the clustering of quasars in the range $2.2<z<2.8$ while 
 \cite{RodriguezTorres+17} measured the clustering of quasars in the range $1.8<z<2.2$. They 
 estimated that these quasars are hosted by dark matter halos with mass 
-$M_{\rm halo}=10^{12.5}\,M_\odot$ and $M_{\rm halo}10^{12.6}\,M_\odot$ respectively. If dark 
+$M_{\rm halo}=10^{12.5}\,M_\odot$ and $M_{\rm halo}=10^{12.6}\,M_\odot$ respectively. If dark 
 matter halos hosting QPQ9 quasars have a characteristic mass $10^{12.6}\,M_\odot$ and follow an 
 NFW profile \citep{NavarroFrenkWhite97} with concentration 
 parameter $c=4$, at $z\approx2$ the maximum circular velocity is $345\,{\rm km\,s^{-1}}$. 
@@ -539,17 +541,17 @@ In Figure~\ref{fig:contour}, We show the probability distributions of the degene
 $W_{\rm CII}$ and $M_{\rm halo}$ in recovering the intrinsic width of the absorption profile. We 
 require that the amplitude of the absorption is reproduced within 3 times its modeling error, and 
 mark contours for points in ($W_{\rm CII}$, $M_{\rm halo}$)-space that produce an absorption 
-profile of width within 1, 2, 3, and 4 times the modeling error of the observed intrinsic width. 
+profile of width within 1, 2, and 3 times the modeling error of the observed intrinsic width. 
 From the figure, a higher $W_{\rm CII}$ means the $M_{\rm halo}$ that will reproduce the observed 
 width is higher. If there are no extra dynamical processes, the intrinsic velocity width 
-corresponding to typical QPQ halo mass is well contained within the 2$\sigma$ contour. 
+corresponding to typical QPQ halo mass is well contained within the 1$\sigma$ contour. 
 
 \subsection{Line-of-sight absorption}
 \label{sec:los_stacks}
 
 \begin{figure}
-\includegraphics[width=3.4in]{Figures/fig_stacks_fg.pdf}
-%\includegraphics[width=3.4in]{f07.pdf}
+%\includegraphics[width=3.4in]{Figures/fig_stacks_fg.pdf}
+\includegraphics[width=3.4in]{f07.pdf}
 \caption{Mean stacks of the foreground quasar spectra at \ion{C}{2}\,1334, \ion{C}{4}\,1548, and 
 \ion{Mg}{2}\,2796 for the QPQ9 sample. For \ion{C}{2} and \ion{Mg}{2}, the mean absorption is 
 weaker than that in the background stacks, and there is no evidence for an excess at $z_{\rm fg}$. 
@@ -579,8 +581,8 @@ associated absorption line systems \citep[e.g., ][]{Wild+08}.
 
 \begin{figure*}[!th]
 \begin{minipage}[!bp]{0.28\textwidth}
-\includegraphics[width=\textwidth]{Figures/fig_monopolar.pdf}
-%\includegrpahics[width=\textwidth]{f08.pdf}
+%\includegraphics[width=\textwidth]{Figures/fig_monopolar.pdf}
+\includegraphics[width=\textwidth]{f08.pdf}
 \caption{A cartoon showing a unipolar quasar. The gas observed in low- to intermediate-ion 
 absorption preferentially lies behind the quasar, and is shadowed from the ionizing radiation. 
 }
@@ -588,8 +590,8 @@ absorption preferentially lies behind the quasar, and is shadowed from the ioniz
 \end{minipage}%
 \hspace{0.3in}
 \begin{minipage}[!bp]{0.67\textwidth}
-\includegraphics[width=\textwidth]{Figures/fig_lighttravel.pdf}
-%\includegraphics[width=\textwidth]{f09.pdf}
+%\includegraphics[width=\textwidth]{Figures/fig_lighttravel.pdf}
+\includegraphics[width=\textwidth]{f09.pdf}
 \caption{A cartoon showing the finite lifetime of quasar episodes as an explanation to the 
 asymmetric absorption. The setup on the left shows that the foreground quasar has not been shining 
 long enough for its ionizing radiation to reach the gas behind it, when the light from the 
@@ -611,7 +613,7 @@ Figure~\ref{fig:monopolar}, we show a cartoon of a quasar that is blocked in the
 pointing away from the observer. The gas observed in absorption preferentially lies behind the 
 quasar. The asymmetric absorption arises from a transverse proxmity effect. 
 \cite{Roos+15} and \cite{GaborBournaud14} performed simulations of a high-redshift disk galaxy 
-inlcuding thermal AGN feedback and calculated radiative transfer in post-processing. They found 
+including thermal AGN feedback and calculated radiative transfer in post-processing. They found 
 the ionization radiation is typically asymmetric, due to either a dense clump that lies on one 
 edge of the black hole or the black hole's location being slightly above the disk. 
 
@@ -622,7 +624,7 @@ than the gas in front of it. The light from the background quasar may arrive at 
 the foreground quasar before the ionizing radiation from the foreground quasar arrives. In 
 QPQ7 and QPQ8, we reported that the enhancement in metal ion absorption relative to IGM average 
 extends to at least $\approx200$\,kpc. This distance corresponds to a light travelling time of 
-$\sim10^6$\,Myr, which lies within existing constraints of quasar lifetime from observations 
+$\sim10^6$\,yr, which lies within existing constraints of quasar lifetime from observations 
 \citep[e.g.][]{Martini04} and simulations \citep[e.g.][]{Hopkins+05}. 
 
 As a test of reasonableness, we calculate that, at $R_\perp\approx50\textendash150$\,kpc, radial 
@@ -651,7 +653,275 @@ the Keck, Gemini, Large Binocular Telescope, Very Large Telescope, Las Campanas,
 Observatories. MWL thanks T.-K. Chan for a discussion on CGM simulations and Chi Po Choi for a 
 discussion on statistics. 
 
-\bibliographystyle{/Users/lwymarie/Documents/Bibli/apj}
-\bibliography{/Users/lwymarie/Documents/Bibli/allrefs}
+%\bibliographystyle{/Users/lwymarie/Documents/Bibli/apj}
+%\bibliography{/Users/lwymarie/Documents/Bibli/allrefs}
+
+\begin{thebibliography}{45}
+\expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+
+\bibitem[{{Baldwin}(1977)}]{Baldwin77}
+{Baldwin}, J.~A. 1977, \apj, 214, 679
+
+\bibitem[{{Bergeron} \& {Boisse}(1991)}]{BergeronBoisse91}
+{Bergeron}, J., \& {Boisse}, P. 1991, Advances in Space Research, 11, 241
+
+\bibitem[{{Boroson}(2005)}]{Boroson05}
+{Boroson}, T. 2005, \aj, 130, 381
+
+\bibitem[{{Cantalupo} {et~al.}(2014){Cantalupo}, {Arrigoni-Battaia},
+  {Prochaska}, {Hennawi}, \& {Madau}}]{Cantalupo+14}
+{Cantalupo}, S., {Arrigoni-Battaia}, F., {Prochaska}, J.~X., {Hennawi}, J.~F.,
+  \& {Madau}, P. 2014, \nat, 506, 63
+
+\bibitem[{{Churchill} {et~al.}(2012){Churchill}, {Kacprzak}, {Steidel},
+  {Spitler}, {Holtzman}, {Nielsen}, \& {Trujillo-Gomez}}]{Churchill+12}
+{Churchill}, C.~W., {Kacprzak}, G.~G., {Steidel}, C.~C., {Spitler}, L.~R.,
+  {Holtzman}, J., {Nielsen}, N.~M., \& {Trujillo-Gomez}, S. 2012, \apj, 760, 68
+
+\bibitem[{{Eftekharzadeh} {et~al.}(2015){Eftekharzadeh}, {Myers}, {White},
+  {Weinberg}, {Schneider}, {Shen}, {Font-Ribera}, {Ross}, {Paris}, \&
+  {Streblyanska}}]{Eftekharzadeh+15}
+{Eftekharzadeh}, S., {Myers}, A.~D., {White}, M., {Weinberg}, D.~H.,
+  {Schneider}, D.~P., {Shen}, Y., {Font-Ribera}, A., {Ross}, N.~P., {Paris},
+  I., \& {Streblyanska}, A. 2015, \mnras, 453, 2779
+
+\bibitem[{{Fumagalli} {et~al.}(2011){Fumagalli}, {Prochaska}, {Kasen}, {Dekel},
+  {Ceverino}, \& {Primack}}]{Fumagalli+11}
+{Fumagalli}, M., {Prochaska}, J.~X., {Kasen}, D., {Dekel}, A., {Ceverino}, D.,
+  \& {Primack}, J.~R. 2011, \mnras, 418, 1796
+
+\bibitem[{{Gabor} \& {Bournaud}(2014)}]{GaborBournaud14}
+{Gabor}, J.~M., \& {Bournaud}, F. 2014, \mnras, 441, 1615
+
+\bibitem[{{Gauthier}(2013)}]{Gauthier13}
+{Gauthier}, J.-R. 2013, \mnras, 432, 1444
+
+\bibitem[{{Hennawi} {et~al.}(2006){Hennawi}, {Prochaska}, {Burles}, {Strauss},
+  {Richards}, {Schlegel}, {Fan}, {Schneider}, {Zakamska}, {Oguri}, {Gunn},
+  {Lupton}, \& {Brinkmann}}]{QPQ1}
+{Hennawi}, J.~F., {Prochaska}, J.~X., {Burles}, S., {Strauss}, M.~A.,
+  {Richards}, G.~T., {Schlegel}, D.~J., {Fan}, X., {Schneider}, D.~P.,
+  {Zakamska}, N.~L., {Oguri}, M., {Gunn}, J.~E., {Lupton}, R.~H., \&
+  {Brinkmann}, J. 2006, \apj, 651, 61
+
+\bibitem[{{Hennawi} {et~al.}(2015){Hennawi}, {Prochaska}, {Cantalupo}, \&
+  {Arrigoni-Battaia}}]{Hennawi+15}
+{Hennawi}, J.~F., {Prochaska}, J.~X., {Cantalupo}, S., \& {Arrigoni-Battaia},
+  F. 2015, Science, 348, 779
+
+\bibitem[{{Hewett} \& {Wild}(2010)}]{HewettWild10}
+{Hewett}, P.~C., \& {Wild}, V. 2010, \mnras, 405, 2302
+
+\bibitem[{{Ho} {et~al.}(2017){Ho}, {Martin}, {Kacprzak}, \&
+  {Churchill}}]{Ho+17}
+{Ho}, S.~H., {Martin}, C.~L., {Kacprzak}, G.~G., \& {Churchill}, C.~W. 2017,
+  \apj, 835, 267
+
+\bibitem[{{Hopkins} {et~al.}(2005){Hopkins}, {Hernquist}, {Martini}, {Cox},
+  {Robertson}, {Di Matteo}, \& {Springel}}]{Hopkins+05}
+{Hopkins}, P.~F., {Hernquist}, L., {Martini}, P., {Cox}, T.~J., {Robertson},
+  B., {Di Matteo}, T., \& {Springel}, V. 2005, \apjl, 625, L71
+
+\bibitem[{{Johnson} {et~al.}(2015){Johnson}, {Chen}, \&
+  {Mulchaey}}]{Johnson+15}
+{Johnson}, S.~D., {Chen}, H.-W., \& {Mulchaey}, J.~S. 2015, \mnras, 452, 2553
+
+\bibitem[{{Kere\v{s}} {et~al.}(2009){Kere\v{s}}, {Katz}, {Fardal}, {Dav{\'e}},
+  \& {Weinberg}}]{Keres+09}
+{Kere\v{s}}, D., {Katz}, N., {Fardal}, M., {Dav{\'e}}, R., \& {Weinberg}, D.~H.
+  2009, \mnras, 395, 160
+
+\bibitem[{{Kirkman} \& {Tytler}(2008)}]{KirkmanTytler08}
+{Kirkman}, D., \& {Tytler}, D. 2008, \mnras, 391, 1457
+
+\bibitem[{{Lau} {et~al.}(2016){Lau}, {Prochaska}, \& {Hennawi}}]{QPQ8}
+{Lau}, M.~W., {Prochaska}, J.~X., \& {Hennawi}, J.~F. 2016, \apjs, 226, 25
+
+\bibitem[{{Martin}(2005)}]{Martin05}
+{Martin}, C.~L. 2005, \apj, 621, 227
+
+\bibitem[{{Martini}(2004)}]{Martini04}
+{Martini}, P. 2004, Coevolution of Black Holes and Galaxies, 169
+
+\bibitem[{{Muzahid} {et~al.}(2015){Muzahid}, {Kacprzak}, {Churchill},
+  {Charlton}, {Nielsen}, {Mathes}, \& {Trujillo-Gomez}}]{Muzahid+15}
+{Muzahid}, S., {Kacprzak}, G.~G., {Churchill}, C.~W., {Charlton}, J.~C.,
+  {Nielsen}, N.~M., {Mathes}, N.~L., \& {Trujillo-Gomez}, S. 2015, \apj, 811,
+  132
+
+\bibitem[{{Navarro} {et~al.}(1997){Navarro}, {Frenk}, \&
+  {White}}]{NavarroFrenkWhite97}
+{Navarro}, J.~F., {Frenk}, C.~S., \& {White}, S.~D.~M. 1997, \apj, 490, 493
+
+\bibitem[{{P{\^a}ris} {et~al.}(2017){P{\^a}ris}, {Petitjean}, {Ross}, {Myers},
+  {Aubourg}, {Streblyanska}, {Bailey}, {Armengaud}, {Palanque-Delabrouille},
+  {Y{\`e}che}, {Hamann}, {Strauss}, {Albareti}, {Bovy}, {Bizyaev}, {Niel
+  Brandt}, {Brusa}, {Buchner}, {Comparat}, {Croft}, {Dwelly}, {Fan},
+  {Font-Ribera}, {Ge}, {Georgakakis}, {Hall}, {Jiang}, {Kinemuchi},
+  {Malanushenko}, {Malanushenko}, {McMahon}, {Menzel}, {Merloni}, {Nandra},
+  {Noterdaeme}, {Oravetz}, {Pan}, {Pieri}, {Prada}, {Salvato}, {Schlegel},
+  {Schneider}, {Simmons}, {Viel}, {Weinberg}, \& {Zhu}}]{Paris+17}
+{P{\^a}ris}, I., {Petitjean}, P., {Ross}, N.~P., {Myers}, A.~D., {Aubourg},
+  {\'E}., {Streblyanska}, A., {Bailey}, S., {Armengaud}, {\'E}.,
+  {Palanque-Delabrouille}, N., {Y{\`e}che}, C., {Hamann}, F., {Strauss}, M.~A.,
+  {Albareti}, F.~D., {Bovy}, J., {Bizyaev}, D., {Niel Brandt}, W., {Brusa}, M.,
+  {Buchner}, J., {Comparat}, J., {Croft}, R.~A.~C., {Dwelly}, T., {Fan}, X.,
+  {Font-Ribera}, A., {Ge}, J., {Georgakakis}, A., {Hall}, P.~B., {Jiang}, L.,
+  {Kinemuchi}, K., {Malanushenko}, E., {Malanushenko}, V., {McMahon}, R.~G.,
+  {Menzel}, M.-L., {Merloni}, A., {Nandra}, K., {Noterdaeme}, P., {Oravetz},
+  D., {Pan}, K., {Pieri}, M.~M., {Prada}, F., {Salvato}, M., {Schlegel}, D.~J.,
+  {Schneider}, D.~P., {Simmons}, A., {Viel}, M., {Weinberg}, D.~H., \& {Zhu},
+  L. 2017, \aap, 597, A79
+
+\bibitem[{{Prochaska} {et~al.}(2013{\natexlab{a}}){Prochaska}, {Hennawi},
+  {Lee}, {Cantalupo}, {Bovy}, {Djorgovski}, {Ellison}, {Lau}, {Martin},
+  {Myers}, {Rubin}, \& {Simcoe}}]{QPQ6}
+{Prochaska}, J.~X., {Hennawi}, J.~F., {Lee}, K.-G., {Cantalupo}, S., {Bovy},
+  J., {Djorgovski}, S.~G., {Ellison}, S.~L., {Lau}, M.~W., {Martin}, C.~L.,
+  {Myers}, A., {Rubin}, K.~H.~R., \& {Simcoe}, R.~A. 2013{\natexlab{a}}, \apj,
+  776, 136
+
+\bibitem[{{Prochaska} {et~al.}(2013{\natexlab{b}}){Prochaska}, {Hennawi}, \&
+  {Simcoe}}]{QPQ5}
+{Prochaska}, J.~X., {Hennawi}, J.~F., \& {Simcoe}, R.~A. 2013{\natexlab{b}},
+  \apjl, 762, L19
+
+\bibitem[{{Prochaska} {et~al.}(2014){Prochaska}, {Lau}, \& {Hennawi}}]{QPQ7}
+{Prochaska}, J.~X., {Lau}, M.~W., \& {Hennawi}, J.~F. 2014, \apj, 796, 140
+
+\bibitem[{{Prochaska} {et~al.}(2011){Prochaska}, {Weiner}, {Chen}, {Mulchaey},
+  \& {Cooksey}}]{Prochaska+11}
+{Prochaska}, J.~X., {Weiner}, B., {Chen}, H.-W., {Mulchaey}, J., \& {Cooksey},
+  K. 2011, \apj, 740, 91
+
+\bibitem[{{Rakic} {et~al.}(2012){Rakic}, {Schaye}, {Steidel}, \&
+  {Rudie}}]{Rakic+12}
+{Rakic}, O., {Schaye}, J., {Steidel}, C.~C., \& {Rudie}, G.~C. 2012, \apj, 751,
+  94
+
+\bibitem[{{Richards} {et~al.}(2002){Richards}, {Vanden Berk}, {Reichard},
+  {Hall}, {Schneider}, {SubbaRao}, {Thakar}, \& {York}}]{Richards+02}
+{Richards}, G.~T., {Vanden Berk}, D.~E., {Reichard}, T.~A., {Hall}, P.~B.,
+  {Schneider}, D.~P., {SubbaRao}, M., {Thakar}, A.~R., \& {York}, D.~G. 2002,
+  \aj, 124, 1
+
+\bibitem[{{Rodr{\'{\i}}guez-Torres} {et~al.}(2017){Rodr{\'{\i}}guez-Torres},
+  {Comparat}, {Prada}, {Yepes}, {Burtin}, {Zarrouk}, {Laurent}, {Hahn},
+  {Behroozi}, {Klypin}, {Ross}, {Tojeiro}, \& {Zhao}}]{RodriguezTorres+17}
+{Rodr{\'{\i}}guez-Torres}, S.~A., {Comparat}, J., {Prada}, F., {Yepes}, G.,
+  {Burtin}, E., {Zarrouk}, P., {Laurent}, P., {Hahn}, C., {Behroozi}, P.,
+  {Klypin}, A., {Ross}, A., {Tojeiro}, R., \& {Zhao}, G.-B. 2017, \mnras, 468,
+  728
+
+\bibitem[{{Roos} {et~al.}(2015){Roos}, {Juneau}, {Bournaud}, \&
+  {Gabor}}]{Roos+15}
+{Roos}, O., {Juneau}, S., {Bournaud}, F., \& {Gabor}, J.~M. 2015, \apj, 800, 19
+
+\bibitem[{{Rubin} {et~al.}(2014){Rubin}, {Prochaska}, {Koo}, {Phillips},
+  {Martin}, \& {Winstrom}}]{Rubin+14}
+{Rubin}, K.~H.~R., {Prochaska}, J.~X., {Koo}, D.~C., {Phillips}, A.~C.,
+  {Martin}, C.~L., \& {Winstrom}, L.~O. 2014, \apj, 794, 156
+
+\bibitem[{{Rupke} {et~al.}(2005){Rupke}, {Veilleux}, \& {Sanders}}]{Rupke+05}
+{Rupke}, D.~S., {Veilleux}, S., \& {Sanders}, D.~B. 2005, \apjs, 160, 115
+
+\bibitem[{{Schneider} {et~al.}(2010){Schneider}, {Richards}, {Hall}, {Strauss},
+  {Anderson}, {Boroson}, {Ross}, {Shen}, {Brandt}, {Fan}, {Inada}, {Jester},
+  {Knapp}, {Krawczyk}, {Thakar}, {Vanden Berk}, {Voges}, {Yanny}, {York},
+  {Bahcall}, {Bizyaev}, {Blanton}, {Brewington}, {Brinkmann}, {Eisenstein},
+  {Frieman}, {Fukugita}, {Gray}, {Gunn}, {Hibon}, {Ivezi{\'c}}, {Kent}, {Kron},
+  {Lee}, {Lupton}, {Malanushenko}, {Malanushenko}, {Oravetz}, {Pan}, {Pier},
+  {Price}, {Saxe}, {Schlegel}, {Simmons}, {Snedden}, {SubbaRao}, {Szalay}, \&
+  {Weinberg}}]{Schneider+10}
+{Schneider}, D.~P., {Richards}, G.~T., {Hall}, P.~B., {Strauss}, M.~A.,
+  {Anderson}, S.~F., {Boroson}, T.~A., {Ross}, N.~P., {Shen}, Y., {Brandt},
+  W.~N., {Fan}, X., {Inada}, N., {Jester}, S., {Knapp}, G.~R., {Krawczyk},
+  C.~M., {Thakar}, A.~R., {Vanden Berk}, D.~E., {Voges}, W., {Yanny}, B.,
+  {York}, D.~G., {Bahcall}, N.~A., {Bizyaev}, D., {Blanton}, M.~R.,
+  {Brewington}, H., {Brinkmann}, J., {Eisenstein}, D., {Frieman}, J.~A.,
+  {Fukugita}, M., {Gray}, J., {Gunn}, J.~E., {Hibon}, P., {Ivezi{\'c}}, {\v
+  Z}., {Kent}, S.~M., {Kron}, R.~G., {Lee}, M.~G., {Lupton}, R.~H.,
+  {Malanushenko}, E., {Malanushenko}, V., {Oravetz}, D., {Pan}, K., {Pier},
+  J.~R., {Price}, III, T.~N., {Saxe}, D.~H., {Schlegel}, D.~J., {Simmons}, A.,
+  {Snedden}, S.~A., {SubbaRao}, M.~U., {Szalay}, A.~S., \& {Weinberg}, D.~H.
+  2010, \aj, 139, 2360
+
+\bibitem[{{Shen} {et~al.}(2016{\natexlab{a}}){Shen}, {Brandt}, {Richards},
+  {Denney}, {Greene}, {Grier}, {Ho}, {Peterson}, {Petitjean}, {Schneider},
+  {Tao}, \& {Trump}}]{Shen+16}
+{Shen}, Y., {Brandt}, W.~N., {Richards}, G.~T., {Denney}, K.~D., {Greene},
+  J.~E., {Grier}, C.~J., {Ho}, L.~C., {Peterson}, B.~M., {Petitjean}, P.,
+  {Schneider}, D.~P., {Tao}, C., \& {Trump}, J.~R. 2016{\natexlab{a}}, \apj,
+  831, 7
+
+\bibitem[{{Shen} {et~al.}(2016{\natexlab{b}}){Shen}, {Horne}, {Grier},
+  {Peterson}, {Denney}, {Trump}, {Sun}, {Brandt}, {Kochanek}, {Dawson},
+  {Green}, {Greene}, {Hall}, {Ho}, {Jiang}, {Kinemuchi}, {McGreer},
+  {Petitjean}, {Richards}, {Schneider}, {Strauss}, {Tao}, {Wood-Vasey}, {Zu},
+  {Pan}, {Bizyaev}, {Ge}, {Oravetz}, \& {Simmons}}]{Shen16}
+{Shen}, Y., {Horne}, K., {Grier}, C.~J., {Peterson}, B.~M., {Denney}, K.~D.,
+  {Trump}, J.~R., {Sun}, M., {Brandt}, W.~N., {Kochanek}, C.~S., {Dawson},
+  K.~S., {Green}, P.~J., {Greene}, J.~E., {Hall}, P.~B., {Ho}, L.~C., {Jiang},
+  L., {Kinemuchi}, K., {McGreer}, I.~D., {Petitjean}, P., {Richards}, G.~T.,
+  {Schneider}, D.~P., {Strauss}, M.~A., {Tao}, C., {Wood-Vasey}, W.~M., {Zu},
+  Y., {Pan}, K., {Bizyaev}, D., {Ge}, J., {Oravetz}, D., \& {Simmons}, A.
+  2016{\natexlab{b}}, \apj, 818, 30
+
+\bibitem[{{Shen} {et~al.}(2011){Shen}, {Richards}, {Strauss}, {Hall},
+  {Schneider}, {Snedden}, {Bizyaev}, {Brewington}, {Malanushenko},
+  {Malanushenko}, {Oravetz}, {Pan}, \& {Simmons}}]{Shen+11}
+{Shen}, Y., {Richards}, G.~T., {Strauss}, M.~A., {Hall}, P.~B., {Schneider},
+  D.~P., {Snedden}, S., {Bizyaev}, D., {Brewington}, H., {Malanushenko}, V.,
+  {Malanushenko}, E., {Oravetz}, D., {Pan}, K., \& {Simmons}, A. 2011, \apjs,
+  194, 45
+
+\bibitem[{{Somerville} \& {Dav{\'e}}(2015)}]{SomervilleDave15}
+{Somerville}, R.~S., \& {Dav{\'e}}, R. 2015, \araa, 53, 51
+
+\bibitem[{{Steidel} {et~al.}(2010){Steidel}, {Erb}, {Shapley}, {Pettini},
+  {Reddy}, {Bogosavljevi{\'c}}, {Rudie}, \& {Rakic}}]{Steidel+10}
+{Steidel}, C.~C., {Erb}, D.~K., {Shapley}, A.~E., {Pettini}, M., {Reddy}, N.,
+  {Bogosavljevi{\'c}}, M., {Rudie}, G.~C., \& {Rakic}, O. 2010, \apj, 717, 289
+
+\bibitem[{{Tormen} {et~al.}(1997){Tormen}, {Bouchet}, \&
+  {White}}]{TormenBouchetWhite97}
+{Tormen}, G., {Bouchet}, F.~R., \& {White}, S.~D.~M. 1997, \mnras, 286, 865
+
+\bibitem[{{Tripp} {et~al.}(2011){Tripp}, {Meiring}, {Prochaska}, {Willmer},
+  {Howk}, {Werk}, {Jenkins}, {Bowen}, {Lehner}, {Sembach}, {Thom}, \&
+  {Tumlinson}}]{Tripp+11}
+{Tripp}, T.~M., {Meiring}, J.~D., {Prochaska}, J.~X., {Willmer}, C.~N.~A.,
+  {Howk}, J.~C., {Werk}, J.~K., {Jenkins}, E.~B., {Bowen}, D.~V., {Lehner}, N.,
+  {Sembach}, K.~R., {Thom}, C., \& {Tumlinson}, J. 2011, Science, 334, 952
+
+\bibitem[{{Tumlinson} {et~al.}(2013){Tumlinson}, {Thom}, {Werk}, {Prochaska},
+  {Tripp}, {Katz}, {Dav{\'e}}, {Oppenheimer}, {Meiring}, {Ford}, {O'Meara},
+  {Peeples}, {Sembach}, \& {Weinberg}}]{Tumlinson+13}
+{Tumlinson}, J., {Thom}, C., {Werk}, J.~K., {Prochaska}, J.~X., {Tripp}, T.~M.,
+  {Katz}, N., {Dav{\'e}}, R., {Oppenheimer}, B.~D., {Meiring}, J.~D., {Ford},
+  A.~B., {O'Meara}, J.~M., {Peeples}, M.~S., {Sembach}, K.~R., \& {Weinberg},
+  D.~H. 2013, \apj, 777, 59
+
+\bibitem[{{Weiner} {et~al.}(2009){Weiner}, {Coil}, {Prochaska}, {Newman},
+  {Cooper}, {Bundy}, {Conselice}, {Dutton}, {Faber}, {Koo}, {Lotz}, {Rieke}, \&
+  {Rubin}}]{Weiner+09}
+{Weiner}, B.~J., {Coil}, A.~L., {Prochaska}, J.~X., {Newman}, J.~A., {Cooper},
+  M.~C., {Bundy}, K., {Conselice}, C.~J., {Dutton}, A.~A., {Faber}, S.~M.,
+  {Koo}, D.~C., {Lotz}, J.~M., {Rieke}, G.~H., \& {Rubin}, K.~H.~R. 2009, \apj,
+  692, 187
+
+\bibitem[{{Wild} {et~al.}(2008){Wild}, {Kauffmann}, {White}, {York}, {Lehnert},
+  {Heckman}, {Hall}, {Khare}, {Lundgren}, {Schneider}, \& {vanden
+  Berk}}]{Wild+08}
+{Wild}, V., {Kauffmann}, G., {White}, S., {York}, D., {Lehnert}, M., {Heckman},
+  T., {Hall}, P.~B., {Khare}, P., {Lundgren}, B., {Schneider}, D.~P., \&
+  {vanden Berk}, D. 2008, \mnras, 388, 227
+
+\bibitem[{{Zahedy} {et~al.}(2016){Zahedy}, {Chen}, {Rauch}, {Wilson}, \&
+  {Zabludoff}}]{Zahedy+16}
+{Zahedy}, F.~S., {Chen}, H.-W., {Rauch}, M., {Wilson}, M.~L., \& {Zabludoff},
+  A. 2016, \mnras, 458, 2423
+
+\end{thebibliography}
 
 \end{document}

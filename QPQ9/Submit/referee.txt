@@ -1,0 +1,81 @@
+Brief summary of the paper:
+
+The manuscript, "Quasars Probing Quasars IX. The Kinematics of the Circumgalactic Medium Surrounding z~2 Quasars" by Lau, M. W. et al presents mean stacks of absorption profiles observed in background quasar sightlines to foreground quasars in order investigate the absorbing gas kinematics around quasars at z~2. The primary results of the paper are that (1) while the dispersion observed in the stack is large, galactic superwinds may not be required to explain the width and (2) the absorption is kinematically offset from the quasar systemic redshifts by ~+200 km/s. The authors interpret this offset as due to effects from partial obscuration of the quasar or finite quasar lifetimes and light-travel time under the assumption that gas is, on average, flowing away from the quasar host.
+
+Summary of referee report:
+
+After carefully reviewing the manuscript, I found multiple significant issues with the study, and consequently it does not currently meet the standards for publication. These issues must be addressed before the paper can be accepted, and I request the opportunity to review the paper again after the authors have made revisions with the hope that it can be accepted for publication. The main issues are summarized below and more detailed discussion follows.
+
+1) The conclusions of the paper rely heavily on accurate quasar redshift measurements because redshift errors will influence both the centroid and dispersion measured in the stacked background absorption spectra. Indeed, the measured centroids and velocity dispersions in the stacked absorption spectra are comparable with expected quasar redshift biases and scatter. In an attempt to address this issue, the authors adopt redshift bias measurements from the literature, but the bias measurements used are not appropriate for the redshift measurement techniques that are described in the previous QPQ papers (details to follow). Significant additional work is required to demonstrate that the offset in the observed absorption centroid is real and not due to redshift measurement errors.
+
+2) The authors have not demonstrated that the measured 1-sigma dispersion measured in a mean stack is is a representative measure of the velocity spread observed between absorbing gas and the quasar redshift. This may not be the case if the absorbing components exhibit a non-Gaussian distribution about the quasar systemic redshift as has been seen in other studies (e.g. Lau et al. 2016 and Johnson et al. 2015). In particular, broad wings on the distribution will be suppressed in a stack even if they contain a significant amount of the power because the absorbing components can be narrow. This is a weakness of analysis based on stacks that could easily be remedied because previous QPQ papers published absorber redshifts and even component-by-component velocity structure when available. A figure showing this distribution is needed in this publication.
+
+3) Insufficient detail on the doublet fitting is provided, and uncertainty due to degeneracy between doublet ratio and velocity centroid are not addressed.
+
+4) The conclusions of the paper are not self-consistent. In particular, the authors find that the velocity dispersion in the mean stack does not require addition motion (beyond gravitational and cosmological), but the explanation for the centroid offset requires that the gas is, on average, flowing away from the quasar host galaxy. This discrepancy needs to be addressed.
+
+5) Several papers in the literature that are cited are mis-represented.
+
+Additional details on each of the points as well as more minor issues are given below, After this, my referee report concludes with a discussion of more minor points.
+
+Major point 1: quasar systemic redshift measurements
+
+The authors compile a foreground quasar sample by combining quasars with redshifts measured in their own spectra with quasars from the SDSS with redshift measurements from the literature. Very little information is provided on how these redshifts are measured and the reader is referred to previous QPQ papers. Given the importance of accurate redshifts for this study, this lack of discussion is inappropriate. The authors provide significant detail in how the redshifts are measured and demonstrate the accuracy of their redshifs.
+
+After returning to the QPQ papers where redshift measurements are discussed, it appears that the QPQ redshifts are based on *centroids* from MgII, [O III], Halpha emission lines. The authors then apply mean bias corrections for these redshifts based on the line-dependent bias measured by Shen et al. 2016a. However, Shen et al. 2016a measured the bias for redshifts based on line *peak*, not centroid. This may seem subtle but is significant because of the strong blue-shifted wings often observed in quasar emission-lines. For example, Shen et al. 2016b fit z~2 quasar emission lines with a core component and broad wing component. The broad wings have a mean velocity offset of -600 km/s from the systemic redshift and contain 40% of the [O III] flux on average. Consequently, the [O III] centroid will be biased from the systemic redshift measured from the peak by ~-200 km/s which is sufficient to explain the redshift observed in the stacked absorption profile. Note that this is far larger than the 50 km/s correction that the authors applied which was based on peaks not centroids. Redshifts from MgII and Balmer emission line centroids are likely even more biased because these lines are broader and more asymmetric. Consequently, the authors must re-measure the quasar systemic redshifts using techniques that are self-consistent with the redshift corrections that are applied.
+
+In addition, the authors need to make and display stacked absorption profiles in each ion for quasars with different redshift measurement techniques. Some effort along these lines is shown in Table 2, but it is not nearly sufficient to demonstrate that the measured absorption centroid is not due to redshift measurement issues.
+
+These steps are a minimum requirement to convincingly demonstrate that the observed redshift in the mean absorption profile relative to the quasar systemic is real.
+
+Major point 2:
+
+In Lau et al. 2016, the distribution of absorbing components about the quasar systemic redshift is non-Guassian and exhibits broad wings that contain significant portion of the optical depth at large velocities. In a mean stack, these wings can be suppressed so that the dispersion of the stacked absorption profile does not represent the actual velocity spread. For example, if absorbers are distributed in velocity around quasar hosts with a core component within |v|<200 km/s and a wing component within |v|=200-1000 km/s, then the wing component will be suppressed by a factor of ~8 relative to the core because narrow absorbers are being spread over a larger velocity range. The authors need to demonstrate that this is not an issue before adopting the 1-sigma dispersion in the stack as a measure of the kinematic spread of the absorbing gas. This is a general weakness of stacked measurements and raises the question of why the study does not show a histogram of the velocity difference sbetween the quasar systemic and observed absorption centroids in individual cases where the S/N is sufficient. Previous QPQ papers reported absorber redshifts (Prochaska et al. 2014) and individual component measurements (Lau et al. 2016). It should therefore be straight-forward to measure the actual velocity distribution of absorption systems around quasars directly rather than relying on stacked measurements. The authors should include such a histogram in the revised paper.
+
+Major point 3:
+
+The authors do not provide enough detail regarding the fit to the mean stack. In particular, for MgII and CIV two gaussian with fixed doublet separation and width are fit to the stack. However, no details on the doublet ratio range allowed are given. This is particularly important for CIV where the doublets are not well resolved in the stack. Consequently, the velocity centroid and doublet ratio will be degenerate and uncertainty due to this degeneracy must be addressed.
+
+Major point 4:
+The primary results of the paper are that (1) while the dispersion observed in the stack is large, galactic superwinds may not be required to explain the width and (2) the absorption is kinematically offset from the quasar systemic redshifts by ~+200 km/s. The authors interpret this offset as due to effects from partial obscuration of the quasar or finite quasar lifetimes and light-travel time under the assumption that gas is, on average, flowing away from the quasar host. In QPQ VII the CII covering fractions are observed to decrease rapidly from ~80% at projected distances of <200 kpc to 20% at 200-500 kpc and <10% at 500-1000 kpc. This rapid fall-off with projected distance suggests that the majority of the absorption arises in the quasar host halo. Consequently, motions due to Hubble flow are not likely to be significant. Conclusion (2) therefore requires significant outflows in the halo, inconsistent with conclusion (1). This discrepancy needs to be addressed in the discussion.
+
+Major point 5:
+
+Several papers in the literature that are cited are mis-represented in the introduction. In particular:
+
+Johnson et al. 2015 is cited as concluding that the large velocity of absorbing gas observed around quasars is due to outflows. This is not the case. The paper considers several possible explanations including large-scale structure, galaxy interactions, and outflows. The conclusion of the paper is that none of these possibilities can satisfactorily explain the observed properties of cool gas around quasars.
+
+Gauthier et al. 2013, Muzahid 2015, and Zahedy et al. 2016 exhibit velocity spreads of ~600, 300-400, and 600 km/s respectively, which is comparable with those observed in the QPQ survey, contrary to the claim in the paper. This inaccurate statement needs to be clarified and corrected.
+
+These misrepresentations combined with the fact that the paper applies redshift bias corrections from the literature that are not appropriate for their redshift measurement techniques indicates that the authors need to carefully review the paper and ensure that the citations to the literature are correctly represented and applied.
+
+Minor issues:
+
+Introduction Section:
+
+1) When discussing inflows, the authors should cite Rubin et al. 2012
+2) The definition of h in this paper is not in accordance with the common convention and should be replaced with h_70 to prevent the casual reader from being confused.
+3) Rudie et al. 2017 should be included in the references for systems with large velocity spread. This paper is highly relevant to the discussions in this manuscript.
+
+Experiment Section:
+
+1) Given the anti-correlation between covering fraction and projected distance, the authors may be able to increase the S/N in the average absorption profiles by only considering quasars with projected distances of <100 and <200 kpc from the background sightline.
+
+Analysis Section:
+1) The authors claim that it is not necessary to smooth the spectra before linearly interplating onto a 100 km/s pixel grid. This may be true for the low-resolution spectra but is untrue for the moderate and high resolution spectra used where linear interpolation onto a coarser pixel scale will have unpredictable results. The authors should test that this dues not actually change any results.
+
+2) The mean redshifted centroid in the CII profile is observed in the mean stack but not the median at a level that is in tension. The study does not address this discrepancy and does not provide sufficient reasoning for preferring the mean over the median when attempting to measure a centroid.
+
+3) It is quite odd that the quoted error in the centroid for the z=1 coadd is 388 km/s, larger than the 161 km/s dispersion. What is going on here? In addition, why would a shift be observed for z=2 quasars but not z=1 ones? The authors seem to take this as evidence that the redshift in the absorption centroid is real. I came to the opposite conclusions since accurate redshifts for low-z quasars are easier to come by.
+
+4) Section 3.4 contributes little to the paper and is redundant with existing work in the literature. The authors may wish to remove it to avoid distracting readers.
+
+5) Figure 6 may be difficult for color-blind readers to interpret.
+
+Discussion Section:
+
+1) The paper cites Roos et al. 2015 and Gabor & Bournaud et al. 2014 when discussing quasar emission anisotropy. The should add references to observational papers that demonstrate this though polarization measurements and/or observations of ionization cones at lower redshifts.
+
+2) In the cartoons presented in Figure 8-9, my interpretation is that under this scenario, low ions should be redshifted and high ions such as CIV blue-shifted. This is not observed based on the measurements of CIV in Table 2. Please clarify and address this apparent contradiction between the observed data and model interpretation.
+
+3) Finally, if the authors are aware of any work simulation work demonstrating that gas flows at high-z on these scales are primarily outward, they should be discussed. For example, Shen et al. 2012, find significant column densities in inflowing gas, particularly at lower ionization states. Of course, this is a lower mass halo, but similar insights may be available from simulations of more massive systems.
