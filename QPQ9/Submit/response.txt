@@ -31,8 +31,8 @@ suggested additional work in the details to follow.
 >available. A figure showing this distribution is needed in this publication.
 
 The distribution of absorbing components in velocity is non-Gaussian for each quasar-host associated system. However,
-we have 34 absorption systems for CII analysis, and an even larger number of absorption systems for CIV and MgII
-analysis. The number of individual components can only be larger. The central limit theorem applies and the
+we have 33 absorption systems for CII analysis, and an even larger number of absorption systems for CIV and MgII
+analyses. The number of individual components can only be larger. The central limit theorem applies and the
 distribution of all absorbing components should tend toward Gaussian distribution. A component-by-component analysis
 requires echellette or echelle resolution, which is a criterion for the QPQ8 sample. For this current work, we stack
 spectra of all resolutions. Text has been added to explain the above and to refer the readers to specific figures in
@@ -100,7 +100,11 @@ the upper 60% of the emission line. Shen+16 states that difference between the p
 significant, except for the broad line Hbeta, which we did not use in redshift measurements. We have further obtained
 individual measurements of centroids and peaks in Shen+16 thru private communication. There is essentially no
 difference between using the centroid versus using the peak for [OIII], and there is about 50 km/s difference for
-MgII. We may expect the difference between a mode and a peak is even smaller. Text have been added.
+MgII. We may expect the difference between a mode and a peak is even smaller.
+
+There are two redshift measurement techniques in the sample: our custom line-centering algorithm, and the algorithm of
+Hewett&Wild10. Shen+16 has stated throughout the paper that their work is consistent with Hewett&Wild10 on redshift
+estimates based on MgII emission and on the average systemic bias.
 
 We have explained in the text that, our results cannot be severely biased by [OIII] redshifts. We have tried
 replacing the [OIII] redshifts by MgII or Halpha redshifts, and found a similar centroid and dispersion in the stack.
@@ -177,8 +181,7 @@ amplitude and dispersion of the mean absorption.
 We thank the referee for clarifying the explanation to Johnson+15's results. We have updated the text to reflect that
 outflows is only one possibility. Gauthier+13 is a single sightline, and the velocity width Dv90 of the MgII
 absorber is less than the average of QPQ8 CII absorber. Muzahid+15 found an absorber with Dv90 less than 555 km/s in
-OVI and NV, and still less for other ions. Zahedy+16's sample has average Dv90 elss than that of QPQ8. More text has
-been added.
+OVI and NV, and still less for other ions. Zahedy+16's sample has average Dv90 elss than that of QPQ8.
 
 >Minor issues:
 >

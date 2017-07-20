@@ -96,20 +96,21 @@ have angular separations that correspond to less than 300\,kpc projected separat
 foreground quasar's redshift. Our previous publications from these quasar pairs have established 
 that these galaxies are surrounded by a massive, cool, and enriched CGM 
 \citep[QPQ5, QPQ6, QPQ7:][]{QPQ5,QPQ6,QPQ7}. We have collected a sample of 112 background 
-spectra that are paired with foreground quasars with precisely measured redshifts. 
-Among the sightlines in the QPQ9 sample, 13 have spectral resolution $R>5000$ from echellette or 
-echelle observations, and have been analyzed separately in QPQ8. Our primary 
-scientific interests are twofold: (i) search for signatures of galactic-scale outflows from the 
-central galaxy, presumably driven by recent star formation and/or active galactic nuclei feedback; 
-(ii) characterize the dynamics of the gas around these massive systems. We further describe 
-an aspect of this experiment that offers a unique opportunity to study galactic-scale flows: we 
-argue that, the anisotropic or intermittent radiation from the foreground quasars may break the 
-symmetry in the velocity field of circumgalactic absorbers. If the ionizing radiation field is 
-asymmetric, the absorbers may also distribute asymmetrically. Alternatively, finite quasar 
-lifetime will result in different radiation fields impinged on the gas closer to versus 
-further away from the background quasar, due to different light travel times. 
-\cite{KirkmanTytler08} reported an asymmetry in \ion{H}{1} absorption on scales larger than the 
-CGM, and gave similar arguments on anisotropy or intermittence.
+spectra that are paired with foreground quasars with precisely measured redshifts. Among the
+sightlines in the QPQ9 sample, 13 have spectral resolution $R>5000$ from echellette or echelle
+observations, and have been analyzed separately in QPQ8 (see their Figure 8, 9, and 10). For this
+current work, we stack spectra of all resolutions instead of performing a component-by-component
+analysis. Our primary scientific interests are twofold: (i) search for signatures of galactic-scale
+outflows from the central galaxy, presumably driven by recent star formation and/or active galactic
+nuclei feedback; (ii) characterize the dynamics of the gas around these massive systems. We further
+describe an aspect of this experiment that offers a unique opportunity to study galactic-scale
+flows: we argue that, the anisotropic or intermittent radiation from the foreground quasars may
+break the symmetry in the velocity field of circumgalactic absorbers. If the ionizing radiation
+field is asymmetric, the absorbers may also distribute asymmetrically. Alternatively, finite quasar
+lifetime will result in different radiation fields impinged on the gas closer to versus further
+away from the background quasar, due to different light travel times. \cite{KirkmanTytler08}
+reported an asymmetry in \ion{H}{1} absorption on scales larger than the CGM, and gave similar
+arguments on anisotropy or intermittence.
 
 %The formation and evolution of stars are dictated
 %by the flow of gas and metals/dust.  [This transport
@@ -234,7 +235,21 @@ redshift is close to zero, consistent with the velocity shifts measured by \cite
 Although H$\beta$ is a narrow emission-line, we do not consider its redshift sufficiently reliable 
 for use as systemic redshift. H$\beta$ redshifts have a large scatter about the systemic 
 $\approx400\,{\rm km\,s^{-1}}$, and a large average offset about the systemic 
-$\approx100\,{\rm km\,s^{-1}}$ \citep[][QPQ8]{Shen+16}. 
+$\approx100\,{\rm km\,s^{-1}}$ \citep[][QPQ8]{Shen+16}.
+Our line-centering algorithm calculates the mode of a line given by
+$3\times{\rm median}-2\times{\rm mean}$, applied to the upper 60\% of the emission, while
+\cite{Shen+16} calculates the peak of a line. We expect that our line-centering algorithm gives
+emission redshifts very comparable to the \cite{Shen+16} algorithm, however. \cite{Shen+16}
+states that the difference between the peak and the centroid of an emission-line
+is not significant except for the broad line H$\beta$, which we do not use in redshift
+measurements. To quantify the above, we further obtain individual measurements of centroids and
+peaks in the \cite{Shen+16} sample through private communication. We found there is essentially no
+difference between using the centroid versus using the peak for [\ion{O}{3}] emission redshifts,
+and there is on average $50\,{\rm km\,s^{-1}}$ difference for \ion{Mg}{2}. We may expect the
+difference between the mode and the peak is even smaller. Hence, we argue that the average
+systemic bias corrections measured in \cite{Shen+16} may be self-consistently applied to our
+measured emission-line redshifts to obtain systemic redshifts.
+
 We further add to the QPQ dataset with quasar pairs selected from the public dataset of 
 igmspec\footnote{https://github.com/specdb/igmspec}, which includes the spectra from the quasar 
 catalogs based upon the Sloan Digital Sky Survey Seventh Data Release \citep{Schneider+10} and the 
@@ -242,8 +257,8 @@ Twelfth Data Release \citep{Paris+17}. We only select pairs with $z_{\rm fg}$ me
 \cite{HewettWild10} using the \ion{Mg}{2}\,2800 emission-line, and we add the median blueshift of 
 \ion{Mg}{2} from the systemic to these redshifts. We reach a final sample size of 112. 
 Figure~\ref{fig:experiment} summarizes the experimental design. We refer the reader to previous 
-QPQ publications for the details on the redshift centroiding algorithm, data reduction, and 
-continuum normalization (QPQ6; QPQ8). 
+QPQ publications for the details on the emission-line centering algorithm, data reduction, and
+continuum normalization (QPQ1; QPQ6; QPQ8).
 
 As in the previous QPQ papers, we select the quasar pairs to have redshift difference 
 $>3000\,{\rm km\,s^{-1}}$, to exclude physically associated binary quasars. The cut on velocity 
@@ -333,13 +348,18 @@ and it is more challenging to analyze their kinematics.
 %[Comnent on EW from 'standard' technique]
 Two results are evident in Figure~\ref{fig:stacks_and_fits}: (i) the mean \ion{C}{2} stack 
 exhibits excess absorption spanning a large velocity width; (ii) the mean absorption is likely 
-skewed toward positive velocities. To model the absorption, we introduce a Gaussian profile while 
-allowing a constant pseudo-continuum level to vary. We perform $\chi^2$ minimization with each 
-channel given equal weight. From the best-fit to the data, we measure the centroid of the 
-\ion{C}{2} stack to be $+196\,{\rm km\,s^{-1}}$ and the $1\sigma$ dispersion to be 
-$313\,{\rm km\,s^{-1}}$. The centroid suggests an asymmetry that contradicts the standard 
-expectation, while the dispersion suggests extreme kinematics. The median stack, on the other 
-hand, shows weaker absorption, and the Gaussian model has a centroid with smaller offset and 
+skewed toward positive velocities. We have 33 pairs in the QPQ9 sample for \ion{C}{2} analysis
+and an even larger number of pairs for \ion{C}{4} and \ion{Mg}{2} analyses, and the total number
+of individual components can only be larger than the number of absorption systems. Hence, although
+QPQ8 showed the distribution of absorbing components in velocity is non-Gaussian for each
+individual quasar-host associated system. , the central limit theorem applies and the distribution
+of all absorbing components should tend toward Gaussian distribution. To model the absorption, we
+introduce a Gaussian profile while allowing a constant pseudo-continuum level to vary. We perform
+$\chi^2$ minimization with each channel given equal weight. From the best-fit to the data, we
+measure the centroid of the \ion{C}{2} stack to be $+196\,{\rm km\,s^{-1}}$ and the $1\sigma$
+dispersion to be $313\,{\rm km\,s^{-1}}$. The centroid suggests an asymmetry that contradicts the
+standard expectation, while the dispersion suggests extreme kinematics. The median stack, on the
+other hand, shows weaker absorption, and the Gaussian model has a centroid with smaller offset and
 comparable dispersion. 
 
 We also create mean and median stack for the sub-sample with [\ion{O}{3}] redshifts and model the 
@@ -349,9 +369,11 @@ sample.
 
 To model the mean and median absorption of \ion{C}{4}\,1548 and \ion{Mg}{2}\,1796, we introduce a  
 second Gaussian with separation equal to the doublet separation ($498\,{\rm km\,s^{-1}}$ and 
-$769\,{\rm km\,s^{-1}}$ respectively), and tie the dispersion of the two lines in a doublet. The 
-modeling results show that the velocity fields of \ion{C}{4} and \ion{Mg}{2} are consistent with 
-\ion{C}{2}, i.e.\ large dispersion and centroid is skewed toward positive velocities. 
+$769\,{\rm km\,s^{-1}}$ respectively), and tie the dispersion of the two lines in a doublet. We
+allow the doublet ratio to vary from 2:1 to 1:1. The modeling results show that the velocity fields
+of \ion{C}{4} and \ion{Mg}{2} are consistent with \ion{C}{2}, i.e.\ large dispersion and centroid
+is skewed toward positive velocities.
+
 
 The above analyses are summarized in Table~\ref{tab:summary}. The 
 Gaussian models normalized to pseudo-continuum are overplotted on the data stacks in 
@@ -381,11 +403,12 @@ One may also ask whether the measured positive offsets come from systematic bias
 measurements due to the Baldwin effect \citep{Baldwin77}. \cite{Shen16} reported that, the 
 [\ion{O}{3}] emission of $z\sim2$ quasars is more asymmetric and weaker than that in typically 
 less luminous low-$z$ quasars. To test for this potential source of bias, we create another mean 
-stack at \ion{C}{2}\,1334 by replacing the [\ion{O}{3}] redshifts by a \ion{Mg}{2} or H$\alpha$ 
-redshift when available. We are able to replace for 11 out of the 15 systems with [\ion{O}{3}] 
-redshifts in the original sample. The new stack is similiar in velocity structure and again shows 
-a positive offset $\approx+259\,{\rm km\,s^{-1}}$. We thus conclude that our algorithm for 
-measuring redshifts is not severely biased by the blue wing of the [\ion{O}{3}] emission-line. 
+stack at \ion{C}{2}\,1334 by replacing the [\ion{O}{3}] redshifts by a redshift measured from the
+more symmetric \ion{Mg}{2} or H$\alpha$ emission when available. We are able to replace for 11 out
+of the 15 systems with [\ion{O}{3}] redshifts in the original sample. The new stack is similiar in
+velocity structure and again shows a positive offset $\approx+259\,{\rm km\,s^{-1}}$. We thus
+conclude that our algorithm for measuring redshifts is not severely biased by the blue wing of the
+[\ion{O}{3}] emission-line.
 
 Motivated by the study of \ion{Mg}{2} absorbers surrounding $z\sim1$ quasars by \cite{Johnson+15}, 
 we also generate a mean-stacked spectrum for \ion{Mg}{2}\,2796 for lower redshift quasar pairs.  
@@ -615,7 +638,11 @@ quasar. The asymmetric absorption arises from a transverse proxmity effect.
 \cite{Roos+15} and \cite{GaborBournaud14} performed simulations of a high-redshift disk galaxy 
 including thermal AGN feedback and calculated radiative transfer in post-processing. They found 
 the ionization radiation is typically asymmetric, due to either a dense clump that lies on one 
-edge of the black hole or the black hole's location being slightly above the disk. 
+edge of the black hole or the black hole's location being slightly above the disk.
+As a test of reasonableness, we calculate that, for a quasar opening angle of $120^\circ$ and
+keeping $\sigma_{\rm rms}$ at the expected value for the typical QPQ9 halo, our Monte Carlo
+simulations may reproduce the observed centroid and intrinsic dispersion of the \ion{C}{2} mean
+absorption to within two times the modeling error.
 
 Another possible explanation arises from the finite lifetime of quasar episodes. 
 Figure~\ref{fig:lighttravel} presents a cartoon for a light travel time argument. Light from the 
@@ -631,10 +658,6 @@ $\sim10^6$\,yr, which lies within existing constraints of quasar lifetime from o
 %speeds relative to the foreground quasar of $500\textendash700\,{\rm km\,s^{-1}}$ and quasar
 %opening angles of $120^\circ\textendash140^\circ$ may reproduce the observed centroid and
 %intrinsic dispersion of the \ion{C}{2} mean absorption.
-As a test of reasonableness, we calculate that, for a quasar opening angle of $120^\circ$ and
-keeping $\sigma_{\rm rms}$ at the expected value for the typical QPQ9 halo, our Monte Carlo
-simulations may reproduce the observed centroid and intrinsic dispersion of the \ion{C}{2} mean
-absorption to within two times the modeling error.
 The first explanation above to asymmetric
 absorption requires that the quasars emit their ionizing radiation anisotropically, while the 
 second explanation requires the quasars emit their ionizing radiation intermittently. Both 
