@@ -1,7 +1,7 @@
 pro oiii_redshifts
 ;; Script to generate the zem files (and Joes QA)
 ;path = getenv('QSO_DIR')+'tex/QPQ9/Analysis/Redshifts/'
-path = '~/Dropbox/Marie_Enrico/papers/QPQ9/Analysis/Redshifts/'
+path = '~/Documents/papers/QPQ9/Analysis/Redshifts/'
 
 zdir =  path+'zem/'
 qadir = path+'zQA/'

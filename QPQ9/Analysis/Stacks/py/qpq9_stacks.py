@@ -24,8 +24,6 @@ def qpq9_IRMgII(wrest=None, outfil=None, nboot=10000,
                 plot_indiv = True,
                 stack_tup=None,passback=False,debug=False):
     ''' Stack the QPQ9 sample
-    To do: add MgII redshifts to the QPQ9 structure
-    Find out what are the null redshifts
     '''
     # Rest wavelength
     if wrest is None:
@@ -48,7 +46,7 @@ def qpq9_IRMgII(wrest=None, outfil=None, nboot=10000,
         stack_tup = qpqk.load_stack_img(qpq9.data,wrest,vmnx=vmnx,spec_dv=100.*u.km/u.s,high_res=0,
                                         S2N_cut=S2N_cut,atmosphere_cut=atmosphere_cut,
                                         stack_fg=stack_fg,plot_indiv=plot_indiv,
-                                        QPQ_conti_path='/Users/lwymarie/Dropbox/Marie_X/QPQ9/Continua/QPQ/',
+                                        QPQ_conti_path='/Users/lwymarie/Dropbox/Marie_X/QPQ9/Continua/QPQ/data/',
                                         igmspec_conti_path='/Users/lwymarie/Dropbox/Marie_X/QPQ9/Continua/igmspec/')
         if passback:
             return stack_tup

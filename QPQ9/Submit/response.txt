@@ -1,0 +1,284 @@
+Editor Walter,
+
+We thank very much the referee for their careful reading of our manuscript, and their comments and criticism.
+Following their recommendations, we have revised our manuscript in a number of ways detailed below. We are now
+resubmitting to the Astrophysical Journal and ask that you consider it further for publication.
+Summary of referee report:
+
+>After carefully reviewing the manuscript, I found multiple significant issues with the study, and consequently it does
+>not currently meet the standards for publication. These issues must be addressed before the paper can be accepted, and
+>I request the opportunity to review the paper again after the authors have made revisions with the hope that it can be
+>accepted for publication. The main issues are summarized below and more detailed discussion follows.
+>
+>1) The conclusions of the paper rely heavily on accurate quasar redshift measurements because redshift errors will
+>influence both the centroid and dispersion measured in the stacked background absorption spectra. Indeed, the measured
+>centroids and velocity dispersions in the stacked absorption spectra are comparable with expected quasar redshift
+>biases and scatter. In an attempt to address this issue, the authors adopt redshift bias measurements from the
+>literature, but the bias measurements used are not appropriate for the redshift measurement techniques that are
+>described in the previous QPQ papers (details to follow). Significant additional work is required to demonstrate that
+>the offset in the observed absorption centroid is real and not due to redshift measurement errors.
+
+We thank the referee for pointing out the importance of accurate redshift measurements. We have addressed the
+suggested additional work in the details to follow.
+
+>2) The authors have not demonstrated that the measured 1-sigma dispersion measured in a mean stack is is a
+>representative measure of the velocity spread observed between absorbing gas and the quasar redshift. This may not be
+>the case if the absorbing components exhibit a non-Gaussian distribution about the quasar systemic redshift as has
+>been seen in other studies (e.g. Lau et al. 2016 and Johnson et al. 2015). In particular, broad wings on the
+>distribution will be suppressed in a stack even if they contain a significant amount of the power because the
+>absorbing components can be narrow. This is a weakness of analysis based on stacks that could easily be remedied
+>because previous QPQ papers published absorber redshifts and even component-by-component velocity structure when
+>available. A figure showing this distribution is needed in this publication.
+
+The distribution of absorbing components in velocity is non-Gaussian for each quasar-host associated system. However,
+we have 34 absorption systems for CII analysis, and an even larger number of absorption systems for CIV and MgII
+analysis. The number of individual components can only be larger. The central limit theorem applies and the
+distribution of all absorbing components should tend toward Gaussian distribution. A component-by-component analysis
+requires echellette or echelle resolution, which is a criterion for the QPQ8 sample. For this current work, we stack
+spectra of all resolutions. Text has been added to explain the above and to refer the readers to specific figures in
+QPQ8.
+
+>3) Insufficient detail on the doublet fitting is provided, and uncertainty due to degeneracy between doublet ratio and
+>velocity centroid are not addressed.
+
+We allowed the doublet ratio to vary from 2:1 to 1:1. The centroids of the doublets are tied at a fixed separation.
+More text has been added.
+
+>4) The conclusions of the paper are not self-consistent. In particular, the authors find that the velocity dispersion
+>in the mean stack does not require addition motion (beyond gravitational and cosmological), but the explanation for
+>the centroid offset requires that the gas is, on average, flowing away from the quasar host galaxy. This discrepancy
+>needs to be addressed.
+
+We acknowledge that we did not present the best argument. The centroid offset does not require that the gas is
+flowing away from the galaxy. In our Monte Carlo simulations, we are able to reproduce the centroid offset by assuming
+that the gas is all ionized within a certain opening angle. For an opening angle >= 120 degrees, The stack of mock
+spectra has amplitude, dispersion, and centroid offset all within 2 times the modeling error. Text has been added to
+explain the above. We do not present a new figure to show this stack, since our primary goal of performing Monte Carlo
+simulations is to reproduce the dispersion. We have removed the outward arrows in the cartoon figure and the estimates
+in radial velocities under an outflow scenario. While outflows cannot be ruled out, we prefer to focus on the argument
+that outflows are not required.
+
+>5) Several papers in the literature that are cited are mis-represented.
+
+We have studied the papers more carefully, and have modified the text to represent the literature more correctly.
+Details to follow below.
+
+>Additional details on each of the points as well as more minor issues are given below, After this, my referee report
+>concludes with a discussion of more minor points.
+>
+>Major point 1: quasar systemic redshift measurements
+>
+>The authors compile a foreground quasar sample by combining quasars with redshifts measured in their own spectra with
+>quasars from the SDSS with redshift measurements from the literature. Very little information is provided on how these
+>redshifts are measured and the reader is referred to previous QPQ papers. Given the importance of accurate redshifts
+>for this study, this lack of discussion is inappropriate. The authors provide significant detail in how the redshifts
+>are measured and demonstrate the accuracy of their redshifs.
+>
+>After returning to the QPQ papers where redshift measurements are discussed, it appears that the QPQ redshifts are
+>based on *centroids* from MgII, [O III], Halpha emission lines. The authors then apply mean bias corrections for these
+>redshifts based on the line-dependent bias measured by Shen et al. 2016a. However, Shen et al. 2016a measured the bias
+>for redshifts based on line *peak*, not centroid. This may seem subtle but is significant because of the strong
+>blue-shifted wings often observed in quasar emission-lines. For example, Shen et al. 2016b fit z~2 quasar emission
+>lines with a core component and broad wing component. The broad wings have a mean velocity offset of -600 km/s from
+>the systemic redshift and contain 40% of the [O III] flux on average. Consequently, the [O III] centroid will be
+>biased from the systemic redshift measured from the peak by ~-200 km/s which is sufficient to explain the redshift
+>observed in the stacked absorption profile. Note that this is far larger than the 50 km/s correction that the authors
+>applied which was based on peaks not centroids. Redshifts from MgII and Balmer emission line centroids are likely even
+>more biased because these lines are broader and more asymmetric. Consequently, the authors must re-measure the quasar
+>systemic redshifts using techniques that are self-consistent with the redshift corrections that are applied.
+>
+>In addition, the authors need to make and display stacked absorption profiles in each ion for quasars with different
+>redshift measurement techniques. Some effort along these lines is shown in Table 2, but it is not nearly sufficient to
+>demonstrate that the measured absorption centroid is not due to redshift measurement issues.
+>
+>These steps are a minimum requirement to convincingly demonstrate that the observed redshift in the mean absorption
+>profile relative to the quasar systemic is real.
+
+We have added text to explain how redshifts are measured. We acknowledge the confusion in calling the line-centering
+algorithm a centroiding method. Our algorithm calculates the mode of a line given by (3*median - 2*mean), applied to
+the upper 60% of the emission line. Shen+16 states that difference between the peak and the centroid is not
+significant, except for the broad line Hbeta, which we did not use in redshift measurements. We have further obtained
+individual measurements of centroids and peaks in Shen+16 thru private communication. There is essentially no
+difference between using the centroid versus using the peak for [OIII], and there is about 50 km/s difference for
+MgII. We may expect the difference between a mode and a peak is even smaller. Text have been added.
+
+We have explained in the text that, our results cannot be severely biased by [OIII] redshifts. We have tried
+replacing the [OIII] redshifts by MgII or Halpha redshifts, and found a similar centroid and dispersion in the stack.
+MgII and Halpha are broader, but it has not been reported in any literature that they are more asymmetric.
+
+>Major point 2:
+>
+>In Lau et al. 2016, the distribution of absorbing components about the quasar systemic redshift is non-Guassian and
+>exhibits broad wings that contain significant portion of the optical depth at large velocities. In a mean stack, these
+>wings can be suppressed so that the dispersion of the stacked absorption profile does not represent the actual
+>velocity spread. For example, if absorbers are distributed in velocity around quasar hosts with a core component
+>within |v|<200 km/s and a wing component within |v|=200-1000 km/s, then the wing component will be suppressed by a
+>factor of ~8 relative to the core because narrow absorbers are being spread over a larger velocity range. The authors
+>need to demonstrate that this is not an issue before adopting the 1-sigma dispersion in the stack as a measure of the
+>kinematic spread of the absorbing gas. This is a general weakness of stacked measurements and raises the question of
+>why the study does not show a histogram of the velocity difference sbetween the quasar systemic and observed
+>absorption centroids in individual cases where the S/N is sufficient. Previous QPQ papers reported absorber redshifts
+>(Prochaska et al. 2014) and individual component measurements (Lau et al. 2016). It should therefore be
+>straight-forward to measure the actual velocity distribution of absorption systems around quasars directly rather than
+>relying on stacked measurements. The authors should include such a histogram in the revised paper.
+
+As explained above, we have sufficient number of absorbing components that they should tend toward a Gaussian
+distribution in the stack. We are able to model the stack by a Gaussian multiplied to a pseudocontinuum. Our visual
+inspection does not hint at a broader component in the stack. QPQ7 reported the redshift of the strongest Lya
+absorption within the search window. The QPQ7 sample has spectra of all resolutions. It requires echellette or
+echelle resolution to identify the metal-associated absorbers. In QPQ8, a histogram of the optical depth weighted
+centroid of the absorption systems is shown. In the Appendix of QPQ8, the absorption profiles of the individual
+components are shown. We have counted 6 of them are at negative velocities, while 15 of them are at positive
+velocities. text have been added to reflect these numbers.
+
+>Major point 3:
+>
+>The authors do not provide enough detail regarding the fit to the mean stack. In particular, for MgII and CIV two
+>gaussian with fixed doublet separation and width are fit to the stack. However, no details on the doublet ratio range
+>allowed are given. This is particularly important for CIV where the doublets are not well resolved in the stack.
+>Consequently, the velocity centroid and doublet ratio will be degenerate and uncertainty due to this degeneracy must
+>be addressed.
+
+We thank the referee for pointing out the insufficient detail in the text. The doublet ratio is allowed to vary
+between 2:1 to 1:1.
+
+>Major point 4:
+>The primary results of the paper are that (1) while the dispersion observed in the stack is large, galactic superwinds
+>may not be required to explain the width and (2) the absorption is kinematically offset from the quasar systemic
+>redshifts by ~+200 km/s. The authors interpret this offset as due to effects from partial obscuration of the quasar or
+>finite quasar lifetimes and light-travel time under the assumption that gas is, on average, flowing away from the
+>quasar host. In QPQ VII the CII covering fractions are observed to decrease rapidly from ~80% at projected distances
+>of <200 kpc to 20% at 200-500 kpc and <10% at 500-1000 kpc. This rapid fall-off with projected distance suggests that
+>the majority of the absorption arises in the quasar host halo. Consequently, motions due to Hubble flow are not likely
+>to be significant. Conclusion (2) therefore requires significant outflows in the halo, inconsistent with conclusion
+>(1). This discrepancy needs to be addressed in the discussion.
+
+In QPQ8, we have estimated the random incidence of optically thick and CIV absorbers. Text has been added to reflect
+these numbers. As our Monte Carlo simulations demonstrate, outflows are not required to reproduce the observed
+amplitude and dispersion of the mean absorption.
+
+>Major point 5:
+>
+>Several papers in the literature that are cited are mis-represented in the introduction. In particular:
+>
+>Johnson et al. 2015 is cited as concluding that the large velocity of absorbing gas observed around quasars is due to
+>outflows. This is not the case. The paper considers several possible explanations including large-scale structure,
+>galaxy interactions, and outflows. The conclusion of the paper is that none of these possibilities can satisfactorily
+>explain the observed properties of cool gas around quasars.
+>
+>Gauthier et al. 2013, Muzahid 2015, and Zahedy et al. 2016 exhibit velocity spreads of ~600, 300-400, and 600 km/s
+>respectively, which is comparable with those observed in the QPQ survey, contrary to the claim in the paper. This
+>inaccurate statement needs to be clarified and corrected.
+>
+>These misrepresentations combined with the fact that the paper applies redshift bias corrections from the literature
+>that are not appropriate for their redshift measurement techniques indicates that the authors need to carefully review
+>the paper and ensure that the citations to the literature are correctly represented and applied.
+
+We thank the referee for clarifying the explanation to Johnson+15's results. We have updated the text to reflect that
+outflows is only one possibility. Gauthier+13 is a single sightline, and the velocity width Dv90 of the MgII
+absorber is less than the average of QPQ8 CII absorber. Muzahid+15 found an absorber with Dv90 less than 555 km/s in
+OVI and NV, and still less for other ions. Zahedy+16's sample has average Dv90 elss than that of QPQ8. More text has
+been added.
+
+>Minor issues:
+>
+>Introduction Section:
+>
+>1) When discussing inflows, the authors should cite Rubin et al. 2012
+>2) The definition of h in this paper is not in accordance with the common convention and should be replaced with h_70
+>to prevent the casual reader from being confused.
+>3) Rudie et al. 2017 should be included in the references for systems with large velocity spread. This paper is
+>highly relevant to the discussions in this manuscript.
+
+We have cited Rubin+12 and Rudie+17 in our revised manuscript. We intend that h = H_0 / (100 km s^-1 Mpc^-1), in
+accordance with the common convention, that is also widely used in cosmology papers such as Kravtsov+17. We have
+state this scaling explicitly in our revised manuscript. We thank the referee for above suggestions.
+
+
+>Experiment Section:
+>
+>1) Given the anti-correlation between covering fraction and projected distance, the authors may be able to increase
+>the S/N in the average absorption profiles by only considering quasars with projected distances of <100 and <200 kpc
+>from the background sightline.
+
+We performed the experiment of separating the sightlines into two bins of projected distance. We found the stack of
+sightlines below the median projected distance looks similar to the full sample. We did not find a significant boost
+in S/N in the average absorption profiles.
+
+>Analysis Section:
+>1) The authors claim that it is not necessary to smooth the spectra before linearly interplating onto a 100 km/s
+>pixel grid. This may be true for the low-resolution spectra but is untrue for the moderate and high resolution
+>spectra used where linear interpolation onto a coarser pixel scale will have unpredictable results. The authors
+>should test that this dues not actually change any results.
+
+For each sightline, we overplotted the original absorption profile and that interpolated onto the common velocity
+grid, and visually the overplots. We have confirmed to ourselves that the equivalent widths and the shapes of the
+absorption profiles are preserved.
+
+>2) The mean redshifted centroid in the CII profile is observed in the mean stack but not the median at a level that
+>is in tension. The study does not address this discrepancy and does not provide sufficient reasoning for preferring
+>the mean over the median when attempting to measure a centroid.
+
+There is large intrinsic scatter in the CGM environments. In our revised manuscript, we included one new quasar pair
+from our latest QPQ Survey database, making the total sample size for CII analysis 33. With this sample, the median
+CII statistic has a centroid +120+/-195 km/s. We prefer the mean over the median, as the median statistic is not
+sensitive to absorption signals and does not preserve equivalent width. The centroid measured from the median stack
+is thus subject to larger uncertainty.
+
+>3) It is quite odd that the quoted error in the centroid for the z=1 coadd is 388 km/s, larger than the 161 km/s
+>dispersion. What is going on here? In addition, why would a shift be observed for z=2 quasars but not z=1 ones? The
+>authors seem to take this as evidence that the redshift in the absorption centroid is real. I came to the opposite
+>conclusions since accurate redshifts for low-z quasars are easier to come by.
+
+The quoted uncertainty in the centroid is the standard deviation in the 10000 bootstrap realizations. The average
+absorption of this stack is weak, and the measured dispersion too has a large intrinsic scatter. A shift is not
+definitively observed in the 0.4 < z < 1.6 stack. It may be due to weaker average absorption, or it may be due to
+lower average quasar luminosity should our interpretations be correct. The 0.4 < z < 1.6 quasars are largely SDSS
+spectra, and we adopt [OIII] or MgII emission-line redshifts taken from Hewett&Wild10. The z ~ 2 quasars of our sample
+have MgII, [OIII], or Halpha emission-line redshifts. We do not consider that the redshifts of the 0.4 < z < 1.6
+quasars are more accurate, since the more precise [OIII] redshifts are only accessible in SDSS spectral coverage for
+z < 0.84.
+
+>4) Section 3.4 contributes little to the paper and is redundant with existing work in the literature. The authors may
+>wish to remove it to avoid distracting readers.
+
+We have moved this section to the Appendix in our revised manuscript.
+
+>5) Figure 6 may be difficult for color-blind readers to interpret.
+
+We consulted websites for generating color-blindness-friendly figures, and found that our navy color was challenging
+for readers with total color-blindness. We have changed that to a brighter shade of blue in our revised manuscript.
+
+Discussion Section:
+
+>1) The paper cites Roos et al. 2015 and Gabor & Bournaud et al. 2014 when discussing quasar emission anisotropy. The
+>should add references to observational papers that demonstrate this though polarization measurements and/or
+>observations of ionization cones at lower redshifts.
+
+At low z, both symmetric and asymmetric ionization cones around quasars and AGNs are observed. In the extended
+emission-line region of 4C37.43, most of the [OIII] emission is blueshifted (Fu&Stockton07), but there are counter
+examples in less extended sources in FU&Stockton09. Recently there has been Fabry-Perot velocity fields for less
+extended narrow-line regions in more nearby sources (Keel+15,17), which show mostly symmetric velocity fields and gas
+distributions.
+
+>2) In the cartoons presented in Figure 8-9, my interpretation is that under this scenario, low ions should be
+>redshifted and high ions such as CIV blue-shifted. This is not observed based on the measurements of CIV in Table 2.
+>Please clarify and address this apparent contradiction between the observed data and model interpretation.
+
+CIV may be regarded as an intermediate ion, and gas that receives an ionizing radiation from the quasar may be even
+more highly ionized. We have access to a Cloudy grid that uses an extragalactic UV background spectral shape as input.
+We have verified to ourselves the following. For the typical Lyman limit luminosity of our sample
+10^31.5 erg s^-1 Hz^-1, for the average total column density of the QPQ8 sample 10^20.5 cm^-2 and the average [M/H] =
+-0.6, at a distance = 150 kpc and density = 0.1 cm^-3, Cloudy predicts that CIV absorption is only marginally
+detectable. Moreover, given the large intrinsic scatter, we do not explore whether there exists relative asymmetry
+among CII, CIV, and MgII.
+
+>3) Finally, if the authors are aware of any work simulation work demonstrating that gas flows at high-z on these
+>scales are primarily outward, they should be discussed. For example, Shen et al. 2012, find significant column
+>densities in inflowing gas, particularly at lower ionization states. Of course, this is a lower mass halo, but
+>similar insights may be available from simulations of more massive systems.
+
+Faucher-Giguere+16 represents the only simulation so far that is able to reproduce the substantial amount of cool gas
+in quasar-mass haloes. Their group has not compared the fraction of gas in inflows and outflows. Furthermore, we
+consulted Jared Gabor and we found no more simulation papers that predicted unipolar emission other than the two we
+cited.

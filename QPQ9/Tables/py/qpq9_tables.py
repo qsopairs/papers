@@ -244,7 +244,7 @@ afile.write('\\colhead{$z_{\\rm bg}$} & \\colhead{BG Quasar Instrument} & \n')
 afile.write('\\colhead{$R_\\perp$ (kpc)} & \\colhead{$g_{\\rm UV}$}} \n')
 afile.write('\\startdata \n')
 for ii in np.arange(len(tab)):
-    afile.write(tab['fg_qso'][ii] + ' & ' + tab['zfg'][ii] + ' & ' + tab['line'][ii] + '& ')
+    afile.write(tab['fg_qso'][ii] + ' & ' + tab['zfg'][ii] + ' & ' + tab['line'][ii] + ' & ')
     afile.write(tab['bg_qso'][ii] + ' & ' + tab['zbg'][ii] + ' & ' + tab['bg_instr'][ii] + ' & ')
     afile.write(tab['Rphys'][ii] + ' & ' + tab['gUV'][ii] + ' \\\ \n')
 afile.write('\\enddata \n')

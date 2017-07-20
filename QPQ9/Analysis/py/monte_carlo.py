@@ -23,12 +23,12 @@ Deltav = 10.
 v_grid = -2000. + np.arange((2000.-(-2000.))/Deltav+1)*Deltav
 relativistic_equiv = u.doppler_relativistic(1334.5323*u.AA)
 wave_grid = (v_grid*u.km/u.s).to(u.AA,equivalencies=relativistic_equiv)
+Hubble_h = cosmo.H(0).value/100.
 
 # Generate a stack image of n_trials monte carlo trials
-def gen_stck_img(R_phys,z_fg,stddev_oneabs,sigma1D): # R_phys in kpc, Deltav in km/s
+def gen_stck_img(R_phys,z_fg,stddev_oneabs,sigma1D):  # R_phys in kpc, Deltav in km/s
     probs = np.zeros(len(v_grid))
     cumulative_probs = np.zeros(len(v_grid))
-    Hubble_h = cosmo.H(0).value/100.
     ell_IGM_DLA = 0.2*((1+z_fg)/(1+2.5))**2.1
     ell_IGM_SLLS = 0.44*((1+z_fg)/(1+2.5))**2.1
     ell_IGM_LLS = 1.05*((1+z_fg)/(1+2.5))**2.1
@@ -36,32 +36,25 @@ def gen_stck_img(R_phys,z_fg,stddev_oneabs,sigma1D): # R_phys in kpc, Deltav in 
     for ii,vv in enumerate(v_grid):
         gamma_DLA = 1.6
         r0_DLA = 3.9
-#        gamma_SLLS = 1.6
-#        r0_SLLS = 15.5
-#        gamma_LLS = 1.6
-#        r0_LLS = 13.9
         gamma_SLLS = 1.68
         r0_SLLS = 14.0
         gamma_LLS = 1.68
         r0_LLS = 12.5
         chi_DLA = 1./Deltav*integrate.quad(
-            lambda v:(np.sqrt(R_comov**2+(v/(cosmo.H(z_fg).value/(1+z_fg)))**2)/r0_DLA)**(-gamma_DLA),
+            lambda v:(np.sqrt(R_comov**2+(v/(cosmo.H(z_fg).value/(1+z_fg))*Hubble_h)**2)/r0_DLA)**(-gamma_DLA),
             v_grid[ii]-Deltav/2,v_grid[ii]+Deltav/2)[0]
         chi_SLLS = 1./Deltav*integrate.quad(
-            lambda v:(np.sqrt(R_comov**2+(v/(cosmo.H(z_fg).value/(1+z_fg)))**2)/r0_SLLS)**(-gamma_SLLS),
+            lambda v:(np.sqrt(R_comov**2+(v/(cosmo.H(z_fg).value/(1+z_fg))*Hubble_h)**2)/r0_SLLS)**(-gamma_SLLS),
             v_grid[ii]-Deltav/2,v_grid[ii]+Deltav/2)[0]
         chi_LLS = 1./Deltav*integrate.quad(
-            lambda v:(np.sqrt(R_comov**2+(v/(cosmo.H(z_fg).value/(1+z_fg)))**2)/r0_LLS)**(-gamma_LLS),
+            lambda v:(np.sqrt(R_comov**2+(v/(cosmo.H(z_fg).value/(1+z_fg))*Hubble_h)**2)/r0_LLS)**(-gamma_LLS),
             v_grid[ii]-Deltav/2,v_grid[ii]+Deltav/2)[0]
         Deltaz = ltu.z_from_dv((v_grid[ii]+Deltav/2)*u.km/u.s,z_fg)-ltu.z_from_dv((v_grid[ii]-Deltav/2)*u.km/u.s,z_fg)
         prob = (ell_IGM_DLA*(1+chi_DLA)+ell_IGM_SLLS*(1+chi_SLLS)+ell_IGM_LLS*(1+chi_LLS))*Deltaz
-        # test effect of doubling number of absorbers
-#        prob = prob*2
         probs[ii] = prob
         cumulative_probs[ii] = prob + np.sum(probs[0:ii])
     norm = np.sum(probs)
     probs = probs/norm
-#    print('Expected number of absorbers at R_phys',norm,R_phys)
     stck_img = np.zeros((n_trials,len(v_grid)))
     for nt in np.arange(n_trials):
         N_abs = np.random.poisson(norm)
@@ -70,23 +63,23 @@ def gen_stck_img(R_phys,z_fg,stddev_oneabs,sigma1D): # R_phys in kpc, Deltav in 
             v_Hubble = np.random.choice(v_grid,p=probs)
             v_peculiar = np.random.normal(loc=0.,scale=sigma1D)
             v_add = v_Hubble + v_peculiar
-            one_abs = models.GaussianAbsorption1D(amplitude=3.0,mean=v_add,stddev=stddev_oneabs)
+            one_abs = models.GaussianAbsorption1D(amplitude=2.0,mean=v_add,stddev=stddev_oneabs)
             flux = flux*one_abs(v_grid)
             flux[np.where(flux < 0.)] = 0.
         stck_img[nt,:] = flux
-
     return stck_img
 
 
 # Convert the standard deviation of one absorber to equivalent width
 def stddev_oneabs_to_WCII(stddev_oneabs):
-    one_abs = models.GaussianAbsorption1D(amplitude=3.0,mean=0,stddev=stddev_oneabs)
+    one_abs = models.GaussianAbsorption1D(amplitude=2.0,mean=0,stddev=stddev_oneabs)
     flux = one_abs(v_grid)
     flux[np.where(flux < 0.)] = 0.
     tau = -np.log(flux)
     total_flux = np.exp(-tau)
     W_CII = np.sum((1.-total_flux[:-1])*np.diff(wave_grid.value))
     return W_CII
+
 
 # Model the velocity width of a stack
 def model_width(stddev_oneabs,sigma1D,all_dict):
@@ -111,8 +104,8 @@ def model_width(stddev_oneabs,sigma1D,all_dict):
 
 # Generate the data points for the contour plot
 def contour_data(all_dict):
-    stddev_oneabs_grid = np.arange(20.,71.,2.5)
-    sigma1D_grid = np.arange(110.,311.,5.)
+    stddev_oneabs_grid = np.arange(12.,63.,2.5)  # for finer/coarser grid, step = 2.5/5
+    sigma1D_grid = np.arange(117.,318.,5)  # for finer/coarser grid, step = 5/10
     sigma1D_GRID,stddev_oneabs_GRID = np.meshgrid(sigma1D_grid,stddev_oneabs_grid)
     widths = np.zeros_like(stddev_oneabs_GRID)
     amps = np.zeros_like(stddev_oneabs_GRID)
@@ -121,8 +114,8 @@ def contour_data(all_dict):
         for jj in np.arange(widths.shape[1]):
             widths[ii,jj],amps[ii,jj] = model_width(stddev_oneabs_GRID[ii,jj],sigma1D_GRID[ii,jj],all_dict)
     WCII_grid = np.zeros_like(stddev_oneabs_grid)
-    width_levels = [142,186,224,295,329,362]
-    amp_bounds = [0.109,0.173] # 3-sigma bounds
+    width_levels = [168,197,226,284,313,342]
+    amp_bounds = [0.107,0.173] # 3-sigma bounds
     for ii,wcii in enumerate(WCII_grid):
         WCII_grid[ii] = stddev_oneabs_to_WCII(stddev_oneabs_grid[ii])
     mass_grid = np.zeros_like(sigma1D_grid)
@@ -151,23 +144,23 @@ def contour_data(all_dict):
 
 
 ######################
-def main(contour_only=False):
+def main(contour_only="False"):
 
     stack_tup0 = qpq9k.qpq9_IRMgII(passback=True,wrest=1334.5323*u.AA,S2N_cut=5.5/u.AA,
                                vsig_cut=400*u.km/u.s,zfg_mnx=(1.6,9999),plot_indiv=False)
     fin_velo, stck_img, stck_msk, all_dict = stack_tup0
 
-    if contour_only is False:
+    if contour_only == "False":
         # 3 times the modeling error smaller than observed width, minus redshift error broadening,
-        # gives intrinsic width 142 km/s
-        width, amp = model_width(25.2,114.,all_dict)
+        # gives intrinsic width 168 km/s
+        width,amp = model_width(23.5,134.,all_dict)
         plt.figure(figsize=(8,5))
         plt.axis([-2000,2000,0.65,1.05])
         model_final = models.GaussianAbsorption1D(amplitude=amp,mean=0.,stddev=width)
         plt.plot(v_grid,model_final(v_grid))
-        print('width and ammplitude, for 3 times error samller',width,amp)
+        print('width and amplitude, for 3 times error smaller',width,amp)
         # QPQ halo mass sigma_1D
-        width, amp = model_width(47,246.,all_dict)
+        width,amp = model_width(37,246.,all_dict)
         plt.figure(figsize=(8,5))
         plt.axis([-2000,2000,0.65,1.05])
         model_final = models.GaussianAbsorption1D(amplitude=amp,mean=0.,stddev=width)
@@ -189,4 +182,4 @@ def main(contour_only=False):
 
 # Command line execution
 if __name__ == '__main__':
-    main(countour_only=sys.argv[1])
+    main(contour_only=sys.argv[1])

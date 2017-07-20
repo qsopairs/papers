@@ -166,8 +166,8 @@ Table(QPQ9).write('qpq9_final.fits',format='fits',overwrite=True)
 QPQ9 = QTable(fits.open('qpq9_final.fits')[1].data)
 c_QPQ9 = SkyCoord(QPQ9['FG_RA']*u.deg,QPQ9['FG_DEC']*u.deg)
 c_QPQ9_bg = SkyCoord(ra=QPQ9['RA']*u.deg,dec=QPQ9['DEC']*u.deg)
-qpq_fil = '/Users/lwymarie/Desktop/qpq_optical.hdf5'
-qpqsp = SpecDB(db_file=qpq_fil,verbose=False,idkey='PRIV_ID')
+qpq_fil = '/Users/lwymarie/Documents/Databases/qpq_oir_spec.hdf5'
+qpqsp = SpecDB(db_file=qpq_fil,verbose=False,idkey='QPQ_ID')
 ID_fg, ID_bg = qpqsp.qcat.pairs(0.92*u.arcmin, 3000.*u.km/u.s)
 c_qpqsp = SkyCoord(qpqsp.cat['RA'][ID_fg]*u.deg,qpqsp.cat['DEC'][ID_fg]*u.deg)
 c_qpqsp_bg = SkyCoord(qpqsp.cat['RA'][ID_bg]*u.deg,qpqsp.cat['DEC'][ID_bg]*u.deg)
@@ -280,10 +280,10 @@ Table(QPQ9).write('qpq9_final.fits',format='fits',overwrite=True)
 QPQ9 = QTable(fits.open('qpq9_final.fits')[1].data)
 c_QPQ9 = SkyCoord(QPQ9['FG_RA']*u.deg,QPQ9['FG_DEC']*u.deg)
 c_QPQ9_bg = SkyCoord(ra=QPQ9['RA']*u.deg,dec=QPQ9['DEC']*u.deg)
-hdulist = fits.open('/Users/lwymarie/Desktop/DR12Q.fits')
+hdulist = fits.open('/Volumes/Data/Data of surveys/SDSS/DR12Q.fits')
 SDSSdr12 = hdulist[1].data
 c_SDSSdr12 = SkyCoord(list(SDSSdr12.field('RA'))*u.deg,list(SDSSdr12.field('DEC'))*u.deg)
-hdulist = fits.open('/Users/lwymarie/Desktop/dr7qso.fit')
+hdulist = fits.open('/Volumes/Data/Data of surveys/SDSS/dr7qso.fit')
 SDSSdr7 = hdulist[1].data
 c_SDSSdr7 = SkyCoord(list(SDSSdr7.field('RA'))*u.deg,list(SDSSdr7.field('DEC'))*u.deg)
 
@@ -332,7 +332,7 @@ for ii,qq in enumerate(QPQ9):
         # bring to z_em
         qq['Z_FG'] = ltu.z_from_dv(-27.*u.km/u.s,qq['Z_FG'])
         # bring to z_sys
-        qq['Z_FG'] == ltu.z_from_dv(+48.*u.km/u.s,qq['Z_FG'])
+        qq['Z_FG'] = ltu.z_from_dv(+48.*u.km/u.s,qq['Z_FG'])
         # scatter
         qq['Z_FSIG'] = 68
     if qq['ZFG_LINE'] == 'H$\\alpha$':

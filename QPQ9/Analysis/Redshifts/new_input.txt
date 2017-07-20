@@ -1,10 +1,11 @@
 FORPRINT: Thu May  7 18:56:31 2015
 #                ~/Dropbox/QSOPairs/data/ISAAC_redux/SDSSJ005717.36-000113.3.fits  2.155
-              ~/Dropbox/QSOPairs/data/NIRI_redux/SDSSJ011150.07+140141.4.fits.gz  2.470
+#              ~/Dropbox/QSOPairs/data/NIRI_redux/SDSSJ011150.07+140141.4.fits.gz  2.470
 #        ~/Dropbox/QSOPairs/data/XSHOOTER_redux/SDSSJ020143.49+003222.7_F.fits.gz  2.297
 #        ~/Dropbox/QSOPairs/data/XSHOOTER_redux/SDSSJ023946.43-010640.5_F.fits.gz  2.299
 #           ~/Dropbox/QSOPairs/data/NIRSPEC_redux/SDSSJ022517.68+004821.9.fits.gz  2.719
 #                 ~/Dropbox/QSOPairs/data/NIRI_redux/SDSSJ080049.89+354249.6.fits  1.981
+              /Volumes/Data/QSOPairs/data/NIRI_redux/SDSSJ081419.58+325018.7.fits  2.174
 #                ~/Dropbox/QSOPairs/data/GNIRS_redux/SDSSJ083757.91+383727.1.fits  2.059
 #                 ~/Dropbox/QSOPairs/data/NIRI_redux/SDSSJ084158.47+392121.0.fits  2.044
 #           ~/Dropbox/QSOPairs/data/NIRSPEC_redux/SDSSJ085358.36-001108.0.fits.gz  2.406

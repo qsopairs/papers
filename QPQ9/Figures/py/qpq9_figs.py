@@ -395,11 +395,11 @@ def monte(outfil=None):
     model_monte = model_conti*model_monte_gauss
     # Extra motion that is ruled out
     model_extra_gauss = models.GaussianAbsorption1D(
-        amplitude=monte_params['amplitude'],mean=Gaussian_params['mean_1'],stddev=573.)
+        amplitude=monte_params['amplitude'],mean=Gaussian_params['mean_1'],stddev=559.)
     model_extra = model_conti*model_extra_gauss
     # Width that requires outflow
     model_outflow_gauss = models.GaussianAbsorption1D(
-        amplitude=monte_params['amplitude'],mean=Gaussian_params['mean_1'],stddev=231.)
+        amplitude=monte_params['amplitude'],mean=Gaussian_params['mean_1'],stddev=226.)
     model_outflow = model_conti*model_outflow_gauss
 
     # Axes
@@ -498,7 +498,7 @@ def contour(outfil=None):
     mass = hdulist[1].data
     WCII = hdulist[2].data
     lvls = hdulist[3].data
-    lvls = lvls + 0.01  ## truncation error
+    lvls = lvls + 0.01  # truncation error
     hdulist.close()
 
     # Plot
@@ -509,7 +509,7 @@ def contour(outfil=None):
     ax.set_ylabel(r'$W_{\rm CII} ({\rm \AA})$')
 
     # Mark QPQ halo mass location
-    ax.text(12.6,0.84,'+',size=fontsize)
+    ax.text(12.6,0.58,'+',size=fontsize,ha='center',va='center')
 
     # Font
     for item in ([ax.title, ax.xaxis.label, ax.yaxis.label] +
