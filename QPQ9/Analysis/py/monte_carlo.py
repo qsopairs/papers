@@ -114,8 +114,8 @@ def contour_data(all_dict):
         for jj in np.arange(widths.shape[1]):
             widths[ii,jj],amps[ii,jj] = model_width(stddev_oneabs_GRID[ii,jj],sigma1D_GRID[ii,jj],all_dict)
     WCII_grid = np.zeros_like(stddev_oneabs_grid)
-    width_levels = [168,197,226,284,313,342]
-    amp_bounds = [0.107,0.173] # 3-sigma bounds
+    width_levels = [164,192,218,267,291,314]
+    amp_bounds = [0.117,0.164] # 3-sigma bounds
     for ii,wcii in enumerate(WCII_grid):
         WCII_grid[ii] = stddev_oneabs_to_WCII(stddev_oneabs_grid[ii])
     mass_grid = np.zeros_like(sigma1D_grid)
@@ -152,8 +152,8 @@ def main(contour_only="False"):
 
     if contour_only == "False":
         # 3 times the modeling error smaller than observed width, minus redshift error broadening,
-        # gives intrinsic width 168 km/s
-        width,amp = model_width(23.5,134.,all_dict)
+        # gives intrinsic width 164 km/s
+        width,amp = model_width(22.5,132.,all_dict)
         plt.figure(figsize=(8,5))
         plt.axis([-2000,2000,0.65,1.05])
         model_final = models.GaussianAbsorption1D(amplitude=amp,mean=0.,stddev=width)
@@ -170,7 +170,7 @@ def main(contour_only="False"):
         dict = {}
         for ii,pp in enumerate(model_final.parameters):
             dict[model_final.param_names[ii]] = [pp]
-        ascii.write(Table(dict),'monte.dat')
+        ascii.write(Table(dict),'monte.dat',overwrite=True)
         # Find mean equivalent width of QPQ8 LLS
         mean_QPQ8 = np.mean([0.000,0.042,0.345,0.195,0.025,0.030,0.053,0.168,0.504,0.248,0.779,0.281,
                              0.341,0.328,0.756,0.650,0.154,0.179,0.130,0.950])

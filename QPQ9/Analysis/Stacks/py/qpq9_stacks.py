@@ -47,7 +47,8 @@ def qpq9_IRMgII(wrest=None, outfil=None, nboot=10000,
                                         S2N_cut=S2N_cut,atmosphere_cut=atmosphere_cut,
                                         stack_fg=stack_fg,plot_indiv=plot_indiv,
                                         QPQ_conti_path='/Users/lwymarie/Dropbox/Marie_X/QPQ9/Continua/QPQ/data/',
-                                        igmspec_conti_path='/Users/lwymarie/Dropbox/Marie_X/QPQ9/Continua/igmspec/')
+                                        igmspec_conti_path='/Users/lwymarie/Dropbox/Marie_X/QPQ9/Continua/igmspec/',
+                                        igmsp_version="02.1")
         if passback:
             return stack_tup
 

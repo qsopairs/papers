@@ -248,9 +248,7 @@ for ii in np.arange(len(tab)):
     afile.write(tab['bg_qso'][ii] + ' & ' + tab['zbg'][ii] + ' & ' + tab['bg_instr'][ii] + ' & ')
     afile.write(tab['Rphys'][ii] + ' & ' + tab['gUV'][ii] + ' \\\ \n')
 afile.write('\\enddata \n')
-afile.write('\\tablenotetext{a}{The emission-line analyzed for measuring $z_{\\rm fg}$. \n')
-afile.write('SDSS-HW stands for adopting the redshift measured by Hewett \\& Wild (2010) \n')
-afile.write('directly.} \n')
+afile.write('\\tablenotetext{a}{The emission-line analyzed for measuring $z_{\\rm fg}$.} \n')
 afile.write('\\end{deluxetable*}')
 afile.close()
 

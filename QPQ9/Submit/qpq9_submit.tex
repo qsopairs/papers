@@ -17,7 +17,7 @@ CA 93106-9530}
 
 \begin{abstract}
 We examine the kinematics of the gas in the environments of galaxies hosting quasars at $z\sim2$. 
-We employ 112 projected quasar pairs to study the circumgalactic gas of the foreground quasars in 
+We employ 102 projected quasar pairs to study the circumgalactic gas of the foreground quasars in 
 absorption. The sample selects foreground quasars with precise redshift measurements, using 
 emission-lines with precision $\lesssim300\,{\rm km\,s^{-1}}$ and average offsets from the 
 systemic redshift $\lesssim|100\,{\rm km\,s^{-1}}|$. We stack the background quasar spectra at the 
@@ -71,14 +71,19 @@ success in characterizing the flows of gas around galaxies. \cite{Rakic+12} foun
 large-scale inflow around star-forming galaxies, or a Kaiser effect for gas on 
 1\textendash2\,Mpc scales. \cite{Ho+17} found gas spiraling inward near the disk plane of 
 star-forming galaxies on $<100$\,kpc scales. \cite{Johnson+15} studied the CGM surrounding 
-$z\sim1$ quasars, and 
-found large peculiar motions in the gas exceeding the expected virial velocity, which they 
-interpret as quasar-driven outflows. However, the velocity spreads were not well quantified. Other 
+$z\sim1$ quasars. They found large peculiar motions in the gas exceeding the expected virial 
+velocity, with quasar-driven outflows being one possible explanation. However, we consider that 
+their velocity spreads can be better quantified. Other 
 existing studies that found large velocity spreads are limited to single sightlines with most of 
-the gas within several hundred ${\rm km\,s^{-1}}$ \citep[e.g., ][]{Tripp+11}, or with gas tracing 
+the gas within several hundred ${\rm km\,s^{-1}}$ \citep[e.g., ][]{Tripp+11,RudieNewmanMurphy17}, 
+or with gas tracing 
 a higher ionization state than the QPQ absorption systems \citep[e.g., ][]{Churchill+12}, or where 
-the average velocity spread is smaller than that measured in QPQ8 
-\citep[e.g., ][]{Gauthier13,Muzahid+15,Zahedy+16}. 
+the average velocity spread is smaller than that measured in QPQ8. In \cite{Gauthier+13}, where a 
+single sightline is reported, the $\Delta v_{90}$ of the \ion{Mg}{2} absorption is less than the 
+average of the QPQ8 \ion{C}{2} absorption. In \cite{Muzahid+15}, an absorber is found with 
+$\Delta v_{90}$ smaller than $555\,{\rm km\,s^{-1}}$ in \ion{O}{6} and \ion{N}{5}, and still 
+smaller for other ions. The \cite{Zahedy+16} sample likewise has average $\Delta v_{90}$ smaller 
+than that of QPQ8. 
 
 A significant limitation of absorption-line analysis of transverse sightlines, especially 
 regarding galactic-scale flows, is the inherent symmetry of the experiment. One generally lacks 
@@ -87,18 +92,20 @@ with respect to the galaxy may be interpreted as gas flowing either toward or aw
 system. ``Down-the-barrel'' observations break this symmetry, and have generally provided evidence 
 for flows away from galaxies \citep{Rupke+05,Martin05,Weiner+09,Rubin+14}. However, these data are 
 frequently at low spectral resolution which limits one's sensitivity to inflowing gas. 
-
+ 
 In this paper (hereafter QPQ9), we examine the flows of gas in the environments of massive 
 galaxies hosting quasars. Our approach leverages a large dataset of quasar pairs 
-\citep[][, hereafter QPQ1]{QPQ1} to use the standard techniques of absorption-line spectroscopy 
+\citep[][hereafter QPQ1]{QPQ1} to use the standard techniques of absorption-line spectroscopy 
 with background quasars. These quasar pairs 
 have angular separations that correspond to less than 300\,kpc projected separation at the 
 foreground quasar's redshift. Our previous publications from these quasar pairs have established 
 that these galaxies are surrounded by a massive, cool, and enriched CGM 
-\citep[QPQ5, QPQ6, QPQ7:][]{QPQ5,QPQ6,QPQ7}. We have collected a sample of 112 background 
+\citep[QPQ5, QPQ6, QPQ7:][]{QPQ5,QPQ6,QPQ7}. We have collected a sample of 102 background 
 spectra that are paired with foreground quasars with precisely measured redshifts. Among the
 sightlines in the QPQ9 sample, 13 have spectral resolution $R>5000$ from echellette or echelle
-observations, and have been analyzed separately in QPQ8 (see their Figure 8, 9, and 10). For this
+observations, and have been analyzed separately in QPQ8 (see their Figure 8, 9, and 10, and their 
+Appendix). In QPQ8, where the individual metal-bearing absorption components are resolved, 15 out 
+of the 21 components are at positive velocities relative to the systemic redshift. For this
 current work, we stack spectra of all resolutions instead of performing a component-by-component
 analysis. Our primary scientific interests are twofold: (i) search for signatures of galactic-scale
 outflows from the central galaxy, presumably driven by recent star formation and/or active galactic
@@ -251,11 +258,11 @@ systemic bias corrections measured in \cite{Shen+16} may be self-consistently ap
 measured emission-line redshifts to obtain systemic redshifts.
 
 We further add to the QPQ dataset with quasar pairs selected from the public dataset of 
-igmspec\footnote{https://github.com/specdb/igmspec}, which includes the spectra from the quasar 
-catalogs based upon the Sloan Digital Sky Survey Seventh Data Release \citep{Schneider+10} and the 
-Twelfth Data Release \citep{Paris+17}. We only select pairs with $z_{\rm fg}$ measured by 
-\cite{HewettWild10} using the \ion{Mg}{2}\,2800 emission-line, and we add the median blueshift of 
-\ion{Mg}{2} from the systemic to these redshifts. We reach a final sample size of 112. 
+igmspec\footnote{https://github.com/specdb/igmspec} \citep{Prochaska+17}, which includes the 
+spectra from the quasar catalogs based upon the Sloan Digital Sky Survey Seventh Data Release 
+\citep{Schneider+10} and the Twelfth Data Release \citep{Paris+17}. We only select pairs with 
+$z_{\rm fg}$ measurable using a robust \ion{Mg}{2}\,2800 emission-line. 
+We reach a final sample size of 102. 
 Figure~\ref{fig:experiment} summarizes the experimental design. We refer the reader to previous 
 QPQ publications for the details on the emission-line centering algorithm, data reduction, and
 continuum normalization (QPQ1; QPQ6; QPQ8).
@@ -309,7 +316,7 @@ For the doublets, a second Gaussian with a fixed mean separation and a tied stan
 included in the modeling. The absorptions frequently exhibit large velocity widths. The dashed 
 lines mark the centroids, which show small positive velocity offsets from $z_{\rm fg}$. The 
 $1\sigma$ modeling error for the centroid and dispersion of the \ion{C}{2} mean stack are 
-$28\,{\rm km\,s^{-1}}$ and $29\,{\rm km\,s^{-1}}$ respectively, which is also the typical modeling 
+$19\,{\rm km\,s^{-1}}$ and $20\,{\rm km\,s^{-1}}$ respectively, which is also the typical modeling 
 errors of the other stacks.
 }
 \label{fig:stacks_and_fits}
@@ -327,9 +334,10 @@ weighting in the stacked profiles, i.e.\ we do not weight the spectra by the mea
 metal ion transitions. Scatter in the stacked spectra is dominated by randomness in the CGM rather 
 than scatter in the flux of individual observations. The mean statistic of the individual spectra 
 yields a good estimate of the average absorption and preserves equivalent width. The median 
-statistic is less sensitive to outliers, however the averaged equivalent width is smaller and the 
-analysis on the velocity field becomes more uncertain. In the following we present stacked spectra 
-using both the mean and the median statistic. 
+statistic is less sensitive to outliers, however the median opacity at any velocity channel is 
+rather small, since the discrete absorbers are spread throughout the entire velocity window. The 
+analysis on the median velocity field is thus subject to larger uncertainty. In the following we 
+present stacked spectra using both the mean and the median statistic. 
 
 In Figure~\ref{fig:stacks_and_fits}, we present mean and median stacks of \ion{C}{2}\,1334, 
 \ion{C}{4}\,1548, and \ion{Mg}{2}\,2796 absorption of the QPQ9 sample. We focus on the 
@@ -348,19 +356,20 @@ and it is more challenging to analyze their kinematics.
 %[Comnent on EW from 'standard' technique]
 Two results are evident in Figure~\ref{fig:stacks_and_fits}: (i) the mean \ion{C}{2} stack 
 exhibits excess absorption spanning a large velocity width; (ii) the mean absorption is likely 
-skewed toward positive velocities. We have 33 pairs in the QPQ9 sample for \ion{C}{2} analysis
+skewed toward positive velocities. We have 30 pairs in the QPQ9 sample for \ion{C}{2} analysis
 and an even larger number of pairs for \ion{C}{4} and \ion{Mg}{2} analyses, and the total number
 of individual components can only be larger than the number of absorption systems. Hence, although
 QPQ8 showed the distribution of absorbing components in velocity is non-Gaussian for each
-individual quasar-host associated system. , the central limit theorem applies and the distribution
-of all absorbing components should tend toward Gaussian distribution. To model the absorption, we
-introduce a Gaussian profile while allowing a constant pseudo-continuum level to vary. We perform
-$\chi^2$ minimization with each channel given equal weight. From the best-fit to the data, we
-measure the centroid of the \ion{C}{2} stack to be $+196\,{\rm km\,s^{-1}}$ and the $1\sigma$
-dispersion to be $313\,{\rm km\,s^{-1}}$. The centroid suggests an asymmetry that contradicts the
-standard expectation, while the dispersion suggests extreme kinematics. The median stack, on the
-other hand, shows weaker absorption, and the Gaussian model has a centroid with smaller offset and
-comparable dispersion. 
+individual quasar-host associated system, the central limit theorem applies and the distribution
+of all absorbing components should tend toward Gaussian distribution. A visual inspection of the 
+stack confirms that a broader absorption component is not apparent. Therefore, to model the 
+absorption, we may introduce a Gaussian profile while allowing a constant pseudo-continuum level 
+to vary. We perform $\chi^2$ minimization with each channel given equal weight. From the best-fit 
+to the data, we measure the centroid of the \ion{C}{2} stack to be $+254\,{\rm km\,s^{-1}}$ and 
+the $1\sigma$ dispersion to be $299\,{\rm km\,s^{-1}}$. The centroid suggests an asymmetry that 
+contradicts the standard expectation, while the dispersion suggests extreme kinematics. The median 
+stack, on the other hand, shows weaker absorption, and the Gaussian model has a centroid with 
+smaller offset and comparable dispersion. 
 
 We also create mean and median stack for the sub-sample with [\ion{O}{3}] redshifts and model the 
 absorption with Gaussian best-fit. The \ion{C}{2} mean stack for this sub-sample has a centroid at 
@@ -374,10 +383,8 @@ allow the doublet ratio to vary from 2:1 to 1:1. The modeling results show that 
 of \ion{C}{4} and \ion{Mg}{2} are consistent with \ion{C}{2}, i.e.\ large dispersion and centroid
 is skewed toward positive velocities.
 
-
-The above analyses are summarized in Table~\ref{tab:summary}. The 
-Gaussian models normalized to pseudo-continuum are overplotted on the data stacks in 
-Figure~\ref{fig:stacks_and_fits}. 
+The above analyses are summarized in Table~\ref{tab:summary}. The Gaussian models normalized to 
+pseudo-continuum are overplotted on the data stacks in Figure~\ref{fig:stacks_and_fits}. 
 
 %\input{Tables/tab_summary.tex}
 \input{tab_summary.tex}
@@ -393,9 +400,9 @@ realizations to be the scatter in the centroids of the data. The scatters
 $\approx100\,{\rm km\,s^{-1}}$ are comparable to the measured offsets, indicating large intrinsic 
 variation in quasar CGM environments (see also QPQ8). In Figure~\ref{fig:histogram_cen}, we show 
 the distribution of the absorption centroids from bootstrapping on the \ion{C}{2} mean stack. We 
-find that 98\% of the centroids are at positive velocities. We place a generous $3\sigma$ upper 
+find that 99\% of the centroids are at positive velocities. We place a generous $3\sigma$ upper 
 limit to the small offset of the centroid from $z_{\rm fg}$ for the \ion{C}{2} mean absorption at 
-$\delta v<+424\,{\rm km\,s^{-1}}$. Given the large intrinsic scatter, we do not attempt to explore
+$\delta v<+509\,{\rm km\,s^{-1}}$. Given the large intrinsic scatter, we do not attempt to explore
 whether there exists relative asymmetry among the \ion{C}{2}, \ion{C}{4}, and \ion{Mg}{2} 
 absorption. 
 
@@ -406,7 +413,7 @@ less luminous low-$z$ quasars. To test for this potential source of bias, we cre
 stack at \ion{C}{2}\,1334 by replacing the [\ion{O}{3}] redshifts by a redshift measured from the
 more symmetric \ion{Mg}{2} or H$\alpha$ emission when available. We are able to replace for 11 out
 of the 15 systems with [\ion{O}{3}] redshifts in the original sample. The new stack is similiar in
-velocity structure and again shows a positive offset $\approx+259\,{\rm km\,s^{-1}}$. We thus
+velocity structure and again shows a positive offset $\approx+319\,{\rm km\,s^{-1}}$. We thus
 conclude that our algorithm for measuring redshifts is not severely biased by the blue wing of the
 [\ion{O}{3}] emission-line.
 
@@ -433,7 +440,7 @@ section, we discuss two possible explanations for the asymmetry.
 %\includegraphics[width=2.5in]{Figures/fig_histogram_cen.pdf}
 \includegraphics[width=2.5in]{f03.pdf}
 \caption{Histogram of the absorption centroids of 10000 bootstrap realizations of the data sample 
-for the \ion{C}{2} mean stack. 98\% of the centroids are positively offset from $z_{\rm fg}$.}
+for the \ion{C}{2} mean stack. 99\% of the centroids are positively offset from $z_{\rm fg}$.}
 \label{fig:histogram_cen}
 \end{figure}
 
@@ -461,10 +468,10 @@ argument. The model from clustering analysis is multiplied to the pseudo-continu
 stack of the observational data, shifted to the centroid of the stack of the data, and broadened 
 by the mean redshift error in the data. The model is a good description of the data, with a 
 dispersion within modeling error of the dispersion in the data. We overplot in dashed, yellow an 
-absorption profile with $\sigma_v=559\,{\rm km\,s^{-1}}$, which is larger than the observed width 
+absorption profile with $\sigma_v=539\,{\rm km\,s^{-1}}$, which is larger than the observed width 
 by three times the standard deviation in the bootstrap analysis. Motions that produce a velocity 
 width larger than this can be ruled out. We overplot in dashed, magenta an absorption profile with 
-$\sigma_v=226\,{\rm km\,s^{-1}}$, which is smaller than the observed width by three times the
+$\sigma_v=239\,{\rm km\,s^{-1}}$, which is smaller than the observed width by three times the
 modeling error. Unless gravitational and Hubble flows together with redshift error broadening 
 produce a velocity width smaller than this, extra dynamical processes (e.g.\ outflows) will not be 
 required to explain the observation. 
@@ -488,8 +495,8 @@ sign, and is well contained within the 1$\sigma$ contour.}
 Under the assumption that the intrinsic dispersion and the redshift uncertainty add in 
 quadrature to give the observed width, we solve for the intrinsic dispersion in the \ion{C}{2} 
 mean stack. For the full QPQ9 sample, with the mean 
-$\sigma_{{\rm error}(z)}^{\rm full}=182\,{\rm km\,s^{-1}}$, we recover 
-$\sigma_{\rm intrinsic}^{\rm full}=255\,{\rm km\,s^{-1}}$. For the sub-sample with [\ion{O}{3}] 
+$\sigma_{{\rm error}(z)}^{\rm full}=174\,{\rm km\,s^{-1}}$, we recover 
+$\sigma_{\rm intrinsic}^{\rm full}=243\,{\rm km\,s^{-1}}$. For the sub-sample with [\ion{O}{3}] 
 redshifts, we recover $\sigma_{\rm intrinsic}^{\rm [OIII]}=356\,{\rm km\,s^{-1}}$. 
 
 \cite{Eftekharzadeh+15} measured the clustering of quasars in the range $2.2<z<2.8$ while 
@@ -501,7 +508,12 @@ NFW profile \citep{NavarroFrenkWhite97} with concentration parameter $c=4$, at $
 maximum circular velocity is $345\,{\rm km\,s^{-1}}$. \cite{TormenBouchetWhite97} found that the
 maximum circular velocity is $\approx1.4$ times the maximum of the average one-dimensional
 root-mean-square velocity $\sigma_{\rm rms}$. Hence, the average line-of-sight rms velocity
-typical of QPQ9 halos is $\sigma_{\rm rms}=246\,{\rm km\,s^{-1}}$. We can investigate
+typical of QPQ9 halos is $\sigma_{\rm rms}=246\,{\rm km\,s^{-1}}$. 
+In QPQ8, we estimated the probability of intercepting a random optically thick absorber is 4\%, 
+and clustering would only increase that to 24\%. 
+Although motions due to Hubble flows do not dominate, they nevertheless contribute to the observed 
+dispersion. 
+We can investigate
 whether gravitational motions and Hubble flows are sufficient to reproduce the dispersion in the
 data, using Monte Carlo methods to simulate the absorption signals.
 
@@ -535,10 +547,10 @@ insensitive to the assumed $W_{\rm CII}$ or line profile for one absorber.
 In Figure~\ref{fig:monte}, we show a comparison of the observational data stack and the Gaussian 
 absorption model of the Monte Carlo simulations. In the figure, the Gaussian absorption model is 
 broadened by the mean redshift error by adding it in quadrature to the dispersion in the model. 
-The resulting stack of mock spectra has a $1\sigma$ dispersion of $280\,{\rm km\,s^{-1}}$. This is
-about $1\sigma$ modeling error away from the intrinsic dispersion in the \ion{C}{2} mean stack for 
-the full sample, and about 3 times the modeling error away from the intrinsic dispersion in the 
-stack of the sub-sample with [\ion{O}{3}] redshifts. We also test for the 
+The resulting stack of mock spectra has a $1\sigma$ dispersion of $286\,{\rm km\,s^{-1}}$. This is
+about 2 times the modeling error away from the intrinsic dispersion in the \ion{C}{2} mean stack 
+for the full sample, and about 3 times the modeling error away from the intrinsic dispersion in 
+the stack of the sub-sample with [\ion{O}{3}] redshifts. We also test for the 
 sensitivity of this measured dispersion to the correlation functions adopted. The QPQ6 clustering 
 analysis is performed on only the strongest absorber near $z_{\rm fg}$, and a low $R_\perp$ 
 sightline may in fact intercept more than one optically thick absorber. We double the number of 
@@ -548,13 +560,13 @@ combination of gravitational motions and Hubble flows cannot be ruled out. Extra
 processes are not necessary to explain the large velocity fields. 
 
 From the bootstrap 
-analysis of the observed dispersion, a width of $\sigma_v>559\,{\rm km\,s^{-1}}$ would be larger 
+analysis of the observed dispersion, a width of $\sigma_v>539\,{\rm km\,s^{-1}}$ would be larger 
 than the observed by three times the scatter (overplotted in Figure~\ref{fig:monte}). In other 
 words, taking into account the redshift errors, motions in addition to gravitational and Hubble 
-flows that will produce an intrinsic dispersion $\sigma_v>529\,{\rm km\,s^{-1}}$ can be ruled out. 
+flows that will produce an intrinsic dispersion $\sigma_v>510\,{\rm km\,s^{-1}}$ can be ruled out. 
 
 On the contrary, 
-$\sigma_{\rm rms}<134\,{\rm km\,s^{-1}}$ together with Hubble velocities and
+$\sigma_{\rm rms}<132\,{\rm km\,s^{-1}}$ together with Hubble velocities and
 broadening by redshift errors will result in a velocity width that is more than three times the 
 modeling error away from the observed width (overplotted in Figure~\ref{fig:monte}). This implies 
 that, unless the characteristic $M_{\rm halo}<10^{11.8}\,M_\odot$,
@@ -685,7 +697,7 @@ simulations, and Chi Po Choi for a discussion on statistics.
 %\bibliographystyle{/Users/lwymarie/Documents/Bibli/apj}
 %\bibliography{/Users/lwymarie/Documents/Bibli/allrefs}
 
-\begin{thebibliography}{45}
+\begin{thebibliography}{46}
 \expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
 
 \bibitem[{{Baldwin}(1977)}]{Baldwin77}
@@ -801,6 +813,9 @@ simulations, and Chi Po Choi for a discussion on statistics.
   D., {Pan}, K., {Pieri}, M.~M., {Prada}, F., {Salvato}, M., {Schlegel}, D.~J.,
   {Schneider}, D.~P., {Simmons}, A., {Viel}, M., {Weinberg}, D.~H., \& {Zhu},
   L. 2017, \aap, 597, A79
+
+\bibitem[{{Prochaska}(2017)}]{Prochaska+17}
+{Prochaska}, J.~X. 2017, Astronomy and Computing, 19, 27
 
 \bibitem[{{Prochaska} {et~al.}(2013{\natexlab{a}}){Prochaska}, {Hennawi},
   {Lee}, {Cantalupo}, {Bovy}, {Djorgovski}, {Ellison}, {Lau}, {Martin},

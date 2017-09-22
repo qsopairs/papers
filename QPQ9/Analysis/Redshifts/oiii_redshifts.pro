@@ -1,15 +1,16 @@
 pro oiii_redshifts
 ;; Script to generate the zem files (and Joes QA)
-;path = getenv('QSO_DIR')+'tex/QPQ9/Analysis/Redshifts/'
 path = '~/Documents/papers/QPQ9/Analysis/Redshifts/'
+;path = '~/Documents/papers/QPQ9/Analysis/Redshifts/QPQ_on_HW/'
 
 zdir =  path+'zem/'
 qadir = path+'zQA/'
 inputfile = path+'new_input.txt'
 oiii_vdiff = 200. ; km/s
 pk2c = 0.25
+min_sn = 8
 ;
-readcol, inputfile, filename, zguess, format = 'A,F', comment = '#'
+readcol, inputfile, filename, zguess, inflg, format = 'A,F,I', comment = '#'
 name1 = fileandpath(filename)
 name2 = repstr(name1, '.fits.gz', '')
 name = repstr(name2, '.fits', '')
@@ -24,12 +25,13 @@ FOR ii = 0L, nqsos-1L DO BEGIN
       continue
    endif
    ;;
-   flux = x_readspec(filename[ii], wav = wave, sig = sig, inflg = 2)
+   flux = x_readspec(filename[ii], wav = wave, sig = sig, inflg = inflg)
    loglam = alog10(wave)
    ivar = (sig GT 0)/(sig^2 + (sig LE 0.0))
 ;   if strmatch(filename[ii],'*023946.43-010640.5*') then min_sn = 50 ; pick MgII
    if strmatch(filename[ii],'*091338.30-010708.7*') then min_sn = 60 ; pick MgII
 ;   if strmatch(filename[ii],'*023946.43-010640.5*') then exclude_line = [1,0,0,0,1,0,0,0,0,0]
+;   min_sn = 8
    zsys = zsys_driver(loglam, flux, ivar, zguess[ii] $
                       , zstruct = zstruct, out_struct = out_struct $
                       , /lya_peak $

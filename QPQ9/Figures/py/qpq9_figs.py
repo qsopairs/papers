@@ -192,6 +192,7 @@ def stacks_and_fits(outfil=None):
         # Plot
         plt.plot(velo.value, mean_stack[0].data,drawstyle='steps-mid',linewidth=2,color='k')
         plt.plot(velo.value, model(velo.value),color='b',linewidth=3)
+        plt.plot([0,0],[0,2],color='gray',linewidth=2,linestyle='--')
         plt.plot([model.mean_1.value,model.mean_1.value],[0,2],'b--',linewidth=2)
 
         # Font
@@ -225,6 +226,7 @@ def stacks_and_fits(outfil=None):
                 ions.ion_name(aline.data)+', median',size=fontsize)
         plt.plot(velo.value, median_stack[0].data,drawstyle='steps-mid',linewidth=2,color='k')
         plt.plot(velo.value, model(velo.value),color='b',linewidth=3)
+        plt.plot([0,0],[0,2],color='gray',linewidth=2,linestyle='--')
         plt.plot([model.mean_1.value,model.mean_1.value],[0,2],'b--',linewidth=2)
         for item in ([ax.title, ax.xaxis.label, ax.yaxis.label] +
                          ax.get_xticklabels() + ax.get_yticklabels()):
@@ -388,18 +390,18 @@ def monte(outfil=None):
     model_conti = models.Const1D(amplitude=Gaussian_params['amplitude_0'])
     model_monte_gauss = models.GaussianAbsorption1D(
         amplitude=monte_params['amplitude'],mean=Gaussian_params['mean_1'],
-        stddev=np.sqrt((monte_params['stddev'])**2.+182**2.))
+        stddev=np.sqrt((monte_params['stddev'])**2.+174**2.))
     print('s.d. in monte carlo model, in monte carlo model with redshift error broadening, in data',
-          monte_params['stddev'],np.sqrt((monte_params['stddev'])**2.+182**2.),
+          monte_params['stddev'],np.sqrt((monte_params['stddev'])**2.+174**2.),
           Gaussian_params['stddev_1'])
     model_monte = model_conti*model_monte_gauss
     # Extra motion that is ruled out
     model_extra_gauss = models.GaussianAbsorption1D(
-        amplitude=monte_params['amplitude'],mean=Gaussian_params['mean_1'],stddev=559.)
+        amplitude=monte_params['amplitude'],mean=Gaussian_params['mean_1'],stddev=539.)
     model_extra = model_conti*model_extra_gauss
     # Width that requires outflow
     model_outflow_gauss = models.GaussianAbsorption1D(
-        amplitude=monte_params['amplitude'],mean=Gaussian_params['mean_1'],stddev=226.)
+        amplitude=monte_params['amplitude'],mean=Gaussian_params['mean_1'],stddev=239.)
     model_outflow = model_conti*model_outflow_gauss
 
     # Axes
