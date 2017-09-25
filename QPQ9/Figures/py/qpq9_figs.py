@@ -71,6 +71,8 @@ def experiment(outfil=None,wrest=[1334.5323*u.AA,1548.195*u.AA,2796.354*u.AA],S2
             if ions.ion_name(aline.data) == 'CIV':
                 if 'J1002+0020' in idict['qpq']['NAME']: #overlaps with BAL of bg quasar
                     idx_mask.append(ii)
+                if 'J2255-0001' in idict['qpq']['NAME']: #test effect of removing bad MgII redshift
+                    idx_mask.append(ii)
             if ions.ion_name(aline.data) == 'MgII':
                 if (('J0822+1319' in idict['qpq']['NAME']) | ('J0908+4215' in idict['qpq']['NAME']) |
                         ('J1242+1817' in idict['qpq']['NAME']) | ('J1622+2031' in idict['qpq']['NAME'])):

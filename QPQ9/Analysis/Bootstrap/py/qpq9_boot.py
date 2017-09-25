@@ -104,7 +104,7 @@ def boot_trans(wrest=1334.5323*u.AA,full_sample=True,
                 stddev_2 = model.stddev_1
                 return stddev_2
             def tie_amplitude2(model):
-                amplitude_2 = model.amplitude_1
+                amplitude_2 = model.amplitude_1*0.5
                 return amplitude_2
             model_init.mean_2.tied = tie_mean2
             model_init.stddev_2.tied = tie_stddev2

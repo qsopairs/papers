@@ -104,6 +104,8 @@ for ii,idict in enumerate(all_dict):
         continue
     if 'J1002+0020' in idict['qpq']['NAME']: #CIV overlaps with BAL of background quasar
         idx_mask.append(ii)
+    if 'J2255-0001' in idict['qpq']['NAME']: #test effect of removing bad MgII redshift
+        idx_mask.append(ii)
 for idx in idx_mask:
     stck_mskN[idx,:] = 0.
 
