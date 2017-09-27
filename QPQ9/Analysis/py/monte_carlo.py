@@ -87,7 +87,8 @@ def model_width(stddev_oneabs,sigma1D,all_dict):
     for ii,idict in enumerate(all_dict):
         if idict is None:
             continue
-        if 'J1508+3635' in idict['qpq']['NAME']:
+        if (('J0143+2954' in idict['qpq']['NAME']) or ('J0850+4755' in idict['qpq']['NAME']) or
+                ('J0951+4932' in idict['qpq']['NAME'])): # removing bad continua that gave fake S/N
             continue
         else:
             stck_img = gen_stck_img(idict['qpq']['R_PHYS'],idict['qpq']['Z_FG'],stddev_oneabs,sigma1D)
@@ -104,8 +105,8 @@ def model_width(stddev_oneabs,sigma1D,all_dict):
 
 # Generate the data points for the contour plot
 def contour_data(all_dict):
-    stddev_oneabs_grid = np.arange(12.,63.,2.5)  # for finer/coarser grid, step = 2.5/5
-    sigma1D_grid = np.arange(117.,318.,5)  # for finer/coarser grid, step = 5/10
+    stddev_oneabs_grid = np.arange(10.,41.,2.5)  # for finer/coarser grid, step = 2.5/5
+    sigma1D_grid = np.arange(60.,301.,10)  # for finer/coarser grid, step = 10/20
     sigma1D_GRID,stddev_oneabs_GRID = np.meshgrid(sigma1D_grid,stddev_oneabs_grid)
     widths = np.zeros_like(stddev_oneabs_GRID)
     amps = np.zeros_like(stddev_oneabs_GRID)
@@ -114,8 +115,8 @@ def contour_data(all_dict):
         for jj in np.arange(widths.shape[1]):
             widths[ii,jj],amps[ii,jj] = model_width(stddev_oneabs_GRID[ii,jj],sigma1D_GRID[ii,jj],all_dict)
     WCII_grid = np.zeros_like(stddev_oneabs_grid)
-    width_levels = [164,192,218,267,291,314]
-    amp_bounds = [0.117,0.164] # 3-sigma bounds
+    width_levels = [100,148,188,258,290,321]
+    amp_bounds = [0.089,0.141] # 3-sigma bounds
     for ii,wcii in enumerate(WCII_grid):
         WCII_grid[ii] = stddev_oneabs_to_WCII(stddev_oneabs_grid[ii])
     mass_grid = np.zeros_like(sigma1D_grid)
@@ -151,16 +152,16 @@ def main(contour_only="False"):
     fin_velo, stck_img, stck_msk, all_dict = stack_tup0
 
     if contour_only == "False":
-        # 3 times the modeling error smaller than observed width, minus redshift error broadening,
-        # gives intrinsic width 164 km/s
-        width,amp = model_width(22.5,132.,all_dict)
+        # 3 times the modeling error smaller than (observed width - minus redshift error broadening),
+        # gives intrinsic width 100 km/s
+        width,amp = model_width(13.,70.,all_dict)
         plt.figure(figsize=(8,5))
         plt.axis([-2000,2000,0.65,1.05])
         model_final = models.GaussianAbsorption1D(amplitude=amp,mean=0.,stddev=width)
         plt.plot(v_grid,model_final(v_grid))
         print('width and amplitude, for 3 times error smaller',width,amp)
         # QPQ halo mass sigma_1D
-        width,amp = model_width(37,246.,all_dict)
+        width,amp = model_width(33.,246.,all_dict)
         plt.figure(figsize=(8,5))
         plt.axis([-2000,2000,0.65,1.05])
         model_final = models.GaussianAbsorption1D(amplitude=amp,mean=0.,stddev=width)

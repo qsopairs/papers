@@ -29,7 +29,8 @@ idx_mask = []
 for ii,idict in enumerate(all_dict):
     if idict is None:
         continue
-    if 'J1508+3635' in idict['qpq']['NAME']: #DLA not excluded by forest cut, should be excluded now
+    if (('J0143+2954' in idict['qpq']['NAME']) or ('J0850+4755' in idict['qpq']['NAME']) or
+            ('J0951+4932' in idict['qpq']['NAME'])): #uncertain continua give fake S/N
         idx_mask.append(ii)
 for idx in idx_mask:
     stck_mskN[idx,:] = 0.
@@ -104,7 +105,7 @@ for ii,idict in enumerate(all_dict):
         continue
     if 'J1002+0020' in idict['qpq']['NAME']: #CIV overlaps with BAL of background quasar
         idx_mask.append(ii)
-    if 'J2255-0001' in idict['qpq']['NAME']: #test effect of removing bad MgII redshift
+    if 'J2255-0001' in idict['qpq']['NAME']: #doubtful MgII redshift
         idx_mask.append(ii)
 for idx in idx_mask:
     stck_mskN[idx,:] = 0.
@@ -262,23 +263,24 @@ stack_tup0 = qpq9k.qpq9_IRMgII(passback=True,wrest=1334.5323*u.AA,S2N_cut=5.5/u.
 fin_velo, stck_img, stck_msk, all_dict = stack_tup0
 stck_mskN = copy.deepcopy(stck_msk)
 idx_mask = []
-for ii,dd in enumerate(all_dict):
-    if dd is None:
+for ii,idict in enumerate(all_dict):
+    if idict is None:
         continue
-    if 'J1508+3635' in dd['qpq']['NAME']: #DLA not excluded by forest cut, should be excluded now
+    if (('J0143+2954' in idict['qpq']['NAME']) or ('J0850+4755' in idict['qpq']['NAME']) or
+            ('J0951+4932' in idict['qpq']['NAME'])): #uncertain continua give fake S/N
         idx_mask.append(ii)
 for idx in idx_mask:
     stck_mskN[idx,:] = 0.
 npairs_CII = str(int(np.max((np.sum(stck_mskN,0)))))
 sv_zfg = []
 sv_Rperp = []
-for ii,dd in enumerate(all_dict):
-    if dd is None:
+for ii,idict in enumerate(all_dict):
+    if idict is None:
         continue
     if np.sum(stck_mskN[ii,:]) == 0:
         continue
-    sv_zfg.append(dd['qpq']['Z_FG'])
-    sv_Rperp.append(dd['qpq']['R_PHYS'])
+    sv_zfg.append(idict['qpq']['Z_FG'])
+    sv_Rperp.append(idict['qpq']['R_PHYS'])
 medzfg_CII = str(np.around(np.median(sv_zfg),decimals=2))
 medRperp_CII = str(int(np.around(np.median(sv_Rperp))))
 
@@ -292,20 +294,22 @@ idx_mask = []
 for ii,idict in enumerate(all_dict):
     if idict is None:
         continue
-    if 'J1002+0020' in idict['qpq']['NAME']: #CIV overlaps with BAL of background quasar
+    if 'J1002+0020' in idict['qpq']['NAME']: #BAL of background quasar
+        idx_mask.append(ii)
+    if 'J2255-0001' in idict['qpq']['NAME']: #doubtful MgII redshift
         idx_mask.append(ii)
 for idx in idx_mask:
     stck_mskN[idx,:] = 0.
 npairs_CIV = str(int(np.max((np.sum(stck_mskN,0)))))
 sv_zfg = []
 sv_Rperp = []
-for ii,dd in enumerate(all_dict):
-    if dd is None:
+for ii,idict in enumerate(all_dict):
+    if idict is None:
         continue
     if np.sum(stck_mskN[ii,:]) == 0:
         continue
-    sv_zfg.append(dd['qpq']['Z_FG'])
-    sv_Rperp.append(dd['qpq']['R_PHYS'])
+    sv_zfg.append(idict['qpq']['Z_FG'])
+    sv_Rperp.append(idict['qpq']['R_PHYS'])
 medzfg_CIV = str(np.around(np.median(sv_zfg),decimals=2))
 medRperp_CIV = str(int(np.around(np.median(sv_Rperp))))
 
@@ -325,13 +329,13 @@ for idx in idx_mask:
 npairs_MgII = str(int(np.max((np.sum(stck_mskN,0)))))
 sv_zfg = []
 sv_Rperp = []
-for ii,dd in enumerate(all_dict):
-    if dd is None:
+for ii,idict in enumerate(all_dict):
+    if idict is None:
         continue
     if np.sum(stck_mskN[ii,:]) == 0:
         continue
-    sv_zfg.append(dd['qpq']['Z_FG'])
-    sv_Rperp.append(dd['qpq']['R_PHYS'])
+    sv_zfg.append(idict['qpq']['Z_FG'])
+    sv_Rperp.append(idict['qpq']['R_PHYS'])
 medzfg_MgII = str(np.around(np.median(sv_zfg),decimals=2))
 medRperp_MgII = str(int(np.around(np.median(sv_Rperp))))
 
@@ -444,23 +448,21 @@ stack_tup0 = qpq9k.qpq9_IRMgII(passback=True,wrest=1334.5323*u.AA,S2N_cut=5.5/u.
 fin_velo, stck_img, stck_msk, all_dict = stack_tup0
 stck_mskN = copy.deepcopy(stck_msk)
 idx_mask = []
-for ii,dd in enumerate(all_dict):
-    if dd is None:
+for ii,idict in enumerate(all_dict):
+    if idict is None:
         continue
-    if 'J1508+3635' in dd['qpq']['NAME']: #DLA not excluded by forest cut, should be excluded now
-        idx_mask.append(ii)
 for idx in idx_mask:
     stck_mskN[idx,:] = 0.
 npairs_CII = str(int(np.max((np.sum(stck_mskN,0)))))
 sv_zfg = []
 sv_Rperp = []
-for ii,dd in enumerate(all_dict):
-    if dd is None:
+for ii,idict in enumerate(all_dict):
+    if idict is None:
         continue
     if np.sum(stck_mskN[ii,:]) == 0:
         continue
-    sv_zfg.append(dd['qpq']['Z_FG'])
-    sv_Rperp.append(dd['qpq']['R_PHYS'])
+    sv_zfg.append(idict['qpq']['Z_FG'])
+    sv_Rperp.append(idict['qpq']['R_PHYS'])
 medzfg_CII = str(np.around(np.median(sv_zfg),decimals=2))
 medRperp_CII = str(int(np.around(np.median(sv_Rperp))))
 
@@ -474,20 +476,20 @@ idx_mask = []
 for ii,idict in enumerate(all_dict):
     if idict is None:
         continue
-    if 'J1002+0020' in idict['qpq']['NAME']: #CIV overlaps with BAL of background quasar
+    if 'J1002+0020' in idict['qpq']['NAME']: #BAL of background quasar
         idx_mask.append(ii)
 for idx in idx_mask:
     stck_mskN[idx,:] = 0.
 npairs_CIV = str(int(np.max((np.sum(stck_mskN,0)))))
 sv_zfg = []
 sv_Rperp = []
-for ii,dd in enumerate(all_dict):
-    if dd is None:
+for ii,idict in enumerate(all_dict):
+    if idict is None:
         continue
     if np.sum(stck_mskN[ii,:]) == 0:
         continue
-    sv_zfg.append(dd['qpq']['Z_FG'])
-    sv_Rperp.append(dd['qpq']['R_PHYS'])
+    sv_zfg.append(idict['qpq']['Z_FG'])
+    sv_Rperp.append(idict['qpq']['R_PHYS'])
 medzfg_CIV = str(np.around(np.median(sv_zfg),decimals=2))
 medRperp_CIV = str(int(np.around(np.median(sv_Rperp))))
 
@@ -507,13 +509,13 @@ for idx in idx_mask:
 npairs_MgII = str(int(np.max((np.sum(stck_mskN,0)))))
 sv_zfg = []
 sv_Rperp = []
-for ii,dd in enumerate(all_dict):
-    if dd is None:
+for ii,idict in enumerate(all_dict):
+    if idict is None:
         continue
     if np.sum(stck_mskN[ii,:]) == 0:
         continue
-    sv_zfg.append(dd['qpq']['Z_FG'])
-    sv_Rperp.append(dd['qpq']['R_PHYS'])
+    sv_zfg.append(idict['qpq']['Z_FG'])
+    sv_Rperp.append(idict['qpq']['R_PHYS'])
 medzfg_MgII = str(np.around(np.median(sv_zfg),decimals=2))
 medRperp_MgII = str(int(np.around(np.median(sv_Rperp))))
 

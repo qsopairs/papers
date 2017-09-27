@@ -65,15 +65,16 @@ def experiment(outfil=None,wrest=[1334.5323*u.AA,1548.195*u.AA,2796.354*u.AA],S2
         for ii,idict in enumerate(all_dict):
             if idict is None:
                 continue
-            if ions.ion_name(aline.data) == 'CII':
-                if 'J1508+3635' in idict['qpq']['NAME']: #DLA, should be excluded now
+            if ions.ion_to_name(aline.data) == 'CII':
+                if (('J0143+2954' in idict['qpq']['NAME']) or ('J0850+4755' in idict['qpq']['NAME']) or
+                    ('J0951+4932' in idict['qpq']['NAME'])): #uncertain continua give fake S/N
                     idx_mask.append(ii)
-            if ions.ion_name(aline.data) == 'CIV':
+            if ions.ion_to_name(aline.data) == 'CIV':
                 if 'J1002+0020' in idict['qpq']['NAME']: #overlaps with BAL of bg quasar
                     idx_mask.append(ii)
-                if 'J2255-0001' in idict['qpq']['NAME']: #test effect of removing bad MgII redshift
+                if 'J2255-0001' in idict['qpq']['NAME']: #doubtful MgII redshift
                     idx_mask.append(ii)
-            if ions.ion_name(aline.data) == 'MgII':
+            if ions.ion_to_name(aline.data) == 'MgII':
                 if (('J0822+1319' in idict['qpq']['NAME']) | ('J0908+4215' in idict['qpq']['NAME']) |
                         ('J1242+1817' in idict['qpq']['NAME']) | ('J1622+2031' in idict['qpq']['NAME'])):
                     #BAL, strange emission, sky emission, sky emission
@@ -112,7 +113,7 @@ def experiment(outfil=None,wrest=[1334.5323*u.AA,1548.195*u.AA,2796.354*u.AA],S2
             ax.set_xlabel(r'$R_\perp$ (kpc)')
         ax.text((ax.get_xlim()[1]-ax.get_xlim()[0])*0.05+ax.get_xlim()[0],
                 (ax.get_ylim()[1]-ax.get_ylim()[0])*0.85+ax.get_ylim()[0],
-                ions.ion_name(aline.data),size=fontsize)
+                ions.ion_to_name(aline.data),size=fontsize)
         # Scatter
         sc = ax.scatter(sv_Rphys,sv_zfg,s=sv_symsize,c=np.log10(sv_gUV),alpha=0.6,edgecolors='none',
                         vmin=logguv_min,vmax=logguv_max)
@@ -189,7 +190,7 @@ def stacks_and_fits(outfil=None):
             ax.set_xlabel('Relative Velocity (km/s)')
         ax.text((ax.get_xlim()[1]-ax.get_xlim()[0])*0.05+ax.get_xlim()[0],
                 (ax.get_ylim()[1]-ax.get_ylim()[0])*0.05+ax.get_ylim()[0],
-                ions.ion_name(aline.data)+', mean',size=fontsize)
+                ions.ion_to_name(aline.data)+', mean',size=fontsize)
 
         # Plot
         plt.plot(velo.value, mean_stack[0].data,drawstyle='steps-mid',linewidth=2,color='k')
@@ -225,7 +226,7 @@ def stacks_and_fits(outfil=None):
         ax.set_yticklabels("",visible=False)
         ax.text((ax.get_xlim()[1]-ax.get_xlim()[0])*0.05+ax.get_xlim()[0],
                 (ax.get_ylim()[1]-ax.get_ylim()[0])*0.05+ax.get_ylim()[0],
-                ions.ion_name(aline.data)+', median',size=fontsize)
+                ions.ion_to_name(aline.data)+', median',size=fontsize)
         plt.plot(velo.value, median_stack[0].data,drawstyle='steps-mid',linewidth=2,color='k')
         plt.plot(velo.value, model(velo.value),color='b',linewidth=3)
         plt.plot([0,0],[0,2],color='gray',linewidth=2,linestyle='--')
@@ -284,7 +285,7 @@ def stack_z1(outfil=None):
     ax.set_xlabel('Relative Velocity (km/s)')
     ax.text((ax.get_xlim()[1]-ax.get_xlim()[0])*0.05+ax.get_xlim()[0],
              (ax.get_ylim()[1]-ax.get_ylim()[0])*0.05+ax.get_ylim()[0],
-             ions.ion_name(aline.data)+', $z\sim0.9$, mean',size=fontsize)
+             ions.ion_to_name(aline.data)+', $z\sim0.9$, mean',size=fontsize)
     ax.yaxis.set_major_locator(MaxNLocator(nbins=5))
 
     # Plot
@@ -344,7 +345,7 @@ def stacks_fg(outfil=None):
             ax.set_xlabel('Relative Velocity (km/s)')
         ax.text((ax.get_xlim()[1]-ax.get_xlim()[0])*0.05+ax.get_xlim()[0],
                 (ax.get_ylim()[1]-ax.get_ylim()[0])*0.05+ax.get_ylim()[0],
-                ions.ion_name(aline.data)+', f/g, mean',size=fontsize)
+                ions.ion_to_name(aline.data)+', f/g, mean',size=fontsize)
         ax.yaxis.set_major_locator(MaxNLocator(nbins=5))
 
         # Plot
@@ -392,9 +393,9 @@ def monte(outfil=None):
     model_conti = models.Const1D(amplitude=Gaussian_params['amplitude_0'])
     model_monte_gauss = models.GaussianAbsorption1D(
         amplitude=monte_params['amplitude'],mean=Gaussian_params['mean_1'],
-        stddev=np.sqrt((monte_params['stddev'])**2.+174**2.))
+        stddev=np.sqrt((monte_params['stddev'])**2.+192**2.))
     print('s.d. in monte carlo model, in monte carlo model with redshift error broadening, in data',
-          monte_params['stddev'],np.sqrt((monte_params['stddev'])**2.+174**2.),
+          monte_params['stddev'],np.sqrt((monte_params['stddev'])**2.+192**2.),
           Gaussian_params['stddev_1'])
     model_monte = model_conti*model_monte_gauss
     # Extra motion that is ruled out
@@ -403,7 +404,7 @@ def monte(outfil=None):
     model_extra = model_conti*model_extra_gauss
     # Width that requires outflow
     model_outflow_gauss = models.GaussianAbsorption1D(
-        amplitude=monte_params['amplitude'],mean=Gaussian_params['mean_1'],stddev=239.)
+        amplitude=monte_params['amplitude'],mean=Gaussian_params['mean_1'],stddev=118.)
     model_outflow = model_conti*model_outflow_gauss
 
     # Axes
@@ -513,7 +514,7 @@ def contour(outfil=None):
     ax.set_ylabel(r'$W_{\rm CII} ({\rm \AA})$')
 
     # Mark QPQ halo mass location
-    ax.text(12.6,0.58,'+',size=fontsize,ha='center',va='center')
+    ax.text(12.6,0.52,'+',size=fontsize,ha='center',va='center')
 
     # Font
     for item in ([ax.title, ax.xaxis.label, ax.yaxis.label] +

@@ -1,5 +1,5 @@
 # imports
-import copy, os, glob, imp, shutil
+import copy, os, glob, imp, shutil, pdb
 import numpy as np
 
 from astropy.coordinates import SkyCoord
@@ -298,6 +298,38 @@ for qq,cc in enumerate(c_QPQ9):
 ## write
 Table(QPQ9).write('qpq9_final.fits',format='fits',overwrite=True)
 
+# Add pairs of zfg < 1.6 and measured by SDSS-HW
+
+QPQ9 = QTable(fits.open('qpq9_final.fits')[1].data)
+c_QPQ9 = SkyCoord(QPQ9['FG_RA']*u.deg,QPQ9['FG_DEC']*u.deg)
+c_QPQ9_bg = SkyCoord(ra=QPQ9['RA']*u.deg,dec=QPQ9['DEC']*u.deg)
+for qq,cc in enumerate(c_igmsp):
+    if kpc_amin[qq]*ang_sep[qq] < 300 *u.kpc:
+        if 'SDSS-HW' in igmsp.cat[ID_fg[qq]]['flag_zem']: # good z
+            # Match Johnson+15 and Farina+ samples' redshifts, and MgII redshift or better
+            if (igmsp.cat[ID_fg[qq]]['zem'] >= 0.4) & (igmsp.cat[ID_fg[qq]]['zem'] <= 1.6):
+                # Lya forest cut for MgII stack
+                if 2796.354*(1+igmsp.cat['zem'][ID_fg[qq]]) > (1215.6701+15.)*(1+igmsp.cat['zem'][ID_bg[qq]]):
+                    if len(np.where(cc.separation(c_QPQ9) < 0.5*u.arcsec)[0]) > 0: # in QPQ9 already
+                        pdb.set_trace()
+                    if np.mod(igmsp.cat['flag_group'][ID_fg[qq]],2) == 0:
+                        name = 'BOSSJ'
+                    else:
+                        name = 'SDSSJ'
+                    name = name + c_igmsp_bg[qq].to_string('hmsdms')[0:2]
+                    name = name + c_igmsp_bg[qq].to_string('hmsdms')[3:5]
+                    ipos = c_igmsp_bg[qq].to_string('hmsdms').rfind(' ')+1
+                    name = name + c_igmsp_bg[qq].to_string('hmsdms')[ipos:ipos+3]
+                    name = name + c_igmsp_bg[qq].to_string('hmsdms')[ipos+4:ipos+6]
+                    QPQ9.add_row({'FG_RA':igmsp.cat['RA'][ID_fg[qq]],'FG_DEC':igmsp.cat['DEC'][ID_fg[qq]],'NAME':name,
+                                  'RA':igmsp.cat['RA'][ID_bg[qq]],'DEC':igmsp.cat['DEC'][ID_bg[qq]],
+                                  'Z_FG':igmsp.cat['zem'][ID_fg[qq]],'Z_FSIG':272,'BG_Z':igmsp.cat['zem'][ID_bg[qq]],
+                                  'R_PHYS':(kpc_amin[qq]*ang_sep[qq]).value,'ZFG_LINE':'SDSS-HW'})
+QPQ9.sort(['FG_RA','FG_DEC'])
+
+# write
+Table(QPQ9).write('qpq9_final.fits',format='fits',overwrite=True)
+
 # Update systematic offsets and scatters of emission lines to Shen+16
 
 ## Add the systematic biases, intrinsic scatter + measurement scatter
@@ -325,6 +357,17 @@ for ii,qq in enumerate(QPQ9):
     if qq['ZFG_LINE'] == 'H$\\alpha$':
         # scatter
         qq['Z_FSIG'] = 300
+    if qq['ZFG_LINE'] == 'SDSS-HW':
+        if qq['Z_FG'] >= 0.84:
+            # MgII redshift, bring to z_sys
+            qq['Z_FG'] = ltu.z_from_dv(+57.*u.km/u.s,qq['Z_FG'])
+            # scatter
+            qq['Z_FSIG'] = 226
+        else:
+            # [OIII] redshift, bring to zsys
+            qq['Z_FG'] = ltu.z_from_dv(+48.*u.km/u.s,qq['Z_FG'])
+            # scatter
+            qq['Z_FSIG'] = 68
 
 ## write
 Table(QPQ9).write('qpq9_final.fits',format='fits',overwrite=True)
