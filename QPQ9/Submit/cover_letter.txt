@@ -1,6 +1,12 @@
-Dear referee,
+Editor Walter,
 
-We thank you very much for careful reading of our manuscript, and your comments and criticism.
+We thank very much the referee for their careful reading of our manuscript, and their comments and criticism.
+Following their recommendations, we have revised our manuscript in a number of ways detailed below. We are now
+resubmitting to the Astrophysical Journal and ask that you consider it further for publication.
+
+In addition to the changes marked in bold face, all the figures and tables have been updated. The updates are a result
+of updated analysis of an enlared, modified sample. Moreover, the section on line-of-sight absorption has been moved
+to the Appendix.
 
 >After carefully reviewing the manuscript, I found multiple significant issues with the study, and consequently it does
 >not currently meet the standards for publication. These issues must be addressed before the paper can be accepted, and
@@ -15,7 +21,7 @@ We thank you very much for careful reading of our manuscript, and your comments 
 >described in the previous QPQ papers (details to follow). Significant additional work is required to demonstrate that
 >the offset in the observed absorption centroid is real and not due to redshift measurement errors.
 
-We thank you for pointing out the importance of accurate redshift measurements. We have addressed the
+We thank the referee for pointing out the importance of accurate redshift measurements. We have addressed the
 suggested additional work in the details to follow.
 
 >2) The authors have not demonstrated that the measured 1-sigma dispersion measured in a mean stack is is a
@@ -100,7 +106,7 @@ difference between using the centroid versus using the peak for [OIII], and ther
 difference for MgII on average. We may expect the difference between a mode and a peak is even smaller.
 
 In the first version of the submitted manuscript, there are two redshift measurement techniques in the z ~ 2 sample:
-our custom line-centering algorithm, and the algorithm of Hewett&Wild10. We thank you for scrutinizing the
+our custom line-centering algorithm, and the algorithm of Hewett&Wild10. We thank the referee for scrutinizing the
 redshift measurement techniques, which helps strengthen our results. In this re-submitted manuscript, for all z > 1.6
 sample we measure redshifts of all quasars using our own custom line-centering algorithm instead of adopting values
 from Hewett&Wild10. After we purge the quasars whose redshift measurement is dominated by CIII], we find that on
@@ -147,7 +153,7 @@ velocities. text have been added to reflect these numbers.
 >Consequently, the velocity centroid and doublet ratio will be degenerate and uncertainty due to this degeneracy must
 >be addressed.
 
-We thank you for pointing out the insufficient detail in the text. The doublet ratio is allowed to vary
+We thank the referee for pointing out the insufficient detail in the text. The doublet ratio is allowed to vary
 between 2:1 to 1:1.
 
 >Major point 4:
@@ -182,7 +188,7 @@ amplitude and dispersion of the mean absorption.
 >that are not appropriate for their redshift measurement techniques indicates that the authors need to carefully review
 >the paper and ensure that the citations to the literature are correctly represented and applied.
 
-We thank you for clarifying the explanation to Johnson+15's results. We have updated the text to reflect that
+We thank the referee for clarifying the explanation to Johnson+15's results. We have updated the text to reflect that
 outflows is only one possibility. Gauthier+13 is a single sightline, and the velocity width Dv90 of the MgII
 absorber is less than the average of QPQ8 CII absorber. Muzahid+15 found an absorber with Dv90 less than 555 km/s in
 OVI and NV, and still smaller for other ions. Zahedy+16's sample has average Dv90 smaller than that of QPQ8.
@@ -200,7 +206,8 @@ OVI and NV, and still smaller for other ions. Zahedy+16's sample has average Dv9
 We have cited Rudie+17 in our revised manuscript. As our focus is on absorbers in background sightlines, Rubin+12 is
 less relevant. We intend that h = H_0 / (100 km s^-1 Mpc^-1), in accordance with the common convention, that is also
 widely used in cosmology papers such as Kravtsov+17. We have state this scaling explicitly in our revised manuscript.
-We thank you for above suggestions.
+We thank the referee for above suggestions.
+
 
 >Experiment Section:
 >
