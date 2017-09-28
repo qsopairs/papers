@@ -31,7 +31,7 @@ suggested additional work in the details to follow.
 >available. A figure showing this distribution is needed in this publication.
 
 The distribution of absorbing components in velocity is non-Gaussian for each quasar-host associated system. However,
-we have 30 absorption systems for CII analysis, and an even larger number of absorption systems for CIV and MgII
+we have 40 absorption systems for CII analysis, and an even larger number of absorption systems for CIV and MgII
 analyses. The number of individual components can only be larger. The central limit theorem applies and the
 distribution of all absorbing components should tend toward Gaussian distribution. A component-by-component analysis
 requires echellette or echelle resolution, which is a criterion for the QPQ8 sample. For this current work, we stack
@@ -232,7 +232,7 @@ absorption profiles are preserved.
 
 There is large intrinsic scatter in the CGM environments. In our revised manuscript, we update the sample to pairs
 retrieved from the latest QPQ Survey database and we re-measure the redshifts originally adopted from HeWitt&Wild10.
-With this sample the median CII statistic has a centroid +105+/-176 km/s. We prefer the mean over the median, as the
+With this sample the median CII statistic has a centroid +119+/-240 km/s. We prefer the mean over the median, as the
 median statistic is less sensitive to absorption signals and does not preserve equivalent width. The median opacity at
 any velocity channel can be rather small, since absorbers are spread out throughout the entire velocity window and are
 discretized. The centroid measured from the median stack is thus subject to larger uncertainty.

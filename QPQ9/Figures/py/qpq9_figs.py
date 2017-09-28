@@ -393,18 +393,18 @@ def monte(outfil=None):
     model_conti = models.Const1D(amplitude=Gaussian_params['amplitude_0'])
     model_monte_gauss = models.GaussianAbsorption1D(
         amplitude=monte_params['amplitude'],mean=Gaussian_params['mean_1'],
-        stddev=np.sqrt((monte_params['stddev'])**2.+192**2.))
+        stddev=np.sqrt((monte_params['stddev'])**2.+188.7**2.))
     print('s.d. in monte carlo model, in monte carlo model with redshift error broadening, in data',
-          monte_params['stddev'],np.sqrt((monte_params['stddev'])**2.+192**2.),
+          monte_params['stddev'],np.sqrt((monte_params['stddev'])**2.+188.7**2.),
           Gaussian_params['stddev_1'])
     model_monte = model_conti*model_monte_gauss
     # Extra motion that is ruled out
     model_extra_gauss = models.GaussianAbsorption1D(
-        amplitude=monte_params['amplitude'],mean=Gaussian_params['mean_1'],stddev=539.)
+        amplitude=monte_params['amplitude'],mean=Gaussian_params['mean_1'],stddev=554.)
     model_extra = model_conti*model_extra_gauss
     # Width that requires outflow
     model_outflow_gauss = models.GaussianAbsorption1D(
-        amplitude=monte_params['amplitude'],mean=Gaussian_params['mean_1'],stddev=118.)
+        amplitude=monte_params['amplitude'],mean=Gaussian_params['mean_1'],stddev=213.5)
     model_outflow = model_conti*model_outflow_gauss
 
     # Axes
