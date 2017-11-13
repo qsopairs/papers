@@ -13,8 +13,9 @@ sys.path.append(os.path.abspath("../Analysis/Stacks/py"))
 import qpq9_stacks as qpq9k
 
 
-# Make the table that lists the full QPQ9 sample
 def tab_sample():
+    '''Make the table that lists the full QPQ9 sample
+    '''
     # Save the properties of pairs used in stack for CII, CIV, MgII
     ion_names = ['CII','CIV','MgII']
     sv_fg_qso = []
@@ -103,8 +104,9 @@ def tab_sample():
     afile.close()
 
 
-# Make the table of QPQ9 summary
 def tab_summary():
+    '''Make the table of QPQ9 summary
+    '''
 
     # Summary of the MgII + NIR samples
 
