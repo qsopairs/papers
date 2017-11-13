@@ -60,6 +60,7 @@ QPQ_zIR = QTable(fits.open(zIR_fil)[1].data)
 QPQ9 = copy.deepcopy(QPQ_zIR)
 QPQ9.rename_column('FG_ZIR', 'Z_FG')
 QPQ9.rename_column('FG_SIG_ZIR','Z_FSIG')
+QPQ9.keep_columns(['FG_RA','FG_DEC','NAME','RA','DEC','Z_FG','Z_FSIG','BG_Z','R_PHYS','ZFG_LINE','G_UV'])
 for ii,qq in enumerate(QPQ9):
     try:
         assert 'J0225+0048' in qq['NAME'] # redshift is marked to be OII by mistake

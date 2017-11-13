@@ -141,7 +141,7 @@ def contour_data(all_dict):
     hdu2 = fits.ImageHDU(WCII_GRID)
     hdu3 = fits.ImageHDU(levels)
     hdulist = fits.HDUList([hdu0,hdu1,hdu2,hdu3])
-    hdulist.writeto('contour.fits',clobber=True)
+    hdulist.writeto('contour.fits',overwrite=True)
 
 
 ######################

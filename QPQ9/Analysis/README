@@ -1,2 +1,2 @@
-# gUV values are computed using IDL codes. Input files to IDL and output files from IDL are
-# created in QPQ9_sample.ipynb
+# gUV values are computed using the IDL procedures g_uv.pro and cldy_cuba_jfh.pro, with wrappers under pro/
+$ Input files to IDL and output files from IDL are created in QPQ9_sample.ipynb

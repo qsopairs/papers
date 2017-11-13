@@ -9,7 +9,11 @@ from matplotlib.backends.backend_pdf import PdfPages
 from matplotlib import pyplot as plt
 import matplotlib.gridspec as gridspec
 from astropy import units as u
+from astropy.table import Table,Column
+from astropy.io import ascii,fits
 from linetools.spectra.xspectrum1d import XSpectrum1D
+from linetools.spectralline import AbsLine
+from linetools.abund import ions
 sys.path.append(os.path.abspath("../../../../py"))
 from enigma.qpq import stacks as qpqk
 from enigma.qpq import qpq as eqpq
@@ -65,12 +69,66 @@ def qpq9_IRMgII(wrest=None, outfil=None, nboot=10000,
 
     return stack_tup
 
-#######
+
+def msk_stcks(stack_tup0,wrest,write=False):
+    '''# Mask problematic spectra in the stacks
+    '''
+    aline = AbsLine(wrest)
+    fin_velo, stck_img, stck_msk, all_dict = stack_tup0
+    stck_mskN = copy.deepcopy(stck_msk)
+    idx_mask = []
+    for ii,idict in enumerate(all_dict):
+        if idict is None:
+            continue
+        if ions.ion_to_name(aline.data) == 'CII':
+            if (('J0143+2954' in idict['qpq']['NAME']) or ('J0850+4755' in idict['qpq']['NAME']) or
+                    ('J0951+4932' in idict['qpq']['NAME'])):  # uncertain continua give uncertain S/N
+                idx_mask.append(ii)
+        if ions.ion_to_name(aline.data) == 'CIV':
+            if 'J1002+0020' in idict['qpq']['NAME']:  # overlaps with BAL of bg quasar
+                idx_mask.append(ii)
+            if 'J2255-0001' in idict['qpq']['NAME']:  # doubtful MgII redshift
+                idx_mask.append(ii)
+        if ions.ion_to_name(aline.data) == 'MgII':
+            if (('J0822+1319' in idict['qpq']['NAME']) | ('J0908+4215' in idict['qpq']['NAME']) |
+                    ('J1242+1817' in idict['qpq']['NAME']) | ('J1622+2031' in idict['qpq']['NAME'])):
+                # BAL, intervening galaxy, sky emission, sky emission
+                idx_mask.append(ii)
+    for idx in idx_mask:
+        stck_mskN[idx,:] = 0.
+    stack_tup = (fin_velo, stck_img, stck_mskN, all_dict)
+
+    tab_qpq = None
+    sv_instr = []
+    if write is True:
+        for ii,idict in enumerate(all_dict):
+            if np.sum(stck_mskN[ii,:]) == 0:
+                continue
+            if tab_qpq is None:
+                # Initialize the table
+                tab_qpq = Table(all_dict[ii]['qpq'])
+            else:
+                tab_qpq.add_row(all_dict[ii]['qpq'])
+        for ii,idict in enumerate(all_dict):
+            if np.sum(stck_mskN[ii,:]) == 0:
+                continue
+            sv_instr.append(all_dict[ii]['instr'])
+        tab_sample = dict(tab_qpq.columns)
+        tab_sample['instr'] = sv_instr
+        tab_sample = Table(tab_sample)
+        tab_sample.write(ions.ion_to_name(aline.data)+'_sample.fits',format='fits',overwrite=True)
+        print('Wrote '+ions.ion_to_name(aline.data)+'_sample.fits')
+
+    return stack_tup
+
+
 def plt_qpq9(stack_tup=None,wrest=None,
              S2N_cut=None,atmosphere_cut=True,
              vmnx=(-3000.,3000.)*u.km/u.s,
              stack_fg=False,zfg_mnx=(-9999,9999),plot_indiv=False,
              outfil_prefix=None):
+    '''Plot the individual spectra to file
+    '''
 
     # Rest wavelength
     if wrest is None:
