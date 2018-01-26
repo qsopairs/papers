@@ -1,0 +1,92 @@
+The added discussion of quasar redshift measurement techniques and associated uncertainties is now quite clear. As a
+result, the interpretation of the width and offset in the mean stack of absorbing quasar host CGM is more convincing.
+
+However, I have significant major concerns that the authors need to address in order for the paper to be accepted. Some
+of these are new, but most were points raised in the first referee report that were not adequately addressed or were
+misunderstood. These concerns are outlined in the following. In addition I include suggestions to make the measured
+shift in the mean absorption profile more convincing and clarify the interpretation in the discussion section.
+
+=== Major concern 1: failure to capture velocity spread of the absorption and misuse of the central limit theorem
+
+In response to one of my concerns, the authors now motivate Gaussian fitting to the mean absorption profile using the
+central limit theorem. This is a fundamental misuse of the central limit theorem. The central limit theorem implies
+(under fairly loose assumptions) that the sums of random variables will tend towards a normal distribution. This means,
+for example, that the measured flux in a particular pixel of the stack will be normally distributed. But it *does not*
+imply that the mean line profiles themsleves will be Gaussian. While there are conditions under which mean line
+profiles will converge to a Gaussian, these are significantly more demanding conditions that typically do not apply to
+astrophysical measurements and objects. For example, the mean stack of point sources in ground based images will not
+converge to a Gaussian because of the large fraction of flux contained in wings of the PSF. Similarly, mean line
+profiles in stacks are often far from Gaussian such as: both broad and narrow quasar emission lines (Schneider+2010,
+Shen+2016b), galaxy emission lines (Cicone+2016), and associated quasar absorption lines which are distinctly
+non-Gaussian as shown in Figure 9 of this paper.
+
+Previous QPQ papers (Prochaska & Hennawi 2009, Lau+2016) and those from other authors (e.g. Tripp+2011, Johnson+2015,
+Rudie+2017) have shown that AGN and quasar hosts often exhibit absorbing gas at "extreme" velocities of 500-1000 km/s.
+Indeed, these extreme velocities are discussed in the introduction. However, it is clear that the extreme velocities
+are not being captured by the measured Gaussian fit.
+
+This concern is raised not only by the previous works but also by careful examination of Figure 2. In particular the
+pseudo-continuum level in the mean stack is systematically lower than in the median stack for all three ions
+considered. This indicates that there is additional absorption at large velocities which is not being captured by the
+analysis in the paper but is instead being erroneously folded into the pseudo-continuum estimate.
+
+This is a major issue with the adopted methodology that must be addressed with careful thought, new
+experiments/testing, and detailed discussion.
+
+=== Major concern 2: insufficient detail in how the doublet fitting is performed.
+
+I thank the authors for specifying the allowed range of doublet ratio. However, additional information is still needed
+on the doublet fitting, particularly regarding the pseudo continuum.
+
+The doublet ratio is degenerate with centroid in some cases, particularly for CIV and this possible degeneracy is not
+discussed.
+
+Depending on how the pseudo continuum fitting is performed, it could potentially suppress any broad wings in the mean
+absorption profile. The authors have most likely taken steps to prevent this from happening. But if so, these steps are
+note specified.f
+
+Provide additional details addressing both of these points.
+
+=== Main concern 3: mis-representation of papers in the literature
+
+While most of these have been corrected, one remains and a new one has been added. In particular, both Tripp+2011 and
+Rudie+2017 found absorbing gas spread over ~1000 km/s which is comparable to the velocity spreads from the QPQ series
+that are discussed as extreme in the introduction. The main conclusions of Tripp+2011 and Rudie+2017 focus on these
+large velocity spreads and the current description in the introduction is therefore misleading.
+
+=== In addition:
+
+A) To more convincingly demonstrate that the velocity shift in the measured mean absorption profile is real the authors
+should:
+
+1) Remove possible contamination from absorption systems associated with the background quasar. The paper stacks the
+background spectra for pairs in which the redshift difference between the foreground and background quasar is
+>3000 km/s in order to prevent contamination by physical quasar pairs in the presence of redshift uncertainty. However,
+quasars also exhibit narrow associated absorption systems at large velocities of up to ~12,000 km/s (Wild+2008) which
+could also artificially introduce an asymmetry into the experiment. The authors can easily demonstrate that this is not
+the case by repeating the stacking procedure on quasars pairs with a more restrictive range of allowed velocity
+separation of >12,000 km/s.
+
+2) Demonstrating that CII* cannot bias the measurement of the CII velocity centroid. Previous QPQ papers have
+identified CII* absorption in the CGM of quasars. This absorption feature is blue-shifted from the ground state
+transition by 260 km/s which is comparable to the measured offset. With data from Lau+2016, the authors can easily
+demonstrate that contamination from CII* is not responsible for the observed shift.
+
+B) To demonstrate that the quasar variability effect can plausibly produce the observed shift from Hubble flow alone
+the authors need to calculate the distance to which the quasars can substantially contribute to the UV background and
+convert this distance to a line-of-sight velocity assuming Hubble flow. Most of the work for this has already been done
+for the calculation of g_UV for Figure 1 and Table 1 so only a few additional steps are needed. Implementing this
+calculation in the Monte Carlo approach in Section 3.3 would be particularly convincing.
+
+C) To clarify the discussion the authors should:
+1) Rephrase or expand the sentence/paragraph: "As a test of reasonableness, we calculate that, for a quasar opening
+angle of 120...". It is not clear what calculation was performed and how it represents a test of reasonableness.
+2) Remove the sentence "Light from the background quasar will travel smaller distance to reach the gas behind the
+foreground quasar than the gas in front of it." It is repetitive and the subsequent sentence explains this physical
+picture more clearly.
+3) The last sentence of the paper is misleading because the observed velocity shift cannot be explained by
+gravitational motion.
+
+Finally, I would like to thank the authors for going the extra mile and researching color choices that improve figure
+legibility for color blind readers. However, the stated change does not appear to have been implemented in Figure 6.
+Since the work has already been done, implementing the color change would be an easy correction.
