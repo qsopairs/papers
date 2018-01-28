@@ -1,0 +1,238 @@
+Editor Walter,
+
+We thank very much the referee for their careful reading of our
+manuscript, and their comments and criticism. Following their
+recommendations, we have revised our manuscript in a number of ways
+detailed below. We are now resubmitting to the Astrophysical Journal and
+ask that you consider it further for publication.
+
+In addition to the changes marked in bold face, Figure 7 and Figure 8 have
+been enlarged.
+
+>=== Major concern 1: failure to capture velocity spread of the absorption
+>and misuse of the central limit theorem
+>
+>In response to one of my concerns, the authors now motivate Gaussian
+>fitting to the mean absorption profile using the central limit theorem.
+>This is a fundamental misuse of the central limit theorem. The central
+>limit theorem implies (under fairly loose assumptions) that the sums of
+>random variables will tend towards a normal distribution. This means, for
+>example, that the measured flux in a particular pixel of the stack will be
+>normally >distributed. But it *does not* imply that the mean line profiles
+>themsleves will be Gaussian. While there are conditions under which mean
+>line profiles will converge to a Gaussian, these are significantly more
+>demanding conditions that typically do not apply to astrophysical
+>measurements and objects. For example, the mean stack of point sources in
+>ground based images will not converge to a Gaussian because of the large
+>fraction of flux contained in wings of the PSF. Similarly, mean line
+>profiles in stacks are often far from Gaussian such as: both broad and
+>narrow quasar emission lines (Schneider+2010, Shen+2016b), galaxy emission
+>lines (Cicone+2016), and associated quasar absorption lines which are
+>distinctly non-Gaussian as shown in Figure 9 of this paper.
+>
+>Previous QPQ papers (Prochaska & Hennawi 2009, Lau+2016) and those from
+>other authors (e.g. Tripp+2011, Johnson+2015, Rudie+2017) have shown that
+>AGN and quasar hosts often exhibit absorbing gas at "extreme" velocities
+>of 500-1000 km/s. Indeed, these extreme velocities are discussed in the
+>introduction. However, it is clear that the extreme velocities are not
+>being captured by the measured Gaussian fit.
+>
+>This concern is raised not only by the previous works but also by careful
+>examination of Figure 2. In particular the pseudo-continuum level in the
+>mean stack is systematically lower than in the median stack for all three
+>ions considered. This indicates that there is additional absorption at
+>large velocities which is not being captured by the analysis in the paper
+>but is instead being erroneously folded into the pseudo-continuum
+>estimate.
+>
+>This is a major issue with the adopted methodology that must be addressed
+>with careful thought, new experiments/testing, and detailed discussion.
+
+We thank the referee for pointing out the misuse of central limit theorem!
+It applies to the fluxes at each pixel. The absorption in the stack will
+follow the distribution from which it was sampled, by the law of large
+numbers. We present a more careful argument for fitting one Gaussian
+component and one constant component, and removed the text relying on the
+central limit theorem.
+
+The distribution of absorbers unassociated with the foreground quasars is
+expected to be uniform and random, and depress the continuum level in the
+stack uniformly. This justifies our fitting of a pseudocontinuum, and is
+not the quantity of interest. The questions to be addressed is, whether
+one component is a good description of the dispersion in the average
+absorption, and if so, whether the dispersion in this component is well
+captured by a Gaussian. We tried replacing a constant pseudocontinuum with
+a second Gaussian absorption component in our modeling of the CII stack.
+We found this second Gaussian component to be weak and broad. The amplitude
+is 0.03, compared to our original constant component of 0.97. The standard
+deviation is 3600 km/s, whose span is wider than the entire velocity window
+for stacking. This weak and very broad component also has little effect on
+the centroid and width of the narrower Gaussian component. We therefore see
+no convincing evidence for a broader component hidden in the depressed
+continuum. We then calculated the dispersion in a +/-1300 km/s window
+surrounding the absorption centroidusing the standard deviation formula. We
+have this large velocity window to encompass most of the associated
+absorption. We found the dispersion measured this way is essentially the
+same as that found by fitting a Gaussian. This also leans support to our
+approach of fitting two Gaussians to the CIV and MgII doublet, where we
+cannot directly apply the standard deviation formula.
+
+In our revised manuscript, we acknowledge the possibility our Gaussian
+model does not capture all the powers at extreme velocities. However we
+also note that occasional large kinematic offsets do not make a strong case
+against gravitational motions. Firstly, quasars occasionally inhabit
+extremely overdense environments, such as protoclusters. Secondly, the
+probability of intercepting a random absorber is boosted by large scale
+clustering. Hence occasional extreme velocities would not necessitate
+outflows. Our preferred kinematic measure is thus the dispersion in the
+average absorption. We added the above text to the revised manuscript.
+
+The uniformly depressed continuum results from absorbers unrelated to the
+foreground quasars, which is expected to have a covering fraction less than
+50%. For median stack, a pixel is not affected unless there are more than
+50% of quasar pairs with absorption at its velocity. The pseudo-continuum
+of the mean stack being lower than the median stack is not a reflection of
+associated absorption at large velocities.
+
+>=== Major concern 2: insufficient detail in how the doublet fitting is
+>performed.
+>
+>I thank the authors for specifying the allowed range of doublet ratio.
+>However, additional information is still needed on the doublet fitting,
+>particularly regarding the pseudo continuum.
+>
+>The doublet ratio is degenerate with centroid in some cases, particularly
+>for CIV and this possible degeneracy is not discussed.
+>
+>Depending on how the pseudo continuum fitting is performed, it could
+>potentially suppress any broad wings in the mean absorption profile. The
+>authors have most likely taken steps to prevent this from happening. But
+>if so, these steps are note specified.f
+>
+>Provide additional details addressing both of these points.
+
+We tried fitting the continuum separately in (-3000,-1300) km/s and (+1300,
++3000) km/s instead of multiplying a constant to a Gaussian. We found the
+continuum determined this way is essentially the same.
+
+We acknowledge the degeneracy between the centroid and the doublet ratio
+for CIV. And hence, we state that the results for the doublets are
+presented for consistency check, but the analysis focuses on CII. We
+emphasized this point in the revised manuscript. For CIV, a doublet ratio
+closer 2:1 is preferred. We found a doublet ratio of 2:1 captures the
+absorption at the central few pixels better than a doublet ratio of 1:1
+does.
+
+>=== Main concern 3: mis-representation of papers in the literature
+>
+>While most of these have been corrected, one remains and a new one has
+>been added. In particular, both Tripp+2011 and Rudie+2017 found absorbing
+>gas spread over ~1000 km/s which is comparable to the velocity spreads
+>from the QPQ series that are discussed as extreme in the introduction. The
+>main conclusions of Tripp+2011 and Rudie+2017 focus on these large
+>velocity spreads and the current description in the introduction is
+>therefore misleading.
+
+>We thank the referee for scrutinizing our representation of the
+>literature. We dropped the words that claim these absorption systems have
+>most of the gas within several hundred km/s.
+
+>=== In addition:
+>
+>A) To more convincingly demonstrate that the velocity shift in the
+>measured mean absorption profile is real the authors should:
+>
+>1) Remove possible contamination from absorption systems associated with
+>the background quasar. The paper stacks the background spectra for pairs
+>in which the redshift difference between the foreground and background
+>quasar is >3000 km/s in order to prevent contamination by physical quasar
+>pairs in the presence of redshift uncertainty. However, quasars also
+>exhibit narrow associated absorption systems at large velocities of up to
+>~12,000 km/s (Wild+2008) which could also artificially introduce an
+>asymmetry into the experiment. The authors can easily demonstrate that
+>this is no tthe case by repeating the stacking procedure on quasars pairs
+>with a more restrictive range of allowed velocity separation of >12,000
+>km/s.
+>
+>2) Demonstrating that CII* cannot bias the measurement of the CII velocity
+>centroid. Previous QPQ papers have identified CII* absorption in the CGM
+>of quasars. This absorption feature is blue-shifted from the ground state
+>transition by 260 km/s which is comparable to the measured offset. With
+>data from Lau+2016, the authors can easily demonstrate that contamination
+>from CII* is not responsible for the observed shift.
+
+We identified and excluded all spectra with BAL and mini-BAL systems.
+Possible contamination from narrow associated absorbers of background
+quasars should result in a tilt in the pseudo-continuum. Associated
+absorbers of background quasars will not prefer the systemic velocity of
+the foreground quasars, and hence will not affect the average absorption
+measured for the foreground quasars. The median pair velocity separation
+of the CII sample is 11140 km/s. Dividing the sample ino two bins of pair
+velocity separation does not result in meaningful comparison, due to the
+smaller number of pairs in each bin. Hwever we see no evidence for a
+difference in the centroid's redshift of the two bins.
+
+We examined all the nine CII-bearing subsystems in QPQ8 where CII* is not
+blended with CII. Among the above nine subsystems, only one, J1420
+subsystem F, has CII* equivalent width comparable to CII. Hence,
+contamination from CII* is insignifcant and could not be responsible for
+the observed shift. We thank the referee for suggesting us to add this to
+the text.
+
+>B) To demonstrate that the quasar variability effect can plausibly
+>produce the observed shift from Hubble flow alone the authors need to
+>calculate the distance to which the quasars can substantially contribute
+>to the UV background and convert this distance to a line-of-sight
+>velocity assuming Hubble flow. Most of the work for this has already been
+>done for the calculation of g_UV for Figure 1 and Table 1 so only a few
+>additional steps are needed. Implementing this calculation in the Monte
+>Carlo approach in Section 3.3 would be particularly convincing.
+
+In our test of implementing an arbitrary quasar opening angle in our Monte
+Carlo simulations to reproduce the observed shift, we remove all absorbers
+at CGM distances that fall within the opening angle to mimic UV
+enhancement. We did not remove absorbers at larger distances/Hubble flow
+velocities as the effect of quasar variability is expected to be weaker.
+However, for the stack of mock spectra fro Monte Carlo simulations that we
+present in Figure 5, we did not include this quasar variability effect but
+merely shifted the absorption centroid to match with the observations. The
+goal of Figure 5 is to show that the observed velocity width can be
+reproduced without outflows. Introducing quasar variability would
+introduce more free parameters and the figure may be less informative.
+
+>C) To clarify the discussion the authors should:
+>1) Rephrase or expand the sentence/paragraph: "As a test of
+>reasonableness, we calculate that, for a quasar opening angle of 120...".
+>It is not clear what calculation was performed and how it represents a
+>test of reasonableness.
+>2) Remove the sentence "Light from the background quasar will travel
+>smaller  distance to reach the gas behind the foreground quasar than the
+>gas in front of it." It is repetitive and the subsequent sentence
+>explains this physical picture more clearly.
+>3) The last sentence of the paper is misleading because the observed
+>velocity shift cannot be explained by gravitational motion.
+
+We expanded the text on the test of an arbitrary, reasonable quasar
+opening angle. In this test, we removed all CGM absorbers that fall
+within the quasar opening angle in our Monte Carlo simulations. We found
+that for an opening angle of 120 degrees, the observed centroid may be
+reproduced while the intrinsic dispersion is still wthin the modeling
+error.
+We removed the sentence "Light from the background quasar will travel..."
+as the referee suggested. This indeed helps clear up the test.
+We rewrote the last sentence to separately provide the explanation for
+the large velocity widths and the explanation for the average shift.
+
+>Finally, I would like to thank the authors for going the extra mile and
+>researching color choices that improve figure legibility for color blind
+>readers. However, the stated change does not appear to have been
+>implemented in Figure 6. Since the work has already been done,
+>implementing the color change would be an easy correction.
+
+We examined the cartoon figures again. A lighter shade of blue instead
+of navy had been used for the CIV ions. It seems the poor legibility also
+came from the figures being too compact. We enlarged the figures in the
+revised manuscript. We are very happy to use another color scheme should
+the referee or editor have better suggestion.
+
+Marie Wingyee Lau

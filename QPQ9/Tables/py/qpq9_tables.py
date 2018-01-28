@@ -92,7 +92,7 @@ def tab_sample():
     afile.write('\\tablehead{\\colhead{Foreground Quasar} & \\colhead{$z_{\\rm fg}$} & \n')
     afile.write('\\colhead{Line for $z_{\\rm fg}^a$} & \\colhead{Background Quasar} & \n')
     afile.write('\\colhead{$z_{\\rm bg}$} & \\colhead{BG Quasar Instrument} & \n')
-    afile.write('\\colhead{$R_\\perp$ (kpc)} & \\colhead{$g_{\\rm UV}$}} \n')
+    afile.write('\\colhead{$R_\\perp$ (kpc)} & \\colhead{$g_{\\rm UV}^b$}} \n')
     afile.write('\\startdata \n')
     for ii in np.arange(len(tab)):
         afile.write(tab['fg_qso'][ii] + ' & ' + tab['zfg'][ii] + ' & ' + tab['line'][ii] + ' & ')
