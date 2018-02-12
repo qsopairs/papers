@@ -1,3 +1,8 @@
+# Simulate the stacked absorption signal from a purely clustering argument,
+# using Monte Carlo methods. Will take two days to run on a regular laptop.
+# May try coarser grid first using the monte_carlo.ipynb notebook. That
+# takes two hours.
+# imports
 from __future__ import print_function,absolute_import,division,unicode_literals
 import numpy as np
 import glob,os,sys,copy,imp

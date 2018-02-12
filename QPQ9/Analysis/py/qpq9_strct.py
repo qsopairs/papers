@@ -1,3 +1,7 @@
+# Generate the QPQ9 sample from the igmspec database and the QPQ database.
+# SDSS-HW (HewettWild10) redshifts are not used. All redshifts are measured
+# using Hennawi's custom algorithm.
+
 # imports
 import copy, os, glob, imp, shutil, pdb
 import numpy as np

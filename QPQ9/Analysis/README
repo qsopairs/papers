@@ -1,2 +1,17 @@
-# gUV values are computed using the IDL procedures g_uv.pro and cldy_cuba_jfh.pro, with wrappers under pro/
-$ Input files to IDL and output files from IDL are created in QPQ9_sample.ipynb
+monte_carlo.ipynb: interactive notebook for step-by-step running of monte
+carlo simulations for QSO-absorber clustering. Similar to
+py/monte_carlo.py .
+
+New_continua.ipynb: interactively generate new continua that are not in
+igmspec or the QPQ database, or update with more accurate continuum
+fitting.
+
+New_sample.ipynb: generate the QPQ9 sample step by step. Replacing the
+deprecated QPQ9_sample_deprecated.ipynb notebook. gUV values are computed
+using the IDL procedures g_uv.pro and cldy_cuba_jfh.pro, with wrappers
+under the folder pro/. Input files to IDL and output files from IDL are
+created in New_sample.ipynb, and are saved as QPQ9_gUV_idl_input.txt and
+QPQ9_gUV_idl_output.txt .
+
+QPQ9_stacking.ipynb: Stack the QPQ9 sample at different ions, with
+different cuts on emission line redshift precision.
