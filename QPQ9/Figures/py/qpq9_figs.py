@@ -353,7 +353,9 @@ def monte(outfil=None):
     Gaussian_params = (ascii.read(path+'CII_MgII_mean_fit.dat'))[0]
     model_conti = models.Const1D(amplitude=Gaussian_params['amplitude_0'])
     model_monte_gauss = models.GaussianAbsorption1D(
-        amplitude=monte_params['amplitude'],mean=Gaussian_params['mean_1'],
+        amplitude=monte_params['amplitude'],
+#        mean=Gaussian_params['mean_1'],
+        mean=0,  # do not apply arbitrary shift
         stddev=np.sqrt((monte_params['stddev'])**2.+188.7**2.))
     print('s.d. in monte carlo model, in monte carlo model with redshift error broadening, in data',
           monte_params['stddev'],np.sqrt((monte_params['stddev'])**2.+188.7**2.),
@@ -382,9 +384,9 @@ def monte(outfil=None):
 
     # Plot
     plt.plot(velo.value,mean_stack[0].data,drawstyle='steps-mid',linewidth=2,color='k')
-    plt.plot(velo.value,model_monte(velo.value),color='g',linewidth=3)
+    plt.plot(velo.value,model_monte(velo.value),color='gold',linewidth=3)
     plt.plot(velo.value,model_extra(velo.value),'y--',linewidth=3)
-    plt.plot(velo.value,model_outflow(velo.value),'m--',linewidth=3)
+    plt.plot(velo.value,model_outflow(velo.value),'y-.',linewidth=3)
 
     # Font
     for item in ([ax.title, ax.xaxis.label, ax.yaxis.label] +

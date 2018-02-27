@@ -1,0 +1,39 @@
+The authors have substantially improved the discussion of the stacking measurement and fitting. The paper is now nearly
+ready for publication and I would be happy to accept it after two more major question are addressed and the addition of
+quantitative information for some of the new arguments.
+
+Remaining major question 1:
+
+In the response to the second referee report and in the caption of Figure 5, the authors state that the Monte Carlo
+simulation absorption is shifted to match the centroid of the absorption. Am I correct in understanding that this is
+done to force a match between the observed absorption shift and the Monte Carlo model? If so, this would seem to
+invalidate the claim by the paper that the observed velocity shift can be explained by anisotropic and/or intermittent
+quasar radiation combined with the Hubble flow. Why can't the shift be reproduced by the Monte Carlo model which
+includes all of these effects? If the model cannot reproduce the shift, then some of the major conclusions of the
+paper, including the last sentence of the abstract, are not supported. I am sufficiently puzzled by this that I request
+the opportunity to review the paper one more time before acceptance. Please clarify and explain the need for an
+artificial velocity shift in order for the Monte Carlo model to match the observed stack.
+
+Remaining major question 2:
+
+In the Monte Carlo model, the authors adopt a sigma_rms scatter of 246 km/s based on the expected rms velocity for
+quasar host halos. But the absorption systems being considered in the model are in the Hubble flow at significant
+cosmological distance, not in the quasar host halo. Why then is a sigma_rms from massive halos appropriate? Does the
+adoption of a different sigma_rms change the results?
+
+Other points for improvement:
+
+1) Explicitly state the flux level of the psuedo-continuum by adding it to Table 2
+
+2) Similarly, the paper must explicitly give the width of the second Guassian component and equivalent width discussed
+on page 6. This means providing actual numbers with uncertainties in the text rather than qualitative assertions.
+
+3) The discussion of a bias from CII* is not convincing as is (though I am certain that the claim of small bias is
+correct). In order to make the given argument convincing, the authors need to give quantitative constraints on the mean
+CII to CII* ratio and then translate this ratio into an estimated bias. Again, the paper must include specific,
+quantitative information on the estimated level of this bias rather than simply assert that it is insignificant.
+
+4) On the color scheme in Figure 6: Anything that does not involve red and green would be a significant improvement.
+This figure could be made in greyscale, coolmap, heatmap, or any number of other options. Alternative, a color scheme
+could be dropped entirely by plotting the 1, 2, and 3 sigma regions in solid, dashed, and dotted line respectively. Or
+different hatching schemes could be used for each reason.

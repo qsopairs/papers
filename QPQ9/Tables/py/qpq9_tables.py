@@ -132,6 +132,7 @@ def tab_summary():
     if params['mean_1'] > 0:
         cenofmean_CII = '+'+cenofmean_CII
     dispofmean_CII = str(int(np.around(params['stddev_1'])))
+    contiofmean_CII = str(np.around(params['amplitude_0'],decimals=2))
     path = '../Analysis/Bootstrap/Output/'
     boot_hdulist = fits.open(path+'IRMgII_1334_mean.fits')
     scatterincenofmean_CII = str(int(np.around(np.std(boot_hdulist[3].data))))
@@ -143,6 +144,7 @@ def tab_summary():
     if params['mean_1'] > 0:
         cenofmedian_CII = '+'+cenofmedian_CII
     dispofmedian_CII = str(int(np.around(params['stddev_1'])))
+    contiofmedian_CII = str(np.around(params['amplitude_0'],decimals=2))
     path = '../Analysis/Bootstrap/Output/'
     boot_hdulist = fits.open(path+'IRMgII_1334_med.fits')
     scatterincenofmedian_CII = str(int(np.around(np.std(boot_hdulist[3].data))))
@@ -156,6 +158,7 @@ def tab_summary():
     if params['mean_1'] > 0:
         cenofmean_CIV = '+'+cenofmean_CIV
     dispofmean_CIV = str(int(np.around(params['stddev_1'])))
+    contiofmean_CIV = str(np.around(params['amplitude_0'],decimals=2))
     path = '../Analysis/Bootstrap/Output/'
     boot_hdulist = fits.open(path+'IRMgII_1548_mean.fits')
     scatterincenofmean_CIV = str(int(np.around(np.std(boot_hdulist[3].data))))
@@ -167,6 +170,7 @@ def tab_summary():
     if params['mean_1'] > 0:
         cenofmedian_CIV = '+'+cenofmedian_CIV
     dispofmedian_CIV = str(int(np.around(params['stddev_1'])))
+    contiofmedian_CIV = str(np.around(params['amplitude_0'],decimals=2))
     path = '../Analysis/Bootstrap/Output/'
     boot_hdulist = fits.open(path+'IRMgII_1548_med.fits')
     scatterincenofmedian_CIV = str(int(np.around(np.std(boot_hdulist[3].data))))
@@ -180,6 +184,7 @@ def tab_summary():
     if params['mean_1'] > 0:
         cenofmean_MgII = '+'+cenofmean_MgII
     dispofmean_MgII = str(int(np.around(params['stddev_1'])))
+    contiofmean_MgII = str(np.around(params['amplitude_0'],decimals=2))
     path = '../Analysis/Bootstrap/Output/'
     boot_hdulist = fits.open(path+'IRMgII_2796_mean.fits')
     scatterincenofmean_MgII = str(int(np.around(np.std(boot_hdulist[3].data))))
@@ -191,6 +196,7 @@ def tab_summary():
     if params['mean_1'] > 0:
         cenofmedian_MgII = '+'+cenofmedian_MgII
     dispofmedian_MgII = str(int(np.around(params['stddev_1'])))
+    contiofmedian_MgII = str(np.around(params['amplitude_0'],decimals=2))
     path = '../Analysis/Bootstrap/Output/'
     boot_hdulist = fits.open(path+'IRMgII_2796_med.fits')
     scatterincenofmedian_MgII = str(int(np.around(np.std(boot_hdulist[3].data))))
@@ -210,22 +216,30 @@ def tab_summary():
     afile.write('Number of pairs & '+npairs_CII+' & '+npairs_CIV+' & '+npairs_MgII+' \\\ \n')
     afile.write('Median $z_{\\rm fg}$ & '+medzfg_CII+' & '+medzfg_CIV+' & '+medzfg_MgII+' \\\ \n')
     afile.write('Median $R_\\perp$ & '+medRperp_CII+' & '+medRperp_CIV+' & '+medRperp_MgII+' \\\ \n')
-    afile.write('Centroid of mean stack (${\\rm km\\,s^{-1}}$) & '
-                +'$'+cenofmean_CII+'\\pm'+scatterincenofmean_CII+'$'+' & '
-                +'$'+cenofmean_CIV+'\\pm'+scatterincenofmean_CIV+'$'+' & '
-                +'$'+cenofmean_MgII+'\\pm'+scatterincenofmean_MgII+'$'+' \\\ \n')
     afile.write('1$\sigma$ dispersion of mean stack (${\\rm km\\,s^{-1}}$) & '
                 +'$'+dispofmean_CII+'\\pm'+scatterindispofmean_CII+'$'+' & '
                 +'$'+dispofmean_CIV+'\\pm'+scatterindispofmean_CIV+'$'+' & '
                 +'$'+dispofmean_MgII+'\\pm'+scatterindispofmean_MgII+'$'+' \\\ \n')
-    afile.write('Centroid of median stack (${\\rm km\\,s^{-1}}$) & '
-                +'$'+cenofmedian_CII+'\\pm'+scatterincenofmedian_CII+'$'+' & '
-                +'$'+cenofmedian_CIV+'\\pm'+scatterincenofmedian_CIV+'$'+' & '
-                +'$'+cenofmedian_MgII+'\\pm'+scatterincenofmedian_MgII+'$'+' \\\ \n')
+    afile.write('Centroid of mean stack (${\\rm km\\,s^{-1}}$) & '
+                +'$'+cenofmean_CII+'\\pm'+scatterincenofmean_CII+'$'+' & '
+                +'$'+cenofmean_CIV+'\\pm'+scatterincenofmean_CIV+'$'+' & '
+                +'$'+cenofmean_MgII+'\\pm'+scatterincenofmean_MgII+'$'+' \\\ \n')
+    afile.write('Pseudo-continuum of mean stack & '
+                +'$'+contiofmean_CII+'$'+' & '
+                +'$'+contiofmean_CIV+'$'+' & '
+                +'$'+contiofmean_MgII+'$'+' \\\ \n')
     afile.write('1$\sigma$ dispersion of median stack (${\\rm km\\,s^{-1}}$) & '
                 +'$'+dispofmedian_CII+'\\pm'+scatterindispofmedian_CII+'$'+' & '
                 +'$'+dispofmedian_CIV+'\\pm'+scatterindispofmedian_CIV+'$'+' & '
                 +'$'+dispofmedian_MgII+'\\pm'+scatterindispofmedian_MgII+'$'+' \\\ \n')
+    afile.write('Centroid of median stack (${\\rm km\\,s^{-1}}$) & '
+                +'$'+cenofmedian_CII+'\\pm'+scatterincenofmedian_CII+'$'+' & '
+                +'$'+cenofmedian_CIV+'\\pm'+scatterincenofmedian_CIV+'$'+' & '
+                +'$'+cenofmedian_MgII+'\\pm'+scatterincenofmedian_MgII+'$'+' \\\ \n')
+    afile.write('Pseudo-continuum of median stack & '
+                +'$'+contiofmedian_CII+'$'+ ' & '
+                +'$'+contiofmedian_CIV+'$'+ ' & '
+                +'$'+contiofmedian_MgII+'$'+ ' \\\ \n')
     afile.close()
 
     # Summary of the [OIII] only samples
@@ -267,6 +281,7 @@ def tab_summary():
     if params['mean_1'] > 0:
         cenofmean_CII = '+'+cenofmean_CII
     dispofmean_CII = str(int(np.around(params['stddev_1'])))
+    contiofmean_CII = str(np.around(params['amplitude_0'],decimals=2))
     path = '../Analysis/Bootstrap/Output/'
     boot_hdulist = fits.open(path+'OIII_1334_mean.fits')
     scatterincenofmean_CII = str(int(np.around(np.std(boot_hdulist[3].data))))
@@ -278,6 +293,7 @@ def tab_summary():
     if params['mean_1'] > 0:
         cenofmedian_CII = '+'+cenofmedian_CII
     dispofmedian_CII = str(int(np.around(params['stddev_1'])))
+    contiofmedian_CII = str(np.around(params['amplitude_0'],decimals=2))
     path = '../Analysis/Bootstrap/Output/'
     boot_hdulist = fits.open(path+'OIII_1334_med.fits')
     scatterincenofmedian_CII = str(int(np.around(np.std(boot_hdulist[3].data))))
@@ -291,6 +307,7 @@ def tab_summary():
     if params['mean_1'] > 0:
         cenofmean_CIV = '+'+cenofmean_CIV
     dispofmean_CIV = str(int(np.around(params['stddev_1'])))
+    contiofmean_CIV = str(np.around(params['amplitude_0'],decimals=2))
     path = '../Analysis/Bootstrap/Output/'
     boot_hdulist = fits.open(path+'OIII_1548_mean.fits')
     scatterincenofmean_CIV = str(int(np.around(np.std(boot_hdulist[3].data))))
@@ -302,6 +319,7 @@ def tab_summary():
     if params['mean_1'] > 0:
         cenofmedian_CIV = '+'+cenofmedian_CIV
     dispofmedian_CIV = str(int(np.around(params['stddev_1'])))
+    contiofmedian_CIV = str(np.around(params['amplitude_0'],decimals=2))
     path = '../Analysis/Bootstrap/Output/'
     boot_hdulist = fits.open(path+'OIII_1548_med.fits')
     scatterincenofmedian_CIV = str(int(np.around(np.std(boot_hdulist[3].data))))
@@ -315,6 +333,7 @@ def tab_summary():
     if params['mean_1'] > 0:
         cenofmean_MgII = '+'+cenofmean_MgII
     dispofmean_MgII = str(int(np.around(params['stddev_1'])))
+    contiofmean_MgII = str(np.around(params['amplitude_0'],decimals=2))
     path = '../Analysis/Bootstrap/Output/'
     boot_hdulist = fits.open(path+'OIII_2796_mean.fits')
     scatterincenofmean_MgII = str(int(np.around(np.std(boot_hdulist[3].data))))
@@ -326,6 +345,7 @@ def tab_summary():
     if params['mean_1'] > 0:
         cenofmedian_MgII = '+'+cenofmedian_MgII
     dispofmedian_MgII = str(int(np.around(params['stddev_1'])))
+    contiofmedian_MgII = str(np.around(params['amplitude_0'],decimals=2))
     path = '../Analysis/Bootstrap/Output/'
     boot_hdulist = fits.open(path+'OIII_2796_med.fits')
     scatterincenofmedian_MgII = str(int(np.around(np.std(boot_hdulist[3].data))))
@@ -338,22 +358,30 @@ def tab_summary():
     afile.write('Number of pairs & '+npairs_CII+' & '+npairs_CIV+' & '+npairs_MgII+' \\\ \n')
     afile.write('Median $z_{\\rm fg}$ & '+medzfg_CII+' & '+medzfg_CIV+' & '+medzfg_MgII+' \\\ \n')
     afile.write('Median $R_\\perp$ & '+medRperp_CII+' & '+medRperp_CIV+' & '+medRperp_MgII+' \\\ \n')
-    afile.write('Centroid of mean stack (${\\rm km\\,s^{-1}}$) & '
-                +'$'+cenofmean_CII+'\\pm'+scatterincenofmean_CII+'$'+' & '
-                +'$'+cenofmean_CIV+'\\pm'+scatterincenofmean_CIV+'$'+' & '
-                +'$'+cenofmean_MgII+'\\pm'+scatterincenofmean_MgII+'$'+' \\\ \n')
     afile.write('1$\sigma$ dispersion of mean stack (${\\rm km\\,s^{-1}}$) & '
                 +'$'+dispofmean_CII+'\\pm'+scatterindispofmean_CII+'$'+' & '
                 +'$'+dispofmean_CIV+'\\pm'+scatterindispofmean_CIV+'$'+' & '
                 +'$'+dispofmean_MgII+'\\pm'+scatterindispofmean_MgII+'$'+' \\\ \n')
-    afile.write('Centroid of median stack (${\\rm km\\,s^{-1}}$) & '
-                +'$'+cenofmedian_CII+'\\pm'+scatterincenofmedian_CII+'$'+' & '
-                +'$'+cenofmedian_CIV+'\\pm'+scatterincenofmedian_CIV+'$'+' & '
-                +'$'+cenofmedian_MgII+'\\pm'+scatterincenofmedian_MgII+'$'+' \\\ \n')
+    afile.write('Centroid of mean stack (${\\rm km\\,s^{-1}}$) & '
+                +'$'+cenofmean_CII+'\\pm'+scatterincenofmean_CII+'$'+' & '
+                +'$'+cenofmean_CIV+'\\pm'+scatterincenofmean_CIV+'$'+' & '
+                +'$'+cenofmean_MgII+'\\pm'+scatterincenofmean_MgII+'$'+' \\\ \n')
+    afile.write('Pseudo-continuum of mean stack & '
+                 +'$'+contiofmean_CII+'$'+' & '
+                 +'$'+contiofmean_CIV+'$'+' & '
+                 +'$'+contiofmean_MgII+'$'+' \\\ \n')
     afile.write('1$\sigma$ dispersion of median stack (${\\rm km\\,s^{-1}}$) & '
                 +'$'+dispofmedian_CII+'\\pm'+scatterindispofmedian_CII+'$'+' & '
                 +'$'+dispofmedian_CIV+'\\pm'+scatterindispofmedian_CIV+'$'+' & '
                 +'$'+dispofmedian_MgII+'\\pm'+scatterindispofmedian_MgII+'$'+' \\\ \n')
+    afile.write('Centroid of median stack (${\\rm km\\,s^{-1}}$) & '
+                +'$'+cenofmedian_CII+'\\pm'+scatterincenofmedian_CII+'$'+' & '
+                +'$'+cenofmedian_CIV+'\\pm'+scatterincenofmedian_CIV+'$'+' & '
+                +'$'+cenofmedian_MgII+'\\pm'+scatterincenofmedian_MgII+'$'+' \\\ \n')
+    afile.write('Pseudo-continuum of median stack & '
+                +'$'+contiofmedian_CII+'$'+' & '
+                +'$'+contiofmedian_CIV+'$'+' & '
+                +'$'+contiofmedian_MgII+'$'+' \\\ \n')
     afile.write('\\enddata \n')
     afile.write('\\end{deluxetable*}')
     afile.close()
