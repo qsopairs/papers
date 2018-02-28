@@ -384,9 +384,9 @@ def monte(outfil=None):
 
     # Plot
     plt.plot(velo.value,mean_stack[0].data,drawstyle='steps-mid',linewidth=2,color='k')
-    plt.plot(velo.value,model_monte(velo.value),color='gold',linewidth=3)
-    plt.plot(velo.value,model_extra(velo.value),'y--',linewidth=3)
-    plt.plot(velo.value,model_outflow(velo.value),'y-.',linewidth=3)
+    plt.plot(velo.value,model_monte(velo.value),color='green',linewidth=3)
+    plt.plot(velo.value,model_extra(velo.value),color='limegreen',linestyle='--',linewidth=3)
+    plt.plot(velo.value,model_outflow(velo.value),color='limegreen',linestyle='-.',linewidth=3)
 
     # Font
     for item in ([ax.title, ax.xaxis.label, ax.yaxis.label] +
@@ -470,7 +470,7 @@ def contour(outfil=None):
     hdulist.close()
 
     # Plot
-    ax.contourf(mass,WCII,lvls,levels=[1,2,3,4],colors=['b','g','r','m'])
+    ax.contourf(mass,WCII,lvls,levels=[1,2,3,4],colors=['lightgreen','limegreen','green','darkgreen'])
 
     # labels
     ax.set_xlabel(r'$\log\,(M_{\rm halo}/{\rm M}_\odot)$')

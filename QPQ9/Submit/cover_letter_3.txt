@@ -1,7 +1,17 @@
-Dear referee,
+Editor Walter,
 
-We thank you very much for the careful reading and constructive criticism
-that will help toward the eventual acceptance for publication.
+We thank very much the referee for their careful reading of our
+manuscript, and their comments and criticism. Following their
+recommendations, we have revised our manuscript in a number of ways
+detailed below. We are now resubmitting to the Astrophysical Journal and
+ask that you consider it further for publication.
+
+In addition to the changes marked in bold face, the color scheme of
+the now Figure 4 has been improved, which used to be Figure 6. We also
+reversed the ordering of the subsections on
+"Interpretation of the large velocity fields" and "Interpretation of the
+asymmetric absorption." The ordering of the figures has been changed
+accordingly. Table 2 has new rows on pseudo-continuum levels.
 
 >Remaining major question 1:
 >
@@ -91,9 +101,8 @@ The Mean CII to CII* ratio is 0.2, and we estimate that CII* may at most
 add a ~40 km/s positive bias.
 
 In our response to the last report, we overlooked the referee's request
-for changing the color scheme of old Figure 6, and we had only done that
-for the two cartoon figures. We apologize for that, and we have now
-changed the color scheme of Figure 4, which used to be Figure 6.
+for changing the color scheme of Figure 6, and we had only done that for
+the two cartoon figures. We apologize for that, and we have now changed
+the color scheme of Figure 6.
 
 Marie Wingyee Lau
-
