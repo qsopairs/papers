@@ -1,0 +1,30 @@
+The latest version of the paper addresses my previous questions and
+concerns. I have two additional suggestions that could further strengthen
+the paper:
+
+1) The paper now states that a 500 km/s outflow can reproduce the
+observed velocity shift based on "crude" estimates. Please give a bit
+more detail on how this estimate was obtained and state whether it is
+degenerate with e.g. the quasar opening angle or episodic lifetime.
+
+2) It would be useful to compare this outflow rate with other works and
+discuss possible origins of the putative outflows (e.g. supernovae vs.
+AGN). For example, a comparison with Turner+2014, 2017 would be
+enlightening. In particulary, Turner+2017 examined mean absorption
+optical depths around Lyman break galaxies and compared with simulations.
+For lower ionization state gas (HI, SiIV, and CIV in this case), the
+favored conclusion is that clustering of the absorption in velocity space
+is most consistent with gas that is *inflowing* on average. This is in
+apparent contrast with the new conclusions of the paper. This difference
+may be related to the masses of the systems being studied or the presence
+of the quasar due to quasar driven outflows (e.g. Green+2012) and/or
+supernovae driven outflows from starburst activity that is correlated
+with the presence of quasars (e.g. Barthel+2017).
+
+A few minor aesthetic points:
+
+1) It would be useful to add minor ticks to Figure 3, particularly on the
+x-axis.
+
+2) The numbering on the x-axis of Figure 4 is difficult to read
+currently.

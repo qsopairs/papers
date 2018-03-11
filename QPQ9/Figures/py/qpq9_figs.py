@@ -381,6 +381,8 @@ def monte(outfil=None):
     ax.text((ax.get_xlim()[1]-ax.get_xlim()[0])*0.05+ax.get_xlim()[0],
             (ax.get_ylim()[1]-ax.get_ylim()[0])*0.05+ax.get_ylim()[0],
             'CII, mean',size=fontsize)
+    ax.minorticks_on()
+    ax.yaxis.set_tick_params(which='minor',left='off')
 
     # Plot
     plt.plot(velo.value,mean_stack[0].data,drawstyle='steps-mid',linewidth=2,color='k')
@@ -475,6 +477,7 @@ def contour(outfil=None):
     # labels
     ax.set_xlabel(r'$\log\,(M_{\rm halo}/{\rm M}_\odot)$')
     ax.set_ylabel(r'$W_{\rm CII} ({\rm \AA})$')
+    ax.xaxis.set_major_locator(MaxNLocator(nbins=5))
 
     # Mark QPQ halo mass location
     ax.text(12.6,0.52,'+',size=fontsize,ha='center',va='center')
