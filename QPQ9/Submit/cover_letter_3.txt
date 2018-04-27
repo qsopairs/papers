@@ -1,0 +1,108 @@
+Editor Walter,
+
+We thank very much the referee for their careful reading of our
+manuscript, and their comments and criticism. Following their
+recommendations, we have revised our manuscript in a number of ways
+detailed below. We are now resubmitting to the Astrophysical Journal and
+ask that you consider it further for publication.
+
+In addition to the changes marked in bold face, the color scheme of
+the now Figure 4 has been improved, which used to be Figure 6. We also
+reversed the ordering of the subsections on
+"Interpretation of the large velocity fields" and "Interpretation of the
+asymmetric absorption." The ordering of the figures has been changed
+accordingly. Table 2 has new rows on pseudo-continuum levels.
+
+>Remaining major question 1:
+>
+>In the response to the second referee report and in the caption of
+>Figure 5, the authors state that the Monte Carlo simulation absorption
+>is shifted to match the centroid of the absorption.
+>Am I correct in understanding that this is done to force a match
+>between the observed absorption shift and the Monte Carlo model? If so,
+>this would seem to invalidate the claim by the paper that the observed
+>velocity shift can be explained by anisotropic and/or intermittent quasar
+>radiation combined with the Hubble flow. Why can't the shift be
+>reproduced by the Monte Carlo model which includes all of these effects?
+>If the model cannot reproduce the shift, then some of the major
+>conclusions of the paper, including the last sentence of the abstract,
+>are not supported. I am sufficiently puzzled by this that I request the
+>opportunity to review the paper one more time before acceptance. Please
+>clarify and explain the need for an artificial velocity shift in order
+>for the Monte Carlo model to match the observed stack.
+
+We thank the referee very much for pushing us to examine our Monte Carlo
+simulation outputs. Asymmetric distribution of Hubble velocities alone
+cannot produce the observed redshifted centroid. We made a mistake in
+our claim in the last response, as we mistook the simulation outputs
+that incorporated outflows to be those without outflows. We find that,
+with asymmetric distribution in Hubble velocities alone, the centroid
+may at most be shifted ~80 km/s. Hence, the observed putative asymmetry
+suggests the presence of an outflowing component! We crudely estimate
+that, the observed dispersion and centroid may be reproduced with a
+quasar opening angle of 120 degrees and radial velocities of 500 km/s.
+We added text that justifies ionizing absorbers at Mpc distances from
+the quasar. The argument comes from the observed anisotropic clustering
+of absorbers around quasars.
+
+We added text about outflows. In addition, we also restructured the text
+somewhat to first discuss the observed dispersion and then discuss the
+observed centroid. We put a confidence limit on the observed centroid
+of the average absorption from CII at 232+/-98 km/s, with large intrinsic
+scatter. Hence, we consider it worthwhile to also separately analyze the
+observed disperson.
+
+>Remaining major question 2:
+>
+>In the Monte Carlo model, the authors adopt a sigma_rms scatter of 246
+>km/s based on the expected rms velocity for quasar host halos. But the
+>absorption systems being considered in the model are in the Hubble flow
+>at significant cosmological distance, not in the quasar host halo. Why
+>then is a sigma_rms from massive halos appropriate? Does the adoption of
+>a different sigma_rms change the results?
+
+We thank the referee for this suggestion, that helps strengthen the
+results. We try adopting a sigma_rms scatter more more typical of coeval
+Lyman break galaxies, for absorbers at cosmological distances. We find
+that the dispersion in the model is again consistent with the
+observation. Relevant text has been added.
+
+>Other points for improvement:
+
+>1) Explicitly state the flux level of the psuedo-continuum by adding it
+>to Table 2
+>
+>2) Similarly, the paper must explicitly give the width of the second
+>Guassian component and equivalent width discussed on page 6. This means
+>providing actual numbers with uncertainties in the text rather than
+>qualitative assertions.
+>
+>3) The discussion of a bias from CII* is not convincing as is (though I
+>am certain that the claim of small bias is correct). In order to make the
+>given argument convincing, the authors need to give quantitative
+>constraints on the mean CII to CII* ratio and then translate this ratio
+>into an estimated bias. Again, the paper must include specific,
+>quantitative information on the estimated level of this bias rather than
+>simply assert that it is insignificant.
+>
+>4) On the color scheme in Figure 6: Anything that does not involve red
+>and green would be a significant improvement. This figure could be made
+>in greyscale, coolmap, heatmap, or any number of other options.
+>Alternative, a color scheme could be dropped entirely by plotting the 1,
+>2, and 3 sigma regions in solid, dashed, and dotted line respectively.
+>Or different hatching schemes could be used for each reason.
+
+We have added the pseudo-continuum levels to Table 2.
+
+We also added text to quantify the width, amplitude, and uncertainties in
+the wider and waeker Gaussian component.
+
+The Mean CII to CII* ratio is 0.2, and we estimate that CII* may at most
+add a ~40 km/s positive bias.
+
+In our response to the last report, we overlooked the referee's request
+for changing the color scheme of Figure 6, and we had only done that for
+the two cartoon figures. We apologize for that, and we have now changed
+the color scheme of Figure 6.
+
+Marie Wingyee Lau

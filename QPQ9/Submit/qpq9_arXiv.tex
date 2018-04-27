@@ -1,0 +1,1210 @@
+%\documentclass[12pt,preprint]{aastex}
+\documentclass[iop]{emulateapj}
+\usepackage{natbib,amsmath,graphicx,longtable,amssymb,latexsym,epsf,sidecap}
+\begin{document}
+
+\title{Quasars Probing Quasars IX. The Kinematics of the Circumgalactic Medium Surrounding
+$z\sim2$ Quasars}
+
+\author{Marie Wingyee Lau\altaffilmark{1,2}, J. Xavier Prochaska\altaffilmark{2},
+Joseph F. Hennawi\altaffilmark{3}
+}
+\altaffiltext{1}{Email: lwymarie@ucolick.org}
+\altaffiltext{2}{Department of Astronomy and Astrophysics, UCO/Lick Observatory, University of
+California, 1156 High Street, Santa Cruz, CA 95064}
+\altaffiltext{3}{Department of Physics, Broida Hall, University of California, Santa Barbara,
+CA 93106-9530}
+
+\begin{abstract}
+We examine the kinematics of the gas in the environments of galaxies hosting quasars at $z\sim2$.
+We employ 148 projected quasar pairs to study the circumgalactic gas of the foreground quasars in
+absorption. The sample selects foreground quasars with precise redshift measurements, using
+emission-lines with precision $\lesssim300\,{\rm km\,s^{-1}}$ and average offsets from the
+systemic redshift $\lesssim|100\,{\rm km\,s^{-1}}|$. We stack the background quasar spectra at the
+foreground quasar's systemic redshift to study the mean absorption in \ion{C}{2}, \ion{C}{4},
+and \ion{Mg}{2}.
+We find that the mean absorptions exhibit large velocity widths
+$\sigma_v\approx300\,{\rm km\,s^{-1}}$. Further, the mean absorptions appear to be asymmetric about
+the systemic redshifts. The mean absorption centroids exhibit small redshift relative to the
+systemic $\delta v\approx+200\,{\rm km\,s^{-1}}$, with large intrinsic scatter in the centroid
+velocities of the individual absorption systems.
+We find the observed widths are consistent with gas in gravitational
+motion and Hubble flow. However, while the observation of large widths alone does not require
+galactic-scale outflows, the observed offsets suggest that the gas is on average outflowing from the
+galaxy. The observed offsets also suggest that the ionizing radiation from the foreground quasars
+is anisotropic and/or intermittent.
+\end{abstract}
+
+
+\keywords{galaxies: clusters: intracluster medium -- galaxies: formation -- galaxies: halos --
+intergalactic medium -- quasars: absorption lines -- quasars: general}
+
+\section{Introduction}
+\label{sec:introduction}
+
+Galaxy formation and evolution are driven by the flows of gas into and out of their interstellar
+medium. Current theories demand that star-forming galaxies maintain these flows. Gas accretes,
+cools, and adds to the fuel supply, while star formation feedback heats gas, blows it out of
+galaxies, and regulates star formation \citep[for a review see][]{SomervilleDave15}.
+
+Direct observations of galactic flows are difficult to acquire. Detecting the presence of
+the gas is itself challenging. Either the gas mass is too small, or the gas density is too low for
+the detection of line-emission, e.g.\ 21\,cm, Ly$\alpha$, or H$\alpha$ from \ion{H}{1}. Resolving
+the kinematics and establishing the mass flux pose an even greater challenge. These challenges are
+accentuated for distant, young galaxies, where flows of gas are predicted to prevail
+\citep{Keres+09,Fumagalli+11}. Therefore, with rare exceptions,
+\citep[e.g.,][]{Cantalupo+14,Hennawi+15}, the community has relied on absorption-line spectroscopy
+to detect and characterize the gas surrounding galaxies
+\citep[e.g.,][]{BergeronBoisse91,Steidel+10,Prochaska+11,Tumlinson+13}.
+In a previous paper of the Qussars Probing Quasars series \citep[][, hereafter QPQ8]{QPQ8}, we
+measured the velocity field for \ion{C}{2}\,1334 and \ion{C}{4}\,1548, finding that the
+circumgalactic medium frequently exhibits large velocity widths that are offset from the systemic
+redshift.
+From a sample of 7 \ion{C}{2} systems and 10 \ion{C}{4}
+systems, we measured the velocity interval that encompasses 90\% of the total optical depth,
+$\Delta v_{90}$, and the $1\sigma$ dispersion relative to the profile centroid, $\sigma_v$.
+The median $\Delta v_{90}$ is $555\,{\rm km\,s^{-1}}$ for \ion{C}{2}\,1334 and is
+$342\,{\rm km\,s^{-1}}$ for \ion{C}{4}\,1548. The median $\sigma_v$ is $249\,{\rm km\,s^{-1}}$ for
+\ion{C}{2}\,1334 and is $495\,{\rm km\,s^{-1}}$ for \ion{C}{4}\,1548. These velocity fields exceed
+all previous measurements from galaxies and/or absorption systems at any epoch.
+The offsets, $\delta v$, are often positive, with the sign convention that positive
+velocities indicate a redshift from the systemic.
+
+With absorption-line spectroscopy of background sightlines, other researchers also have had
+success in characterizing the flows of gas around galaxies. \cite{Rakic+12} found a net
+large-scale inflow around star-forming galaxies, or a Kaiser effect for gas on
+1\textendash2\,Mpc scales. \cite{Ho+17} found gas spiraling inward near the disk plane of
+star-forming galaxies on $<100$\,kpc scales. \cite{Johnson+15} studied the CGM surrounding
+$z\sim1$ quasars. They found large peculiar motions in the gas exceeding the expected virial
+velocity, with quasar-driven outflows being one possible explanation. However, we consider that
+their velocity spreads can be better quantified. Other
+existing studies that found large velocity spreads are single sightlines
+\citep[e.g.,][]{Tripp+11,RudieNewmanMurphy17}, or with gas tracing
+a higher ionization state than the QPQ absorption systems \citep[e.g.,][]{Churchill+12}, or where
+the average velocity spread is smaller than that measured in QPQ8. In \cite{Gauthier13}, where a
+single sightline is reported, the $\Delta v_{90}$ of the \ion{Mg}{2} absorption is less than the
+average of the QPQ8 \ion{C}{2} absorption. In \cite{Muzahid+15}, an absorber is found with
+$\Delta v_{90}$ smaller than $555\,{\rm km\,s^{-1}}$ in \ion{O}{6} and \ion{N}{5}, and still
+smaller for other ions. The \cite{Zahedy+16} sample likewise has average $\Delta v_{90}$ smaller
+than that of QPQ8.
+
+A significant limitation of absorption-line analysis of transverse sightlines, especially
+regarding galactic-scale flows, is the inherent symmetry of the experiment. One generally lacks
+any constraint on the distance of the gas along the sightline. Positive or negative velocities
+with respect to the galaxy may be interpreted as gas flowing either toward or away from the
+system. ``Down-the-barrel'' observations break this symmetry, and have generally provided evidence
+for flows away from galaxies \citep{Rupke+05,Martin05,Weiner+09,Rubin+14}. However, these data are
+frequently at low spectral resolution which limits one's sensitivity to inflowing gas.
+
+In this paper (hereafter QPQ9), we examine the flows of gas in the environments of massive
+galaxies hosting quasars. Our approach leverages a large dataset of quasar pairs
+\citep[][hereafter QPQ1]{QPQ1} to use the standard techniques of absorption-line spectroscopy
+with background quasars. These quasar pairs
+have angular separations that correspond to less than 300\,kpc projected separation at the
+foreground quasar's redshift. Our previous publications from these quasar pairs have established
+that these galaxies are surrounded by a massive, cool, and enriched CGM
+\citep[QPQ5, QPQ6, QPQ7:][]{QPQ5,QPQ6,QPQ7}. We have collected a sample of 148 background
+spectra that are paired with foreground quasars with precisely measured redshifts. Among the
+sightlines in the QPQ9 sample, 13 have spectral resolution $R>5000$ from echellette or echelle
+observations, and have been analyzed separately in QPQ8 (see their Figure 8, 9, and 10, and their
+Appendix). In QPQ8, where the individual metal-bearing absorption components are resolved, 15 out
+of the 21 components are at positive velocities relative to the systemic redshift. For this
+current work, we stack spectra of all resolutions instead of performing a component-by-component
+analysis. Our primary scientific interests are twofold: (i) search for signatures of galactic-scale
+outflows from the central galaxy, presumably driven by recent star formation and/or active galactic
+nuclei feedback; (ii) characterize the dynamics of the gas around these massive systems. We further
+describe an aspect of this experiment that offers a unique opportunity to study galactic-scale
+flows: we argue that, the anisotropic or intermittent radiation from the foreground quasars may
+break the symmetry in the velocity field of circumgalactic absorbers. If the ionizing radiation
+field is asymmetric, the absorbers may also distribute asymmetrically. Alternatively, finite quasar
+lifetime will result in different radiation fields impinged on the gas closer to versus further
+away from the background quasar, due to different light travel times. \cite{KirkmanTytler08}
+reported an asymmetry in \ion{H}{1} absorption on scales larger than the CGM, and gave similar
+arguments on anisotropy or intermittence.
+
+%The formation and evolution of stars are dictated
+%by the flow of gas and metals/dust.  [This transport
+%varies directly with the stellar stage
+%and a lesser extent stellar mass.]
+%The accretion onto a protostellar  core eventually
+%initiates nuclear fusion.  The main sequence is characterized
+%by gentler stellar winds, with the most massive
+%stars shedding a cumulative mass of XX\%.
+%Stellar deaths, meanwhile, are frequently accompanied by terrific
+%mass loss, occasionally punctuated by a highly energetic,
+%supernova phase.
+%By analogy, galaxy formation and evolution are driven by the
+%flows into/out of their interstellar medium.
+%In contrast to most stars, however, current theories
+%predict (even demand) that the star-forming galaxies
+%maintin these flows. [add]
+%Akin to stars, direct observations of galactic flows are
+%difficult to acquire. Even detecting the gas is challenging:
+%the gas mass is either too small or the gas density too low
+%for the [detection] of line-emission (e.g. 21cm, lya,
+%or H$\alpha$ from Hydrogen).  Resolving the kinematics
+%and establish the mass-flux represent a far greater challenge.
+%These challenges are accentuated for distant, young galaxies
+%where flows are predicted to prevail \citep{keres,fumagalli}.
+%Therefore, with rare exceptions \citep[e.g.][]{slug,jackpot},
+%the community has relied on absorption-line spectroscopy
+%to detect and characterize the gas surrounding galaxies
+%\citep[e.g.][]{bergeron,steidel10,pro11,tumlinson13}.
+%With this experiment, researcher have had recent success
+%in characterizing the large-scale flows around star-forming
+%galaxies to reveal a net inflow \cite{rakic13} and
+%provide unique constraints on the mass of the underlying
+%potential well \cite{rakic14}.
+%A significant limitation of standard absorption-line
+%analysis, especially regarding sutyding galactic flows,
+%is the inherent symmetry of the experiment.
+%Because one generally lacks any constraint on the distance
+%of the gas along the sightline,
+%postive or negative velocities with respect to the
+%galaxy may be interpreted as gas flowing either towards
+%or away from the system.
+%So-called `down-the-barrel' observations break this
+%symmetry, and have generally provided evidence for flows
+%away from galaxies \citep{rupke,martin,weiner,rubin}.
+%However, these data are frequently at low spectral resolution
+%which limits one's sensitivity to inflowing gas.
+%In this paper, we examine the flows of gas in the environments
+%of massive galaxies hosting quasars.  Our approach leverages
+%a large dataset of quasar pairs \citep{hennawi}
+%to use the standard technique of absorption-line spectroscopy
+%with background quasars. [word]
+%These quasar pairs have angular
+%separations that correspond to less than 300\,kpc physical
+%separation at the f/g quasar redshift.
+%Our previous publications from these quasar pairs
+%have established that these galaxies are surrounded
+%by a massive, cool, and enriched circumgalactic medium
+%\citep{QPQ1,QPQ5,QPQ6,QPQ7}.
+%We have collected a sample of ntot~spectra passing within
+%300\,kpc from a f/g quasar with a precisely measured
+%redshift.  Our primary scientific interests are twofold:
+%(i) search for signatures of galactic-scale outflows from the
+%central galaxy, presumably driven by recent star-formation
+%and/or AGN feedback;
+%(ii) characterize the dynamics of galactic flows around these
+%massive system.  We further descrbie an aspect of this
+%experiment that offers a unique opportunity to study galactic
+%flows. [detail??]
+
+We adopt a $\Lambda$CDM cosmology with $\Omega_M=0.26, \Omega_\Lambda=0.74$, and
+$H_0=70\,{\rm km\,s^{-1}\,Mpc^{-1}}$. Distances are proper unless otherwise stated. When referring
+to comoving distances we include explicitly an $h^{-1}$ term and follow modern convention of
+scaling to the Hubble constant $h = H_0/(70\,{\rm km\,s^{-1}\,Mpc^{-1}})$.
+%All equivalent width measurements are presented in the rest-frame, unless otherwise specified.
+
+\section{The Experiment}
+\label{sec:experiment}
+
+%\input{Tables/tab_sample.tex}
+\input{tab_sample.tex}
+
+\begin{figure}
+%\includegraphics[width=3in]{Figures/fig_experiment.pdf}
+\includegraphics[width=3in]{f01.pdf}
+\caption{These panels summarize properties of the QPQ9 dataset. The QPQ survey selects
+quasar pairs of $R_\perp < 300$\,kpc and $z_{\rm fg}>1.6$. Assuming that the foreground quasars
+emit isotropically and at a distance equal to the impact parameter, the enhancement in the UV
+flux relative to the extragalactic UV background, $g_{\rm UV}$, can be estimated. Large
+symbols correspond to foreground quasars with the most precise redshift measurement from
+[\ion{O}{3}]\,5007, while small symbols correspond to $z_{\rm fg}$
+measurements from \ion{Mg}{2}\,2800, H$\alpha$, or H$\beta$ emission. The top panel shows
+quasar pairs with coverage of \ion{C}{2}\,1334 at $z_{\rm fg}$ in the background quasar spectra.
+The middle panel shows pairs with coverage of \ion{C}{4}\,1548. The bottom panel shows
+pairs with coverage of \ion{Mg}{2}\,2796.
+}
+\label{fig:experiment}
+\end{figure}
+
+The goal of our experiment is to measure the average velocity fields of the absorption from C$^+$,
+C$^{3+}$, and Mg$^+$ ions associated with the CGM of the galaxies hosting $z\sim 2$ quasars.
+
+From our QPQ survey\footnote{http://www.qpqsurvey.org}, we analyze a subset of systems that
+pass within transverse separation $R_\perp<300$\,kpc from a foreground quasar with
+$z_{\rm fg} > 1.6$. We restrict the sample to foreground quasars with redshift measured from
+\ion{Mg}{2}\,2800, [\ion{O}{3}]\,5007, or H$\alpha$ emission, giving a precision of
+$300\,{\rm km\,s^{-1}}$ or better and an average offset from the systemic redshift of
+$|100\,{\rm km\,s^{-1}}|$ or less. According to \cite{Shen+16}, the [\ion{O}{3}] emission-line
+redshifts have the smallest scatter (intrinsic scatter and measurement error combined) of
+$68\,{\rm km\,s^{-1}}$ about the systemic redshift, and we analyze the sub-sample with
+[\ion{O}{3}] redshifts separately. The [\ion{O}{3}] line has an average blueshift of
+$48\,{\rm km\,s^{-1}}$ about the systemic redshift, which has been added when we compute the
+redshift of the line. The scatter and average offset of [\ion{O}{3}] redshifts reported by
+\cite{Shen+16} is consistent with the numbers reported by \cite{Boroson05} using a larger but
+lower redshift sample. Systemic redshifts measured from \ion{Mg}{2} have a precision of
+$226\,{\rm km\,s^{-1}}$ according to \cite{Shen+16}, and we have taken into account their
+reported median blueshift of $57\,{\rm km\,s^{-1}}$ of \ion{Mg}{2} from the systemic. We note that
+\cite{Richards+02} reported a median redshift of $97\,{\rm km\,s^{-1}}$ of \ion{Mg}{2} from
+[\ion{O}{3}] using a larger but lower redshift sample. In QPQ8, we quantified
+the precision of H$\alpha$ to be $300\,{\rm km\,s^{-1}}$ and the median offset from the systemic
+redshift is close to zero, consistent with the velocity shifts measured by \cite{Shen+11}.
+Although H$\beta$ is a narrow emission-line, we do not consider its redshift sufficiently reliable
+for use as systemic redshift. H$\beta$ redshifts have a large scatter about the systemic
+$\approx400\,{\rm km\,s^{-1}}$, and a large average offset about the systemic
+$\approx100\,{\rm km\,s^{-1}}$ \citep[][QPQ8]{Shen+16}.
+Our line-centering algorithm calculates the mode of a line given by
+$3\times{\rm median}-2\times{\rm mean}$, applied to the upper 60\% of the emission, while
+\cite{Shen+16} calculates the peak of a line. We expect that our line-centering algorithm gives
+emission redshifts very comparable to the \cite{Shen+16} algorithm, however. \cite{Shen+16}
+states that the difference between the peak and the centroid of an emission-line
+is not significant except for the broad line H$\beta$, which we do not use in redshift
+measurements. To quantify the above, we further obtain individual measurements of centroids and
+peaks in the \cite{Shen+16} sample through private communication. We found there is essentially no
+difference between using the centroid versus using the peak for [\ion{O}{3}] emission redshifts,
+and there is on average $50\,{\rm km\,s^{-1}}$ difference for \ion{Mg}{2}. We may expect the
+difference between the mode and the peak is even smaller. Hence, we argue that the average
+systemic bias corrections measured in \cite{Shen+16} may be self-consistently applied to our
+measured emission-line redshifts to obtain systemic redshifts.
+
+We further add to the QPQ dataset with quasar pairs selected from the public dataset of
+igmspec\footnote{https://github.com/specdb/igmspec} \citep{Prochaska+17}, which includes the
+spectra from the quasar catalogs based upon the Sloan Digital Sky Survey Seventh Data Release
+\citep{Schneider+10} and the Twelfth Data Release \citep{Paris+17}. We only select pairs with
+$z_{\rm fg}$ measurable using a robust \ion{Mg}{2}\,2800 emission-line.
+We reach a final sample size of 148.
+Figure~\ref{fig:experiment} summarizes the experimental design. We refer the reader to previous
+QPQ publications for the details on the emission-line centering algorithm, data reduction, and
+continuum normalization (QPQ1; QPQ6; QPQ8).
+
+As in the previous QPQ papers, we select the quasar pairs to have redshift difference
+$>3000\,{\rm km\,s^{-1}}$, to exclude physically associated binary quasars. The cut on velocity
+difference is motivated by the typical redshift uncertainty of $\approx500\,{\rm km\,s^{-1}}$ of
+the background quasars. In QPQ8, it was required that the observed wavelengths of the
+metal ion transitions fall outside the Ly$\alpha$ forest of the background quasar. In this paper,
+we exclude a small window around the Ly$\alpha$ emission, in additional to the Ly$\alpha$ forest,
+from analysis. For stacked profile analysis, a good estimate of
+the continuum level is necessary. In QPQ8 we found that absorption associated to
+the foreground quasar occurs within $\pm2000\,{\rm km\,s^{-1}}$ around $z_{\rm fg}$. Therefore, it
+is desirable to keep a $\approx\pm3000\,{\rm km\,s^{-1}}$ window relatively free of contamination
+from Ly$\alpha$ forest. Taking into account the redshift uncertainties,
+we decide that at least one transition among \ion{C}{2}\,1334, \ion{C}{4}\,1548, and
+\ion{Mg}{2}\,2796 at $z_{\rm fg}$ must lie redward of
+$(1215.6701+20)\times(1+z_{\rm bg})\,{\rm \AA}$, for a pair to be included in the analysis.
+
+Furthermore, we include only those spectra with average signal-to-noise ratio (S/N) exceeding 5.5
+per rest-frame \AA\ in a $\pm3000\,{\rm km\,s^{-1}}$ window centered on the observed wavelengths
+of the metal ion transitions. This criterion is a compromise between maximizing sample size versus
+maintaining good data quality on the individual sightlines. We find that S/N $>5.5$ per rest-frame
+\AA\ is necessary for properly estimating the continuum, as well as identifying mini-broad
+absorption line systems associated to the background quasar, which will significantly depress the
+flux level. We also require that the region of the spectrum that is $\pm3000\,{\rm km\,s^{-1}}$
+around a considered metal ion transition does not overlap with strong atmospheric ${\rm O}_2$
+bands. The ${\rm O}_2$ A- and B-band span 7595\textendash7680\,\AA \ and 6868\textendash6926\,\AA
+\ respectively.
+
+Table~\ref{tab:sample} lists the full QPQ9 sample. In Table~\ref{tab:summary}, we first list the
+sample size, the median $z_{\rm fg}$, and the median $R_\perp$ of the quasar pairs that survive
+the above selection criteria for \ion{C}{2}\,1334, \ion{C}{4}\,1548, and \ion{Mg}{2}\,2796
+respectively. We then provide the summary for the sub-sample with $z_{\rm fg}$ measured from
+[\ion{O}{3}].
+
+\section{Analysis}
+\label{sec:analysis}
+
+\subsection{Stacked Profiles}
+\label{sec:stacks}
+
+\begin{figure}
+%\includegraphics[width=3.5in]{Figures/fig_stacks_and_fits.pdf}
+\includegraphics[width=3.5in]{f02.pdf}
+\caption{Mean and median absorption centered at \ion{C}{2}\,1334, \ion{C}{4}\,1548, and
+\ion{Mg}{2}\,2796 of the foreground quasars for all QPQ9 pairs. The composites are shown in thin,
+black. Overplotted on the composites are Gaussian fits, normalized to pseudo-continua far away
+from a velocity of $0\,{\rm km\,s^{-1}}$ relative to $z_{\rm fg}$, and are shown in thick, blue.
+For the doublets, a second Gaussian with a fixed mean separation and a tied standard deviation is
+included in the modeling. The absorptions frequently exhibit large velocity widths. The blue dashed
+lines mark the centroids, which show small positive velocity offsets from $z_{\rm fg}$. The
+$1\sigma$ modeling error for the
+dispersion and the centroid of the \ion{C}{2} mean stack are $27\,{\rm km\,s^{-1}}$ and
+$25\,{\rm km\,s^{-1}}$ respectively, which are}
+also the typical modeling errors of the other stacks.
+\label{fig:stacks_and_fits}
+\end{figure}
+
+We create composite spectra that average over the intrinsic scatter in quasar environments,
+continuum placement errors, and redshift errors. The individual spectra of background quasars are
+shifted to the rest-frame of the foreground quasars at the transitions of interest. Each spectrum
+has been linearly interpolated onto a fixed velocity grid centered at $z_{\rm fg}$ with bins of
+$100\,{\rm km\,s^{-1}}$. For a velocity bin of this size, it is unnecessary to smooth the data to
+a common spectral resolution.
+The individual spectra are then combined with a mean or a median
+statistic.
+Spectra with broad absorption-line systems and mini-broad absorption-line systems are excluded.
+Bad pixels in the individual spectra have been masked before generating the
+composites. Since each quasar pair gives an independent probe of the CGM, each pair has an equal
+weighting in the stacked profiles, i.e.\ we do not weight the spectra by the measured S/N near the
+metal ion transitions. Scatter in the stacked spectra is dominated by randomness in the CGM rather
+than scatter in the flux of individual observations. The mean statistic of the individual spectra
+yields a good estimate of the average absorption and preserves equivalent width. The median
+statistic is less sensitive to outliers. However, the median opacity at any velocity channel is
+rather small, since the discrete absorbers are spread throughout the entire velocity window.
+A pixel is not affected unless there are more than 50\% of quasar pairs with absorption at its
+velocity. The analysis on the median velocity field is thus subject to larger uncertainty. In the
+following we present stacked spectra using both the mean and the median statistic.
+
+In Figure~\ref{fig:stacks_and_fits}, we present mean and median stacks of \ion{C}{2}\,1334,
+\ion{C}{4}\,1548, and \ion{Mg}{2}\,2796 absorption of the QPQ9 sample. We focus on the
+analysis results of the \ion{C}{2} mean stack. \ion{C}{4} and \ion{Mg}{2} are doublet transitions
+and it is more challenging to analyze their kinematics.
+%To assess the average absorption of these transitions,
+%we have combined the data with a novel technique.
+%We have fitted the combined dataset using a cubic b-spline
+%with knots at every 100\,kms.  We weighted each data
+%point by the velocity width of the pixel to insure that
+%each sightline makes an equal contribution to the stack.
+%These b-spline profiles are presented in the figure
+%and a trivial integration gives the reported equivalent
+%widths.
+%[consider down-weighting systems with $<3\sigma$ EW]
+%[Comnent on EW from 'standard' technique]
+Two results are evident in Figure~\ref{fig:stacks_and_fits}: (i) the mean \ion{C}{2} stack
+exhibits excess absorption spanning a large velocity width; (ii) the mean absorption is likely
+skewed toward positive velocities.
+
+Visually, there are two absorption components. One component is the uniform depression in the
+continuum level in the stack resulting from absorbers unassociated with the foreground
+quasars. The other component comes from absorbers associated with the foreground quasars and
+distribute around their systemic velocities. To model the absorption, we introduce
+a Gaussian profile while allowing a constant ``pseudo-continuum'' to vary.
+We perform $\chi^2$ minimization with each channel given equal weight. From the best-fit
+to the data, we measure
+the $1\sigma$ dispersion of the stack to be $293\,{\rm km\,s^{-1}}$ and the centroid of the
+\ion{C}{2} stack to be $+232\,{\rm km\,s^{-1}}$. The dispersion suggests extreme kinematics, while
+the centroid suggests an asymmetry that contradicts the standard expectation.
+The median
+stack, on the other hand, shows weaker absorption,
+and the Gaussian model has a more uncertain dispersion and a centroid with smaller offset.
+
+To test whether the dispersion in the average absorption associated with the foreground quasars is
+well-captured by a Gaussian model, we also calculate the dispersion separately using the standard
+deviation formula. Specifically, we apply the standard deviation formula to a $\pm1300\,{\rm km\,s^{-1}}$
+window surrounding the absorption centroid, while fitting a continuum to the rest of the
+$\pm3000\,{\rm km\,s^{-1}}$ window for stacking. The
+dispersion measured with the above method is essentially the same as that found by fitting a Gaussian.
+One may also speculate on the existence of a broader absorption component hidden in the depressed
+continuum. We try replacing the constant absorption component with a broad Gaussian component in our
+modeling. We find that this second Gaussian component has
+an amplitude of $0.030\pm0.009$, i.e.\ essentially the same amplitude as the initial
+constant absorption component, and a $1\sigma$ dispersion of $3614\pm1731\,{\rm km\,s^{-1}}$, i.e.\ wider
+than the entire velocity window for stacking.
+This weak and very broad component has no effect on the width and the centroid of the narrow,
+associated Gaussian component. We therefore consider that one single Gaussian component is a good
+description of the average absorption associated with the foreground quasars.
+Moreover, narrow associated absorbers of background quasars will not prefer the systemic velocities of
+the foreground quasars, and hence will not affect the average absorption measured for the foreground
+quasars. Their contribution to the average absorption should result in a tilt in the
+pseudo-continuum, which is insignificant.
+
+We also create mean and median stack for the sub-sample with [\ion{O}{3}] redshifts and model the
+absorption with Gaussian best-fit. The \ion{C}{2} mean stack for this sub-sample has
+a dispersion of $330\,{\rm km\,s^{-1}}$, and a centroid at $+235\,{\rm km\,s^{-1}}$,
+consistent with the full sample.
+
+To model the mean and median absorption of \ion{C}{4}\,1548 and \ion{Mg}{2}\,1796, we introduce a
+second Gaussian with separation equal to the doublet separation ($498\,{\rm km\,s^{-1}}$ and
+$769\,{\rm km\,s^{-1}}$ respectively), and tie the dispersion of the two lines in a doublet. We
+allow the doublet ratio to vary from 2:1 to 1:1.
+The centroid is degenerate with the doublet ratio in our modeling. This degeneracy is more
+pronounced for \ion{C}{4}, although we find that a double ratio closer to 2:1 better captures the
+absorption at the central few pixels. We state that the modeling of the doublets is presented for
+consistency check, but the analysis focuses on \ion{C}{2}.
+The modeling results show that the velocity fields
+of \ion{C}{4} and \ion{Mg}{2} are consistent with \ion{C}{2}, i.e.\ large dispersion and centroid
+is skewed toward positive velocities.
+
+The above analyses are summarized in Table~\ref{tab:summary}. The Gaussian models normalized to
+pseudo-continuum are overplotted on the data stacks in Figure~\ref{fig:stacks_and_fits}.
+
+%\input{Tables/tab_summary.tex}
+\input{tab_summary.tex}
+
+\subsection{Interpretation of the large velocity fields}
+\label{sec:significance_width}
+
+\begin{figure}
+%\includegraphics[width=2.5in]{Figures/fig_monte.pdf}
+\includegraphics[width=2.5in]{f05.pdf}
+\caption{The same \ion{C}{2} mean stack shown in the first panel of
+Figure~\ref{fig:stacks_and_fits} is shown in thin, black.
+We overplot in dashed, limegreen an
+absorption profile with $\sigma_v=554\,{\rm km\,s^{-1}}$, which is larger than the observed width
+by three times the standard deviation in the bootstrap analysis. Motions that produce a velocity
+width larger than this can be ruled out. We overplot in dot dashed, limegreen an absorption profile with
+$\sigma_v=214\,{\rm km\,s^{-1}}$, which is smaller than the observed width by three times the
+modeling error. Unless gravitational and Hubble flows together with redshift error broadening
+produce a velocity width smaller than this, extra dynamical processes (e.g.\ outflows) will not be
+required to explain the observed width.
+In thick, green, we overplot the
+Gaussian absorption model of the Monte Carlo simulations generated from a purely clustering
+argument. The model from clustering analysis is multiplied to the pseudo-continuum level of the
+stack of the observational data, and broadened
+by the mean redshift error in the data. While this model has a dispersion within modeling error of the
+dispersion in the data. the centroid of the stack of the data appears to be redshifted
+from the systemic. A model with only gravitational motions and Hubble flows cannot explain
+this putative asymmetry.
+}
+\label{fig:monte}
+\end{figure}
+
+\begin{figure}
+%\includegraphics[width=2.5in]{Figures/fig_contour.pdf}
+\includegraphics[width=2.5in]{f06.pdf}
+\caption{
+Probability distributions of the parameters $W_{\rm CII}$ and $M_{\rm halo}$. The plot shows the
+degeneracy between $W_{\rm CII}$ and $M_{\rm halo}$ in recovering the intrinsic width of the
+absorption profile. We mark contours for points that produce an absorption
+profile of width that is 1, 2, and 3 times the modeling error away from the observed intrinsic
+width. The intrinsic velocity width corresponding to typical QPQ halo mass is marked with a plus
+sign, and is contained within the 2$\sigma$ contour.}
+\label{fig:contour}
+\end{figure}
+
+Under the assumption that the intrinsic dispersion and the redshift uncertainty add in
+quadrature to give the observed width, we solve for the intrinsic dispersion in the \ion{C}{2}
+mean stack. For the full QPQ9 sample, with the mean
+$\sigma_{{\rm error}(z)}^{\rm full}=189\,{\rm km\,s^{-1}}$, we recover
+$\sigma_{\rm intrinsic}^{\rm full}=224\,{\rm km\,s^{-1}}$. For the sub-sample with [\ion{O}{3}]
+redshifts, we recover $\sigma_{\rm intrinsic}^{\rm [OIII]}=323\,{\rm km\,s^{-1}}$.
+
+To assess the statistical significance of the observed dispersion, we perform a bootstrap
+analysis by randomly resampling from the full sample 10000 times. We introduce a Gaussian absorption
+profile to model each bootstrap realization. We find that a width of
+$\sigma_v>554\,{\rm km\,s^{-1}}$ would be larger than the observed by three times the scatter in
+the bootstrap realizations
+(overplotted in Figure~\ref{fig:monte}). In other words, taking into account the redshift errors,
+motions in addition to gravitational and Hubble flows that will produce an intrinsic dispersion
+$\sigma_v>521\,{\rm km\,s^{-1}}$ can be ruled out.
+
+On the contrary,
+$\sigma_{\rm rms}<70\,{\rm km\,s^{-1}}$ together with Hubble velocities and
+broadening by redshift errors will result in a velocity width that is more than three times the
+modeling error away from the observed width (overplotted in Figure~\ref{fig:monte}). This implies
+that, unless the characteristic $M_{\rm halo}<10^{11.0}\,M_\odot$,
+additional dynamical processes are not required to explain the observed width.
+
+\cite{Eftekharzadeh+15} measured the clustering of quasars in the range $2.2<z<2.8$ while
+\cite{RodriguezTorres+17} measured the clustering of quasars in the range $1.8<z<2.2$. They
+estimated that these quasars are hosted by dark matter halos with mass
+$M_{\rm halo}=10^{12.5}\,M_\odot$ and $M_{\rm halo}=10^{12.6}\,M_\odot$ respectively. If dark
+matter halos hosting QPQ9 quasars have a characteristic mass $10^{12.6}\,M_\odot$ and follow an
+NFW profile \citep{NavarroFrenkWhite97} with concentration parameter $c=4$, at $z\approx2$ the
+maximum circular velocity is $345\,{\rm km\,s^{-1}}$. \cite{TormenBouchetWhite97} found that the
+maximum circular velocity is $\approx1.4$ times the maximum of the average one-dimensional
+root-mean-square velocity $\sigma_{\rm rms}$. Hence, the average line-of-sight rms velocity
+typical of QPQ9 halos is $\sigma_{\rm rms}=246\,{\rm km\,s^{-1}}$. In QPQ8, we estimated the
+probability of intercepting a random optically thick absorber is 4\%, and clustering would only
+increase that to 24\%. Although motions due to Hubble flows do not dominate, they nevertheless
+contribute to the observed dispersion. We can investigate
+whether gravitational motions and Hubble flows are sufficient to reproduce the dispersion in the
+data, using Monte Carlo methods to simulate the absorption signals.
+
+Since \ion{C}{2} systems arise in optically thick absorbers, we may adopt the clustering analysis
+results of QPQ6. In the absence of clustering, the expected number of absorbers per unit redshift
+interval for Lyman limit systems, super Lyman limit systems, and damped Ly$\alpha$ systems are
+respectively $\ell_{\rm IGM}^{\rm LLS}(z)\approx1.05((1+z)/(1+2.5))^{2.1}$,
+$\ell_{\rm IGM}^{\rm SLLS}(z)\approx0.44((1+z)/(1+2.5))^{2.1}$, and
+$\ell_{\rm IGM}^{\rm DLA}(z)\approx0.2((1+z)/(1+2.5))^{2.1}$. The quasar-absorber correlation
+functions for Lyman limit systems, super Lyman limit systems, and damped Ly$\alpha$ systems are
+respectively $\xi_{\rm QA}^{\rm LLS}(r)=(r/(12.5\,h^{-1}\,{\rm Mpc}))^{-1.68}$,
+$\xi_{\rm QA}^{\rm SLLS}(r)=(r/(14.0\,h^{-1}\,{\rm Mpc}))^{-1.68}$, and
+$\xi_{\rm QA}^{\rm DLA}(r)=(r/(3.9\,h^{-1}\,{\rm Mpc}))^{-1.6}$.
+For each quasar pair, we calculate the expected number of optically thick absorbers within
+$\pm3000\,{\rm km\,s^{-1}}$ at a distance $R_\perp$ from the foreground quasar and at
+$z_{\rm fg}$. Then we generate 1000 mock sightlines. The number of absorbers for each mock
+spectrum is randomly selected from a Poisson distribution with mean equal to the expected number
+calculated as above. The absorbers are randomly assigned Hubble velocities, with a probability
+distribution according to the quasar-absorber correlation functions. The absorbers are randomly
+assigned additional peculiar velocities drawn from a normal distribution with mean equal to
+$0\,{\rm km\,s^{-1}}$ and scatter equal to $\sigma_{\rm rms}$. For each absorber, we assume a rest
+equivalent width for \ion{C}{2} $W_{\rm CII}$ and a Gaussian absorption profile. We repeat the
+above procedure for all 40 quasar pairs, and create a mean stack of the 40000 mock spectra
+generated. We fit a Gaussian absorption profile multiplied to a constant continuum level to model
+the stack of mock spectra. We adjust the $W_{\rm CII}$ adopted for the absorbers until the
+amplitude of the best-fit Gaussian of the stack of mock spectra matches the amplitude of the stack
+of the observational data. We find that $W_{\rm CII}\approx0.5\,{\rm \AA}$ well reproduces the
+amplitude, and the dispersion of the Gaussian absorption model is insensitive to the assumed
+$W_{\rm CII}$ or line profile for one absorber.
+
+In Figure~\ref{fig:monte}, we show a comparison of the observational data stack and the Gaussian
+absorption model of the Monte Carlo simulations.
+n the figure, the Gaussian absorption model is
+broadened by the mean redshift error by adding it in quadrature to the dispersion in the model.
+The resulting stack of mock spectra has a $1\sigma$ dispersion of $282\,{\rm km\,s^{-1}}$,
+about 2 times the modeling error away from the intrinsic dispersion in the \ion{C}{2} mean stack
+for the full sample, and about 2 times the modeling error away from the intrinsic dispersion in the
+stack of the sub-sample with [\ion{O}{3}] redshifts as well.
+One may also consider whether absorbers in Hubble flow and cosmological distances show peculiar
+velocities that are typical for quasar-mass halos, and adopt a different $\sigma_{\rm rms}$ accordingly.
+The best-studied coeval, more typical star-forming
+galaxies are the Lyman-break galaxies. Their clustering strength implies a characteristic halo
+mass of $M_{\rm halo}\approx10^{11.6}\,M/{\rm M_\odot}$ \citep{Bielby+13,Malkan+17}, corresponding to
+$\sigma_{\rm rms}=114\,{\rm km\,s^{-1}}$.
+If we adopt this smaller $\sigma_{\rm rms}$ insead,for absorbers outside the loosely
+defined quasar CGM boundary, at $\gtrsim300$\,kpc, the stack of mock spectra will have a $1\sigma$
+dispersion of $247\,{\rm km\,s^{-1}}$. This is again within modeling errors of the observed intrinsic
+dispersion.
+We also test for the
+sensitivity of this measured dispersion to the correlation functions adopted. The QPQ6 clustering
+analysis is performed on only the strongest absorber near $z_{\rm fg}$, and a low $R_\perp$
+sightline may in fact intercept more than one optically thick absorber. We double the number of
+absorbers for each mock sightline, and find the measured dispersion only increases by several
+${\rm km\,s^{-1}}$. Thus, before the putative asymmetry is confirmed, the hypothesis that the
+observed velocity width is only produced by a
+combination of gravitational motions and Hubble flows cannot be ruled out. Extra dynamical
+processes are not necessary to explain the large velocity fields.
+
+Although we acknowledge the possibility that our Gaussian model does not capture all the powers
+at extreme velocities, we also caution that occasional large kinematic offsets do not make a strong
+case against gravitational motions. Firstly, quasars occasionally inhabit extremely overdense environments
+such as protoclusters \citep[e.g.,][]{Hennawi+15}. Secondly, the probability of intercepting a random,
+unassociated absorber is boosted by large-scale clustering. Hence occasional extreme velocities would not
+necessitate outflows. Our preferred kinematic measure is thus the dispersion in the average absorption.
+
+In Figure~\ref{fig:contour}, We show the probability distributions of the degenerate parameters
+$W_{\rm CII}$ and $M_{\rm halo}$ in recovering the intrinsic width of the absorption profile. We
+require that the amplitude of the absorption is reproduced within 3 times its modeling error, and
+mark contours for points in ($W_{\rm CII}$, $M_{\rm halo}$)-space that produce an absorption
+profile of width within 1, 2, and 3 times the modeling error of the observed intrinsic width.
+From the figure, a higher $W_{\rm CII}$ means the $M_{\rm halo}$ that will reproduce the observed
+width is higher. If there are no extra dynamical processes, the intrinsic velocity width
+corresponding to typical QPQ halo mass is contained within the 2$\sigma$ contour.
+
+\subsection{Interpretation of the asymmetric absorption}
+\label{sec:significance_+ve}
+
+We quote the standard deviation in the bootstrap
+realizations to be the scatter in the centroids of the data. The scatters
+$\approx100\,{\rm km\,s^{-1}}$ are comparable to the measured offsets, indicating large intrinsic
+variation in quasar CGM environments (see also QPQ8). In Figure~\ref{fig:histogram_cen}, we show
+the distribution of the absorption centroids from bootstrapping on the \ion{C}{2} mean stack. We
+find that 97\% of the centroids are at positive velocities. We place a generous $3\sigma$ upper
+limit to the small offset of the centroid from $z_{\rm fg}$ for the \ion{C}{2} mean absorption at
+$\delta v<+526\,{\rm km\,s^{-1}}$. Given the large intrinsic scatter, we do not attempt to explore
+whether there exists relative asymmetry among the \ion{C}{2}, \ion{C}{4}, and \ion{Mg}{2}
+absorption.
+
+One may ask whether absorption from \ion{C}{2*}\,1335 may bias the measurement of the
+\ion{C}{2}\,1334 velocity centroid. In the stacks at \ion{C}{2}\,1334, absorption from \ion{C}{2*}\,1335
+would manifest as a component redshifted by $+264\,{\rm km\,s^{-1}}$.
+In the higher resolution data from QPQ8, we identify nine \ion{C}{2}-bearing subsystems where absorption
+from \ion{C}{2*}\,1335 is not blended with \ion{C}{2}\,1334.
+Their mean \ion{C}{2} to \ion{C}{2*} equivalent width ratio is 0.2.
+Among these nine subsystems, only one,
+labeled J1420+1603F in QPQ8, has a \ion{C}{2*}\,1335 equivalent width comparable to \ion{C}{2}\,1334.
+We simulate that absorption from \ion{C}{2*} may only bias the \ion{C}{2} centroid by
+$\approx+40\,{\rm km\,s^{-1}}$.
+Hence, contamination from \ion{C}{2*}\,1335 could not be responsible for the observed redshift in
+the centroid.
+
+One may also ask whether the measured positive offsets come from systematic bias in redshift
+measurements due to the Baldwin effect \citep{Baldwin77}. \cite{Shen16} reported that, the
+[\ion{O}{3}] emission of $z\sim2$ quasars is more asymmetric and weaker than that in typically
+less luminous low-$z$ quasars. To test for this potential source of bias, we create another mean
+stack at \ion{C}{2}\,1334 by replacing the [\ion{O}{3}] redshifts by a redshift measured from the
+more symmetric \ion{Mg}{2} or H$\alpha$ emission when available. We are able to replace for 11 out
+of the 15 systems with [\ion{O}{3}] redshifts in the original sample. The new stack is similiar in
+velocity structure and again shows a positive offset $\approx+303\,{\rm km\,s^{-1}}$. We thus
+conclude that our algorithm for measuring redshifts is not severely biased by the blue wing of the
+[\ion{O}{3}] emission-line.
+
+Motivated by the study of \ion{Mg}{2} absorbers surrounding $z\sim1$ quasars by \cite{Johnson+15},
+we also generate a mean-stacked spectrum for \ion{Mg}{2}\,2796 for lower redshift quasar pairs.
+We select quasars with $0.4<z_{\rm fg}<1.6$ and use the same other selection criteria as the main
+QPQ9 sample. The quasar pairs are selected from the igmspec database, with $z_{\rm fg}$ measured
+by \cite{HewettWild10}. For quasars with $z_{\rm fg}<0.84$, as redshift determination is dominated
+by [\ion{O}{3}] emission, a shift of $+48\,{\rm km\,s^{-1}}$ is applied to bring the emission-line
+redshift to the systemic. For quasars with $0.84<z_{\rm fg}<1.6$, as redshift determination is
+dominated by \ion{Mg}{2} emission, a shift of $+57\,{\rm km\,s^{-1}}$ is applied. There are 233
+pairs selected, with a median $z_{\rm fg}$ of 0.90 and a median $R_\perp$ of 208\,kpc. We present
+the mean stack in Figure~\ref{fig:stack_z1}. The absorption is weaker than the $z\sim2$ main QPQ9
+sample. Gaussian absorption models fitted to the stack recover a centroid of
+$-11\pm379\,{\rm km\,s^{-1}}$ and a dispersion of $172\,{\rm km\,s^{-1}}$. The average offset
+from $0\,{\rm km\,s^{-1}}$ is much smaller than the offsets in the $z\sim2$ sample.
+
+Since the large scatter in the centroids represents intrinsic variation rather than redshift
+errors, and the \ion{Mg}{2} stack for lower redshift suggests a different centroid, we consider
+that
+systematic biases are unlikely to explain the asymmetry signal in the $z\sim2$ sample.
+%the asymmetry signal in the $z\sim2$ sample is likely to be real.
+In the Discussion section, we discuss two possible explanations for the asymmetry.
+
+\begin{figure}
+%\includegraphics[width=2.5in]{Figures/fig_histogram_cen.pdf}
+\includegraphics[width=2.5in]{f03.pdf}
+\caption{Histogram of the absorption centroids of 10000 bootstrap realizations of the data sample
+for the \ion{C}{2} mean stack. 97\% of the centroids are positively offset from $z_{\rm fg}$.}
+\label{fig:histogram_cen}
+\end{figure}
+
+\begin{figure}
+%\includegraphics[width=2.5in]{Figures/fig_stack_z1.pdf}
+\includegraphics[width=2.5in]{f04.pdf}
+\caption{Mean stack at \ion{Mg}{2}\,2796, for a lower redshift sample of quasar pairs at
+$z\sim0.9$. Line-style coding is the same as in Figure~\ref{fig:stacks_and_fits}. The centroid is
+approximately at $0\,{\rm \,km\,s^{-1}}$, and the absorption is weaker than the main QPQ9 sample.
+}
+\label{fig:stack_z1}
+\end{figure}
+
+\section{Discussion}
+\label{sec:discussion}
+
+%\begin{figure*}[!th]
+%\begin{minipage}[!bp]{0.28\textwidth}
+%%\includegraphics[width=\textwidth]{Figures/fig_monopolar.pdf}
+%\includegraphics[width=\textwidth]{f08.pdf}
+%\caption{A cartoon showing a unipolar quasar. The gas observed in low- to intermediate-ion
+%absorption preferentially lies behind the quasar, and is shadowed from the ionizing radiation.
+%}
+%\label{fig:monopolar}
+%\end{minipage}%
+%\hspace{0.3in}
+%\begin{minipage}[!bp]{0.67\textwidth}
+%%\includegraphics[width=\textwidth]{Figures/fig_lighttravel.pdf}
+%%\includegraphics[width=\textwidth]{f09.pdf}
+%\caption{A cartoon showing the finite lifetime of quasar episodes as an explanation to the
+%asymmetric absorption. The setup on the left shows that the foreground quasar has not been shining
+%long enough for its ionizing radiation to reach the gas behind it, when the light from the
+%background quasar reaches. The setup on the right shows the scenario after an amount of time
+%comparable to the light travelling time across CGM scale. Gas in front of the foreground quasar
+%has been ionized, by the time the light from the background quasar reaches.
+%}
+%\label{fig:lighttravel}
+%\end{minipage}
+%\end{figure*}
+
+\sidecaptionvpos{figure}{c}
+\begin{SCfigure*}[10][!th]
+%\includegraphics[width=\textwidth]{Figures/fig_monopolar.pdf}
+\includegraphics[height=0.49\textheight]{f08.pdf}
+\caption{A cartoon showing a unipolar quasar. The gas observed in low- to intermediate-ion
+absorption preferentially lies behind the quasar, and is shadowed from the ionizing radiation.}
+\label{fig:monopolar}
+\end{SCfigure*}
+\sidecaptionvpos{figure}{c}
+\begin{SCfigure*}[10][!bh]
+%\includegraphics[width=\textwidth]{Figures/fig_lighttravel.pdf}
+\includegraphics[height=0.49\textheight]{f09.pdf}
+\caption{A cartoon showing the finite lifetime of quasar episodes as an explanation to the
+asymmetric absorption. The setup on the left shows that the foreground quasar has not been shining
+long enough for its ionizing radiation to reach the gas behind it, when the light from the
+background quasar reaches. The setup on the right shows the scenario after an amount of time
+comparable to the light travelling time across CGM scale. Gas in front of the foreground quasar
+has been ionized, by the time the light from the background quasar reaches.}
+\label{fig:lighttravel}
+\end{SCfigure*}
+
+At low redshift, both symmetric and asymmetric ionization cones around quasars and AGNs are
+observed. In the extended emission-line region of 4C37.43, most of the [\ion{O}{3}] emission is
+blueshifted \citep{FuStockton07}, but there are counter examples in less extended sources in
+\cite{FuStockton09}. Recently, there has been Fabry-Perot interferometric data for less extended
+narrow-line regions in more nearby sources \citep{Keel+15,Keel+17}, which show mostly symmetric
+velocity fields and gas distributions.
+
+In the following, we explore two possible explanations for the non-dynamical processes that
+provides the putative asymmetry.
+The explanations arise from a transverse proximity effect (QPQ4), which is the suppression of
+opacity in background sightlines passing close to foreground quasars.
+
+One possibility is an asymmetric radiation field that preferentially ionizes the gas moving toward
+the observer, where the quasar is known to shine. Alternatively, the asymmetric radiation field
+may preferentially ionizes the gas at smaller Hubble velocity than the quasar. In
+Figure~\ref{fig:monopolar}, we show a cartoon of a quasar that is blocked in the direction
+pointing away from the observer. The gas observed in absorption preferentially lies behind the
+quasar.
+\cite{Roos+15} and \cite{GaborBournaud14} performed simulations of a high-redshift disk galaxy
+including thermal AGN feedback and calculated radiative transfer in post-processing. They found
+the ionization radiation is typically asymmetric, due to either a dense clump that lies on one
+edge of the black hole or the black hole's location being slightly above the disk.
+\cite{FaucherGiguere+16} represents the only simulation so far that is able to reproduce the
+substantial amount of cool gas in quasar-mass haloes. We eagerly await their group to compare the
+fraction of gas in inflows and outflows.
+
+Another possible explanation arises from the finite lifetime of quasar episodes.
+Figure~\ref{fig:lighttravel} presents a cartoon for a light travel time argument. The light from
+the background quasar may arrive at the gas behind
+the foreground quasar before the ionizing radiation from the foreground quasar arrives.
+
+%In
+%QPQ7 and QPQ8, we reported that the enhancement in metal ion absorption relative to IGM average
+%extends to at least $\approx200$\,kpc. This distance corresponds to a light travelling time of
+%$\sim10^6$\,yr.
+%n turn, this implies a minimum quasar lifetime of $10^6$\,yr, which lies within existing
+%constraints from
+%observations \citep[e.g.][]{Martini04} and simulations \citep[e.g.][]{Hopkins+05}.
+
+The first explanation above to asymmetric
+absorption requires that the quasars emit their ionizing radiation anisotropically, while the
+second explanation requires the quasars emit their ionizing radiation intermittently. Both
+explanations will require the line-of-sight motions of the gas to be not in a net inflow.
+Were the gas flowing into the galaxy instead, the velocity centroid would be negative.
+Under both scenarios, lows ions should be redshifted while high ions should be blueshifted.
+Using Cloud photoionization models, we find that, for the typical quasar luminosity of our sample,
+a CGM gas that is directly illuminated is highly ionized and shows only marginally detectable
+\ion{C}{4} absorption. The redshifted \ion{C}{4} may be regarded as an intermediate ion, and a
+blueshifted absorption signal needs to be searched in a higher ion.
+
+We test the case of Hubble flows versus galactic-scale outflows in producing the putative
+asymmetry.
+Anistropic emission is degenerate with intermittent emission in their asymmetric
+light-echo in the observer's frame. We first consider the scenario where
+the quasar's lifetime is infinite, and the observed ansymmetric absorption is only produced by
+anisotropic emission.
+We try implementing an arbitrary quasar opening angle in our Monte Carlo simulations to
+reproduce an absorption centroid that is redshifted from the systemic. In QPQ6, we argued that
+the observed anisotropic clustering of optically thick systems around quasars demands that a quasar's
+radiation field must affect optically thick systems on Mpc scales. Hence in this test, we set the
+incidence of absorbers happening within the quasar opening angle to be zero, for absorbers at all
+disances from the quasar. In the case without
+outflows, even if we set the opening angle to be $180^\circ$, i.e.\ absorption only happens at
+positive velocities, the mean absorption centroid would merely reach $\approx+85\,{\rm km\,s^{-1}}$.
+Hence, the observed $\delta v\approx+200\,{\rm km\,s^{-1}}$ shift in the mean absorption cannot be
+produced by asymmetric distribution in Hubble velocities alone. This suggests the presence of an
+outflow component to account for extra asymmetry in line-of-sight velocities.
+In order to produce the observed intrinsic dispersion and centroid of the mean absorption by
+\ion{C}{2}, we must add a radial outflow speed of $\approx450\,{\rm km\,s^{-1}}$ to the absorbers
+and a unipolar quasar opening angle of $\approx180^\circ$.
+Next, we consider another scenario where the quasar is isotropic, and the asymmetric absorption
+is only produced by short episodic lifetime. We further make the assumption the luminosity is
+constant during a quasar episode. In the quasar's rest frame, the light echo
+would be observed as a spherical region with the quasar at the origin. In the observer's frame, due
+to finite light travel time, the light-echo would not be spherically symmetric. The
+light-echo from the quasar at its luminosity $t$\,yr earlier traces a paraboloid
+with the quasar at the focus and the vertex $t/2$\,ly behind it \citep{Adelberger04,VisbalCroft08}.
+We find that, to reproduce the observation, the CGM absorbers need to have a radial outflow speed
+$\approx420\,{\rm km\,s^{-1}}$ and the quasar must have shined for $\approx0.4\times10^6$\,yr.
+For the anisotropy-only scenario, the opening angle deduced is rather large compared to literature
+findings, which give $30^\circ\textendash90^\circ$ \citep[e.g.,][]{TrainorSteidel13,Borisova+16}.
+For the intermittence-only scenario, if the quasars are on
+averaged observed near the middle of the episode, the lifetime deduced is somewhat small compared
+to other existing constraints from observations and simulations, which give
+$10^6\textendash10^8$\,yr \citep[e.g.,][]{Martini04,Hopkins+05}.
+We thus speculate that the asymmetric absorption is the result of a combination of anisotropic
+and intermittent emission.
+
+
+We note that, \cite{Turner+17} conclude that the clustering of low to intermediate ions around
+Lyman-break galaxies in velocity space is
+most consistent with gas that is inflowing on average. The different conclusion from our analysis
+may originate from the higher masses of our systems, the presence of quasar-driven ouflows
+\citep[e.g.,][]{Greene+12}, and/or starburst-driven outflows that are correlated with the presence
+of quasars \citep[e.g.,][]{Barthel+17}.
+
+Motivated by the asymmetry found in metal ion absorption in the CGM using precise $z_{\rm fg}$
+measurements, and the asymmetry found by \cite{KirkmanTytler08} in \ion{H}{1} on larger
+scales, we are assembling a sample of quasar pairs with precise $z_{\rm fg}$ measurements to study
+this asymmetry in \ion{H}{1} (J.\ F.\ Hennawi et al.\ 2018, in preparation). In conclusion, we
+observe large and positively skewed velocity fields in absorption, of metal ions
+in the CGM of $z\sim2$ massive galaxies hosting quasars.
+We argue that, the observation of large velocity fields alone can be accounted for by
+gravitational motions and Hubble flows and does not necessitate outflows. However, we argue that the
+positive skew suggests the detected gas is in outflow on average, and the quasars shine
+preferentially toward the observer and/or intermittently.
+
+\acknowledgements
+MWL is immensely grateful to the referee's constructive comments, which help strengthen the
+paper.
+JXP and MWL acknowledge support from the National Science Foundation (NSF) grants AST-1010004 and
+AST-1412981. The authors gratefully acknowledge the support which enabled these observations at
+the Keck, Gemini, Large Binocular Telescope, Very Large Telescope, Las Campanas, and Palomar
+Observatories. The authors acknowledge the sharing of private data by Yue Shen. MWL thanks Hai Fu
+for a discussion on extended emission-line regions, T.-K. Chan for a discussion on CGM
+simulations, and Chi Po Choi and Yat Tin Chow for discussions on statistics.
+
+\appendix
+
+\section{Line-of-sight absorption}
+\label{sec:appendix}
+
+\begin{figure}
+%\includegraphics[width=3.4in]{Figures/fig_stacks_fg.pdf}
+\includegraphics[width=3.4in]{f07.pdf}
+\caption{Mean stacks of the foreground quasar spectra at \ion{C}{2}\,1334, \ion{C}{4}\,1548, and
+\ion{Mg}{2}\,2796 for the QPQ9 sample. For \ion{C}{2} and \ion{Mg}{2}, the mean absorption is
+weaker than that in the background stacks, and there is no evidence for an excess at $z_{\rm fg}$.
+The stack for \ion{C}{4}, which includes line-of-sight absorbers at all distances, shows a large,
+blueshifted mean velocity field.
+}
+\label{fig:stacks_fg}
+\end{figure}
+
+In the previous QPQ papers, we argued that optically thick absorbers in the vicinity of quasars
+are distributed anisotropically. We now have the means to show this anisotropic clustering
+explicitly. Given that the techniques for stacking spectra are established, it is straightforward
+to apply the same techniques to stack the foreground quasar spectra. In
+Figure~\ref{fig:stacks_fg}, we present mean stacks of foreground quasar spectra for
+the QPQ9 sample. We require that the spectra survive a S/N cut of 5.5 per rest-frame \AA\ at
+\ion{C}{2}\,1334, \ion{C}{4}\,1548, or \ion{Mg}{2}\,2796 at $z_{\rm fg}$. In contrast to the
+large equivalent widths exhibited in the stacks of background spectra, \ion{C}{2} and \ion{Mg}{2}
+mean absorption along the line-of-sight to the foreground quasars is weaker, and an excess at
+$z_{\rm fg}$ is absent. This supports a scenario where the ionizing radiation of the foreground
+quasars are anisotropic and/or intermittent. For \ion{C}{4}\,1548, this stack of all line-of-sight
+absorbers, which include absorbers intrinsic to and far away from the quasar, shows a large,
+blueshifted velocity field. This excess \ion{C}{4} absorption has been well studied as narrow
+associated absorption line systems \citep[e.g.,][]{Wild+08}.
+We note that, in the $z\sim4$ sample of narrow associated absorbers analyzed by \cite{Perrotta+16} 
+and Perrotta et al.\ (2018, in preparation), a higher ionization state is similarly found along 
+the line-of-sight to quasars compared to across the line-of-sight. In particular, an excess of 
+\ion{N}{5} absorption is found in proximity to the host quasars. 
+
+%\bibliographystyle{/Users/lwymarie/Documents/Bibli/apj}
+%\bibliography{/Users/lwymarie/Documents/Bibli/allrefs}
+
+\begin{thebibliography}{62}
+\expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+
+\bibitem[{{Adelberger}(2004)}]{Adelberger04}
+{Adelberger}, K.~L. 2004, \apj, 612, 706
+
+\bibitem[{{Baldwin}(1977)}]{Baldwin77}
+{Baldwin}, J.~A. 1977, \apj, 214, 679
+
+\bibitem[{{Barthel} {et~al.}(2017){Barthel}, {Podigachoski}, {Wilkes}, \&
+  {Haas}}]{Barthel+17}
+{Barthel}, P., {Podigachoski}, P., {Wilkes}, B., \& {Haas}, M. 2017, \apjl,
+  843, L16
+
+\bibitem[{{Bielby} {et~al.}(2013){Bielby}, {Hill}, {Shanks}, {Crighton},
+  {Infante}, {Bornancini}, {Francke}, {H{\'e}raudeau}, {Lambas}, {Metcalfe},
+  {Minniti}, {Padilla}, {Theuns}, {Tummuangpak}, \& {Weilbacher}}]{Bielby+13}
+{Bielby}, R., {Hill}, M.~D., {Shanks}, T., {Crighton}, N.~H.~M., {Infante}, L.,
+  {Bornancini}, C.~G., {Francke}, H., {H{\'e}raudeau}, P., {Lambas}, D.~G.,
+  {Metcalfe}, N., {Minniti}, D., {Padilla}, N., {Theuns}, T., {Tummuangpak},
+  P., \& {Weilbacher}, P. 2013, \mnras, 430, 425
+
+\bibitem[{{Bergeron} \& {Boisse}(1991)}]{BergeronBoisse91}
+{Bergeron}, J., \& {Boisse}, P. 1991, Advances in Space Research, 11, 241
+
+\bibitem[{{Borisova} {et~al.}(2016){Borisova}, {Lilly}, {Cantalupo},
+  {Prochaska}, {Rakic}, \& {Worseck}}]{Borisova+16}
+{Borisova}, E., {Lilly}, S.~J., {Cantalupo}, S., {Prochaska}, J.~X., {Rakic},
+  O., \& {Worseck}, G. 2016, \apj, 830, 120
+
+\bibitem[{{Boroson}(2005)}]{Boroson05}
+{Boroson}, T. 2005, \aj, 130, 381
+
+\bibitem[{{Cantalupo} {et~al.}(2014){Cantalupo}, {Arrigoni-Battaia},
+  {Prochaska}, {Hennawi}, \& {Madau}}]{Cantalupo+14}
+{Cantalupo}, S., {Arrigoni-Battaia}, F., {Prochaska}, J.~X., {Hennawi}, J.~F.,
+  \& {Madau}, P. 2014, \nat, 506, 63
+
+\bibitem[{{Churchill} {et~al.}(2012){Churchill}, {Kacprzak}, {Steidel},
+  {Spitler}, {Holtzman}, {Nielsen}, \& {Trujillo-Gomez}}]{Churchill+12}
+{Churchill}, C.~W., {Kacprzak}, G.~G., {Steidel}, C.~C., {Spitler}, L.~R.,
+  {Holtzman}, J., {Nielsen}, N.~M., \& {Trujillo-Gomez}, S. 2012, \apj, 760, 68
+
+\bibitem[{{Eftekharzadeh} {et~al.}(2015){Eftekharzadeh}, {Myers}, {White},
+  {Weinberg}, {Schneider}, {Shen}, {Font-Ribera}, {Ross}, {Paris}, \&
+  {Streblyanska}}]{Eftekharzadeh+15}
+{Eftekharzadeh}, S., {Myers}, A.~D., {White}, M., {Weinberg}, D.~H.,
+  {Schneider}, D.~P., {Shen}, Y., {Font-Ribera}, A., {Ross}, N.~P., {Paris},
+  I., \& {Streblyanska}, A. 2015, \mnras, 453, 2779
+
+\bibitem[{{Faucher-Gigu{\`e}re} {et~al.}(2016){Faucher-Gigu{\`e}re},
+  {Feldmann}, {Quataert}, {Kere{\v s}}, {Hopkins}, \&
+  {Murray}}]{FaucherGiguere+16}
+{Faucher-Gigu{\`e}re}, C.-A., {Feldmann}, R., {Quataert}, E., {Kere{\v s}}, D.,
+  {Hopkins}, P.~F., \& {Murray}, N. 2016, \mnras, 461, L32
+
+\bibitem[{{Fu} \& {Stockton}(2007)}]{FuStockton07}
+{Fu}, H., \& {Stockton}, A. 2007, \apj, 666, 794
+
+\bibitem[{{Fu} \& {Stockton}(2009)}]{FuStockton09}
+---. 2009, \apj, 690, 953
+
+\bibitem[{{Fumagalli} {et~al.}(2011){Fumagalli}, {Prochaska}, {Kasen}, {Dekel},
+  {Ceverino}, \& {Primack}}]{Fumagalli+11}
+{Fumagalli}, M., {Prochaska}, J.~X., {Kasen}, D., {Dekel}, A., {Ceverino}, D.,
+  \& {Primack}, J.~R. 2011, \mnras, 418, 1796
+
+\bibitem[{{Gabor} \& {Bournaud}(2014)}]{GaborBournaud14}
+{Gabor}, J.~M., \& {Bournaud}, F. 2014, \mnras, 441, 1615
+
+\bibitem[{{Gauthier}(2013)}]{Gauthier13}
+{Gauthier}, J.-R. 2013, \mnras, 432, 1444
+
+\bibitem[{{Greene} {et~al.}(2012){Greene}, {Zakamska}, \& {Smith}}]{Greene+12}
+{Greene}, J.~E., {Zakamska}, N.~L., \& {Smith}, P.~S. 2012, \apj, 746, 86
+
+\bibitem[{{Hennawi} {et~al.}(2006){Hennawi}, {Prochaska}, {Burles}, {Strauss},
+  {Richards}, {Schlegel}, {Fan}, {Schneider}, {Zakamska}, {Oguri}, {Gunn},
+  {Lupton}, \& {Brinkmann}}]{QPQ1}
+{Hennawi}, J.~F., {Prochaska}, J.~X., {Burles}, S., {Strauss}, M.~A.,
+  {Richards}, G.~T., {Schlegel}, D.~J., {Fan}, X., {Schneider}, D.~P.,
+  {Zakamska}, N.~L., {Oguri}, M., {Gunn}, J.~E., {Lupton}, R.~H., \&
+  {Brinkmann}, J. 2006, \apj, 651, 61
+
+\bibitem[{{Hennawi} {et~al.}(2015){Hennawi}, {Prochaska}, {Cantalupo}, \&
+  {Arrigoni-Battaia}}]{Hennawi+15}
+{Hennawi}, J.~F., {Prochaska}, J.~X., {Cantalupo}, S., \& {Arrigoni-Battaia},
+  F. 2015, Science, 348, 779
+
+\bibitem[{{Hewett} \& {Wild}(2010)}]{HewettWild10}
+{Hewett}, P.~C., \& {Wild}, V. 2010, \mnras, 405, 2302
+
+\bibitem[{{Ho} {et~al.}(2017){Ho}, {Martin}, {Kacprzak}, \&
+  {Churchill}}]{Ho+17}
+{Ho}, S.~H., {Martin}, C.~L., {Kacprzak}, G.~G., \& {Churchill}, C.~W. 2017,
+  \apj, 835, 267
+
+\bibitem[{{Hopkins} {et~al.}(2005){Hopkins}, {Hernquist}, {Martini}, {Cox},
+  {Robertson}, {Di Matteo}, \& {Springel}}]{Hopkins+05}
+{Hopkins}, P.~F., {Hernquist}, L., {Martini}, P., {Cox}, T.~J., {Robertson},
+  B., {Di Matteo}, T., \& {Springel}, V. 2005, \apjl, 625, L71
+
+\bibitem[{{Johnson} {et~al.}(2015){Johnson}, {Chen}, \&
+  {Mulchaey}}]{Johnson+15}
+{Johnson}, S.~D., {Chen}, H.-W., \& {Mulchaey}, J.~S. 2015, \mnras, 452, 2553
+
+\bibitem[{{Keel} {et~al.}(2017){Keel}, {Lintott}, {Maksym}, {Bennert},
+  {Chojnowski}, {Moiseev}, {Smirnova}, {Schawinski}, {Sartori}, {Urry},
+  {Pancoast}, {Schirmer}, {Scott}, {Showley}, \& {Flatland}}]{Keel+17}
+{Keel}, W.~C., {Lintott}, C.~J., {Maksym}, W.~P., {Bennert}, V.~N.,
+  {Chojnowski}, S.~D., {Moiseev}, A., {Smirnova}, A., {Schawinski}, K.,
+  {Sartori}, L.~F., {Urry}, C.~M., {Pancoast}, A., {Schirmer}, M., {Scott}, B.,
+  {Showley}, C., \& {Flatland}, K. 2017, \apj, 835, 256
+
+\bibitem[{{Keel} {et~al.}(2015){Keel}, {Maksym}, {Bennert}, {Lintott},
+  {Chojnowski}, {Moiseev}, {Smirnova}, {Schawinski}, {Urry}, {Evans},
+  {Pancoast}, {Scott}, {Showley}, \& {Flatland}}]{Keel+15}
+{Keel}, W.~C., {Maksym}, W.~P., {Bennert}, V.~N., {Lintott}, C.~J.,
+  {Chojnowski}, S.~D., {Moiseev}, A., {Smirnova}, A., {Schawinski}, K., {Urry},
+  C.~M., {Evans}, D.~A., {Pancoast}, A., {Scott}, B., {Showley}, C., \&
+  {Flatland}, K. 2015, \aj, 149, 155
+
+\bibitem[{{Kere\v{s}} {et~al.}(2009){Kere\v{s}}, {Katz}, {Fardal}, {Dav{\'e}},
+  \& {Weinberg}}]{Keres+09}
+{Kere\v{s}}, D., {Katz}, N., {Fardal}, M., {Dav{\'e}}, R., \& {Weinberg}, D.~H.
+  2009, \mnras, 395, 160
+
+\bibitem[{{Kirkman} \& {Tytler}(2008)}]{KirkmanTytler08}
+{Kirkman}, D., \& {Tytler}, D. 2008, \mnras, 391, 1457
+
+\bibitem[{{Lau} {et~al.}(2016){Lau}, {Prochaska}, \& {Hennawi}}]{QPQ8}
+{Lau}, M.~W., {Prochaska}, J.~X., \& {Hennawi}, J.~F. 2016, \apjs, 226, 25
+
+\bibitem[{{Malkan} {et~al.}(2017){Malkan}, {Cohen}, {Maruyama}, {Kashikawa},
+  {Ly}, {Ishikawa}, {Shimasaku}, {Hayashi}, \& {Motohara}}]{Malkan+17}
+{Malkan}, M.~A., {Cohen}, D.~P., {Maruyama}, M., {Kashikawa}, N., {Ly}, C.,
+  {Ishikawa}, S., {Shimasaku}, K., {Hayashi}, M., \& {Motohara}, K. 2017, \apj,
+  850, 5
+
+\bibitem[{{Martin}(2005)}]{Martin05}
+{Martin}, C.~L. 2005, \apj, 621, 227
+
+\bibitem[{{Martini}(2004)}]{Martini04}
+{Martini}, P. 2004, Coevolution of Black Holes and Galaxies, 169
+
+\bibitem[{{Muzahid} {et~al.}(2015){Muzahid}, {Kacprzak}, {Churchill},
+  {Charlton}, {Nielsen}, {Mathes}, \& {Trujillo-Gomez}}]{Muzahid+15}
+{Muzahid}, S., {Kacprzak}, G.~G., {Churchill}, C.~W., {Charlton}, J.~C.,
+  {Nielsen}, N.~M., {Mathes}, N.~L., \& {Trujillo-Gomez}, S. 2015, \apj, 811,
+  132
+
+\bibitem[{{Navarro} {et~al.}(1997){Navarro}, {Frenk}, \&
+  {White}}]{NavarroFrenkWhite97}
+{Navarro}, J.~F., {Frenk}, C.~S., \& {White}, S.~D.~M. 1997, \apj, 490, 493
+
+\bibitem[{{P{\^a}ris} {et~al.}(2017){P{\^a}ris}, {Petitjean}, {Ross}, {Myers},
+  {Aubourg}, {Streblyanska}, {Bailey}, {Armengaud}, {Palanque-Delabrouille},
+  {Y{\`e}che}, {Hamann}, {Strauss}, {Albareti}, {Bovy}, {Bizyaev}, {Niel
+  Brandt}, {Brusa}, {Buchner}, {Comparat}, {Croft}, {Dwelly}, {Fan},
+  {Font-Ribera}, {Ge}, {Georgakakis}, {Hall}, {Jiang}, {Kinemuchi},
+  {Malanushenko}, {Malanushenko}, {McMahon}, {Menzel}, {Merloni}, {Nandra},
+  {Noterdaeme}, {Oravetz}, {Pan}, {Pieri}, {Prada}, {Salvato}, {Schlegel},
+  {Schneider}, {Simmons}, {Viel}, {Weinberg}, \& {Zhu}}]{Paris+17}
+{P{\^a}ris}, I., {Petitjean}, P., {Ross}, N.~P., {Myers}, A.~D., {Aubourg},
+  {\'E}., {Streblyanska}, A., {Bailey}, S., {Armengaud}, {\'E}.,
+  {Palanque-Delabrouille}, N., {Y{\`e}che}, C., {Hamann}, F., {Strauss}, M.~A.,
+  {Albareti}, F.~D., {Bovy}, J., {Bizyaev}, D., {Niel Brandt}, W., {Brusa}, M.,
+  {Buchner}, J., {Comparat}, J., {Croft}, R.~A.~C., {Dwelly}, T., {Fan}, X.,
+  {Font-Ribera}, A., {Ge}, J., {Georgakakis}, A., {Hall}, P.~B., {Jiang}, L.,
+  {Kinemuchi}, K., {Malanushenko}, E., {Malanushenko}, V., {McMahon}, R.~G.,
+  {Menzel}, M.-L., {Merloni}, A., {Nandra}, K., {Noterdaeme}, P., {Oravetz},
+  D., {Pan}, K., {Pieri}, M.~M., {Prada}, F., {Salvato}, M., {Schlegel}, D.~J.,
+  {Schneider}, D.~P., {Simmons}, A., {Viel}, M., {Weinberg}, D.~H., \& {Zhu},
+  L. 2017, \aap, 597, A79
+
+\bibitem[{{Perrotta} {et~al.}(2016){Perrotta}, {D'Odorico}, {Prochaska},
+  {Cristiani}, {Cupani}, {Ellison}, {L{\'o}pez}, {Becker}, {Berg},
+  {Christensen}, {Denney}, {Hamann}, {P{\^a}ris}, {Vestergaard}, \&
+  {Worseck}}]{Perrotta+16}
+{Perrotta}, S., {D'Odorico}, V., {Prochaska}, J.~X., {Cristiani}, S., {Cupani},
+  G., {Ellison}, S., {L{\'o}pez}, S., {Becker}, G.~D., {Berg}, T.~A.~M.,
+  {Christensen}, L., {Denney}, K.~D., {Hamann}, F., {P{\^a}ris}, I.,
+  {Vestergaard}, M., \& {Worseck}, G. 2016, \mnras, 462, 3285
+
+\bibitem[{{Prochaska}(2017)}]{Prochaska+17}
+{Prochaska}, J.~X. 2017, Astronomy and Computing, 19, 27
+
+\bibitem[{{Prochaska} {et~al.}(2013{\natexlab{a}}){Prochaska}, {Hennawi},
+  {Lee}, {Cantalupo}, {Bovy}, {Djorgovski}, {Ellison}, {Lau}, {Martin},
+  {Myers}, {Rubin}, \& {Simcoe}}]{QPQ6}
+{Prochaska}, J.~X., {Hennawi}, J.~F., {Lee}, K.-G., {Cantalupo}, S., {Bovy},
+  J., {Djorgovski}, S.~G., {Ellison}, S.~L., {Lau}, M.~W., {Martin}, C.~L.,
+  {Myers}, A., {Rubin}, K.~H.~R., \& {Simcoe}, R.~A. 2013{\natexlab{a}}, \apj,
+  776, 136
+
+\bibitem[{{Prochaska} {et~al.}(2013{\natexlab{b}}){Prochaska}, {Hennawi}, \&
+  {Simcoe}}]{QPQ5}
+{Prochaska}, J.~X., {Hennawi}, J.~F., \& {Simcoe}, R.~A. 2013{\natexlab{b}},
+  \apjl, 762, L19
+
+\bibitem[{{Prochaska} {et~al.}(2014){Prochaska}, {Lau}, \& {Hennawi}}]{QPQ7}
+{Prochaska}, J.~X., {Lau}, M.~W., \& {Hennawi}, J.~F. 2014, \apj, 796, 140
+
+\bibitem[{{Prochaska} {et~al.}(2011){Prochaska}, {Weiner}, {Chen}, {Mulchaey},
+  \& {Cooksey}}]{Prochaska+11}
+{Prochaska}, J.~X., {Weiner}, B., {Chen}, H.-W., {Mulchaey}, J., \& {Cooksey},
+  K. 2011, \apj, 740, 91
+
+\bibitem[{{Rakic} {et~al.}(2012){Rakic}, {Schaye}, {Steidel}, \&
+  {Rudie}}]{Rakic+12}
+{Rakic}, O., {Schaye}, J., {Steidel}, C.~C., \& {Rudie}, G.~C. 2012, \apj, 751,
+  94
+
+\bibitem[{{Richards} {et~al.}(2002){Richards}, {Vanden Berk}, {Reichard},
+  {Hall}, {Schneider}, {SubbaRao}, {Thakar}, \& {York}}]{Richards+02}
+{Richards}, G.~T., {Vanden Berk}, D.~E., {Reichard}, T.~A., {Hall}, P.~B.,
+  {Schneider}, D.~P., {SubbaRao}, M., {Thakar}, A.~R., \& {York}, D.~G. 2002,
+  \aj, 124, 1
+
+\bibitem[{{Rodr{\'{\i}}guez-Torres} {et~al.}(2017){Rodr{\'{\i}}guez-Torres},
+  {Comparat}, {Prada}, {Yepes}, {Burtin}, {Zarrouk}, {Laurent}, {Hahn},
+  {Behroozi}, {Klypin}, {Ross}, {Tojeiro}, \& {Zhao}}]{RodriguezTorres+17}
+{Rodr{\'{\i}}guez-Torres}, S.~A., {Comparat}, J., {Prada}, F., {Yepes}, G.,
+  {Burtin}, E., {Zarrouk}, P., {Laurent}, P., {Hahn}, C., {Behroozi}, P.,
+  {Klypin}, A., {Ross}, A., {Tojeiro}, R., \& {Zhao}, G.-B. 2017, \mnras, 468,
+  728
+
+\bibitem[{{Roos} {et~al.}(2015){Roos}, {Juneau}, {Bournaud}, \&
+  {Gabor}}]{Roos+15}
+{Roos}, O., {Juneau}, S., {Bournaud}, F., \& {Gabor}, J.~M. 2015, \apj, 800, 19
+
+\bibitem[{{Rubin} {et~al.}(2014){Rubin}, {Prochaska}, {Koo}, {Phillips},
+  {Martin}, \& {Winstrom}}]{Rubin+14}
+{Rubin}, K.~H.~R., {Prochaska}, J.~X., {Koo}, D.~C., {Phillips}, A.~C.,
+  {Martin}, C.~L., \& {Winstrom}, L.~O. 2014, \apj, 794, 156
+
+\bibitem[{{Rudie} {et~al.}(2017){Rudie}, {Newman}, \&
+  {Murphy}}]{RudieNewmanMurphy17}
+{Rudie}, G.~C., {Newman}, A.~B., \& {Murphy}, M.~T. 2017, \apj, 843, 98
+
+\bibitem[{{Rupke} {et~al.}(2005){Rupke}, {Veilleux}, \& {Sanders}}]{Rupke+05}
+{Rupke}, D.~S., {Veilleux}, S., \& {Sanders}, D.~B. 2005, \apjs, 160, 115
+
+\bibitem[{{Schneider} {et~al.}(2010){Schneider}, {Richards}, {Hall}, {Strauss},
+  {Anderson}, {Boroson}, {Ross}, {Shen}, {Brandt}, {Fan}, {Inada}, {Jester},
+  {Knapp}, {Krawczyk}, {Thakar}, {Vanden Berk}, {Voges}, {Yanny}, {York},
+  {Bahcall}, {Bizyaev}, {Blanton}, {Brewington}, {Brinkmann}, {Eisenstein},
+  {Frieman}, {Fukugita}, {Gray}, {Gunn}, {Hibon}, {Ivezi{\'c}}, {Kent}, {Kron},
+  {Lee}, {Lupton}, {Malanushenko}, {Malanushenko}, {Oravetz}, {Pan}, {Pier},
+  {Price}, {Saxe}, {Schlegel}, {Simmons}, {Snedden}, {SubbaRao}, {Szalay}, \&
+  {Weinberg}}]{Schneider+10}
+{Schneider}, D.~P., {Richards}, G.~T., {Hall}, P.~B., {Strauss}, M.~A.,
+  {Anderson}, S.~F., {Boroson}, T.~A., {Ross}, N.~P., {Shen}, Y., {Brandt},
+  W.~N., {Fan}, X., {Inada}, N., {Jester}, S., {Knapp}, G.~R., {Krawczyk},
+  C.~M., {Thakar}, A.~R., {Vanden Berk}, D.~E., {Voges}, W., {Yanny}, B.,
+  {York}, D.~G., {Bahcall}, N.~A., {Bizyaev}, D., {Blanton}, M.~R.,
+  {Brewington}, H., {Brinkmann}, J., {Eisenstein}, D., {Frieman}, J.~A.,
+  {Fukugita}, M., {Gray}, J., {Gunn}, J.~E., {Hibon}, P., {Ivezi{\'c}}, {\v
+  Z}., {Kent}, S.~M., {Kron}, R.~G., {Lee}, M.~G., {Lupton}, R.~H.,
+  {Malanushenko}, E., {Malanushenko}, V., {Oravetz}, D., {Pan}, K., {Pier},
+  J.~R., {Price}, III, T.~N., {Saxe}, D.~H., {Schlegel}, D.~J., {Simmons}, A.,
+  {Snedden}, S.~A., {SubbaRao}, M.~U., {Szalay}, A.~S., \& {Weinberg}, D.~H.
+  2010, \aj, 139, 2360
+
+\bibitem[{{Shen} {et~al.}(2016{\natexlab{a}}){Shen}, {Brandt}, {Richards},
+  {Denney}, {Greene}, {Grier}, {Ho}, {Peterson}, {Petitjean}, {Schneider},
+  {Tao}, \& {Trump}}]{Shen+16}
+{Shen}, Y., {Brandt}, W.~N., {Richards}, G.~T., {Denney}, K.~D., {Greene},
+  J.~E., {Grier}, C.~J., {Ho}, L.~C., {Peterson}, B.~M., {Petitjean}, P.,
+  {Schneider}, D.~P., {Tao}, C., \& {Trump}, J.~R. 2016{\natexlab{a}}, \apj,
+  831, 7
+
+\bibitem[{{Shen} {et~al.}(2016{\natexlab{b}}){Shen}, {Horne}, {Grier},
+  {Peterson}, {Denney}, {Trump}, {Sun}, {Brandt}, {Kochanek}, {Dawson},
+  {Green}, {Greene}, {Hall}, {Ho}, {Jiang}, {Kinemuchi}, {McGreer},
+  {Petitjean}, {Richards}, {Schneider}, {Strauss}, {Tao}, {Wood-Vasey}, {Zu},
+  {Pan}, {Bizyaev}, {Ge}, {Oravetz}, \& {Simmons}}]{Shen16}
+{Shen}, Y., {Horne}, K., {Grier}, C.~J., {Peterson}, B.~M., {Denney}, K.~D.,
+  {Trump}, J.~R., {Sun}, M., {Brandt}, W.~N., {Kochanek}, C.~S., {Dawson},
+  K.~S., {Green}, P.~J., {Greene}, J.~E., {Hall}, P.~B., {Ho}, L.~C., {Jiang},
+  L., {Kinemuchi}, K., {McGreer}, I.~D., {Petitjean}, P., {Richards}, G.~T.,
+  {Schneider}, D.~P., {Strauss}, M.~A., {Tao}, C., {Wood-Vasey}, W.~M., {Zu},
+  Y., {Pan}, K., {Bizyaev}, D., {Ge}, J., {Oravetz}, D., \& {Simmons}, A.
+  2016{\natexlab{b}}, \apj, 818, 30
+
+\bibitem[{{Shen} {et~al.}(2011){Shen}, {Richards}, {Strauss}, {Hall},
+  {Schneider}, {Snedden}, {Bizyaev}, {Brewington}, {Malanushenko},
+  {Malanushenko}, {Oravetz}, {Pan}, \& {Simmons}}]{Shen+11}
+{Shen}, Y., {Richards}, G.~T., {Strauss}, M.~A., {Hall}, P.~B., {Schneider},
+  D.~P., {Snedden}, S., {Bizyaev}, D., {Brewington}, H., {Malanushenko}, V.,
+  {Malanushenko}, E., {Oravetz}, D., {Pan}, K., \& {Simmons}, A. 2011, \apjs,
+  194, 45
+
+\bibitem[{{Somerville} \& {Dav{\'e}}(2015)}]{SomervilleDave15}
+{Somerville}, R.~S., \& {Dav{\'e}}, R. 2015, \araa, 53, 51
+
+\bibitem[{{Steidel} {et~al.}(2010){Steidel}, {Erb}, {Shapley}, {Pettini},
+  {Reddy}, {Bogosavljevi{\'c}}, {Rudie}, \& {Rakic}}]{Steidel+10}
+{Steidel}, C.~C., {Erb}, D.~K., {Shapley}, A.~E., {Pettini}, M., {Reddy}, N.,
+  {Bogosavljevi{\'c}}, M., {Rudie}, G.~C., \& {Rakic}, O. 2010, \apj, 717, 289
+
+\bibitem[{{Tormen} {et~al.}(1997){Tormen}, {Bouchet}, \&
+  {White}}]{TormenBouchetWhite97}
+{Tormen}, G., {Bouchet}, F.~R., \& {White}, S.~D.~M. 1997, \mnras, 286, 865
+
+\bibitem[{{Trainor} \& {Steidel}(2013)}]{TrainorSteidel13}
+{Trainor}, R., \& {Steidel}, C.~C. 2013, \apjl, 775, L3
+
+\bibitem[{{Tripp} {et~al.}(2011){Tripp}, {Meiring}, {Prochaska}, {Willmer},
+  {Howk}, {Werk}, {Jenkins}, {Bowen}, {Lehner}, {Sembach}, {Thom}, \&
+  {Tumlinson}}]{Tripp+11}
+{Tripp}, T.~M., {Meiring}, J.~D., {Prochaska}, J.~X., {Willmer}, C.~N.~A.,
+  {Howk}, J.~C., {Werk}, J.~K., {Jenkins}, E.~B., {Bowen}, D.~V., {Lehner}, N.,
+  {Sembach}, K.~R., {Thom}, C., \& {Tumlinson}, J. 2011, Science, 334, 952
+
+\bibitem[{{Tumlinson} {et~al.}(2013){Tumlinson}, {Thom}, {Werk}, {Prochaska},
+  {Tripp}, {Katz}, {Dav{\'e}}, {Oppenheimer}, {Meiring}, {Ford}, {O'Meara},
+  {Peeples}, {Sembach}, \& {Weinberg}}]{Tumlinson+13}
+{Tumlinson}, J., {Thom}, C., {Werk}, J.~K., {Prochaska}, J.~X., {Tripp}, T.~M.,
+  {Katz}, N., {Dav{\'e}}, R., {Oppenheimer}, B.~D., {Meiring}, J.~D., {Ford},
+  A.~B., {O'Meara}, J.~M., {Peeples}, M.~S., {Sembach}, K.~R., \& {Weinberg},
+  D.~H. 2013, \apj, 777, 59
+
+\bibitem[{{Turner} {et~al.}(2017){Turner}, {Schaye}, {Crain}, {Rudie},
+  {Steidel}, {Strom}, \& {Theuns}}]{Turner+17}
+{Turner}, M.~L., {Schaye}, J., {Crain}, R.~A., {Rudie}, G., {Steidel}, C.~C.,
+  {Strom}, A., \& {Theuns}, T. 2017, \mnras, 471, 690
+
+\bibitem[{{Visbal} \& {Croft}(2008)}]{VisbalCroft08}
+{Visbal}, E., \& {Croft}, R.~A.~C. 2008, \apj, 674, 660
+
+\bibitem[{{Weiner} {et~al.}(2009){Weiner}, {Coil}, {Prochaska}, {Newman},
+  {Cooper}, {Bundy}, {Conselice}, {Dutton}, {Faber}, {Koo}, {Lotz}, {Rieke}, \&
+  {Rubin}}]{Weiner+09}
+{Weiner}, B.~J., {Coil}, A.~L., {Prochaska}, J.~X., {Newman}, J.~A., {Cooper},
+  M.~C., {Bundy}, K., {Conselice}, C.~J., {Dutton}, A.~A., {Faber}, S.~M.,
+  {Koo}, D.~C., {Lotz}, J.~M., {Rieke}, G.~H., \& {Rubin}, K.~H.~R. 2009, \apj,
+  692, 187
+
+\bibitem[{{Wild} {et~al.}(2008){Wild}, {Kauffmann}, {White}, {York}, {Lehnert},
+  {Heckman}, {Hall}, {Khare}, {Lundgren}, {Schneider}, \& {vanden
+  Berk}}]{Wild+08}
+{Wild}, V., {Kauffmann}, G., {White}, S., {York}, D., {Lehnert}, M., {Heckman},
+  T., {Hall}, P.~B., {Khare}, P., {Lundgren}, B., {Schneider}, D.~P., \&
+  {vanden Berk}, D. 2008, \mnras, 388, 227
+
+\bibitem[{{Zahedy} {et~al.}(2016){Zahedy}, {Chen}, {Rauch}, {Wilson}, \&
+  {Zabludoff}}]{Zahedy+16}
+{Zahedy}, F.~S., {Chen}, H.-W., {Rauch}, M., {Wilson}, M.~L., \& {Zabludoff},
+  A. 2016, \mnras, 458, 2423
+
+\end{thebibliography}
+
+\end{document}

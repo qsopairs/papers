@@ -183,7 +183,7 @@ def main(contour_only="False"):
         print('mean EW of QPQ8 LLS',mean_QPQ8)
 
     # Generate data for contour plot
-    contour_data(all_dict)
+#    contour_data(all_dict)
 
 
 # Command line execution

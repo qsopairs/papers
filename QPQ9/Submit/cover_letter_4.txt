@@ -1,0 +1,69 @@
+Dear Editor Walter,
+
+We thank the referee very much, for the many helpful exchanges. I want to
+thank both of you for your service to the community. I have added the
+referee's latest suggestions.
+
+Dear referee,
+
+It's been very helpful to have these exchanges with you. Thank you
+very much for your professional service. I have added your latest
+suggestions.
+
+>1) The paper now states that a 500 km/s outflow can reproduce the
+>observed velocity shift based on "crude" estimates. Please give a bit
+>more detail on how this estimate was obtained and state whether it is
+>degenerate with e.g. the quasar opening angle or episodic lifetime.
+
+We updated the text to be somewhat more quantitative and rigorous.
+Anistropic emission is degenerate with intermittent emission.
+First we consider the case where the quasar lifetime is infinite, and
+the observed asymmetry is only produced by anisotropic emission. Then,
+the radial outflow speed needs to be ~450 km/s and the opening
+angle needs to be ~180 degrees, so that the observed intrinsic
+dispersion and absorption centroid can be produced.
+Second we consider the case where the quasar is isotropic, and the
+observed asymmetry is only produced by finite lifetime. We further make
+the assumption the quasar luminosity is constant during its lifetime.
+Then, the radial outflow speed needs to be at least ~420 km/s and the
+quasar must have shined for ~0.4e+6 years, to reproduce the observation.
+For the anisotropy-only case, the opening angle
+deduced is rather large compared to literature findings (e.g.
+Borisova+16). For the intermittence-only case, if the quasars are on
+averaged observed near the middle of the episode, the lifetime
+deduced is somewhat small compared to literature findings. We thus
+speculate that the asymmetry is the result of a combination of anisotropic
+and intermittent emission. To better illustrate the second case, we also
+updated the cartoon figure on finite lifetime to show a scenario where the
+emission is isotropic.
+
+>2) It would be useful to compare this outflow rate with other works and
+>discuss possible origins of the putative outflows (e.g. supernovae vs.
+>AGN). For example, a comparison with Turner+2014, 2017 would be
+>enlightening. In particulary, Turner+2017 examined mean absorption
+>optical depths around Lyman break galaxies and compared with simulations.
+>For lower ionization state gas (HI, SiIV, and CIV in this case), the
+>favored conclusion is that clustering of the absorption in velocity space
+>is most consistent with gas that is *inflowing* on average. This is in
+>apparent contrast with the new conclusions of the paper. This difference
+>may be related to the masses of the systems being studied or the presence
+>of the quasar due to quasar driven outflows (e.g. Green+2012) and/or
+>supernovae driven outflows from starburst activity that is correlated
+>with the presence of quasars (e.g. Barthel+2017).
+
+We thank the referee for the literature suggestion, and the discussion
+suggestion. We have added relevant text.
+
+>1) It would be useful to add minor ticks to Figure 3, particularly on the
+>x-axis.
+
+We added minor ticks. We thank the referee's attentiveness to details.
+
+>2) The numbering on the x-axis of Figure 4 is difficult to read
+>currently.
+
+We decreased the number of tick labels. We thank the referee for their
+attentiveness.
+
+Marie Wingyee Lau
+
